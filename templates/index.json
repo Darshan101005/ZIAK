@@ -94,12 +94,81 @@
         "padding_top": 44,
         "padding_bottom": 36
       }
+    },
+    "ziak_heritage": {
+      "type": "ziak-heritage",
+      "settings": {
+        "eyebrow": "OUR HERITAGE",
+        "heading": "Rooted in Craft. Driven by Purpose.",
+        "description": "ZIAK was born from a belief that quality and integrity never go out of style. Every pair, every stitch, every detail reflects our dedication to thoughtful design and lasting impact.",
+        "stat_1_number": "10+ YEARS",
+        "stat_1_label": "OF CRAFTSMANSHIP",
+        "stat_2_number": "50K+",
+        "stat_2_label": "HAPPY CUSTOMERS",
+        "stat_3_number": "25+",
+        "stat_3_label": "COUNTRIES SERVED",
+        "stat_4_number": "PREMIUM",
+        "stat_4_label": "MATERIALS",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "ziak_top_picks": {
+      "type": "ziak-top-picks",
+      "settings": {
+        "section_title": "Top picks right now",
+        "show_more_text": "Show more",
+        "padding_top": 48,
+        "padding_bottom": 48
+      },
+      "blocks": {
+        "pick_1":  { "type": "product_card", "settings": { "product_name": "Syncro Flex 2199",          "regular_price": "₹169.99" } },
+        "pick_2":  { "type": "product_card", "settings": { "product_name": "Trail Blazer Supreme 8095",  "regular_price": "₹129.99" } },
+        "pick_3":  { "type": "product_card", "settings": { "product_name": "Momentum Flex 7568",         "regular_price": "₹179.00" } },
+        "pick_4":  { "type": "product_card", "settings": { "product_name": "Lifestyle Plus 5729",        "regular_price": "₹139.00", "badge_text": "Limited edition", "badge_style": "blue" } },
+        "pick_5":  { "type": "product_card", "settings": { "product_name": "Aerolite Racer 3629",        "regular_price": "₹99.00" } },
+        "pick_6":  { "type": "product_card", "settings": { "product_name": "Powerstride 5478",           "regular_price": "₹150.00" } },
+        "pick_7":  { "type": "product_card", "settings": { "product_name": "Aero Trainer 1011",          "original_price": "₹129.00", "sale_price": "₹110.00", "badge_text": "Sale", "badge_style": "dark" } },
+        "pick_8":  { "type": "product_card", "settings": { "product_name": "Aerolite Racer 563",         "original_price": "₹179.00", "sale_price": "₹184.99", "badge_text": "Sale", "badge_style": "dark" } },
+        "pick_9":  { "type": "product_card", "settings": { "product_name": "Express Glide 1817",         "regular_price": "₹124.99" } },
+        "pick_10": { "type": "product_card", "settings": { "product_name": "Skyline Fusion 4087",        "regular_price": "₹179.99" } }
+      },
+      "block_order": ["pick_1","pick_2","pick_3","pick_4","pick_5","pick_6","pick_7","pick_8","pick_9","pick_10"]
+    },
+    "ziak_reviews": {
+      "type": "ziak-reviews",
+      "settings": {
+        "section_title": "WHAT OUR CUSTOMERS SAY",
+        "padding_top": 56,
+        "padding_bottom": 56
+      },
+      "blocks": {
+        "rev_1": { "type": "review", "settings": { "review_text": "The quality is exceptional. You can feel the craftsmanship in every detail.", "star_count": 5, "reviewer_name": "Daniel R." } },
+        "rev_2": { "type": "review", "settings": { "review_text": "Stylish, comfortable, and built to last. ZIAK is my go-to for everything.", "star_count": 5, "reviewer_name": "Olivia M." } },
+        "rev_3": { "type": "review", "settings": { "review_text": "Timeless designs and outstanding service. Highly recommend!", "star_count": 5, "reviewer_name": "James T." } }
+      },
+      "block_order": ["rev_1", "rev_2", "rev_3"]
+    },
+    "ziak_why": {
+      "type": "ziak-why",
+      "settings": {
+        "bg_color": "#7B1F2E",
+        "heading": "Why 'Ziak'?",
+        "description": "At Ziak we work hard, but it's also the start of something timeless, and we design our products with that versatility in mind. Your life isn't one-dimensional. Your footwear shouldn't be either.",
+        "button_label": "SHOP NOW",
+        "padding_top": 72,
+        "padding_bottom": 72
+      }
     }
   },
   "order": [
     "ziak_hero",
     "ziak_top_categories",
     "ziak_product_carousel",
+    "ziak_heritage",
+    "ziak_top_picks",
+    "ziak_reviews",
+    "ziak_why",
     "featured_collection"
   ]
 }

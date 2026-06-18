@@ -1,0 +1,237 @@
+/* ==========================================================================
+   ZIAK Top Picks Section
+   5-column × 2-row product grid with title, badges, and pricing
+   ========================================================================== */
+
+/* ---------- Section wrapper ---------- */
+.ziak-picks {
+  max-width: 100%;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  font-family: inherit;
+}
+
+/* ---------- Header row ---------- */
+.ziak-picks__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+
+.ziak-picks__title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #111111;
+  margin: 0;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+
+.ziak-picks__show-more {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #333333;
+  text-decoration: none;
+  transition: color 0.2s ease;
+  white-space: nowrap;
+}
+
+.ziak-picks__show-more:hover {
+  color: #000000;
+}
+
+.ziak-picks__chevron {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  flex-shrink: 0;
+}
+
+/* ---------- Product Grid: 5 cols × 2 rows ---------- */
+.ziak-picks__grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  /* Subtle vertical separators between columns */
+  border-left: 1px solid #ebebeb;
+  border-top: 1px solid #ebebeb;
+}
+
+/* ---------- Individual Card ---------- */
+.ziak-picks__card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 1.2rem 1rem 1.5rem;
+  border-right: 1px solid #ebebeb;
+  border-bottom: 1px solid #ebebeb;
+  background: #ffffff;
+  transition: background-color 0.2s ease;
+}
+
+.ziak-picks__card:hover {
+  background-color: #fafafa;
+}
+
+/* ---------- Badge ---------- */
+.ziak-picks__badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  padding: 0.25rem 0.65rem;
+  border-radius: 3px;
+  line-height: 1;
+  z-index: 2;
+  letter-spacing: 0.01em;
+}
+
+.ziak-picks__badge--dark {
+  background-color: #111111;
+  color: #ffffff;
+}
+
+.ziak-picks__badge--blue {
+  background-color: #1a73e8;
+  color: #ffffff;
+}
+
+.ziak-picks__badge--red {
+  background-color: #e53935;
+  color: #ffffff;
+}
+
+/* ---------- Image ---------- */
+.ziak-picks__img-wrap {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: #f8f8f8;
+  margin-bottom: 1rem;
+}
+
+.ziak-picks__img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.ziak-picks__img--placeholder {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.ziak-picks__card:hover .ziak-picks__img {
+  transform: scale(1.05);
+}
+
+/* ---------- Product Name ---------- */
+.ziak-picks__name {
+  display: block;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #222222;
+  text-decoration: none;
+  line-height: 1.4;
+  margin-bottom: 0.5rem;
+  transition: color 0.2s ease;
+  /* limit to 2 lines */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.ziak-picks__name:hover {
+  color: #1a73e8;
+}
+
+/* ---------- Pricing ---------- */
+.ziak-picks__pricing {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  margin-top: auto;
+  padding-top: 0.4rem;
+}
+
+/* Regular price */
+.ziak-picks__price-regular {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #1a73e8;
+}
+
+/* Sale price (discounted) */
+.ziak-picks__price-sale {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #1a73e8;
+}
+
+/* Original price (strikethrough) */
+.ziak-picks__price-original {
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: #999999;
+  text-decoration: line-through;
+}
+
+/* ---------- Responsive ---------- */
+
+/* Tablet: 3 columns */
+@media screen and (max-width: 1024px) {
+  .ziak-picks__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .ziak-picks__title {
+    font-size: 1.8rem;
+  }
+}
+
+/* Mobile: 2 columns */
+@media screen and (max-width: 749px) {
+  .ziak-picks {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+
+  .ziak-picks__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .ziak-picks__title {
+    font-size: 1.6rem;
+  }
+
+  .ziak-picks__show-more {
+    font-size: 1.1rem;
+  }
+
+  .ziak-picks__card {
+    padding: 0.8rem 0.6rem 1.2rem;
+  }
+
+  .ziak-picks__name {
+    font-size: 1.1rem;
+  }
+
+  .ziak-picks__price-regular,
+  .ziak-picks__price-sale {
+    font-size: 1.2rem;
+  }
+}

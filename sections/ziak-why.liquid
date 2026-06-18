@@ -1,0 +1,84 @@
+{{ 'section-ziak-why.css' | asset_url | stylesheet_tag }}
+
+<section class="ziak-why" id="ziak-why-section" style="background-color: {{ section.settings.bg_color }};">
+  <div class="ziak-why__inner">
+
+    <h2 class="ziak-why__heading" id="ziak-why-heading">{{ section.settings.heading }}</h2>
+
+    {%- if section.settings.description != blank -%}
+      <p class="ziak-why__description">{{ section.settings.description }}</p>
+    {%- endif -%}
+
+    {%- if section.settings.button_label != blank -%}
+      <a href="{{ section.settings.button_link | default: '#' }}" class="ziak-why__btn" id="ziak-why-btn">
+        {{ section.settings.button_label }}
+      </a>
+    {%- endif -%}
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "ZIAK Why Ziak",
+  "tag": "section",
+  "class": "ziak-why-section",
+  "disabled_on": { "groups": ["header", "footer"] },
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "default": "#7B1F2E",
+      "label": "Background color"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "default": "Why 'Ziak'?",
+      "label": "Heading"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "default": "At Ziak we work hard, but it's also the start of something timeless, and we design our products with that versatility in mind. Your life isn't one-dimensional. Your footwear shouldn't be either.",
+      "label": "Description"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "default": "SHOP NOW",
+      "label": "Button label"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 40,
+      "max": 160,
+      "step": 8,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 96
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 40,
+      "max": 160,
+      "step": 8,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 96
+    }
+  ],
+  "presets": [
+    {
+      "name": "ZIAK Why Ziak"
+    }
+  ]
+}
+{% endschema %}

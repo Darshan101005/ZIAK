@@ -1,0 +1,195 @@
+{{ 'section-ziak-top-picks.css' | asset_url | stylesheet_tag }}
+
+<div class="ziak-picks" id="ziak-top-picks" style="padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px;">
+
+  <!-- Header row: Title left + Show more right -->
+  <div class="ziak-picks__header">
+    <h2 class="ziak-picks__title" id="ziak-picks-heading">{{ section.settings.section_title | default: 'Top picks right now' }}</h2>
+    {%- if section.settings.show_more_link != blank -%}
+      <a href="{{ section.settings.show_more_link }}" class="ziak-picks__show-more" id="ziak-picks-show-more">
+        {{ section.settings.show_more_text | default: 'Show more' }}
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="ziak-picks__chevron"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+    {%- endif -%}
+  </div>
+
+  <!-- 5-column × 2-row product grid -->
+  <div class="ziak-picks__grid">
+    {%- for block in section.blocks -%}
+      {%- if block.type == 'product_card' -%}
+        <div class="ziak-picks__card" id="ziak-picks-card-{{ forloop.index }}" {{ block.shopify_attributes }}>
+
+          <!-- Optional badge -->
+          {%- if block.settings.badge_text != blank -%}
+            <span class="ziak-picks__badge ziak-picks__badge--{{ block.settings.badge_style }}" id="ziak-picks-badge-{{ forloop.index }}">
+              {{ block.settings.badge_text }}
+            </span>
+          {%- endif -%}
+
+          <!-- Product Image -->
+          <a href="{{ block.settings.product_link }}" class="ziak-picks__img-wrap" id="ziak-picks-img-{{ forloop.index }}">
+            {%- if block.settings.product_image != blank -%}
+              {{
+                block.settings.product_image
+                | image_url: width: 600
+                | image_tag:
+                  sizes: '20vw',
+                  widths: '200, 400, 600',
+                  loading: 'lazy',
+                  class: 'ziak-picks__img'
+              }}
+            {%- else -%}
+              {{ 'product-apparel-1' | placeholder_svg_tag: 'ziak-picks__img ziak-picks__img--placeholder' }}
+            {%- endif -%}
+          </a>
+
+          <!-- Product Name -->
+          <a href="{{ block.settings.product_link }}" class="ziak-picks__name" id="ziak-picks-name-{{ forloop.index }}">
+            {{ block.settings.product_name }}
+          </a>
+
+          <!-- Price -->
+          <div class="ziak-picks__pricing">
+            {%- if block.settings.original_price != blank -%}
+              <span class="ziak-picks__price-original">{{ block.settings.original_price }}</span>
+            {%- endif -%}
+            {%- if block.settings.sale_price != blank -%}
+              <span class="ziak-picks__price-sale">{{ block.settings.sale_price }}</span>
+            {%- else -%}
+              <span class="ziak-picks__price-regular">{{ block.settings.regular_price }}</span>
+            {%- endif -%}
+          </div>
+
+        </div>
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+
+</div>
+
+{% schema %}
+{
+  "name": "ZIAK Top Picks",
+  "tag": "section",
+  "class": "ziak-top-picks-section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "section_title",
+      "default": "Top picks right now",
+      "label": "Section title"
+    },
+    {
+      "type": "url",
+      "id": "show_more_link",
+      "label": "\"Show more\" link"
+    },
+    {
+      "type": "text",
+      "id": "show_more_text",
+      "default": "Show more",
+      "label": "\"Show more\" button text"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 48
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product_card",
+      "name": "Product Card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "product_image",
+          "label": "Product image"
+        },
+        {
+          "type": "url",
+          "id": "product_link",
+          "label": "Product link"
+        },
+        {
+          "type": "text",
+          "id": "product_name",
+          "default": "Product Name",
+          "label": "Product name"
+        },
+        {
+          "type": "text",
+          "id": "regular_price",
+          "default": "$169.99",
+          "label": "Regular price (no sale)"
+        },
+        {
+          "type": "text",
+          "id": "sale_price",
+          "label": "Sale price (leave blank if not on sale)"
+        },
+        {
+          "type": "text",
+          "id": "original_price",
+          "label": "Original price (shows strikethrough, only when on sale)"
+        },
+        {
+          "type": "header",
+          "content": "Badge"
+        },
+        {
+          "type": "text",
+          "id": "badge_text",
+          "label": "Badge text (e.g. Sale, Limited edition)"
+        },
+        {
+          "type": "select",
+          "id": "badge_style",
+          "label": "Badge style",
+          "default": "dark",
+          "options": [
+            { "value": "dark", "label": "Dark (black)" },
+            { "value": "blue", "label": "Blue" },
+            { "value": "red", "label": "Red" }
+          ]
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "ZIAK Top Picks",
+      "blocks": [
+        { "type": "product_card", "settings": { "product_name": "Syncro Flex 2199", "regular_price": "$169.99" } },
+        { "type": "product_card", "settings": { "product_name": "Trail Blazer Supreme 8095", "regular_price": "$129.99" } },
+        { "type": "product_card", "settings": { "product_name": "Momentum Flex 7568", "regular_price": "$179.00" } },
+        { "type": "product_card", "settings": { "product_name": "Lifestyle Plus 5729", "regular_price": "$139.00", "badge_text": "Limited edition", "badge_style": "blue" } },
+        { "type": "product_card", "settings": { "product_name": "Aerolite Racer 3629", "regular_price": "$99.00" } },
+        { "type": "product_card", "settings": { "product_name": "Powerstride 5478", "regular_price": "$150.00" } },
+        { "type": "product_card", "settings": { "product_name": "Aero Trainer 1011", "regular_price": "$110.00", "original_price": "$129.00", "sale_price": "$110.00", "badge_text": "Sale", "badge_style": "dark" } },
+        { "type": "product_card", "settings": { "product_name": "Aerolite Racer 563", "regular_price": "$184.99", "original_price": "$179.00", "sale_price": "$184.99", "badge_text": "Sale", "badge_style": "dark" } },
+        { "type": "product_card", "settings": { "product_name": "Express Glide 1817", "regular_price": "$124.99" } },
+        { "type": "product_card", "settings": { "product_name": "Skyline Fusion 4087", "regular_price": "$179.99" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

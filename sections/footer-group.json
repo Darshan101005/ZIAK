@@ -1,35 +1,40 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "name": "t:sections.footer.name",
   "type": "footer",
   "sections": {
-    "footer": {
-      "type": "footer",
+    "ziak_footer": {
+      "type": "ziak-footer",
       "settings": {
-        "color_scheme": "scheme-1",
-        "newsletter_enable": true,
-        "newsletter_heading": "Subscribe to our emails",
-        "enable_follow_on_shop": true,
-        "show_social": true,
-        "enable_country_selector": true,
-        "enable_language_selector": true,
-        "payment_enable": true,
-        "show_policy": true,
-        "margin_top": 0,
-        "padding_top": 36,
-        "padding_bottom": 36
+        "shop_link_1_label":  "Men's Boots",
+        "shop_link_2_label":  "Women's Boots",
+        "shop_link_3_label":  "Men's Sneakers",
+        "shop_link_4_label":  "Women's Sneakers",
+        "shop_link_5_label":  "Men's Shoes",
+        "shop_link_6_label":  "Women's Shoes",
+        "shop_link_7_label":  "Men's Jackets",
+        "shop_link_8_label":  "Women's Jackets",
+        "shop_link_9_label":  "Accessories",
+        "shop_link_10_label": "Gift Cards",
+        "about_link_1_label": "Our Story",
+        "about_link_2_label": "Featured Press",
+        "about_link_3_label": "Reviews",
+        "about_link_4_label": "Locations",
+        "about_link_5_label": "Ambassadors",
+        "support_link_1_label": "FAQ",
+        "support_link_2_label": "Shipping & Returns",
+        "support_link_3_label": "Shoe Care",
+        "support_link_4_label": "Accessibility Statement",
+        "support_link_5_label": "Terms of Service",
+        "support_link_6_label": "Privacy Policy",
+        "support_link_7_label": "Contact Us",
+        "email_heading": "Sign Up For Early Access & Exclusive Events",
+        "email_btn_label": "JOIN TEAM ZIAK",
+        "country_label": "India (INR \u20b9)",
+        "copyright_text": "\u00a9 2025 ZIAK. All rights reserved."
       }
     }
   },
   "order": [
-    "footer"
+    "ziak_footer"
   ]
 }

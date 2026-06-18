@@ -1,0 +1,226 @@
+/* ==========================================================================
+   ZIAK Footer Section
+   4-column: Shop | About | Support | Email + Socials
+   ========================================================================== */
+
+/* Outer wrapper */
+.ziak-footer {
+  background-color: #7B1F2E;
+  border-top: none;
+  font-family: inherit;
+}
+
+/* ── Main 4-column grid ── */
+.ziak-footer__grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1.3fr 1.6fr;
+  gap: 2.5rem 3rem;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2.5rem 2rem 2rem;
+}
+
+/* ── Column headings ── */
+.ziak-footer__col-heading {
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 1.2rem 0;
+  letter-spacing: 0.01em;
+}
+
+/* ── Link lists ── */
+.ziak-footer__links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.ziak-footer__link {
+  font-size: 1.3rem;
+  color: rgba(255, 255, 255, 0.75);
+  text-decoration: none;
+  line-height: 1.4;
+  transition: color 0.2s ease;
+}
+
+.ziak-footer__link:hover {
+  color: #ffffff;
+}
+
+/* ── Right column ── */
+.ziak-footer__col--right {
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+}
+
+/* Email label */
+.ziak-footer__email-label {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #ffffff;
+  line-height: 1.35;
+  margin: 0;
+}
+
+/* Email form row */
+.ziak-footer__email-row {
+  display: flex;
+  gap: 0;
+  width: 100%;
+}
+
+.ziak-footer__email-input {
+  flex: 1;
+  min-width: 0;
+  padding: 0.75rem 1rem;
+  border: 1px solid rgba(255,255,255,0.4);
+  border-right: none;
+  font-size: 1.3rem;
+  color: #ffffff;
+  outline: none;
+  background: rgba(255,255,255,0.12);
+  transition: border-color 0.2s;
+}
+
+.ziak-footer__email-input::placeholder {
+  color: rgba(255,255,255,0.5);
+}
+
+.ziak-footer__email-input:focus {
+  border-color: rgba(255,255,255,0.7);
+}
+
+.ziak-footer__email-btn {
+  padding: 0.75rem 1.2rem;
+  background-color: #1a3d5c;
+  color: #ffffff;
+  border: none;
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 0.2s ease;
+}
+
+.ziak-footer__email-btn:hover {
+  background-color: #14304a;
+}
+
+/* ── Social icons ── */
+.ziak-footer__socials {
+  display: flex;
+  gap: 1.2rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.ziak-footer__social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  color: rgba(255,255,255,0.8);
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.ziak-footer__social-link:hover {
+  color: #ffffff;
+  transform: scale(1.15);
+}
+
+.ziak-footer__social-link svg {
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* YouTube fill fix */
+.ziak-footer__social-link[aria-label="YouTube"] svg path {
+  fill: currentColor;
+  stroke: none;
+}
+
+/* Pinterest fill fix */
+.ziak-footer__social-link[aria-label="Pinterest"] svg path {
+  fill: currentColor;
+  stroke: none;
+}
+
+/* ── Country selector ── */
+.ziak-footer__country {
+  display: flex;
+  align-items: center;
+}
+
+.ziak-footer__country-select {
+  font-size: 1.3rem;
+  color: rgba(255,255,255,0.85);
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.35);
+  padding: 0.45rem 2.2rem 0.45rem 0.8rem;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23fff' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.7rem center;
+  cursor: pointer;
+}
+
+/* ── Bottom bar ── */
+.ziak-footer__bottom {
+  border-top: 1px solid rgba(255,255,255,0.2);
+  padding: 1rem 2rem;
+  text-align: center;
+}
+
+.ziak-footer__copy {
+  font-size: 1.2rem;
+  color: rgba(255,255,255,0.55);
+  margin: 0;
+}
+
+/* ── Responsive ── */
+@media screen and (max-width: 1024px) {
+  .ziak-footer__grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+  }
+
+  .ziak-footer__col--right {
+    grid-column: 1 / -1;
+  }
+}
+
+@media screen and (max-width: 749px) {
+  .ziak-footer__grid {
+    grid-template-columns: 1fr 1fr;
+    padding: 3rem 1.5rem 2.5rem;
+    gap: 2rem;
+  }
+
+  .ziak-footer__col--right {
+    grid-column: 1 / -1;
+  }
+
+  .ziak-footer__email-btn {
+    font-size: 1.05rem;
+    padding: 0.85rem 1rem;
+    letter-spacing: 0.02em;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .ziak-footer__grid {
+    grid-template-columns: 1fr;
+  }
+}

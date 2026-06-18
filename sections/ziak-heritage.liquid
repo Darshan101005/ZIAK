@@ -1,0 +1,165 @@
+{{ 'section-ziak-heritage.css' | asset_url | stylesheet_tag }}
+
+<!-- Lucide icons via CDN -->
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
+
+<div class="ziak-heritage" id="ziak-heritage-section" style="padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px;">
+
+  <!-- 50/50: Image left · Content right -->
+  <div class="ziak-heritage__split">
+
+    <!-- Left: Image with left breathing room -->
+    <div class="ziak-heritage__img-wrap">
+      {%- if section.settings.heritage_image != blank -%}
+        {{
+          section.settings.heritage_image
+          | image_url: width: 1000
+          | image_tag:
+            sizes: '50vw',
+            widths: '500, 700, 1000',
+            loading: 'lazy',
+            class: 'ziak-heritage__img'
+        }}
+      {%- else -%}
+        {{ 'lifestyle-1' | placeholder_svg_tag: 'ziak-heritage__img ziak-heritage__img--placeholder' }}
+      {%- endif -%}
+    </div>
+
+    <!-- Right: Content -->
+    <div class="ziak-heritage__content">
+
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="ziak-heritage__eyebrow">{{ section.settings.eyebrow }}</p>
+      {%- endif -%}
+
+      <h2 class="ziak-heritage__heading">{{ section.settings.heading }}</h2>
+
+      {%- if section.settings.description != blank -%}
+        <p class="ziak-heritage__description">{{ section.settings.description }}</p>
+      {%- endif -%}
+
+      <hr class="ziak-heritage__divider">
+
+      <!-- Stats Row -->
+      <div class="ziak-heritage__stats">
+
+        <div class="ziak-heritage__stat">
+          <div class="ziak-heritage__stat-icon"><i data-lucide="award"></i></div>
+          <p class="ziak-heritage__stat-number">{{ section.settings.stat_1_number }}</p>
+          <p class="ziak-heritage__stat-label">{{ section.settings.stat_1_label }}</p>
+        </div>
+
+        <div class="ziak-heritage__stat-sep"></div>
+
+        <div class="ziak-heritage__stat">
+          <div class="ziak-heritage__stat-icon"><i data-lucide="users"></i></div>
+          <p class="ziak-heritage__stat-number">{{ section.settings.stat_2_number }}</p>
+          <p class="ziak-heritage__stat-label">{{ section.settings.stat_2_label }}</p>
+        </div>
+
+        <div class="ziak-heritage__stat-sep"></div>
+
+        <div class="ziak-heritage__stat">
+          <div class="ziak-heritage__stat-icon"><i data-lucide="globe"></i></div>
+          <p class="ziak-heritage__stat-number">{{ section.settings.stat_3_number }}</p>
+          <p class="ziak-heritage__stat-label">{{ section.settings.stat_3_label }}</p>
+        </div>
+
+        <div class="ziak-heritage__stat-sep"></div>
+
+        <div class="ziak-heritage__stat">
+          <div class="ziak-heritage__stat-icon"><i data-lucide="gem"></i></div>
+          <p class="ziak-heritage__stat-number">{{ section.settings.stat_4_number }}</p>
+          <p class="ziak-heritage__stat-label">{{ section.settings.stat_4_label }}</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    if (typeof lucide !== 'undefined') lucide.createIcons();
+  });
+</script>
+
+{% schema %}
+{
+  "name": "ZIAK Heritage",
+  "tag": "section",
+  "class": "ziak-heritage-section",
+  "disabled_on": { "groups": ["header", "footer"] },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Heritage Block"
+    },
+    {
+      "type": "image_picker",
+      "id": "heritage_image",
+      "label": "Heritage image (left side)"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "default": "OUR HERITAGE",
+      "label": "Eyebrow label"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "default": "Rooted in Craft. Driven by Purpose.",
+      "label": "Heading"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "default": "ZIAK was born from a belief that quality and integrity never go out of style. Every pair, every stitch, every detail reflects our dedication to thoughtful design and lasting impact.",
+      "label": "Description"
+    },
+    {
+      "type": "header",
+      "content": "Stats"
+    },
+    { "type": "text", "id": "stat_1_number", "default": "10+ YEARS",        "label": "Stat 1 number" },
+    { "type": "text", "id": "stat_1_label",  "default": "OF CRAFTSMANSHIP", "label": "Stat 1 label"  },
+    { "type": "text", "id": "stat_2_number", "default": "50K+",             "label": "Stat 2 number" },
+    { "type": "text", "id": "stat_2_label",  "default": "HAPPY CUSTOMERS",  "label": "Stat 2 label"  },
+    { "type": "text", "id": "stat_3_number", "default": "25+",              "label": "Stat 3 number" },
+    { "type": "text", "id": "stat_3_label",  "default": "COUNTRIES SERVED", "label": "Stat 3 label"  },
+    { "type": "text", "id": "stat_4_number", "default": "PREMIUM",          "label": "Stat 4 number" },
+    { "type": "text", "id": "stat_4_label",  "default": "MATERIALS",        "label": "Stat 4 label"  },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 48
+    }
+  ],
+  "presets": [
+    {
+      "name": "ZIAK Heritage"
+    }
+  ]
+}
+{% endschema %}
