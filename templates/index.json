@@ -23,6 +23,29 @@
         "button_2_text": "SHOP WOMEN"
       }
     },
+    "ziak_top_categories": {
+      "type": "ziak-top-categories",
+      "settings": {
+        "section_title": "Top Categories",
+        "featured_label": "Bestsellers",
+        "featured_sub": "Shop our most popular items",
+        "featured_btn_text": "Shop now",
+        "cat_1_label": "Men's",
+        "cat_1_btn": "Shop now",
+        "cat_2_label": "Women's",
+        "cat_2_btn": "Shop now",
+        "cat_3_label": "Kids",
+        "cat_3_btn": "Shop now",
+        "cat_4_label": "Apparels",
+        "cat_4_btn": "Shop now",
+        "cat_5_label": "Accessories",
+        "cat_5_btn": "Shop now",
+        "cat_6_label": "Backpacks",
+        "cat_6_btn": "Shop now",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
     "featured_collection": {
       "type": "featured-collection",
       "settings": {
@@ -54,6 +77,7 @@
   },
   "order": [
     "ziak_hero",
+    "ziak_top_categories",
     "featured_collection"
   ]
 }

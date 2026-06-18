@@ -1,0 +1,240 @@
+/* ==========================================================================
+   ZIAK Top Categories Section
+   Large featured card left + 2x3 small category grid right
+   ========================================================================== */
+
+/* ---------- Section wrapper ---------- */
+.ziak-topcats {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 3.6rem 1rem;
+  font-family: inherit;
+}
+
+/* ---------- Section Title ---------- */
+.ziak-topcats__title {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0 0 2rem 0;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+
+/* ---------- Outer Grid: Left large card + right small grid ---------- */
+.ziak-topcats__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+  align-items: stretch;
+}
+
+/* ---------- Base Card ---------- */
+.ziak-topcats__card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 2px;
+  cursor: pointer;
+  background: #f0f0f0;
+}
+
+.ziak-topcats__card::before {
+  content: '';
+  display: block;
+}
+
+/* ---------- Featured Card (Left) ---------- */
+.ziak-topcats__card--featured {
+  /* Height auto-syncs with right grid via CSS grid stretch */
+  aspect-ratio: unset;
+  height: 100%;
+  min-height: unset;
+}
+
+/* ---------- Image ---------- */
+.ziak-topcats__img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.5s ease;
+  display: block;
+}
+
+.ziak-topcats__img--placeholder {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Hover zoom effect */
+.ziak-topcats__card:hover .ziak-topcats__img {
+  transform: scale(1.04);
+}
+
+/* ---------- Overlay (text + button at bottom) ---------- */
+.ziak-topcats__overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 2rem 2rem 2rem;
+  background: linear-gradient(to top, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0) 100%);
+  z-index: 2;
+}
+
+.ziak-topcats__overlay--small {
+  padding: 1.4rem 1.4rem 1.4rem;
+  background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 100%);
+}
+
+/* ---------- Labels ---------- */
+.ziak-topcats__label {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 0.4rem 0;
+  line-height: 1.2;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+}
+
+.ziak-topcats__sub {
+  font-size: 1.15rem;
+  color: rgba(255,255,255,0.9);
+  margin: 0 0 1.2rem 0;
+  font-weight: 400;
+}
+
+.ziak-topcats__label--small {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin: 0 0 0.6rem 0;
+}
+
+/* ---------- Shop Now Button ---------- */
+.ziak-topcats__btn {
+  display: inline-block;
+  background-color: #ffffff;
+  color: #1a1a1a;
+  font-size: 1.2rem;
+  font-weight: 600;
+  padding: 0.65rem 1.6rem;
+  text-decoration: none;
+  border: 2px solid #ffffff;
+  letter-spacing: 0.03em;
+  transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+  white-space: nowrap;
+}
+
+.ziak-topcats__btn:hover {
+  background-color: transparent;
+  color: #ffffff;
+  border-color: #ffffff;
+}
+
+.ziak-topcats__btn--small {
+  font-size: 1.1rem;
+  padding: 0.5rem 1.3rem;
+}
+
+/* ---------- Small Cards 2x3 Grid ---------- */
+.ziak-topcats__small-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 4px;
+}
+
+.ziak-topcats__card--small {
+  /* Square cards: 1:1 ratio */
+  aspect-ratio: 1 / 1;
+  height: auto;
+  min-height: unset;
+}
+
+/* ---------- Responsive ---------- */
+
+/* Tablet: stack small grid to 2 cols */
+@media screen and (max-width: 1024px) {
+  .ziak-topcats__grid {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+
+  .ziak-topcats__card--featured {
+    min-height: unset;
+    aspect-ratio: 16 / 7;
+  }
+
+  .ziak-topcats__small-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4px;
+  }
+
+  .ziak-topcats__card--small {
+    aspect-ratio: 1 / 1;
+  }
+}
+
+/* Mobile */
+@media screen and (max-width: 749px) {
+  .ziak-topcats {
+    padding: 2.4rem 0.5rem;
+  }
+
+  .ziak-topcats__title {
+    font-size: 1.9rem;
+    margin-bottom: 1.4rem;
+  }
+
+  .ziak-topcats__card--featured {
+    min-height: 280px;
+    aspect-ratio: 16 / 8;
+  }
+
+  .ziak-topcats__small-grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+  }
+
+  .ziak-topcats__card--small {
+    aspect-ratio: 1 / 1;
+  }
+
+  .ziak-topcats__label {
+    font-size: 1.6rem;
+  }
+
+  .ziak-topcats__label--small {
+    font-size: 1.3rem;
+  }
+
+  .ziak-topcats__sub {
+    font-size: 1rem;
+    margin-bottom: 0.9rem;
+  }
+
+  .ziak-topcats__btn {
+    font-size: 1.05rem;
+    padding: 0.55rem 1.3rem;
+  }
+
+  .ziak-topcats__btn--small {
+    font-size: 1rem;
+    padding: 0.45rem 1.1rem;
+  }
+
+  .ziak-topcats__overlay {
+    padding: 1.5rem 1.5rem 1.5rem;
+  }
+
+  .ziak-topcats__overlay--small {
+    padding: 1rem 1rem 1rem;
+  }
+}

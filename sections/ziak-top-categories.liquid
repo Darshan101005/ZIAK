@@ -1,0 +1,313 @@
+{{ 'section-ziak-top-categories.css' | asset_url | stylesheet_tag }}
+
+<div class="ziak-topcats" id="ziak-top-categories">
+
+  <!-- Section Heading -->
+  <h2 class="ziak-topcats__title" id="ziak-topcats-heading">
+    {{ section.settings.section_title | default: 'Top Categories' }}
+  </h2>
+
+  <div class="ziak-topcats__grid">
+
+    <!-- LEFT: Large Featured Card -->
+    <div class="ziak-topcats__card ziak-topcats__card--featured">
+      {%- if section.settings.featured_image != blank -%}
+        {{
+          section.settings.featured_image
+          | image_url: width: 1200
+          | image_tag:
+            sizes: '50vw',
+            widths: '600, 900, 1200',
+            loading: 'lazy',
+            class: 'ziak-topcats__img'
+        }}
+      {%- else -%}
+        {{ 'collection-apparel-1' | placeholder_svg_tag: 'ziak-topcats__img ziak-topcats__img--placeholder' }}
+      {%- endif -%}
+
+      <div class="ziak-topcats__overlay">
+        <p class="ziak-topcats__label">{{ section.settings.featured_label | default: 'Bestsellers' }}</p>
+        <p class="ziak-topcats__sub">{{ section.settings.featured_sub | default: 'Shop our most popular items' }}</p>
+        <a href="{{ section.settings.featured_link }}" class="ziak-topcats__btn" id="ziak-topcats-featured-btn">
+          {{ section.settings.featured_btn_text | default: 'Shop now' }}
+        </a>
+      </div>
+    </div>
+
+    <!-- RIGHT: 2×3 small cards grid -->
+    <div class="ziak-topcats__small-grid">
+
+      {%- for i in (1..6) -%}
+        {%- assign img_key     = 'cat_' | append: i | append: '_image' -%}
+        {%- assign label_key   = 'cat_' | append: i | append: '_label' -%}
+        {%- assign btn_key     = 'cat_' | append: i | append: '_btn' -%}
+        {%- assign link_key    = 'cat_' | append: i | append: '_link' -%}
+
+        {%- assign cat_img   = section.settings[img_key] -%}
+        {%- assign cat_label = section.settings[label_key] -%}
+        {%- assign cat_btn   = section.settings[btn_key] | default: 'Shop now' -%}
+        {%- assign cat_link  = section.settings[link_key] -%}
+
+        <div class="ziak-topcats__card ziak-topcats__card--small" id="ziak-topcats-card-{{ i }}">
+          {%- if cat_img != blank -%}
+            {{
+              cat_img
+              | image_url: width: 600
+              | image_tag:
+                sizes: '25vw',
+                widths: '300, 450, 600',
+                loading: 'lazy',
+                class: 'ziak-topcats__img'
+            }}
+          {%- else -%}
+            {{ 'collection-apparel-2' | placeholder_svg_tag: 'ziak-topcats__img ziak-topcats__img--placeholder' }}
+          {%- endif -%}
+
+          <div class="ziak-topcats__overlay ziak-topcats__overlay--small">
+            <p class="ziak-topcats__label ziak-topcats__label--small">{{ cat_label }}</p>
+            <a href="{{ cat_link }}" class="ziak-topcats__btn ziak-topcats__btn--small" id="ziak-topcats-btn-{{ i }}">
+              {{ cat_btn }}
+            </a>
+          </div>
+        </div>
+      {%- endfor -%}
+
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "ZIAK Top Categories",
+  "tag": "section",
+  "class": "ziak-topcats-section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "section_title",
+      "default": "Top Categories",
+      "label": "Section heading"
+    },
+    {
+      "type": "header",
+      "content": "Featured Card (Left)"
+    },
+    {
+      "type": "image_picker",
+      "id": "featured_image",
+      "label": "Featured image"
+    },
+    {
+      "type": "text",
+      "id": "featured_label",
+      "default": "Bestsellers",
+      "label": "Featured label"
+    },
+    {
+      "type": "text",
+      "id": "featured_sub",
+      "default": "Shop our most popular items",
+      "label": "Featured subtext"
+    },
+    {
+      "type": "text",
+      "id": "featured_btn_text",
+      "default": "Shop now",
+      "label": "Featured button text"
+    },
+    {
+      "type": "url",
+      "id": "featured_link",
+      "label": "Featured link"
+    },
+    {
+      "type": "header",
+      "content": "Category 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "cat_1_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "cat_1_label",
+      "default": "Men's",
+      "label": "Label"
+    },
+    {
+      "type": "text",
+      "id": "cat_1_btn",
+      "default": "Shop now",
+      "label": "Button text"
+    },
+    {
+      "type": "url",
+      "id": "cat_1_link",
+      "label": "Link"
+    },
+    {
+      "type": "header",
+      "content": "Category 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "cat_2_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "cat_2_label",
+      "default": "Women's",
+      "label": "Label"
+    },
+    {
+      "type": "text",
+      "id": "cat_2_btn",
+      "default": "Shop now",
+      "label": "Button text"
+    },
+    {
+      "type": "url",
+      "id": "cat_2_link",
+      "label": "Link"
+    },
+    {
+      "type": "header",
+      "content": "Category 3"
+    },
+    {
+      "type": "image_picker",
+      "id": "cat_3_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "cat_3_label",
+      "default": "Kids",
+      "label": "Label"
+    },
+    {
+      "type": "text",
+      "id": "cat_3_btn",
+      "default": "Shop now",
+      "label": "Button text"
+    },
+    {
+      "type": "url",
+      "id": "cat_3_link",
+      "label": "Link"
+    },
+    {
+      "type": "header",
+      "content": "Category 4"
+    },
+    {
+      "type": "image_picker",
+      "id": "cat_4_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "cat_4_label",
+      "default": "Apparels",
+      "label": "Label"
+    },
+    {
+      "type": "text",
+      "id": "cat_4_btn",
+      "default": "Shop now",
+      "label": "Button text"
+    },
+    {
+      "type": "url",
+      "id": "cat_4_link",
+      "label": "Link"
+    },
+    {
+      "type": "header",
+      "content": "Category 5"
+    },
+    {
+      "type": "image_picker",
+      "id": "cat_5_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "cat_5_label",
+      "default": "Accessories",
+      "label": "Label"
+    },
+    {
+      "type": "text",
+      "id": "cat_5_btn",
+      "default": "Shop now",
+      "label": "Button text"
+    },
+    {
+      "type": "url",
+      "id": "cat_5_link",
+      "label": "Link"
+    },
+    {
+      "type": "header",
+      "content": "Category 6"
+    },
+    {
+      "type": "image_picker",
+      "id": "cat_6_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "cat_6_label",
+      "default": "Backpacks",
+      "label": "Label"
+    },
+    {
+      "type": "text",
+      "id": "cat_6_btn",
+      "default": "Shop now",
+      "label": "Button text"
+    },
+    {
+      "type": "url",
+      "id": "cat_6_link",
+      "label": "Link"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 36
+    }
+  ],
+  "presets": [
+    {
+      "name": "ZIAK Top Categories"
+    }
+  ]
+}
+{% endschema %}
