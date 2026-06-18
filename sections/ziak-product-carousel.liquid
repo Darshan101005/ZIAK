@@ -1,0 +1,361 @@
+{{ 'section-ziak-product-carousel.css' | asset_url | stylesheet_tag }}
+
+<div class="ziak-carousel" id="ziak-product-carousel" style="padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px;">
+
+  {%- if section.settings.section_title != blank -%}
+    <h2 class="ziak-carousel__title" id="ziak-carousel-heading">{{ section.settings.section_title }}</h2>
+  {%- endif -%}
+
+  <div class="ziak-carousel__viewport" id="ziak-carousel-viewport">
+    <!-- Left arrow -->
+    <button class="ziak-carousel__arrow ziak-carousel__arrow--left" id="ziak-carousel-prev" aria-label="Previous">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+
+    <!-- Track -->
+    <div class="ziak-carousel__track" id="ziak-carousel-track">
+      {%- for block in section.blocks -%}
+        <div class="ziak-carousel__card" id="ziak-card-{{ forloop.index }}" {{ block.shopify_attributes }}>
+
+          <!-- Discount Badge -->
+          {%- if block.settings.discount_text != blank -%}
+            <span class="ziak-carousel__badge" style="background-color: {{ block.settings.badge_color }};">
+              {{ block.settings.discount_text }}
+            </span>
+          {%- endif -%}
+
+          <!-- Product Image -->
+          <a href="{{ block.settings.product_link }}" class="ziak-carousel__img-wrap" id="ziak-card-img-{{ forloop.index }}">
+            {%- if block.settings.product_image != blank -%}
+              {{
+                block.settings.product_image
+                | image_url: width: 600
+                | image_tag:
+                  sizes: '20vw',
+                  widths: '200, 300, 400, 600',
+                  loading: 'lazy',
+                  class: 'ziak-carousel__img'
+              }}
+            {%- else -%}
+              {{ 'product-apparel-1' | placeholder_svg_tag: 'ziak-carousel__img ziak-carousel__img--placeholder' }}
+            {%- endif -%}
+          </a>
+
+          <!-- Color Swatches -->
+          <div class="ziak-carousel__swatches">
+            {%- for i in (1..4) -%}
+              {%- assign swatch_key = 'swatch_color_' | append: i -%}
+              {%- assign swatch_val = block.settings[swatch_key] -%}
+              {%- if swatch_val != blank and swatch_val != '#ffffff' -%}
+                <span class="ziak-carousel__swatch" style="background-color: {{ swatch_val }};{% if swatch_val == '#ffffff' or swatch_val == '#FFFFFF' %} border: 1px solid #ccc;{% endif %}"></span>
+              {%- endif -%}
+            {%- endfor -%}
+            {%- if block.settings.extra_colors_text != blank -%}
+              <span class="ziak-carousel__extra-colors">{{ block.settings.extra_colors_text }}</span>
+            {%- endif -%}
+          </div>
+
+          <!-- Product Title -->
+          <a href="{{ block.settings.product_link }}" class="ziak-carousel__product-title" id="ziak-card-title-{{ forloop.index }}">
+            {{ block.settings.product_title }}
+          </a>
+
+          <!-- Pricing -->
+          <div class="ziak-carousel__pricing">
+            {%- if block.settings.sale_price != blank -%}
+              <span class="ziak-carousel__price-sale">₹ {{ block.settings.sale_price }}</span>
+            {%- endif -%}
+            {%- if block.settings.original_price != blank -%}
+              <span class="ziak-carousel__price-original">₹ {{ block.settings.original_price }}</span>
+            {%- endif -%}
+          </div>
+
+          <!-- Add to Cart Button -->
+          <a href="{{ block.settings.product_link }}" class="ziak-carousel__add-to-cart" id="ziak-card-atc-{{ forloop.index }}">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="ziak-carousel__cart-icon"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            Add to Cart
+          </a>
+
+        </div>
+      {%- endfor -%}
+    </div>
+
+    <!-- Right arrow -->
+    <button class="ziak-carousel__arrow ziak-carousel__arrow--right" id="ziak-carousel-next" aria-label="Next">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const track = document.getElementById('ziak-carousel-track');
+    const prevBtn = document.getElementById('ziak-carousel-prev');
+    const nextBtn = document.getElementById('ziak-carousel-next');
+    const viewport = document.getElementById('ziak-carousel-viewport');
+
+    if (!track || !prevBtn || !nextBtn) return;
+
+    // ── Clone cards for infinite loop ──────────────────────────
+    const originalCards = Array.from(track.querySelectorAll('.ziak-carousel__card'));
+    const totalOriginal = originalCards.length;
+
+    // Append clones AFTER originals
+    originalCards.forEach(function(card) {
+      const clone = card.cloneNode(true);
+      clone.setAttribute('aria-hidden', 'true');
+      track.appendChild(clone);
+    });
+
+    let currentIndex = 0;           // index into the real card positions
+    let isTransitioning = false;
+    let autoPlayTimer = null;
+    let resumeTimer = null;
+
+    const AUTO_PLAY_INTERVAL = 3000;  // slide every 3s
+    const RESUME_DELAY      = 4000;   // resume 4s after user stops touching
+
+    function getVisibleCount() {
+      if (window.innerWidth <= 749)  return 2;
+      if (window.innerWidth <= 1024) return 3;
+      return 5;
+    }
+
+    function getCardWidth() {
+      const cards = track.querySelectorAll('.ziak-carousel__card');
+      if (!cards.length) return 0;
+      return cards[0].offsetWidth + 16; // card + gap
+    }
+
+    // Move track with animation
+    function goTo(index, animate) {
+      track.style.transition = animate
+        ? 'transform 0.45s cubic-bezier(0.25,0.46,0.45,0.94)'
+        : 'none';
+      track.style.transform = 'translateX(-' + (index * getCardWidth()) + 'px)';
+      currentIndex = index;
+    }
+
+    // After transition ends: if we're in the clone zone, silently snap back
+    track.addEventListener('transitionend', function() {
+      isTransitioning = false;
+      if (currentIndex >= totalOriginal) {
+        // We are viewing clones — snap silently back to originals
+        goTo(currentIndex - totalOriginal, false);
+      }
+      if (currentIndex < 0) {
+        goTo(currentIndex + totalOriginal, false);
+      }
+    });
+
+    function slideNext() {
+      if (isTransitioning) return;
+      isTransitioning = true;
+      goTo(currentIndex + 1, true);
+    }
+
+    function slidePrev() {
+      if (isTransitioning) return;
+      isTransitioning = true;
+      // If at position 0, silently jump to clone position first, then animate back
+      if (currentIndex === 0) {
+        goTo(totalOriginal, false);
+        // tiny delay lets the browser apply the no-transition jump
+        requestAnimationFrame(function() {
+          requestAnimationFrame(function() {
+            isTransitioning = true;
+            goTo(totalOriginal - 1, true);
+          });
+        });
+      } else {
+        goTo(currentIndex - 1, true);
+      }
+    }
+
+    // ── Auto-play ─────────────────────────────────────────────
+    function startAutoPlay() {
+      stopAutoPlay();
+      autoPlayTimer = setInterval(slideNext, AUTO_PLAY_INTERVAL);
+    }
+
+    function stopAutoPlay() {
+      if (autoPlayTimer) { clearInterval(autoPlayTimer); autoPlayTimer = null; }
+    }
+
+    function pauseAndResume() {
+      stopAutoPlay();
+      if (resumeTimer) clearTimeout(resumeTimer);
+      resumeTimer = setTimeout(startAutoPlay, RESUME_DELAY);
+    }
+
+    // ── Button events ─────────────────────────────────────────
+    prevBtn.addEventListener('click', function() {
+      slidePrev();
+      pauseAndResume();
+    });
+
+    nextBtn.addEventListener('click', function() {
+      slideNext();
+      pauseAndResume();
+    });
+
+    // Arrows always active in infinite mode
+    prevBtn.style.opacity = '1';
+    prevBtn.style.pointerEvents = 'auto';
+    nextBtn.style.opacity = '1';
+    nextBtn.style.pointerEvents = 'auto';
+
+    // ── Hover pause ───────────────────────────────────────────
+    if (viewport) {
+      viewport.addEventListener('mouseenter', function() {
+        stopAutoPlay();
+        if (resumeTimer) clearTimeout(resumeTimer);
+      });
+      viewport.addEventListener('mouseleave', function() {
+        resumeTimer = setTimeout(startAutoPlay, RESUME_DELAY);
+      });
+    }
+
+    // ── Resize ────────────────────────────────────────────────
+    window.addEventListener('resize', function() {
+      goTo(currentIndex, false);
+    });
+
+    // ── Init ─────────────────────────────────────────────────
+    goTo(0, false);
+    startAutoPlay();
+  });
+</script>
+
+{% schema %}
+{
+  "name": "ZIAK Product Carousel",
+  "tag": "section",
+  "class": "ziak-product-carousel-section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 36
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product_card",
+      "name": "Product Card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "product_image",
+          "label": "Product image"
+        },
+        {
+          "type": "text",
+          "id": "product_title",
+          "default": "Product Title",
+          "label": "Product title"
+        },
+        {
+          "type": "url",
+          "id": "product_link",
+          "label": "Product link"
+        },
+        {
+          "type": "text",
+          "id": "discount_text",
+          "default": "83% OFF",
+          "label": "Discount badge text"
+        },
+        {
+          "type": "color",
+          "id": "badge_color",
+          "default": "#e53935",
+          "label": "Badge color"
+        },
+        {
+          "type": "text",
+          "id": "sale_price",
+          "default": "1,326.00",
+          "label": "Sale price"
+        },
+        {
+          "type": "text",
+          "id": "original_price",
+          "default": "7,799.00",
+          "label": "Original price (strikethrough)"
+        },
+        {
+          "type": "header",
+          "content": "Color Swatches"
+        },
+        {
+          "type": "color",
+          "id": "swatch_color_1",
+          "label": "Swatch 1"
+        },
+        {
+          "type": "color",
+          "id": "swatch_color_2",
+          "label": "Swatch 2"
+        },
+        {
+          "type": "color",
+          "id": "swatch_color_3",
+          "label": "Swatch 3"
+        },
+        {
+          "type": "color",
+          "id": "swatch_color_4",
+          "label": "Swatch 4"
+        },
+        {
+          "type": "text",
+          "id": "extra_colors_text",
+          "default": "+2 colors",
+          "label": "Extra colors text"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "ZIAK Product Carousel",
+      "blocks": [
+        { "type": "product_card", "settings": { "product_title": "Athleisure Shoes for Men", "discount_text": "83% OFF", "sale_price": "1,326.00", "original_price": "7,799.00", "extra_colors_text": "+2 colors" } },
+        { "type": "product_card", "settings": { "product_title": "ETPU Athleisure Sports Shoes for Men", "discount_text": "70% OFF", "sale_price": "2,489.00", "original_price": "8,299.00", "extra_colors_text": "+2 colors" } },
+        { "type": "product_card", "settings": { "product_title": "Athleisure Shoes for Men | Cultured Round-Toe Shape", "discount_text": "83% OFF", "sale_price": "1,394.00", "original_price": "8,199.00", "extra_colors_text": "+1 color" } },
+        { "type": "product_card", "settings": { "product_title": "Athleisure Shoes for Men", "discount_text": "84% OFF", "sale_price": "1,411.00", "original_price": "8,299.00", "extra_colors_text": "+2 colors" } },
+        { "type": "product_card", "settings": { "product_title": "ETPU Athleisure Shoes for Men", "discount_text": "83% OFF", "sale_price": "1,344.00", "original_price": "8,399.00", "extra_colors_text": "+1 color" } },
+        { "type": "product_card", "settings": { "product_title": "Sports Running Shoes for Men", "discount_text": "80% OFF", "sale_price": "1,599.00", "original_price": "7,999.00", "extra_colors_text": "+3 colors" } },
+        { "type": "product_card", "settings": { "product_title": "Casual Walking Shoes for Men", "discount_text": "75% OFF", "sale_price": "1,899.00", "original_price": "7,599.00", "extra_colors_text": "+1 color" } },
+        { "type": "product_card", "settings": { "product_title": "Premium Lace-Up Sneakers", "discount_text": "82% OFF", "sale_price": "1,499.00", "original_price": "8,299.00", "extra_colors_text": "+2 colors" } },
+        { "type": "product_card", "settings": { "product_title": "Lightweight Training Shoes", "discount_text": "78% OFF", "sale_price": "1,759.00", "original_price": "7,999.00", "extra_colors_text": "+1 color" } },
+        { "type": "product_card", "settings": { "product_title": "Mesh Running Shoes for Men", "discount_text": "85% OFF", "sale_price": "1,199.00", "original_price": "7,999.00", "extra_colors_text": "+2 colors" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

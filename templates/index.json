@@ -46,6 +46,27 @@
         "padding_bottom": 36
       }
     },
+    "ziak_product_carousel": {
+      "type": "ziak-product-carousel",
+      "settings": {
+        "section_title": "",
+        "padding_top": 36,
+        "padding_bottom": 36
+      },
+      "blocks": {
+        "card_1": { "type": "product_card", "settings": { "product_title": "Athleisure Shoes for Men", "discount_text": "83% OFF", "badge_color": "#e53935", "sale_price": "1,326.00", "original_price": "7,799.00", "extra_colors_text": "+2 colors" } },
+        "card_2": { "type": "product_card", "settings": { "product_title": "ETPU Athleisure Sports Shoes for Men", "discount_text": "70% OFF", "badge_color": "#e53935", "sale_price": "2,489.00", "original_price": "8,299.00", "extra_colors_text": "+2 colors" } },
+        "card_3": { "type": "product_card", "settings": { "product_title": "Athleisure Shoes for Men | Cultured Round-Toe Shape", "discount_text": "83% OFF", "badge_color": "#e53935", "sale_price": "1,394.00", "original_price": "8,199.00", "extra_colors_text": "+1 color" } },
+        "card_4": { "type": "product_card", "settings": { "product_title": "Athleisure Shoes for Men", "discount_text": "84% OFF", "badge_color": "#e53935", "sale_price": "1,411.00", "original_price": "8,299.00", "extra_colors_text": "+2 colors" } },
+        "card_5": { "type": "product_card", "settings": { "product_title": "ETPU Athleisure Shoes for Men", "discount_text": "83% OFF", "badge_color": "#e53935", "sale_price": "1,344.00", "original_price": "8,399.00", "extra_colors_text": "+1 color" } },
+        "card_6": { "type": "product_card", "settings": { "product_title": "Sports Running Shoes for Men", "discount_text": "80% OFF", "badge_color": "#e53935", "sale_price": "1,599.00", "original_price": "7,999.00", "extra_colors_text": "+3 colors" } },
+        "card_7": { "type": "product_card", "settings": { "product_title": "Casual Walking Shoes for Men", "discount_text": "75% OFF", "badge_color": "#e53935", "sale_price": "1,899.00", "original_price": "7,599.00", "extra_colors_text": "+1 color" } },
+        "card_8": { "type": "product_card", "settings": { "product_title": "Premium Lace-Up Sneakers", "discount_text": "82% OFF", "badge_color": "#e53935", "sale_price": "1,499.00", "original_price": "8,299.00", "extra_colors_text": "+2 colors" } },
+        "card_9": { "type": "product_card", "settings": { "product_title": "Lightweight Training Shoes", "discount_text": "78% OFF", "badge_color": "#e53935", "sale_price": "1,759.00", "original_price": "7,999.00", "extra_colors_text": "+1 color" } },
+        "card_10": { "type": "product_card", "settings": { "product_title": "Mesh Running Shoes for Men", "discount_text": "85% OFF", "badge_color": "#e53935", "sale_price": "1,199.00", "original_price": "7,999.00", "extra_colors_text": "+2 colors" } }
+      },
+      "block_order": ["card_1", "card_2", "card_3", "card_4", "card_5", "card_6", "card_7", "card_8", "card_9", "card_10"]
+    },
     "featured_collection": {
       "type": "featured-collection",
       "settings": {
@@ -78,6 +99,7 @@
   "order": [
     "ziak_hero",
     "ziak_top_categories",
+    "ziak_product_carousel",
     "featured_collection"
   ]
 }
