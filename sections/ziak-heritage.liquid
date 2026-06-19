@@ -32,7 +32,13 @@
         <p class="ziak-heritage__eyebrow">{{ section.settings.eyebrow }}</p>
       {%- endif -%}
 
-      <h2 class="ziak-heritage__heading">{{ section.settings.heading }}</h2>
+      <h2 class="ziak-heritage__heading">
+        {%- if section.settings.heading contains 'Craft.' -%}
+          {{ section.settings.heading | replace: 'Craft.', 'Craft.<br>' }}
+        {%- else -%}
+          {{ section.settings.heading }}
+        {%- endif -%}
+      </h2>
 
       {%- if section.settings.description != blank -%}
         <p class="ziak-heritage__description">{{ section.settings.description }}</p>

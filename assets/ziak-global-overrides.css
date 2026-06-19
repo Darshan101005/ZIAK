@@ -1,0 +1,35 @@
+/* ==========================================================================
+   ZIAK Global Overrides
+   Applied sitewide for announcement bar + body background
+   ========================================================================== */
+
+/* ── Warm off-white site background ── */
+body {
+  background-color: #FDFBF7 !important;
+}
+
+/* Kill Dawn's gradient background on body too */
+.gradient {
+  background: #FDFBF7 !important;
+}
+
+/* ── Announcement / Free-Shipping bar: deep charcoal bg + soft off-white text ── */
+.utility-bar {
+  background-color: #1A1A1A !important;
+  background-image: none !important;
+  color: #FDFBF7 !important;
+}
+
+.utility-bar .announcement-bar__message,
+.utility-bar .announcement-bar p,
+.utility-bar .announcement-bar span,
+.utility-bar .announcement-bar a,
+.utility-bar a,
+.utility-bar p {
+  color: #FDFBF7 !important;
+}
+
+/* Separator line on the utility bar */
+.utility-bar--bottom-border {
+  border-bottom-color: rgba(253, 251, 247, 0.15) !important;
+}

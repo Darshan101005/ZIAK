@@ -152,12 +152,12 @@
     "ziak_why": {
       "type": "ziak-why",
       "settings": {
-        "bg_color": "#7B1F2E",
+        "bg_color": "#E8E5DF",
         "heading": "Why 'Ziak'?",
         "description": "At Ziak we work hard, but it's also the start of something timeless, and we design our products with that versatility in mind. Your life isn't one-dimensional. Your footwear shouldn't be either.",
         "button_label": "SHOP NOW",
-        "padding_top": 72,
-        "padding_bottom": 72
+        "padding_top": 80,
+        "padding_bottom": 80
       }
     }
   },
