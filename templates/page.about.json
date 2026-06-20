@@ -1,0 +1,27 @@
+{
+  "sections": {
+    "ziak_about_hero": {
+      "type": "ziak-about-hero",
+      "settings": {
+        "announcement_text": "FREE SHIPPING AND RETURNS IN THE U.S.",
+        "announcement_link_text": "DETAILS",
+        "headline": "Steps,\nnot statements.",
+        "subheadline": "Crafted with purpose.\nDesigned to endure.",
+        "body_text": "At ZIAK, we believe what you wear should reflect not only style, but values. Every pair is created with an unwavering commitment to quality, integrity, and timeless design."
+      }
+    },
+    "ziak_about_story": {
+      "type": "ziak-about-story",
+      "settings": {}
+    },
+    "ziak_about_values": {
+      "type": "ziak-about-values",
+      "settings": {}
+    }
+  },
+  "order": [
+    "ziak_about_hero",
+    "ziak_about_story",
+    "ziak_about_values"
+  ]
+}

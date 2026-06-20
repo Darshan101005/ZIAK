@@ -1,0 +1,138 @@
+/* ==========================================================================
+   ZIAK About — Our Values Section
+   ========================================================================== */
+
+/* ── Section wrapper ── */
+.ziak-values {
+  background-color: #FDFBF7;
+  padding: 90px 0;
+  border-top: 1px solid #D3D0C9;
+}
+
+.ziak-values__container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+/* ════════════════════════════════
+   SECTION HEADER — Centered
+   ════════════════════════════════ */
+.ziak-values__header {
+  text-align: center;
+  margin-bottom: 5rem;
+}
+
+.ziak-values__kicker {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #A86F58;
+  margin: 0 0 1.8rem 0;
+  line-height: 1;
+}
+
+.ziak-values__title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(3.2rem, 3.5vw, 4.2rem);
+  font-weight: 600;
+  line-height: 1.15;
+  color: #1A1A1A;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+/* ════════════════════════════════
+   5-COLUMN GRID
+   ════════════════════════════════ */
+.ziak-values__grid {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+/* Individual column item */
+.ziak-values__item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0 2.4rem;
+  border-right: 1px solid #D3D0C9;
+}
+
+/* Remove right border on last item */
+.ziak-values__item--last,
+.ziak-values__item:last-child {
+  border-right: none;
+}
+
+/* Icon */
+.ziak-values__icon {
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0;
+}
+
+.ziak-values__icon svg {
+  width: 32px;
+  height: 32px;
+  stroke: #1A1A1A;
+  stroke-width: 1.5;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Value title */
+.ziak-values__name {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.55rem;
+  font-weight: 700;
+  color: #1A1A1A;
+  margin: 1.5rem 0 1rem 0;
+  line-height: 1.2;
+}
+
+/* Description */
+.ziak-values__desc {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 400;
+  line-height: 1.6;
+  color: #4A4A4A;
+  margin: 0;
+  padding: 0 1rem;
+}
+
+/* ── Responsive ── */
+@media screen and (max-width: 900px) {
+  .ziak-values__grid {
+    flex-wrap: wrap;
+    gap: 4rem;
+  }
+
+  .ziak-values__item {
+    flex: 0 0 calc(50% - 2rem);
+    border-right: none;
+    border-bottom: 1px solid #D3D0C9;
+    padding-bottom: 3rem;
+  }
+
+  .ziak-values__item--last,
+  .ziak-values__item:last-child {
+    border-bottom: none;
+  }
+}
+
+@media screen and (max-width: 540px) {
+  .ziak-values__item {
+    flex: 0 0 100%;
+  }
+}

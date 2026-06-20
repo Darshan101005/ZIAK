@@ -1,0 +1,81 @@
+{{ 'section-ziak-about-values.css' | asset_url | stylesheet_tag }}
+
+<!-- Lucide icons -->
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
+
+<section class="ziak-values" id="ziak-about-values">
+  <div class="ziak-values__container">
+
+    <!-- Section Header (centered) -->
+    <div class="ziak-values__header">
+      <p class="ziak-values__kicker">OUR VALUES</p>
+      <h2 class="ziak-values__title">The principles behind every pair.</h2>
+    </div>
+
+    <!-- 5-Column Values Grid -->
+    <div class="ziak-values__grid">
+
+      <!-- 1. Craftsmanship -->
+      <div class="ziak-values__item" id="ziak-values-craftsmanship">
+        <div class="ziak-values__icon">
+          <i data-lucide="scissors"></i>
+        </div>
+        <h3 class="ziak-values__name">Craftsmanship</h3>
+        <p class="ziak-values__desc">Every stitch, material, and silhouette is chosen intentionally. We design products to last, not merely to trend.</p>
+      </div>
+
+      <!-- 2. Integrity -->
+      <div class="ziak-values__item" id="ziak-values-integrity">
+        <div class="ziak-values__icon">
+          <i data-lucide="shield-check"></i>
+        </div>
+        <h3 class="ziak-values__name">Integrity</h3>
+        <p class="ziak-values__desc">We believe businesses should act with honesty, humility, and responsibility.</p>
+      </div>
+
+      <!-- 3. Timelessness -->
+      <div class="ziak-values__item" id="ziak-values-timelessness">
+        <div class="ziak-values__icon">
+          <i data-lucide="hourglass"></i>
+        </div>
+        <h3 class="ziak-values__name">Timelessness</h3>
+        <p class="ziak-values__desc">Trends fade. Character endures. We build products designed to remain relevant for years, not seasons.</p>
+      </div>
+
+      <!-- 4. Human Dignity -->
+      <div class="ziak-values__item" id="ziak-values-dignity">
+        <div class="ziak-values__icon">
+          <i data-lucide="heart"></i>
+        </div>
+        <h3 class="ziak-values__name">Human Dignity</h3>
+        <p class="ziak-values__desc">Above all, we believe every person deserves dignity, compassion, and protection.</p>
+      </div>
+
+      <!-- 5. Responsibility -->
+      <div class="ziak-values__item ziak-values__item--last" id="ziak-values-responsibility">
+        <div class="ziak-values__icon">
+          <i data-lucide="leaf"></i>
+        </div>
+        <h3 class="ziak-values__name">Responsibility</h3>
+        <p class="ziak-values__desc">We are mindful of our impact — on people, communities, and the planet.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    if (typeof lucide !== 'undefined') lucide.createIcons();
+  });
+</script>
+
+{% schema %}
+{
+  "name": "ZIAK About Values",
+  "tag": "section",
+  "class": "ziak-about-values-section",
+  "disabled_on": { "groups": ["header", "footer"] },
+  "presets": [{ "name": "ZIAK About Values" }]
+}
+{% endschema %}

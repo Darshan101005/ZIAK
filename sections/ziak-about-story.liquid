@@ -1,0 +1,108 @@
+{{ 'section-ziak-about-story.css' | asset_url | stylesheet_tag }}
+
+<!-- Lucide icons -->
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
+
+<section class="ziak-story" id="ziak-about-story">
+  <div class="ziak-story__container">
+
+    <!-- LEFT: Text Column -->
+    <div class="ziak-story__left">
+
+      <p class="ziak-story__kicker">OUR STORY</p>
+
+      <h2 class="ziak-story__title">Built on values.<br>Driven by purpose.</h2>
+
+      <div class="ziak-story__body">
+        <p>ZIAK was founded on a simple belief:</p>
+        <p>Quality should endure.<br>Craftsmanship should matter.<br>And dignity should never go out of style.</p>
+        <p>What began as a pursuit of exceptional footwear evolved into something deeper — a brand built on conscience, restraint, and responsibility.</p>
+        <p>We create products meant to accompany life's journeys while standing for something timeless: respect for human dignity.</p>
+      </div>
+
+      <a href="/collections/all" class="ziak-story__btn" id="ziak-story-explore-btn">EXPLORE COLLECTION</a>
+
+    </div>
+
+    <!-- VERTICAL DIVIDER -->
+    <div class="ziak-story__col-divider"></div>
+
+    <!-- RIGHT: Timeline Column -->
+    <div class="ziak-story__right">
+
+      <!-- Horizontal timeline track -->
+      <div class="ziak-story__timeline">
+        <div class="ziak-story__timeline-line"></div>
+
+        <!-- Node 1: 2020 -->
+        <div class="ziak-story__node" id="ziak-story-node-1">
+          <div class="ziak-story__node-icon">
+            <i data-lucide="flag"></i>
+          </div>
+          <div class="ziak-story__node-dot"></div>
+          <div class="ziak-story__node-body">
+            <p class="ziak-story__node-year">2020</p>
+            <p class="ziak-story__node-title">ZIAK Founded</p>
+            <p class="ziak-story__node-desc">A small idea with a big belief — to build footwear with purpose.</p>
+          </div>
+        </div>
+
+        <!-- Node 2: 2021 -->
+        <div class="ziak-story__node" id="ziak-story-node-2">
+          <div class="ziak-story__node-icon">
+            <i data-lucide="footprints"></i>
+          </div>
+          <div class="ziak-story__node-dot"></div>
+          <div class="ziak-story__node-body">
+            <p class="ziak-story__node-year">2021</p>
+            <p class="ziak-story__node-title">First Collection Launched</p>
+            <p class="ziak-story__node-desc">Our first collection brought together style, comfort, and integrity.</p>
+          </div>
+        </div>
+
+        <!-- Node 3: 2023 -->
+        <div class="ziak-story__node" id="ziak-story-node-3">
+          <div class="ziak-story__node-icon">
+            <i data-lucide="users"></i>
+          </div>
+          <div class="ziak-story__node-dot"></div>
+          <div class="ziak-story__node-body">
+            <p class="ziak-story__node-year">2023</p>
+            <p class="ziak-story__node-title">10,000+ Customers</p>
+            <p class="ziak-story__node-desc">A growing community that believes in what we stand for.</p>
+          </div>
+        </div>
+
+        <!-- Node 4: 2024+ -->
+        <div class="ziak-story__node" id="ziak-story-node-4">
+          <div class="ziak-story__node-icon">
+            <i data-lucide="globe"></i>
+          </div>
+          <div class="ziak-story__node-dot"></div>
+          <div class="ziak-story__node-body">
+            <p class="ziak-story__node-year">2024+</p>
+            <p class="ziak-story__node-title">Expanding Globally</p>
+            <p class="ziak-story__node-desc">Taking meaningful steps to reach more people, everywhere.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    if (typeof lucide !== 'undefined') lucide.createIcons();
+  });
+</script>
+
+{% schema %}
+{
+  "name": "ZIAK About Story",
+  "tag": "section",
+  "class": "ziak-about-story-section",
+  "disabled_on": { "groups": ["header", "footer"] },
+  "presets": [{ "name": "ZIAK About Story" }]
+}
+{% endschema %}

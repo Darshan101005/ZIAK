@@ -1,0 +1,90 @@
+/* ==========================================================================
+   ZIAK About Hero — typography overrides on top of section-ziak-hero.css
+   Playfair Display (serif) + Montserrat (sans-serif)
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@400;600;700&display=swap');
+
+/* ── About content block: left-aligned, positioned lower-left ── */
+.ziak-about-hero__content {
+  text-align: left !important;
+  align-items: flex-start !important;
+  max-width: 560px;
+  padding-bottom: 5rem;
+}
+
+/* ── Kicker / Overline ── */
+.ziak-about__kicker {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.2rem;          /* ~12px */
+  font-weight: 700;
+  letter-spacing: 0.2em;      /* ~2px wide */
+  text-transform: uppercase;
+  color: #a87b5d;             /* muted copper/brown */
+  margin: 0 0 1.5rem 0;       /* 15px below */
+  line-height: 1;
+}
+
+/* ── Main Headline ── */
+.ziak-about__headline {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(4.8rem, 5vw, 5.6rem);   /* 48–56px */
+  font-weight: 600;
+  line-height: 1.1;
+  color: #ffffff;
+  margin: 0;
+  text-align: left;
+  letter-spacing: -0.01em;
+}
+
+/* ── Copper Divider ── */
+.ziak-about__divider {
+  width: 40px;
+  height: 2px;
+  background-color: #a87b5d;
+  margin: 2.5rem 0;            /* 25px top + bottom */
+  flex-shrink: 0;
+}
+
+/* ── Sub-headline ── */
+.ziak-about__subheadline {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 2.2rem;           /* ~22px */
+  font-weight: 400;
+  line-height: 1.4;
+  color: #f5f5f5;              /* off-white */
+  margin: 0 0 2rem 0;          /* 20px below */
+  text-align: left;
+}
+
+/* ── Body Paragraph ── */
+.ziak-about__body {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.4rem;           /* ~14px */
+  font-weight: 400;
+  line-height: 1.6;
+  color: #d3d3d3;              /* light gray */
+  max-width: 400px;
+  margin: 0;
+  text-align: left;
+}
+
+/* ── Responsive ── */
+@media screen and (max-width: 749px) {
+  .ziak-about__headline {
+    font-size: 3.8rem;
+  }
+
+  .ziak-about__subheadline {
+    font-size: 1.85rem;
+  }
+
+  .ziak-about__body {
+    max-width: 100%;
+    font-size: 1.3rem;
+  }
+
+  .ziak-about-hero__content {
+    padding-bottom: 3rem;
+  }
+}

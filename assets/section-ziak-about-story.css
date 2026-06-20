@@ -1,0 +1,243 @@
+/* ==========================================================================
+   ZIAK About — Our Story Section
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@400;600;700&display=swap');
+
+/* ── Section wrapper ── */
+.ziak-story {
+  background-color: #F9F8F6;
+  padding: 90px 0;
+}
+
+.ziak-story__container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 40px;
+  display: flex;
+  align-items: center;    /* vertically center both columns together */
+  gap: 0;
+}
+
+/* ════════════════════════════════
+   LEFT COLUMN — Text (40%)
+   ════════════════════════════════ */
+.ziak-story__left {
+  flex: 0 0 38%;
+  padding-right: 48px;
+  padding-left: 0;
+  margin-left: -20px;   /* nudge slightly left */
+  text-align: left;
+}
+
+/* Kicker */
+.ziak-story__kicker {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.354rem;    /* 1.2rem × 1.02 */
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #A86F58;
+  margin: 0 0 2rem 0;
+  line-height: 1;
+}
+
+/* Title */
+.ziak-story__title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(3.264rem, 3.57vw, 4.284rem);   /* clamp values × 1.02 */
+  font-weight: 600;
+  line-height: 1.1;
+  color: #1A1A1A;
+  margin: 0 0 3rem 0;
+  letter-spacing: -0.01em;
+}
+
+/* Body paragraphs */
+.ziak-story__body {
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+  margin-bottom: 3.2rem;
+}
+
+.ziak-story__body p {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.500rem;    /* 1.4rem × 1.02 */
+  font-weight: 400;
+  line-height: 1.6;
+  color: #4A4A4A;
+  margin: 0;
+}
+
+/* CTA Button */
+.ziak-story__btn {
+  display: inline-block;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.200rem;    /* 1.15rem × 1.02 */
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #A86F58;
+  border: 1px solid #A86F58;
+  background: transparent;
+  padding: 1.2rem 2.4rem;
+  text-decoration: none;
+  transition: background 0.22s ease, color 0.22s ease;
+}
+
+.ziak-story__btn:hover {
+  background: #A86F58;
+  color: #ffffff;
+}
+
+/* ── Vertical divider between columns ── */
+.ziak-story__col-divider {
+  width: 1px;
+  background: #D3D0C9;
+  align-self: stretch;
+  flex-shrink: 0;
+  margin: 0 40px;
+}
+
+/* ════════════════════════════════
+   RIGHT COLUMN — Timeline (60%)
+   ════════════════════════════════ */
+.ziak-story__right {
+  flex: 1;
+  display: flex;
+  align-items: center;   /* center timeline vertically */
+  width: 100%;           /* ensure full width so ::before line spans correctly */
+}
+
+.ziak-story__timeline {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 100%;           /* must be 100% for line calculation to work */
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+/* Horizontal connecting line — using ::before for reliable rendering
+   Sized for 20%-scaled icons: icon(62px) + gap(16px) + half-dot(7px) = 85px */
+.ziak-story__timeline::before {
+  content: '';
+  position: absolute;
+  top: 85px;             /* icon(62px) + gap(16px) + half-dot(7px) */
+  left: 12.5%;           /* starts at centre of first node */
+  right: 12.5%;          /* ends at centre of last node */
+  height: 1px;
+  background-color: #D3D0C9;
+  z-index: 0;
+}
+
+/* Hide the HTML line element — ::before handles it now */
+.ziak-story__timeline-line {
+  display: none;
+}
+
+/* Each timeline node */
+.ziak-story__node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  flex: 1;
+}
+
+/* Icon container — 20% bigger */
+.ziak-story__node-icon {
+  width: 62px;
+  height: 62px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.ziak-story__node-icon svg {
+  width: 34px;
+  height: 34px;
+  stroke: #1A1A1A;
+  stroke-width: 1.5;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Black dot — 20% bigger, sits on the ::before line */
+.ziak-story__node-dot {
+  width: 14px;
+  height: 14px;
+  background: #1A1A1A;
+  border-radius: 50%;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 2;
+}
+
+/* Text below the line — 20% bigger */
+.ziak-story__node-body {
+  margin-top: 16px;
+}
+
+.ziak-story__node-year {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.92rem;    /* 1.6 × 1.2 */
+  font-weight: 700;
+  color: #A86F58;
+  margin: 0 0 10px 0;
+}
+
+.ziak-story__node-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.56rem;    /* 1.3 × 1.2 */
+  font-weight: 700;
+  color: #1A1A1A;
+  margin: 0 0 10px 0;
+  line-height: 1.3;
+}
+
+.ziak-story__node-desc {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.44rem;    /* 1.2 × 1.2 */
+  font-weight: 400;
+  line-height: 1.5;
+  color: #4A4A4A;
+  max-width: 175px;      /* 150 × 1.2 */
+  margin: 0 auto;
+}
+
+/* ── Responsive ── */
+@media screen and (max-width: 900px) {
+  .ziak-story__container {
+    flex-direction: column;
+  }
+
+  .ziak-story__left {
+    flex: 1;
+    padding-right: 0;
+  }
+
+  .ziak-story__col-divider {
+    display: none;
+  }
+
+  .ziak-story__right {
+    width: 100%;
+    margin-top: 50px;
+  }
+
+  .ziak-story__timeline {
+    overflow-x: auto;
+    padding-bottom: 16px;
+  }
+
+  .ziak-story__node {
+    min-width: 120px;
+  }
+}

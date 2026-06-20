@@ -1,7 +1,34 @@
 /* ==========================================================================
    ZIAK Global Overrides
-   Applied sitewide for announcement bar + body background
+   Applied sitewide for announcement bar + body background + section titles
    ========================================================================== */
+
+/* ── Shared Section Title Style ── */
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@600;700&display=swap');
+
+.ziak-topcats__title,
+.ziak-carousel__title,
+.ziak-picks__title {
+  font-family: 'Oswald', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-size: 3.6rem !important;     /* ~36px */
+  font-weight: 700 !important;
+  color: #1A1A1A !important;
+  text-align: left !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.02em !important;
+  line-height: 1.2;
+  margin-bottom: 2.4rem;
+}
+
+@media screen and (max-width: 749px) {
+  .ziak-topcats__title,
+  .ziak-carousel__title,
+  .ziak-picks__title {
+    font-size: 2.4rem !important;   /* ~24px */
+    margin-bottom: 1.8rem;
+    text-align: left !important;
+  }
+}
 
 /* ── Warm off-white site background ── */
 body {
