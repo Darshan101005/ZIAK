@@ -1,0 +1,76 @@
+{{ 'section-ziak-about-text-overlay.css' | asset_url | stylesheet_tag }}
+
+<section class="ziak-overlay" id="ziak-about-text-overlay">
+  {%- if section.settings.bg_image != blank -%}
+    <div class="ziak-overlay__bg">
+      {{
+        section.settings.bg_image
+        | image_url: width: 3840
+        | image_tag:
+          sizes: '100vw',
+          widths: '750, 1100, 1500, 2000, 3000, 3840',
+          loading: 'lazy',
+          class: 'ziak-overlay__bg-img'
+      }}
+    </div>
+  {%- endif -%}
+
+  <div class="ziak-overlay__content">
+
+    <!-- Main Heading -->
+    <h2 class="ziak-overlay__heading" id="ziak-overlay-heading">
+      We do not aspire to be the loudest brand.<br>
+      We aspire to be the one that endures.
+    </h2>
+
+    <!-- Subheading -->
+    <p class="ziak-overlay__sub" id="ziak-overlay-sub">
+      Because in the end, what matters are not the statements we made —<br>
+      but the steps we took.
+    </p>
+
+    <!-- Brand Name -->
+    <p class="ziak-overlay__brand" id="ziak-overlay-brand">ZIAK</p>
+
+    <!-- Footer Text -->
+    <p class="ziak-overlay__footer" id="ziak-overlay-footer">Steps, not statements.</p>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "ZIAK Text Overlay",
+  "tag": "section",
+  "class": "ziak-text-overlay-section",
+  "disabled_on": { "groups": ["header", "footer"] },
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Background image (optional)"
+    },
+    {
+      "type": "range",
+      "id": "section_height",
+      "min": 200,
+      "max": 700,
+      "step": 20,
+      "default": 340,
+      "unit": "px",
+      "label": "Section height"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "min": 0,
+      "max": 80,
+      "step": 5,
+      "default": 35,
+      "unit": "%",
+      "label": "Dark overlay opacity"
+    }
+  ],
+  "presets": [{ "name": "ZIAK Text Overlay" }]
+}
+{% endschema %}

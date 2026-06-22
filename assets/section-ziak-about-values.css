@@ -5,7 +5,7 @@
 /* ── Section wrapper ── */
 .ziak-values {
   background-color: #FDFBF7;
-  padding: 90px 0;
+  padding: 84px 0;          /* was 90px, ~7% smaller */
   border-top: 1px solid #D3D0C9;
 }
 
@@ -20,23 +20,23 @@
    ════════════════════════════════ */
 .ziak-values__header {
   text-align: center;
-  margin-bottom: 5rem;
+  margin-bottom: 4.6rem;    /* was 5rem */
 }
 
 .ziak-values__kicker {
   font-family: 'Montserrat', sans-serif;
-  font-size: 1.2rem;
+  font-size: 1.12rem;       /* was 1.2rem */
   font-weight: 700;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: #A86F58;
-  margin: 0 0 1.8rem 0;
+  margin: 0 0 1.67rem 0;    /* was 1.8rem */
   line-height: 1;
 }
 
 .ziak-values__title {
   font-family: 'Playfair Display', Georgia, serif;
-  font-size: clamp(3.2rem, 3.5vw, 4.2rem);
+  font-size: clamp(2.98rem, 3.26vw, 3.91rem);  /* was clamp(3.2, 3.5vw, 4.2rem) */
   font-weight: 600;
   line-height: 1.15;
   color: #1A1A1A;
@@ -72,8 +72,8 @@
 
 /* Icon */
 .ziak-values__icon {
-  width: 52px;
-  height: 52px;
+  width: 48px;              /* was 52px */
+  height: 48px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -81,8 +81,8 @@
 }
 
 .ziak-values__icon svg {
-  width: 32px;
-  height: 32px;
+  width: 30px;              /* was 32px */
+  height: 30px;
   stroke: #1A1A1A;
   stroke-width: 1.5;
   fill: none;
@@ -93,22 +93,22 @@
 /* Value title */
 .ziak-values__name {
   font-family: 'Montserrat', sans-serif;
-  font-size: 1.55rem;
+  font-size: 1.44rem;       /* was 1.55rem */
   font-weight: 700;
   color: #1A1A1A;
-  margin: 1.5rem 0 1rem 0;
+  margin: 1.4rem 0 0.93rem 0; /* was 1.5 / 1 */
   line-height: 1.2;
 }
 
 /* Description */
 .ziak-values__desc {
   font-family: 'Montserrat', sans-serif;
-  font-size: 1.3rem;
+  font-size: 1.21rem;       /* was 1.3rem */
   font-weight: 400;
   line-height: 1.6;
   color: #4A4A4A;
   margin: 0;
-  padding: 0 1rem;
+  padding: 0 0.93rem;       /* was 1rem */
 }
 
 /* ── Responsive ── */

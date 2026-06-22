@@ -1,0 +1,88 @@
+{{ 'section-ziak-about-stand-for.css' | asset_url | stylesheet_tag }}
+
+<!-- Lucide icons -->
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
+
+<section class="ziak-stand" id="ziak-what-we-stand-for">
+  <div class="ziak-stand__container">
+
+    <!-- Section Header -->
+    <p class="ziak-stand__header">WHAT WE STAND FOR</p>
+
+    <!-- Values Row -->
+    <div class="ziak-stand__row">
+
+      <!-- 1. Thoughtful Craftsmanship -->
+      <div class="ziak-stand__item" id="ziak-stand-craftsmanship">
+        <div class="ziak-stand__icon"><i data-lucide="footprints"></i></div>
+        <div class="ziak-stand__text">
+          <span class="ziak-stand__label">Thoughtful</span>
+          <span class="ziak-stand__sublabel">craftsmanship</span>
+        </div>
+      </div>
+
+      <!-- 2. Timeless Design -->
+      <div class="ziak-stand__item" id="ziak-stand-design">
+        <div class="ziak-stand__icon"><i data-lucide="diamond"></i></div>
+        <div class="ziak-stand__text">
+          <span class="ziak-stand__label">Timeless</span>
+          <span class="ziak-stand__sublabel">design</span>
+        </div>
+      </div>
+
+      <!-- 3. Responsible Growth -->
+      <div class="ziak-stand__item" id="ziak-stand-growth">
+        <div class="ziak-stand__icon"><i data-lucide="trending-up"></i></div>
+        <div class="ziak-stand__text">
+          <span class="ziak-stand__label">Responsible</span>
+          <span class="ziak-stand__sublabel">growth</span>
+        </div>
+      </div>
+
+      <!-- 4. Respect for Every Individual -->
+      <div class="ziak-stand__item" id="ziak-stand-respect">
+        <div class="ziak-stand__icon"><i data-lucide="users"></i></div>
+        <div class="ziak-stand__text">
+          <span class="ziak-stand__label">Respect for every</span>
+          <span class="ziak-stand__sublabel">individual</span>
+        </div>
+      </div>
+
+      <!-- 5. Integrity Over Popularity -->
+      <div class="ziak-stand__item" id="ziak-stand-integrity">
+        <div class="ziak-stand__icon"><i data-lucide="shield-check"></i></div>
+        <div class="ziak-stand__text">
+          <span class="ziak-stand__label">Integrity over</span>
+          <span class="ziak-stand__sublabel">popularity</span>
+        </div>
+      </div>
+
+      <!-- 6. Quality Without Compromise -->
+      <div class="ziak-stand__item ziak-stand__item--last" id="ziak-stand-quality">
+        <div class="ziak-stand__icon"><i data-lucide="badge-check"></i></div>
+        <div class="ziak-stand__text">
+          <span class="ziak-stand__label">Quality without</span>
+          <span class="ziak-stand__sublabel">compromise</span>
+        </div>
+      </div>
+
+    </div><!-- /.ziak-stand__row -->
+
+  </div><!-- /.ziak-stand__container -->
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    if (typeof lucide !== 'undefined') lucide.createIcons();
+  });
+</script>
+
+{% schema %}
+{
+  "name": "ZIAK What We Stand For",
+  "tag": "section",
+  "class": "ziak-stand-for-section",
+  "disabled_on": { "groups": ["header", "footer"] },
+  "presets": [{ "name": "ZIAK What We Stand For" }]
+}
+{% endschema %}

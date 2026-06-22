@@ -1,12 +1,12 @@
 {{ 'section-ziak-about-story.css' | asset_url | stylesheet_tag }}
 
-<!-- Lucide icons -->
+<!-- Lucide Icons -->
 <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
 
 <section class="ziak-story" id="ziak-about-story">
-  <div class="ziak-story__container">
+  <div class="ziak-story__inner">
 
-    <!-- LEFT: Text Column -->
+    <!-- ═══════════ LEFT COLUMN: Text ═══════════ -->
     <div class="ziak-story__left">
 
       <p class="ziak-story__kicker">OUR STORY</p>
@@ -24,21 +24,19 @@
 
     </div>
 
-    <!-- VERTICAL DIVIDER -->
-    <div class="ziak-story__col-divider"></div>
+    <!-- ═══════════ Vertical Divider ═══════════ -->
+    <div class="ziak-story__divider" aria-hidden="true"></div>
 
-    <!-- RIGHT: Timeline Column -->
+    <!-- ═══════════ RIGHT COLUMN: Timeline ═══════════ -->
     <div class="ziak-story__right">
+      <div class="ziak-story__timeline" id="ziak-story-timeline">
 
-      <!-- Horizontal timeline track -->
-      <div class="ziak-story__timeline">
-        <div class="ziak-story__timeline-line"></div>
+        <!-- Timeline connecting line -->
+        <div class="ziak-story__tl-line" aria-hidden="true"></div>
 
         <!-- Node 1: 2020 -->
-        <div class="ziak-story__node" id="ziak-story-node-1">
-          <div class="ziak-story__node-icon">
-            <i data-lucide="flag"></i>
-          </div>
+        <div class="ziak-story__node" id="ziak-story-node-2020">
+          <div class="ziak-story__node-icon"><i data-lucide="flag"></i></div>
           <div class="ziak-story__node-dot"></div>
           <div class="ziak-story__node-body">
             <p class="ziak-story__node-year">2020</p>
@@ -48,10 +46,8 @@
         </div>
 
         <!-- Node 2: 2021 -->
-        <div class="ziak-story__node" id="ziak-story-node-2">
-          <div class="ziak-story__node-icon">
-            <i data-lucide="footprints"></i>
-          </div>
+        <div class="ziak-story__node" id="ziak-story-node-2021">
+          <div class="ziak-story__node-icon"><i data-lucide="footprints"></i></div>
           <div class="ziak-story__node-dot"></div>
           <div class="ziak-story__node-body">
             <p class="ziak-story__node-year">2021</p>
@@ -61,10 +57,8 @@
         </div>
 
         <!-- Node 3: 2023 -->
-        <div class="ziak-story__node" id="ziak-story-node-3">
-          <div class="ziak-story__node-icon">
-            <i data-lucide="users"></i>
-          </div>
+        <div class="ziak-story__node" id="ziak-story-node-2023">
+          <div class="ziak-story__node-icon"><i data-lucide="users"></i></div>
           <div class="ziak-story__node-dot"></div>
           <div class="ziak-story__node-body">
             <p class="ziak-story__node-year">2023</p>
@@ -74,10 +68,8 @@
         </div>
 
         <!-- Node 4: 2024+ -->
-        <div class="ziak-story__node" id="ziak-story-node-4">
-          <div class="ziak-story__node-icon">
-            <i data-lucide="globe"></i>
-          </div>
+        <div class="ziak-story__node" id="ziak-story-node-2024">
+          <div class="ziak-story__node-icon"><i data-lucide="globe"></i></div>
           <div class="ziak-story__node-dot"></div>
           <div class="ziak-story__node-body">
             <p class="ziak-story__node-year">2024+</p>
@@ -86,9 +78,10 @@
           </div>
         </div>
 
-      </div>
-    </div>
-  </div>
+      </div><!-- /.ziak-story__timeline -->
+    </div><!-- /.ziak-story__right -->
+
+  </div><!-- /.ziak-story__inner -->
 </section>
 
 <script>
@@ -99,10 +92,18 @@
 
 {% schema %}
 {
-  "name": "ZIAK About Story",
+  "name": "ZIAK Our Story",
   "tag": "section",
   "class": "ziak-about-story-section",
   "disabled_on": { "groups": ["header", "footer"] },
-  "presets": [{ "name": "ZIAK About Story" }]
+  "settings": [
+    {
+      "type": "url",
+      "id": "btn_url",
+      "label": "Button link",
+      "default": "/collections/all"
+    }
+  ],
+  "presets": [{ "name": "ZIAK Our Story" }]
 }
 {% endschema %}

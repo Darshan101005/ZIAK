@@ -17,11 +17,29 @@
     "ziak_about_values": {
       "type": "ziak-about-values",
       "settings": {}
+    },
+    "ziak_about_founders_letter": {
+      "type": "ziak-about-founders-letter",
+      "settings": {}
+    },
+    "ziak_about_stand_for": {
+      "type": "ziak-about-stand-for",
+      "settings": {}
+    },
+    "ziak_about_text_overlay": {
+      "type": "ziak-about-text-overlay",
+      "settings": {
+        "section_height": 340,
+        "overlay_opacity": 35
+      }
     }
   },
   "order": [
     "ziak_about_hero",
     "ziak_about_story",
-    "ziak_about_values"
+    "ziak_about_values",
+    "ziak_about_founders_letter",
+    "ziak_about_stand_for",
+    "ziak_about_text_overlay"
   ]
 }
