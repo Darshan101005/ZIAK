@@ -7,12 +7,12 @@
 .ziak-overlay {
   position: relative;
   background: transparent;
-  min-height: 300px;         /* was 320px */
+  min-height: 346px;         /* was 360px, ~4% smaller */
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  padding: 66px 40px;        /* was 70px */
+  padding: 77px 40px;        /* was 80px */
   box-sizing: border-box;
 }
 
@@ -55,42 +55,42 @@
 /* 1. Main Heading */
 .ziak-overlay__heading {
   font-family: 'Playfair Display', Georgia, serif;
-  font-size: 3.0rem;          /* was 3.2rem, ~6% smaller */
+  font-size: 3.65rem;          /* was 3.8rem, ~4% smaller */
   font-weight: 400;
   color: #ffffff;
   text-align: center;
-  line-height: 1.3;
-  margin: 0 0 1.88rem 0;      /* was 2rem */
+  line-height: 1.25;
+  margin: 0 0 2.3rem 0;
 }
 
 /* 2. Subheading */
 .ziak-overlay__sub {
   font-family: 'Inter', Helvetica, sans-serif;
-  font-size: 1.13rem;         /* was 1.2rem */
+  font-size: 1.44rem;          /* was 1.5rem, ~4% smaller */
   font-weight: 400;
   color: #ffffff;
   text-align: center;
   line-height: 1.7;
-  margin: 0 0 3.76rem 0;      /* was 4rem */
+  margin: 0 0 4.2rem 0;
   opacity: 0.9;
 }
 
 /* 3. Brand Name */
 .ziak-overlay__brand {
   font-family: 'Playfair Display', Georgia, serif;
-  font-size: 2.26rem;         /* was 2.4rem */
+  font-size: 3.07rem;          /* was 3.2rem, ~4% smaller */
   font-weight: 400;
   color: #ffffff;
   text-align: center;
-  letter-spacing: 0.4rem;
-  margin: 0 0 0.94rem 0;      /* was 1rem */
+  letter-spacing: 0.5rem;
+  margin: 0 0 1.15rem 0;
   text-transform: uppercase;
 }
 
 /* 4. Footer Text */
 .ziak-overlay__footer {
   font-family: 'Playfair Display', Georgia, serif;
-  font-size: 1.5rem;          /* was 1.6rem */
+  font-size: 1.92rem;          /* was 2.0rem, ~4% smaller */
   font-weight: 400;
   color: #ffffff;
   text-align: center;

@@ -11,11 +11,11 @@
   overflow: hidden;
 }
 
-/* ── Left-narrowed Two-Column Grid (~39% / 61%) ── */
+/* ── Left-narrowed Two-Column Grid (~37% / 63%) ── */
 .ziak-founders__grid {
   display: grid;
-  grid-template-columns: 0.78fr 1.22fr;  /* left further narrowed 5% from 0.82fr */
-  min-height: 551px;                     /* was 580px, ~5% smaller */
+  grid-template-columns: 0.73fr 1.27fr;
+  min-height: 531px;   /* was 551px, ~4% smaller */
 }
 
 /* ── LEFT COLUMN ── */
@@ -50,7 +50,7 @@
 
 /* ── RIGHT COLUMN ── */
 .ziak-founders__right {
-  padding: 57px 53px 57px 49px;  /* was 60px 56px 60px 52px, ~5% smaller */
+  padding: 55px 48px 55px 44px;  /* ~4% smaller than 57px */
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -72,32 +72,35 @@
 /* Main Title */
 .ziak-founders__title {
   font-family: 'Playfair Display', Georgia, serif;
-  font-size: 3.42rem;      /* was 3.6rem, ~5% smaller */
+  font-size: 3.29rem;      /* ~4% smaller than 3.42rem */
   font-weight: 400;
   color: #111111;
   text-align: left;
   line-height: 1.15;
   margin: 0;
-  padding-bottom: 28px;    /* was 30px */
+  padding-bottom: 26px;
 }
 
-/* ── 3-Column Body Grid ── */
+/* ── 3-Column Body Grid: shifted right with wider gaps ── */
 .ziak-founders__body-grid {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  gap: 2.4rem;
+  gap: 0;              /* gaps handled by padding on each col */
   flex: 1;
+  margin-left: auto;   /* push entire grid to the right */
+  width: 100%;
 }
 
 .ziak-founders__body-col {
   display: flex;
   flex-direction: column;
-  gap: 1.33rem;            /* was 1.4rem */
+  gap: 1.28rem;            /* ~4% smaller than 1.33rem */
+  padding: 0 2.4rem;       /* equal spacing each side; dividers replace gap */
 }
 
 .ziak-founders__body-col p {
   font-family: 'Inter', Helvetica, sans-serif;
-  font-size: 1.33rem;      /* was 1.4rem, ~5% smaller */
+  font-size: 1.28rem;      /* ~4% smaller than 1.33rem */
   font-weight: 400;
   color: #333333;
   line-height: 1.6;
@@ -105,14 +108,22 @@
   margin: 0;
 }
 
-/* Thin vertical divider line between col 2 and col 3 */
-.ziak-founders__body-col:nth-child(2) {
+/* ── Vertical dividers: between col1/col2 AND col2/col3 ── */
+.ziak-founders__body-col:nth-child(1) {
+  padding-left: 0;         /* flush with left edge */
+  padding-right: 2.4rem;
   border-right: 1px solid #D3D0C9;
-  padding-right: 2.2rem;
+}
+
+.ziak-founders__body-col:nth-child(2) {
+  padding-left: 2rem;
+  padding-right: 2.4rem;
+  border-right: 1px solid #D3D0C9;  /* divider between col2 and col3 restored */
 }
 
 .ziak-founders__body-col:nth-child(3) {
-  padding-left: 0.4rem;
+  padding-left: 2rem;
+  padding-right: 0;        /* flush with right edge */
 }
 
 /* ── Signature Column (3rd col) ── */
