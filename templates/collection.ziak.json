@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "ziak_collection_main": {
+      "type": "ziak-collection",
+      "settings": {}
+    }
+  },
+  "order": ["ziak_collection_main"]
+}
