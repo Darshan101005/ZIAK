@@ -1,0 +1,364 @@
+{{ 'section-ziak-hero.css' | asset_url | stylesheet_tag }}
+{{ 'section-ziak-contact.css' | asset_url | stylesheet_tag }}
+
+<!-- Lucide icons (same approach as the rest of the ZIAK sections) -->
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
+
+<style>
+  /* Hide Dawn's default header — this page uses its own ZIAK nav */
+  .shopify-section-group-header-group { display: none !important; }
+  /* Default page background: pure white */
+  body { background-color: #FFFFFF !important; }
+
+  /* ── Fixed white header (same as collection/product pages) ── */
+  #ziak-contact-nav {
+    position: relative !important;
+    top: auto !important; left: auto !important; right: auto !important;
+    background: #FFFFFF !important;
+    border-bottom: 1px solid #E8E8E8 !important;
+  }
+  #ziak-contact-nav .ziak-hero__nav-link,
+  #ziak-contact-nav .ziak-hero__nav-link--dropdown { color: #1A1A1A !important; }
+  #ziak-contact-nav .ziak-hero__nav-link--dropdown::after { border-top-color: #1A1A1A !important; }
+  #ziak-contact-nav .ziak-hero__nav-icon { color: #1A1A1A !important; opacity: 1 !important; }
+  #ziak-contact-nav .ziak-hero__nav-icon svg { stroke: #1A1A1A !important; }
+  #ziak-contact-nav .ziak-hero__logo-placeholder { color: #1A1A1A !important; opacity: 1 !important; }
+  #ziak-contact-nav .ziak-hero__logo-img { filter: none !important; }
+  #ziak-contact-nav .ziak-hero__mega-menu {
+    position: fixed !important; top: auto !important; left: 0 !important; right: 0 !important; width: 100vw !important;
+  }
+</style>
+
+<!-- ══════════ ANNOUNCEMENT BAR (black, same as collection) ══════════ -->
+<div class="ziak-hero__announcement" id="ziak-contact-announcement" style="background:#1A1A1A;color:#FFFFFF;">
+  <span>{{ section.settings.announcement_text | default: 'FREE SHIPPING ON ALL ORDERS OVER ₹999 — SHOP ZIAK NOW' }}</span>
+</div>
+
+<!-- ══════════ HEADER (white nav, same as collection) ══════════ -->
+<div class="ziak-hero" id="ziak-contact-hero" style="min-height:auto;background:#FFFFFF;">
+  <nav class="ziak-hero__nav" id="ziak-contact-nav" aria-label="Main navigation" style="background:#FFFFFF;border-bottom:1px solid #E8E8E8;">
+    <div class="ziak-hero__nav-left">
+      <div class="ziak-hero__dropdown-wrapper">
+        <a href="{{ section.settings.link_men_url | default: '/collections/mens' }}" class="ziak-hero__nav-link ziak-hero__nav-link--dropdown" style="color:#1A1A1A;">MEN</a>
+        <div class="ziak-hero__mega-menu" style="background:#FFFFFF;">
+          <div class="ziak-hero__mega-menu-column">
+            <p class="ziak-hero__mega-menu-heading">Boots</p>
+            <a href="#" class="ziak-hero__mega-menu-link">All Styles</a>
+            <a href="#" class="ziak-hero__mega-menu-link">Lace-Up</a>
+            <a href="#" class="ziak-hero__mega-menu-link">Chelsea</a>
+            <a href="#" class="ziak-hero__mega-menu-link">Chukka</a>
+            <a href="#" class="ziak-hero__mega-menu-link">Western</a>
+          </div>
+          <div class="ziak-hero__mega-menu-column">
+            <p class="ziak-hero__mega-menu-heading">Sneakers</p>
+            <a href="#" class="ziak-hero__mega-menu-link">All Styles</a>
+            <a href="#" class="ziak-hero__mega-menu-link">Low Top</a>
+            <a href="#" class="ziak-hero__mega-menu-link">High Top</a>
+            <p class="ziak-hero__mega-menu-heading ziak-hero__mega-menu-divider">Shoes</p>
+            <a href="#" class="ziak-hero__mega-menu-link">Dress Shoes</a>
+            <a href="#" class="ziak-hero__mega-menu-link">Casual Shoes</a>
+          </div>
+          <div class="ziak-hero__mega-menu-column">
+            <p class="ziak-hero__mega-menu-heading">Jackets</p>
+            <a href="#" class="ziak-hero__mega-menu-link">All Jackets</a>
+            <a href="#" class="ziak-hero__mega-menu-link">Leather</a>
+            <a href="#" class="ziak-hero__mega-menu-link">Waxed Canvas</a>
+            <p class="ziak-hero__mega-menu-heading ziak-hero__mega-menu-divider">Gift Cards</p>
+          </div>
+        </div>
+      </div>
+      <a href="{{ section.settings.link_about_url | default: '/pages/about' }}" class="ziak-hero__nav-link" style="color:#1A1A1A;">ABOUT</a>
+    </div>
+
+    <div class="ziak-hero__nav-center">
+      <a href="{{ routes.root_url }}" class="ziak-hero__logo-placeholder" style="color:#1A1A1A;">
+        {%- if settings.logo != blank -%}
+          {{ settings.logo | image_url: width: 300 | image_tag: alt: shop.name, class: 'ziak-hero__logo-img', width: 110 }}
+        {%- else -%}
+          ZIAK
+        {%- endif -%}
+      </a>
+    </div>
+
+    <div class="ziak-hero__nav-right">
+      <a href="#" class="ziak-hero__nav-link" style="color:#1A1A1A;">STORES</a>
+      <a href="#" class="ziak-hero__nav-link" style="color:#1A1A1A;">HELP</a>
+      <a href="{{ routes.account_url }}" class="ziak-hero__nav-icon" aria-label="Account" style="color:#1A1A1A;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      </a>
+      <a href="{{ routes.search_url }}" class="ziak-hero__nav-icon" aria-label="Search" style="color:#1A1A1A;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      </a>
+      <a href="{{ routes.cart_url }}" class="ziak-hero__nav-icon" aria-label="Cart" style="color:#1A1A1A;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+      </a>
+    </div>
+  </nav>
+</div>
+
+<div class="ziak-contact" id="ziak-contact">
+
+  <!-- ══════════ INTRO ══════════ -->
+  <div class="ziak-contact__intro">
+    <p class="ziak-contact__eyebrow">{{ section.settings.eyebrow | default: 'CONTACT US' }}</p>
+    <h1 class="ziak-contact__title">{{ section.settings.title | default: "We'd love to hear from you." }}</h1>
+    <p class="ziak-contact__sub">{{ section.settings.subtext | default: "Have a question, feedback, or need help with your order? Our team is here for you. Reach out and we'll get back to you as soon as possible." }}</p>
+  </div>
+
+  <!-- ══════════ MESSAGE + GET IN TOUCH ══════════ -->
+  <div class="ziak-contact__grid">
+
+    <!-- Send a message -->
+    <div class="ziak-contact__card">
+      <h2 class="ziak-contact__card-title">SEND US A MESSAGE</h2>
+
+      {%- form 'contact', id: 'ziak-contact-form', class: 'ziak-contact__form' -%}
+        {%- if form.posted_successfully? -%}
+          <p class="ziak-contact__success">Thanks for reaching out! Your message has been sent — we'll get back to you shortly.</p>
+        {%- elsif form.errors -%}
+          <p class="ziak-contact__error">{{ form.errors | default_errors }}</p>
+        {%- endif -%}
+
+        <div class="ziak-contact__form-row">
+          <input type="text" name="contact[name]" class="ziak-contact__input" placeholder="Your Name" value="{{ form.name }}" required>
+          <input type="email" name="contact[email]" class="ziak-contact__input" placeholder="Email Address" value="{{ form.email }}" required>
+        </div>
+        <input type="tel" name="contact[phone]" class="ziak-contact__input" placeholder="Phone Number (Optional)" value="{{ form.phone }}">
+        <input type="text" name="contact[Order Number]" class="ziak-contact__input" placeholder="Order Number (Optional)">
+        <textarea name="contact[body]" class="ziak-contact__input ziak-contact__textarea" placeholder="How can we help you?" required>{{ form.body }}</textarea>
+        <button type="submit" class="ziak-contact__submit">SEND MESSAGE</button>
+      {%- endform -%}
+    </div>
+
+    <!-- Get in touch -->
+    <div class="ziak-contact__card">
+      <h2 class="ziak-contact__card-title">GET IN TOUCH</h2>
+
+      <div class="ziak-contact__touch">
+        <div class="ziak-contact__touch-item">
+          <span class="ziak-contact__touch-icon"><i data-lucide="headphones"></i></span>
+          <div class="ziak-contact__touch-body">
+            <p class="ziak-contact__touch-title">CUSTOMER SUPPORT</p>
+            <p class="ziak-contact__touch-text">We're here to help with your orders, returns and general queries.<br>Mon – Sat: 10:00 AM – 7:00 PM (IST)</p>
+          </div>
+        </div>
+
+        <div class="ziak-contact__touch-item">
+          <span class="ziak-contact__touch-icon"><i data-lucide="mail"></i></span>
+          <div class="ziak-contact__touch-body">
+            <p class="ziak-contact__touch-title">EMAIL US</p>
+            <p class="ziak-contact__touch-text">Drop us an email anytime.<br><a href="mailto:{{ section.settings.support_email | default: 'support@ziak.com' }}" class="ziak-contact__touch-link">{{ section.settings.support_email | default: 'support@ziak.com' }}</a></p>
+          </div>
+        </div>
+
+        <div class="ziak-contact__touch-item">
+          <span class="ziak-contact__touch-icon"><i data-lucide="phone"></i></span>
+          <div class="ziak-contact__touch-body">
+            <p class="ziak-contact__touch-title">CALL US</p>
+            <p class="ziak-contact__touch-text">Speak with our support team.<br>{{ section.settings.phone_number | default: '+91 98765 43210' }}</p>
+          </div>
+        </div>
+
+        <div class="ziak-contact__touch-item">
+          <span class="ziak-contact__touch-icon"><i data-lucide="map-pin"></i></span>
+          <div class="ziak-contact__touch-body">
+            <p class="ziak-contact__touch-title">OUR OFFICE</p>
+            <p class="ziak-contact__touch-text">{{ section.settings.office_address | default: 'ZIAK Footwear Pvt. Ltd.
+No. 21, 3rd Floor, Patel Street,
+T. Nagar, Chennai – 600017, India' | newline_to_br }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ FEATURE ROW ══════════ -->
+  <div class="ziak-contact__features">
+    <div class="ziak-contact__feature">
+      <span class="ziak-contact__feature-icon"><i data-lucide="truck"></i></span>
+      <div class="ziak-contact__feature-body">
+        <p class="ziak-contact__feature-title">FAST RESPONSE</p>
+        <p class="ziak-contact__feature-text">We aim to reply within 24 hours.</p>
+      </div>
+    </div>
+    <div class="ziak-contact__feature">
+      <span class="ziak-contact__feature-icon"><i data-lucide="shield-check"></i></span>
+      <div class="ziak-contact__feature-body">
+        <p class="ziak-contact__feature-title">SUPPORT YOU TRUST</p>
+        <p class="ziak-contact__feature-text">Friendly service, real people, real solutions.</p>
+      </div>
+    </div>
+    <div class="ziak-contact__feature">
+      <span class="ziak-contact__feature-icon"><i data-lucide="package"></i></span>
+      <div class="ziak-contact__feature-body">
+        <p class="ziak-contact__feature-title">ORDER HELP</p>
+        <p class="ziak-contact__feature-text">Get assistance with orders, shipping and tracking.</p>
+      </div>
+    </div>
+    <div class="ziak-contact__feature">
+      <span class="ziak-contact__feature-icon"><i data-lucide="rotate-ccw"></i></span>
+      <div class="ziak-contact__feature-body">
+        <p class="ziak-contact__feature-title">HASSLE-FREE RETURNS</p>
+        <p class="ziak-contact__feature-text">We're here to make returns easy.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ FAQ ══════════ -->
+  <div class="ziak-contact__faq">
+    <h2 class="ziak-contact__faq-heading">FREQUENTLY ASKED QUESTIONS</h2>
+
+    <div class="ziak-contact__faq-list">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'faq' -%}
+          <details class="ziak-contact__faq-item" {{ block.shopify_attributes }}>
+            <summary class="ziak-contact__faq-q">
+              <span>{{ block.settings.question }}</span>
+              <i data-lucide="chevron-down" class="ziak-contact__faq-chevron"></i>
+            </summary>
+            <div class="ziak-contact__faq-a">{{ block.settings.answer }}</div>
+          </details>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+
+  <!-- ══════════ STILL NEED HELP ══════════ -->
+  <div class="ziak-contact__help-band">
+    <div class="ziak-contact__help-left">
+      <span class="ziak-contact__help-icon"><i data-lucide="messages-square"></i></span>
+      <div class="ziak-contact__help-body">
+        <p class="ziak-contact__help-title">STILL NEED HELP?</p>
+        <p class="ziak-contact__help-text">Our team is here to assist you. Reach out anytime.</p>
+      </div>
+    </div>
+    <a href="{{ section.settings.chat_link | default: '#' }}" class="ziak-contact__help-btn">
+      CHAT WITH US
+      <i data-lucide="message-circle"></i>
+    </a>
+  </div>
+
+</div><!-- /.ziak-contact -->
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    if (typeof lucide !== 'undefined') lucide.createIcons();
+  });
+</script>
+
+{% schema %}
+{
+  "name": "ZIAK Contact",
+  "tag": "section",
+  "class": "ziak-contact-section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Top Bar"
+    },
+    {
+      "type": "text",
+      "id": "announcement_text",
+      "default": "FREE SHIPPING ON ALL ORDERS OVER ₹999 — SHOP ZIAK NOW",
+      "label": "Announcement text"
+    },
+    {
+      "type": "url",
+      "id": "link_men_url",
+      "label": "MEN link"
+    },
+    {
+      "type": "url",
+      "id": "link_about_url",
+      "label": "ABOUT link"
+    },
+    {
+      "type": "header",
+      "content": "Intro"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "default": "CONTACT US",
+      "label": "Eyebrow"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "default": "We'd love to hear from you.",
+      "label": "Title"
+    },
+    {
+      "type": "textarea",
+      "id": "subtext",
+      "default": "Have a question, feedback, or need help with your order? Our team is here for you. Reach out and we'll get back to you as soon as possible.",
+      "label": "Sub text"
+    },
+    {
+      "type": "header",
+      "content": "Get In Touch"
+    },
+    {
+      "type": "text",
+      "id": "support_email",
+      "default": "support@ziak.com",
+      "label": "Support email"
+    },
+    {
+      "type": "text",
+      "id": "phone_number",
+      "default": "+91 98765 43210",
+      "label": "Phone number"
+    },
+    {
+      "type": "textarea",
+      "id": "office_address",
+      "default": "ZIAK Footwear Pvt. Ltd.\nNo. 21, 3rd Floor, Patel Street,\nT. Nagar, Chennai – 600017, India",
+      "label": "Office address"
+    },
+    {
+      "type": "header",
+      "content": "Still Need Help"
+    },
+    {
+      "type": "url",
+      "id": "chat_link",
+      "label": "\"Chat with us\" link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faq",
+      "name": "FAQ item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "default": "How can I track my order?",
+          "label": "Question"
+        },
+        {
+          "type": "textarea",
+          "id": "answer",
+          "default": "Once your order ships, you'll receive a tracking link by email. You can also find it under your account's order history.",
+          "label": "Answer"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "ZIAK Contact",
+      "blocks": [
+        { "type": "faq", "settings": { "question": "How can I track my order?", "answer": "Once your order ships, you'll receive a tracking link by email. You can also find it under your account's order history." } },
+        { "type": "faq", "settings": { "question": "What is your return and exchange policy?", "answer": "We offer easy returns and exchanges within 7 days of delivery, provided the shoes are unworn and in their original packaging." } },
+        { "type": "faq", "settings": { "question": "How long does delivery take?", "answer": "Orders are typically delivered within 3–7 business days depending on your location. You'll get an estimated date at checkout." } },
+        { "type": "faq", "settings": { "question": "How can I know my size?", "answer": "Check our Size Guide for a detailed India/UK/EURO chart and simple steps to measure your foot at home." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

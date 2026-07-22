@@ -1,34 +1,25 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
-    "main": {
-      "type": "main-page",
+    "ziak_contact": {
+      "type": "ziak-contact",
+      "blocks": {
+        "faq_1": { "type": "faq", "settings": { "question": "How can I track my order?", "answer": "Once your order ships, you'll receive a tracking link by email. You can also find it under your account's order history." } },
+        "faq_2": { "type": "faq", "settings": { "question": "What is your return and exchange policy?", "answer": "We offer easy returns and exchanges within 7 days of delivery, provided the shoes are unworn and in their original packaging." } },
+        "faq_3": { "type": "faq", "settings": { "question": "How long does delivery take?", "answer": "Orders are typically delivered within 3–7 business days depending on your location. You'll get an estimated date at checkout." } },
+        "faq_4": { "type": "faq", "settings": { "question": "How can I know my size?", "answer": "Check our Size Guide for a detailed India/UK/EURO chart and simple steps to measure your foot at home." } }
+      },
+      "block_order": ["faq_1", "faq_2", "faq_3", "faq_4"],
       "settings": {
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
-    },
-    "form": {
-      "type": "contact-form",
-      "settings": {
-        "heading": "",
-        "heading_size": "h1",
-        "color_scheme": "scheme-1",
-        "padding_top": 36,
-        "padding_bottom": 36
+        "announcement_text": "FREE SHIPPING ON ALL ORDERS OVER ₹999 — SHOP ZIAK NOW",
+        "link_about_url": "/pages/about",
+        "eyebrow": "CONTACT US",
+        "title": "We'd love to hear from you.",
+        "subtext": "Have a question, feedback, or need help with your order? Our team is here for you. Reach out and we'll get back to you as soon as possible.",
+        "support_email": "support@ziak.com",
+        "phone_number": "+91 98765 43210",
+        "office_address": "ZIAK Footwear Pvt. Ltd.\nNo. 21, 3rd Floor, Patel Street,\nT. Nagar, Chennai – 600017, India"
       }
     }
   },
-  "order": [
-    "main",
-    "form"
-  ]
+  "order": ["ziak_contact"]
 }

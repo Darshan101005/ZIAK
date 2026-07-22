@@ -1,5 +1,7 @@
 {{- 'section-ziak-collection.css' | asset_url | stylesheet_tag -}}
 {{ 'section-ziak-hero.css' | asset_url | stylesheet_tag }}
+{{ 'ziak-card.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'ziak-card.js' | asset_url }}" defer="defer"></script>
 
 <style>
   /* Hide Dawn's default header — this page has its own ZIAK nav */
@@ -280,36 +282,13 @@
         {%- else -%}{%- assign s_str = '★★★★☆' -%}{%- assign s_cnt = 63 -%}
         {%- endif -%}
 
-        <article class="ziak-coll__card" id="ziak-card-{{ product.id }}">
-          <div class="ziak-coll__card-img-wrap">
-            {%- if product.tags contains 'bestseller' or product.tags contains 'best-seller' or forloop.index == 1 -%}
-              <span class="ziak-coll__badge">BESTSELLER</span>
-            {%- endif -%}
-            <button class="ziak-coll__heart" aria-label="Wishlist {{ product.title }}" data-id="{{ product.id }}">
-              <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-            </button>
-            <a href="{{ product.url }}" class="ziak-coll__card-img-link" tabindex="-1">
-              {%- if product.featured_image -%}
-                {{ product.featured_image | image_url: width: 600 | image_tag: loading: 'lazy', alt: product.featured_image.alt | default: product.title, class: 'ziak-coll__card-img', width: 600, height: 600 }}
-              {%- else -%}
-                <div class="ziak-coll__card-img-ph"></div>
-              {%- endif -%}
-            </a>
-          </div>
-          <div class="ziak-coll__card-body">
-            <a href="{{ product.url }}" class="ziak-coll__card-name-link">
-              <p class="ziak-coll__card-name">{{ product.title }}</p>
-            </a>
-            <div class="ziak-coll__card-meta">
-              <span class="ziak-coll__card-color">{{ product.variants.first.option1 | default: 'Classic' }}</span>
-              <span class="ziak-coll__card-price">{{ product.price | money_without_trailing_zeros }}</span>
-            </div>
-            <div class="ziak-coll__card-rating">
-              <span class="ziak-coll__stars">{{ s_str }}</span>
-              <span class="ziak-coll__review-ct">({{ s_cnt }})</span>
-            </div>
-          </div>
-        </article>
+        {%- render 'ziak-card',
+          product: product,
+          index: product.id,
+          show_rating: true,
+          rating_stars: s_str,
+          rating_count: s_cnt
+        -%}
 
       {%- else -%}
         {%- assign ph_names   = "Lincoln Oxford,Chairman Derby,Hudson Loafer,Ryder Chukka Boot,Carter Sneaker,Drift Driver,Monaco Monk Strap,Bennett Wingtip,Oxford Classic,Derby Brogue,Suede Loafer,Chelsea Boot,Court Sneaker,Penny Loafer,Cap Toe Derby,Tassel Loafer,Desert Boot,Slip-On Pro,Plain Toe Oxford,Side-Zip Boot,Running Ace,Velvet Slipper,Boat Shoe Lite,Buckle Monk" | split: "," -%}
@@ -321,29 +300,20 @@
 
         {%- for i in (1..24) -%}
           {%- assign idx = forloop.index0 -%}
-          {%- assign ph_ph = 'product-' | append: forloop.index | modulo: 6 | plus: 1 -%}
-          <article class="ziak-coll__card" id="ziak-ph-{{ forloop.index }}">
-            <div class="ziak-coll__card-img-wrap">
-              {%- if ph_best[idx] == '1' -%}<span class="ziak-coll__badge">BESTSELLER</span>{%- endif -%}
-              <button class="ziak-coll__heart" aria-label="Add to wishlist">
-                <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-              </button>
-              <div class="ziak-coll__card-img-ph"></div>
-            </div>
-            <div class="ziak-coll__card-body">
-              <a class="ziak-coll__card-name-link" href="#">
-                <p class="ziak-coll__card-name">{{ ph_names[idx] }}</p>
-              </a>
-              <div class="ziak-coll__card-meta">
-                <span class="ziak-coll__card-color">{{ ph_colors[idx] }}</span>
-                <span class="ziak-coll__card-price">${{ ph_prices[idx] }}</span>
-              </div>
-              <div class="ziak-coll__card-rating">
-                <span class="ziak-coll__stars">{{ ph_stars[idx] }}</span>
-                <span class="ziak-coll__review-ct">({{ ph_reviews[idx] }})</span>
-              </div>
-            </div>
-          </article>
+          {%- assign ph_badge_text = '' -%}
+          {%- if ph_best[idx] == '1' -%}{%- assign ph_badge_text = 'BESTSELLER' -%}{%- endif -%}
+          {%- render 'ziak-card',
+            index: forloop.index,
+            card_url: '#',
+            card_title: ph_names[idx],
+            card_subtitle: ph_colors[idx],
+            card_price: ph_prices[idx] | prepend: '$',
+            badge_text: ph_badge_text,
+            badge_type: 'bestseller',
+            show_rating: true,
+            rating_stars: ph_stars[idx],
+            rating_count: ph_reviews[idx]
+          -%}
         {%- endfor -%}
       {%- endfor -%}
 

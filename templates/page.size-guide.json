@@ -1,0 +1,26 @@
+{
+  "sections": {
+    "ziak_size_guide": {
+      "type": "ziak-size-guide",
+      "settings": {
+        "announcement_text": "Free Shipping On All Orders Over ₹999 — Shop ZIAK Now",
+        "link_about_url": "/pages/about",
+        "hero_eyebrow": "SIZE GUIDE",
+        "hero_title": "The right size makes all the difference.",
+        "hero_body": "Use our guide to find your perfect fit in ZIAK shoes. Designed in India for Indian feet.",
+        "hero_badge_text": "DESIGNED IN INDIA FOR INDIAN FEET",
+        "chart_title": "MEN'S SHOES SIZE CHART (INDIA)",
+        "support_email": "support@ziak.com",
+        "whatsapp_number": "+91 98765 43210"
+      }
+    },
+    "ziak_stand_for": {
+      "type": "ziak-about-stand-for",
+      "settings": {}
+    }
+  },
+  "order": [
+    "ziak_size_guide",
+    "ziak_stand_for"
+  ]
+}

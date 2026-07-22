@@ -1,0 +1,508 @@
+{{ 'section-ziak-hero.css' | asset_url | stylesheet_tag }}
+{{ 'section-ziak-size-guide.css' | asset_url | stylesheet_tag }}
+
+<!-- Lucide icons (same approach as the rest of the ZIAK sections) -->
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
+
+<style>
+  /* Hide Dawn's default header — this page uses its own ZIAK nav */
+  .shopify-section-group-header-group { display: none !important; }
+  /* Default page background: pure white (not the theme off-white) */
+  body { background-color: #FFFFFF !important; }
+</style>
+
+<!-- ══════════ ANNOUNCEMENT BAR (same as home/about) ══════════ -->
+<div class="ziak-hero__announcement" id="ziak-sg-announcement">
+  <span>{{ section.settings.announcement_text | default: 'FREE SHIPPING AND RETURNS IN THE U.S.' }}</span>
+  {%- if section.settings.announcement_link_text != blank -%}
+    <a href="{{ section.settings.announcement_link }}">{{ section.settings.announcement_link_text }}</a>
+  {%- endif -%}
+</div>
+
+<!-- ══════════ HERO (same overlay nav + big media as home/about) ══════════ -->
+<div class="ziak-hero" id="ziak-sg-hero">
+
+  <!-- Navigation — identical structure to home/about -->
+  <nav class="ziak-hero__nav" id="ziak-sg-nav" aria-label="Main navigation">
+    <div class="ziak-hero__nav-left">
+      <div class="ziak-hero__dropdown-wrapper">
+        <a href="{{ section.settings.link_men_url | default: '/collections/mens' }}" class="ziak-hero__nav-link ziak-hero__nav-link--dropdown">MEN</a>
+        <div class="ziak-hero__mega-menu">
+          <div class="ziak-hero__mega-menu-column">
+            <p class="ziak-hero__mega-menu-heading">Boots</p>
+            <a href="#" class="ziak-hero__mega-menu-link">All Styles</a>
+            <a href="#" class="ziak-hero__mega-menu-link">Lace-Up</a>
+            <a href="#" class="ziak-hero__mega-menu-link">Chelsea</a>
+            <a href="#" class="ziak-hero__mega-menu-link">Chukka</a>
+            <a href="#" class="ziak-hero__mega-menu-link">Western</a>
+            <p class="ziak-hero__mega-menu-heading ziak-hero__mega-menu-divider">Warehouse</p>
+          </div>
+          <div class="ziak-hero__mega-menu-column">
+            <p class="ziak-hero__mega-menu-heading">Sneakers</p>
+            <a href="#" class="ziak-hero__mega-menu-link">All Styles</a>
+            <a href="#" class="ziak-hero__mega-menu-link">Low Top</a>
+            <a href="#" class="ziak-hero__mega-menu-link">High Top</a>
+            <p class="ziak-hero__mega-menu-heading ziak-hero__mega-menu-divider">Shoes</p>
+            <a href="#" class="ziak-hero__mega-menu-link">All Styles</a>
+            <a href="#" class="ziak-hero__mega-menu-link">Dress Shoes</a>
+            <a href="#" class="ziak-hero__mega-menu-link">Casual Shoes</a>
+          </div>
+          <div class="ziak-hero__mega-menu-column">
+            <p class="ziak-hero__mega-menu-heading">Jackets</p>
+            <a href="#" class="ziak-hero__mega-menu-link">All Jackets</a>
+            <a href="#" class="ziak-hero__mega-menu-link">Leather</a>
+            <a href="#" class="ziak-hero__mega-menu-link">Waxed Canvas</a>
+            <p class="ziak-hero__mega-menu-heading ziak-hero__mega-menu-divider">Gift Cards</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="ziak-hero__dropdown-wrapper">
+        <a href="{{ section.settings.link_women_url | default: '/collections/womens' }}" class="ziak-hero__nav-link ziak-hero__nav-link--dropdown">WOMEN</a>
+        <div class="ziak-hero__mega-menu">
+          <div class="ziak-hero__mega-menu-column">
+            <p class="ziak-hero__mega-menu-heading">Boots</p>
+            <a href="#" class="ziak-hero__mega-menu-link">All Styles</a>
+            <a href="#" class="ziak-hero__mega-menu-link">Ankle</a>
+            <a href="#" class="ziak-hero__mega-menu-link">Chelsea</a>
+            <a href="#" class="ziak-hero__mega-menu-link">Knee-High</a>
+          </div>
+          <div class="ziak-hero__mega-menu-column">
+            <p class="ziak-hero__mega-menu-heading">Sneakers</p>
+            <a href="#" class="ziak-hero__mega-menu-link">All Styles</a>
+            <a href="#" class="ziak-hero__mega-menu-link">Low Top</a>
+            <a href="#" class="ziak-hero__mega-menu-link">High Top</a>
+            <p class="ziak-hero__mega-menu-heading ziak-hero__mega-menu-divider">Shoes</p>
+            <a href="#" class="ziak-hero__mega-menu-link">Flats</a>
+            <a href="#" class="ziak-hero__mega-menu-link">Loafers</a>
+          </div>
+        </div>
+      </div>
+
+      <a href="{{ section.settings.link_about_url | default: '/pages/about' }}" class="ziak-hero__nav-link">ABOUT</a>
+    </div>
+
+    <div class="ziak-hero__nav-center">
+      <a href="{{ routes.root_url }}" class="ziak-hero__logo-placeholder">
+        {%- if settings.logo != blank -%}
+          {%- assign logo_alt = settings.logo.alt | default: shop.name | escape -%}
+          {{ settings.logo | image_url: width: 300 | image_tag: alt: logo_alt, class: 'ziak-hero__logo-img', width: 120 }}
+        {%- else -%}
+          ZIAK
+        {%- endif -%}
+      </a>
+    </div>
+
+    <div class="ziak-hero__nav-right">
+      <a href="#" class="ziak-hero__nav-link">STORES</a>
+      <a href="#" class="ziak-hero__nav-link">HELP</a>
+      <a href="{{ routes.account_url }}" class="ziak-hero__nav-icon" aria-label="Account">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      </a>
+      <a href="{{ routes.search_url }}" class="ziak-hero__nav-icon" aria-label="Search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      </a>
+      <a href="{{ routes.cart_url }}" class="ziak-hero__nav-icon" aria-label="Cart">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+      </a>
+      <button class="ziak-hero__mobile-menu-btn" aria-label="Menu">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero Background Image (you add this in the theme editor) -->
+  <div class="ziak-hero__media">
+    {%- if section.settings.hero_image != blank -%}
+      {{
+        section.settings.hero_image
+        | image_url: width: 3840
+        | image_tag:
+          sizes: '100vw',
+          widths: '375, 550, 750, 1100, 1500, 1780, 2000, 3000, 3840',
+          fetchpriority: 'high',
+          loading: 'eager'
+      }}
+    {%- else -%}
+      {{ 'hero-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
+    {%- endif -%}
+  </div>
+
+  <!-- Hero Content (overlaid, left-aligned) -->
+  <div class="ziak-hero__content ziak-sg-hero__content" id="ziak-sg-hero-content">
+    <p class="ziak-sg-hero__eyebrow">{{ section.settings.hero_eyebrow }}</p>
+    <h1 class="ziak-sg-hero__title">{{ section.settings.hero_title }}</h1>
+    <p class="ziak-sg-hero__body">{{ section.settings.hero_body }}</p>
+    <div class="ziak-sg-hero__badge">
+      <span class="ziak-sg-hero__badge-icon"><i data-lucide="shield-check"></i></span>
+      <span class="ziak-sg-hero__badge-text">{{ section.settings.hero_badge_text }}</span>
+    </div>
+  </div>
+</div>
+
+<div class="ziak-sg" id="ziak-size-guide">
+
+  <!-- ══════════ SIZE CHART ══════════ -->
+  <section class="ziak-sg__section ziak-sg__chart-wrap">
+    <div class="ziak-sg__chart-head">
+      <h2 class="ziak-sg__h2">{{ section.settings.chart_title }}</h2>
+      <div class="ziak-sg__unit-toggle" id="ziak-sg-unit-toggle">
+        <button type="button" class="ziak-sg__unit is-active" data-unit="cm">CM</button>
+        <button type="button" class="ziak-sg__unit" data-unit="inch">INCH</button>
+      </div>
+    </div>
+
+    <div class="ziak-sg__table-scroll">
+      <table class="ziak-sg__table" id="ziak-sg-table">
+        <thead>
+          <tr>
+            <th class="ziak-sg__row-head">ZIAK SIZE (INDIA)</th>
+            <th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="ziak-sg__row-head">UK SIZE</td>
+            <td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td>
+          </tr>
+          <tr>
+            <td class="ziak-sg__row-head">EURO SIZE</td>
+            <td>40</td><td>41</td><td>42</td><td>43</td><td>44</td><td>45</td><td>46</td>
+          </tr>
+          <tr>
+            <td class="ziak-sg__row-head" id="ziak-sg-length-label">FOOT LENGTH (CM)</td>
+            <td data-cm="24.2" data-inch="9.5">24.2</td>
+            <td data-cm="25.0" data-inch="9.8">25.0</td>
+            <td data-cm="25.8" data-inch="10.2">25.8</td>
+            <td data-cm="26.6" data-inch="10.5">26.6</td>
+            <td data-cm="27.4" data-inch="10.8">27.4</td>
+            <td data-cm="28.2" data-inch="11.1">28.2</td>
+            <td data-cm="29.0" data-inch="11.4">29.0</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="ziak-sg__note">
+      <i data-lucide="info"></i>
+      If you are between sizes, we recommend sizing up for a more comfortable fit.
+    </p>
+  </section>
+
+  <!-- ══════════ HOW TO MEASURE ══════════ -->
+  <section class="ziak-sg__section">
+    <h2 class="ziak-sg__h2 ziak-sg__h2--underline">HOW TO MEASURE YOUR FOOT</h2>
+
+    <div class="ziak-sg__steps">
+      <div class="ziak-sg__step">
+        <span class="ziak-sg__step-num">1</span>
+        <div class="ziak-sg__step-body">
+          <p class="ziak-sg__step-title">PLACE</p>
+          <p class="ziak-sg__step-text">Place your foot on a piece of paper with your heel against the wall.</p>
+        </div>
+        <div class="ziak-sg__step-icon">
+          {%- if section.settings.step1_image != blank -%}
+            {{ section.settings.step1_image | image_url: width: 500 | image_tag: class: 'ziak-sg__step-img', alt: 'Place your foot against the wall' }}
+          {%- else -%}
+            <i data-lucide="footprints"></i>
+          {%- endif -%}
+        </div>
+      </div>
+
+      <div class="ziak-sg__step">
+        <span class="ziak-sg__step-num">2</span>
+        <div class="ziak-sg__step-body">
+          <p class="ziak-sg__step-title">MARK</p>
+          <p class="ziak-sg__step-text">Mark the tip of your longest toe on the paper.</p>
+        </div>
+        <div class="ziak-sg__step-icon">
+          {%- if section.settings.step2_image != blank -%}
+            {{ section.settings.step2_image | image_url: width: 500 | image_tag: class: 'ziak-sg__step-img', alt: 'Mark the tip of your longest toe' }}
+          {%- else -%}
+            <i data-lucide="pencil"></i>
+          {%- endif -%}
+        </div>
+      </div>
+
+      <div class="ziak-sg__step">
+        <span class="ziak-sg__step-num">3</span>
+        <div class="ziak-sg__step-body">
+          <p class="ziak-sg__step-title">MEASURE</p>
+          <p class="ziak-sg__step-text">Measure the distance from the wall to the mark in centimeters. This is your foot length.</p>
+        </div>
+        <div class="ziak-sg__step-icon">
+          {%- if section.settings.step3_image != blank -%}
+            {{ section.settings.step3_image | image_url: width: 500 | image_tag: class: 'ziak-sg__step-img', alt: 'Measure the foot length' }}
+          {%- else -%}
+            <i data-lucide="ruler"></i>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+
+    <p class="ziak-sg__note">
+      <i data-lucide="info"></i>
+      Measure both feet and use the longer length for the best fit.
+    </p>
+  </section>
+
+  <!-- ══════════ FIT GUIDE ══════════ -->
+  <section class="ziak-sg__section">
+    <h2 class="ziak-sg__h2 ziak-sg__h2--underline">FIT GUIDE</h2>
+
+    <div class="ziak-sg__fit-row">
+      <div class="ziak-sg__fit-card">
+        <span class="ziak-sg__fit-icon">
+          {%- if section.settings.fit1_image != blank -%}
+            {{ section.settings.fit1_image | image_url: width: 120 | image_tag: class: 'ziak-sg__fit-img', alt: 'True to size' }}
+          {%- else -%}
+            <i data-lucide="footprints"></i>
+          {%- endif -%}
+        </span>
+        <div class="ziak-sg__fit-body">
+          <p class="ziak-sg__fit-title">TRUE TO SIZE</p>
+          <p class="ziak-sg__fit-text">Our shoes are designed to fit true to size for most customers.</p>
+        </div>
+      </div>
+
+      <div class="ziak-sg__fit-card">
+        <span class="ziak-sg__fit-icon">
+          {%- if section.settings.fit2_image != blank -%}
+            {{ section.settings.fit2_image | image_url: width: 120 | image_tag: class: 'ziak-sg__fit-img', alt: 'Wide feet' }}
+          {%- else -%}
+            <i data-lucide="move-horizontal"></i>
+          {%- endif -%}
+        </span>
+        <div class="ziak-sg__fit-body">
+          <p class="ziak-sg__fit-title">WIDE FEET?</p>
+          <p class="ziak-sg__fit-text">If you have wide feet, we recommend sizing up for extra comfort.</p>
+        </div>
+      </div>
+
+      <div class="ziak-sg__fit-card">
+        <span class="ziak-sg__fit-icon">
+          {%- if section.settings.fit3_image != blank -%}
+            {{ section.settings.fit3_image | image_url: width: 120 | image_tag: class: 'ziak-sg__fit-img', alt: 'Wear with socks' }}
+          {%- else -%}
+            <i data-lucide="layers"></i>
+          {%- endif -%}
+        </span>
+        <div class="ziak-sg__fit-body">
+          <p class="ziak-sg__fit-title">WEAR WITH SOCKS</p>
+          <p class="ziak-sg__fit-text">For the best fit, measure your foot while wearing the socks you usually wear.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ NEED HELP ══════════ -->
+  <section class="ziak-sg__help">
+    <div class="ziak-sg__help-item">
+      <span class="ziak-sg__help-icon"><i data-lucide="headphones"></i></span>
+      <div class="ziak-sg__help-body">
+        <p class="ziak-sg__help-title">NEED HELP?</p>
+        <p class="ziak-sg__help-text">Our team is here to help you find the perfect fit.</p>
+      </div>
+    </div>
+
+    <div class="ziak-sg__help-item">
+      <span class="ziak-sg__help-icon"><i data-lucide="mail"></i></span>
+      <div class="ziak-sg__help-body">
+        <p class="ziak-sg__help-title">EMAIL US</p>
+        <a href="mailto:{{ section.settings.support_email }}" class="ziak-sg__help-text ziak-sg__help-link">{{ section.settings.support_email }}</a>
+      </div>
+    </div>
+
+    <div class="ziak-sg__help-item">
+      <span class="ziak-sg__help-icon"><i data-lucide="message-circle"></i></span>
+      <div class="ziak-sg__help-body">
+        <p class="ziak-sg__help-title">WHATSAPP</p>
+        <p class="ziak-sg__help-text">{{ section.settings.whatsapp_number }}</p>
+      </div>
+    </div>
+  </section>
+
+</div><!-- /.ziak-sg -->
+
+<script>
+  (function () {
+    'use strict';
+    document.addEventListener('DOMContentLoaded', function () {
+      if (typeof lucide !== 'undefined') lucide.createIcons();
+
+      var toggle = document.getElementById('ziak-sg-unit-toggle');
+      var table = document.getElementById('ziak-sg-table');
+      var label = document.getElementById('ziak-sg-length-label');
+      if (!toggle || !table) return;
+
+      toggle.addEventListener('click', function (e) {
+        var btn = e.target.closest('.ziak-sg__unit');
+        if (!btn) return;
+        var unit = btn.getAttribute('data-unit');
+
+        toggle.querySelectorAll('.ziak-sg__unit').forEach(function (b) {
+          b.classList.toggle('is-active', b === btn);
+        });
+
+        table.querySelectorAll('td[data-cm]').forEach(function (cell) {
+          cell.textContent = unit === 'inch' ? cell.getAttribute('data-inch') : cell.getAttribute('data-cm');
+        });
+
+        if (label) label.textContent = unit === 'inch' ? 'FOOT LENGTH (INCH)' : 'FOOT LENGTH (CM)';
+      });
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "ZIAK Size Guide",
+  "tag": "section",
+  "class": "ziak-size-guide-section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Top Bar"
+    },
+    {
+      "type": "text",
+      "id": "announcement_text",
+      "default": "FREE SHIPPING AND RETURNS IN THE U.S.",
+      "label": "Announcement text"
+    },
+    {
+      "type": "text",
+      "id": "announcement_link_text",
+      "default": "DETAILS",
+      "label": "Announcement link text"
+    },
+    {
+      "type": "url",
+      "id": "announcement_link",
+      "label": "Announcement link URL"
+    },
+    {
+      "type": "url",
+      "id": "link_men_url",
+      "label": "MEN link"
+    },
+    {
+      "type": "url",
+      "id": "link_women_url",
+      "label": "WOMEN link"
+    },
+    {
+      "type": "url",
+      "id": "link_about_url",
+      "label": "ABOUT link"
+    },
+    {
+      "type": "header",
+      "content": "Hero"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Hero background image"
+    },
+    {
+      "type": "text",
+      "id": "hero_eyebrow",
+      "default": "SIZE GUIDE",
+      "label": "Eyebrow"
+    },
+    {
+      "type": "text",
+      "id": "hero_title",
+      "default": "The right size makes all the difference.",
+      "label": "Title"
+    },
+    {
+      "type": "textarea",
+      "id": "hero_body",
+      "default": "Use our guide to find your perfect fit in ZIAK shoes. Designed in India for Indian feet.",
+      "label": "Body text"
+    },
+    {
+      "type": "text",
+      "id": "hero_badge_text",
+      "default": "DESIGNED IN INDIA FOR INDIAN FEET",
+      "label": "Badge text"
+    },
+    {
+      "type": "header",
+      "content": "Size Chart"
+    },
+    {
+      "type": "text",
+      "id": "chart_title",
+      "default": "MEN'S SHOES SIZE CHART (INDIA)",
+      "label": "Chart title"
+    },
+    {
+      "type": "header",
+      "content": "How To Measure — Drawings",
+      "info": "Upload your foot-measurement illustrations here. If left blank, a placeholder icon is shown."
+    },
+    {
+      "type": "image_picker",
+      "id": "step1_image",
+      "label": "Step 1 drawing (Place)"
+    },
+    {
+      "type": "image_picker",
+      "id": "step2_image",
+      "label": "Step 2 drawing (Mark)"
+    },
+    {
+      "type": "image_picker",
+      "id": "step3_image",
+      "label": "Step 3 drawing (Measure)"
+    },
+    {
+      "type": "header",
+      "content": "Fit Guide — Icons",
+      "info": "Optional custom icons for the fit guide cards."
+    },
+    {
+      "type": "image_picker",
+      "id": "fit1_image",
+      "label": "True to size icon"
+    },
+    {
+      "type": "image_picker",
+      "id": "fit2_image",
+      "label": "Wide feet icon"
+    },
+    {
+      "type": "image_picker",
+      "id": "fit3_image",
+      "label": "Wear with socks icon"
+    },
+    {
+      "type": "header",
+      "content": "Need Help"
+    },
+    {
+      "type": "text",
+      "id": "support_email",
+      "default": "support@ziak.com",
+      "label": "Support email"
+    },
+    {
+      "type": "text",
+      "id": "whatsapp_number",
+      "default": "+91 98765 43210",
+      "label": "WhatsApp number"
+    }
+  ],
+  "presets": [
+    {
+      "name": "ZIAK Size Guide"
+    }
+  ]
+}
+{% endschema %}

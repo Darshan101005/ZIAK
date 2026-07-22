@@ -1,0 +1,404 @@
+/* ══════════════════════════════════════════════════════════
+   ZIAK — Contact page
+   ══════════════════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&display=swap');
+
+.ziak-contact {
+  --c-ink: #1A1A1A;
+  --c-muted: #6E6E6E;
+  --c-line: #E6E4DF;
+  --c-accent: #C77B3B;
+  --c-soft: #F7F6F3;
+  font-family: 'Inter', Helvetica, sans-serif;
+  color: var(--c-ink);
+  background: #FFFFFF;
+  -webkit-font-smoothing: antialiased;
+  padding-bottom: 20px;
+}
+
+.ziak-contact * { box-sizing: border-box; }
+
+/* Shared container widths */
+.ziak-contact__intro,
+.ziak-contact__grid,
+.ziak-contact__features,
+.ziak-contact__faq,
+.ziak-contact__help-band {
+  max-width: 1180px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+/* ── Intro ── */
+.ziak-contact__intro {
+  text-align: center;
+  padding-top: 52px;
+  padding-bottom: 20px;
+}
+
+.ziak-contact__eyebrow {
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--c-accent);
+  margin: 0 0 16px;
+  position: relative;
+  padding-bottom: 12px;
+}
+.ziak-contact__eyebrow::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 34px;
+  height: 2px;
+  background: var(--c-accent);
+}
+
+.ziak-contact__title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(3.2rem, 4vw, 4.4rem);
+  font-weight: 600;
+  line-height: 1.12;
+  margin: 0 0 16px;
+  color: var(--c-ink);
+}
+
+.ziak-contact__sub {
+  font-size: 1.4rem;
+  line-height: 1.6;
+  color: var(--c-muted);
+  max-width: 540px;
+  margin: 0 auto;
+}
+
+/* ── Two-column grid ── */
+.ziak-contact__grid {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 26px;
+  padding-top: 24px;
+  padding-bottom: 8px;
+}
+
+.ziak-contact__card {
+  border: 1px solid var(--c-line);
+  border-radius: 8px;
+  padding: 28px 28px 30px;
+  background: #FFFFFF;
+}
+
+.ziak-contact__card-title {
+  font-size: 1.55rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin: 0 0 22px;
+  padding-bottom: 12px;
+  position: relative;
+}
+.ziak-contact__card-title::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 34px;
+  height: 2px;
+  background: var(--c-accent);
+}
+
+/* ── Form ── */
+.ziak-contact__form { display: flex; flex-direction: column; gap: 14px; }
+
+.ziak-contact__form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.ziak-contact__input {
+  width: 100%;
+  font-family: 'Inter', sans-serif;
+  font-size: 1.35rem;
+  color: var(--c-ink);
+  background: #FFFFFF;
+  border: 1px solid var(--c-line);
+  border-radius: 6px;
+  padding: 13px 15px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.ziak-contact__input::placeholder { color: #9A9A9A; }
+.ziak-contact__input:focus {
+  outline: none;
+  border-color: var(--c-ink);
+  box-shadow: 0 0 0 2px rgba(26, 26, 26, 0.06);
+}
+
+.ziak-contact__textarea {
+  min-height: 128px;
+  resize: vertical;
+  line-height: 1.5;
+}
+
+.ziak-contact__submit {
+  width: 100%;
+  font-family: 'Inter', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #FFFFFF;
+  background: var(--c-ink);
+  border: none;
+  border-radius: 6px;
+  padding: 15px;
+  margin-top: 4px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.ziak-contact__submit:hover { background: #333333; }
+
+.ziak-contact__success {
+  font-size: 1.3rem;
+  color: #1c6b3f;
+  background: #eaf6ee;
+  border: 1px solid #bfe2cd;
+  border-radius: 6px;
+  padding: 12px 14px;
+  margin: 0;
+}
+.ziak-contact__error {
+  font-size: 1.3rem;
+  color: #a12d2d;
+  background: #fbeaea;
+  border: 1px solid #eac2c2;
+  border-radius: 6px;
+  padding: 12px 14px;
+  margin: 0;
+}
+
+/* ── Get in touch ── */
+.ziak-contact__touch { display: flex; flex-direction: column; gap: 22px; }
+
+.ziak-contact__touch-item { display: flex; gap: 16px; align-items: flex-start; }
+
+.ziak-contact__touch-icon {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 10px;
+  background: var(--c-ink);
+  color: #FFFFFF;
+}
+.ziak-contact__touch-icon i { width: 22px; height: 22px; }
+
+.ziak-contact__touch-title {
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin: 2px 0 5px;
+}
+
+.ziak-contact__touch-text {
+  font-size: 1.3rem;
+  line-height: 1.55;
+  color: var(--c-muted);
+  margin: 0;
+}
+.ziak-contact__touch-link { color: var(--c-ink); text-decoration: none; }
+.ziak-contact__touch-link:hover { text-decoration: underline; }
+
+/* ── Feature row ── */
+.ziak-contact__features {
+  margin-top: 34px;
+  margin-bottom: 8px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  background: var(--c-soft);
+  border: 1px solid var(--c-line);
+  border-radius: 8px;
+  padding: 24px 10px;
+}
+
+.ziak-contact__feature {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 4px 22px;
+  border-right: 1px solid #E2E0DA;
+}
+.ziak-contact__feature:last-child { border-right: none; }
+
+.ziak-contact__feature-icon {
+  flex-shrink: 0;
+  color: var(--c-ink);
+  display: inline-flex;
+}
+.ziak-contact__feature-icon i { width: 30px; height: 30px; stroke-width: 1.4; }
+
+.ziak-contact__feature-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin: 0 0 5px;
+}
+.ziak-contact__feature-text {
+  font-size: 1.2rem;
+  line-height: 1.5;
+  color: var(--c-muted);
+  margin: 0;
+}
+
+/* ── FAQ ── */
+.ziak-contact__faq { padding-top: 44px; padding-bottom: 8px; }
+
+.ziak-contact__faq-heading {
+  text-align: center;
+  font-size: 1.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin: 0 auto 26px;
+  padding-bottom: 12px;
+  position: relative;
+  width: fit-content;
+}
+.ziak-contact__faq-heading::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 34px;
+  height: 2px;
+  background: var(--c-accent);
+}
+
+.ziak-contact__faq-list { display: flex; flex-direction: column; gap: 12px; }
+
+.ziak-contact__faq-item {
+  border: 1px solid var(--c-line);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.ziak-contact__faq-q {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 17px 20px;
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: var(--c-ink);
+  cursor: pointer;
+  list-style: none;
+}
+.ziak-contact__faq-q::-webkit-details-marker { display: none; }
+
+.ziak-contact__faq-chevron {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  color: #8A8A8A;
+  transition: transform 0.25s ease;
+}
+.ziak-contact__faq-item[open] .ziak-contact__faq-chevron { transform: rotate(180deg); }
+
+.ziak-contact__faq-a {
+  padding: 0 20px 18px;
+  font-size: 1.3rem;
+  line-height: 1.6;
+  color: var(--c-muted);
+}
+
+/* ── Still need help band ── */
+.ziak-contact__help-band {
+  margin-top: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  background: var(--c-soft);
+  border: 1px solid var(--c-line);
+  border-radius: 10px;
+  padding: 22px 26px;
+}
+
+.ziak-contact__help-left { display: flex; align-items: center; gap: 16px; }
+
+.ziak-contact__help-icon {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--c-ink);
+  color: #FFFFFF;
+}
+.ziak-contact__help-icon i { width: 22px; height: 22px; }
+
+.ziak-contact__help-title {
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin: 0 0 3px;
+}
+.ziak-contact__help-text {
+  font-size: 1.3rem;
+  color: var(--c-muted);
+  margin: 0;
+}
+
+.ziak-contact__help-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--c-ink);
+  background: #FFFFFF;
+  border: 1.5px solid var(--c-ink);
+  border-radius: 6px;
+  padding: 12px 22px;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s;
+}
+.ziak-contact__help-btn i { width: 17px; height: 17px; }
+.ziak-contact__help-btn:hover { background: var(--c-ink); color: #FFFFFF; }
+
+/* ══════════ Responsive ══════════ */
+@media (max-width: 990px) {
+  .ziak-contact__grid { grid-template-columns: 1fr; }
+  .ziak-contact__features { grid-template-columns: 1fr 1fr; gap: 20px 0; }
+  .ziak-contact__feature:nth-child(2) { border-right: none; }
+}
+
+@media (max-width: 749px) {
+  .ziak-contact__intro,
+  .ziak-contact__grid,
+  .ziak-contact__features,
+  .ziak-contact__faq,
+  .ziak-contact__help-band { padding-left: 20px; padding-right: 20px; }
+  .ziak-contact__form-row { grid-template-columns: 1fr; }
+  .ziak-contact__features { grid-template-columns: 1fr; }
+  .ziak-contact__feature { border-right: none; border-bottom: 1px solid #E2E0DA; padding-bottom: 18px; }
+  .ziak-contact__feature:last-child { border-bottom: none; }
+  .ziak-contact__help-band { flex-direction: column; align-items: flex-start; }
+}

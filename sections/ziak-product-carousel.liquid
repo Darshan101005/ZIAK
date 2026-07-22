@@ -1,4 +1,6 @@
 {{ 'section-ziak-product-carousel.css' | asset_url | stylesheet_tag }}
+{{ 'ziak-card.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'ziak-card.js' | asset_url }}" defer="defer"></script>
 
 <div class="ziak-carousel" id="ziak-product-carousel" style="padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px;">
 
@@ -15,67 +17,25 @@
     <!-- Track -->
     <div class="ziak-carousel__track" id="ziak-carousel-track">
       {%- for block in section.blocks -%}
+        {%- liquid
+          assign carousel_price = block.settings.sale_price | prepend: '₹ '
+          assign carousel_compare = ''
+          if block.settings.original_price != blank
+            assign carousel_compare = block.settings.original_price | prepend: '₹ '
+          endif
+        -%}
         <div class="ziak-carousel__card" id="ziak-card-{{ forloop.index }}" {{ block.shopify_attributes }}>
-
-          <!-- Discount Badge -->
-          {%- if block.settings.discount_text != blank -%}
-            <span class="ziak-carousel__badge" style="background-color: {{ block.settings.badge_color }};">
-              {{ block.settings.discount_text }}
-            </span>
-          {%- endif -%}
-
-          <!-- Product Image -->
-          <a href="{{ block.settings.product_link }}" class="ziak-carousel__img-wrap" id="ziak-card-img-{{ forloop.index }}">
-            {%- if block.settings.product_image != blank -%}
-              {{
-                block.settings.product_image
-                | image_url: width: 600
-                | image_tag:
-                  sizes: '20vw',
-                  widths: '200, 300, 400, 600',
-                  loading: 'lazy',
-                  class: 'ziak-carousel__img'
-              }}
-            {%- else -%}
-              {{ 'product-apparel-1' | placeholder_svg_tag: 'ziak-carousel__img ziak-carousel__img--placeholder' }}
-            {%- endif -%}
-          </a>
-
-          <!-- Color Swatches -->
-          <div class="ziak-carousel__swatches">
-            {%- for i in (1..4) -%}
-              {%- assign swatch_key = 'swatch_color_' | append: i -%}
-              {%- assign swatch_val = block.settings[swatch_key] -%}
-              {%- if swatch_val != blank and swatch_val != '#ffffff' -%}
-                <span class="ziak-carousel__swatch" style="background-color: {{ swatch_val }};{% if swatch_val == '#ffffff' or swatch_val == '#FFFFFF' %} border: 1px solid #ccc;{% endif %}"></span>
-              {%- endif -%}
-            {%- endfor -%}
-            {%- if block.settings.extra_colors_text != blank -%}
-              <span class="ziak-carousel__extra-colors">{{ block.settings.extra_colors_text }}</span>
-            {%- endif -%}
-          </div>
-
-          <!-- Product Title -->
-          <a href="{{ block.settings.product_link }}" class="ziak-carousel__product-title" id="ziak-card-title-{{ forloop.index }}">
-            {{ block.settings.product_title }}
-          </a>
-
-          <!-- Pricing -->
-          <div class="ziak-carousel__pricing">
-            {%- if block.settings.sale_price != blank -%}
-              <span class="ziak-carousel__price-sale">₹ {{ block.settings.sale_price }}</span>
-            {%- endif -%}
-            {%- if block.settings.original_price != blank -%}
-              <span class="ziak-carousel__price-original">₹ {{ block.settings.original_price }}</span>
-            {%- endif -%}
-          </div>
-
-          <!-- Add to Cart Button -->
-          <a href="{{ block.settings.product_link }}" class="ziak-carousel__add-to-cart" id="ziak-card-atc-{{ forloop.index }}">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="ziak-carousel__cart-icon"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-            Add to Cart
-          </a>
-
+          {%- render 'ziak-card',
+            index: forloop.index,
+            card_image: block.settings.product_image,
+            card_url: block.settings.product_link,
+            card_title: block.settings.product_title,
+            card_subtitle: block.settings.extra_colors_text,
+            card_price: carousel_price,
+            card_compare: carousel_compare,
+            badge_text: block.settings.discount_text,
+            badge_type: 'discount'
+          -%}
         </div>
       {%- endfor -%}
     </div>

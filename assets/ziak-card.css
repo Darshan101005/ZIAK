@@ -1,0 +1,375 @@
+/* ══════════════════════════════════════════════════════════
+   ZIAK — Unified Product Card
+   One card used everywhere (landing, carousel, collection).
+   Variants: default · bestseller · new · limited · discount
+   States:   normal · hover · out-of-stock · disabled · added
+   ══════════════════════════════════════════════════════════ */
+
+.ziak-card {
+  --ziak-ink: #1A1A1A;
+  --ziak-muted: #777777;
+  --ziak-line: #EBEBEB;
+  --ziak-media-bg: #F5F3EF;
+  --ziak-red: #E4312B;
+  /* Image area ratio — smaller height ratio = shorter card */
+  --ziak-media-ratio: 6 / 5;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: #FFFFFF;
+  border: 1px solid var(--ziak-line);
+  border-radius: 6px;
+  overflow: hidden;
+  font-family: 'Inter', Helvetica, sans-serif;
+  transition: box-shadow 0.28s ease, transform 0.28s ease, opacity 0.28s ease;
+  -webkit-font-smoothing: antialiased;
+}
+
+.ziak-card:hover {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.10);
+  transform: translateY(-3px);
+}
+
+/* ── Media / image ─────────────────────────────────────── */
+.ziak-card__media {
+  position: relative;
+  aspect-ratio: var(--ziak-media-ratio);
+  width: 100%;
+  overflow: hidden;
+  background: var(--ziak-media-bg);
+}
+
+.ziak-card__media-link {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.ziak-card__img,
+.ziak-card__media img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+  object-position: center;
+  padding: 12px;
+  box-sizing: border-box;
+  display: block;
+  transition: transform 0.4s ease, filter 0.3s ease;
+}
+
+.ziak-card:hover .ziak-card__img {
+  transform: scale(1.05);
+}
+
+.ziak-card__img--placeholder {
+  padding: 20px;
+  opacity: 0.4;
+}
+
+/* ── Badge (top-left) ──────────────────────────────────── */
+.ziak-card__badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 3;
+  font-size: 1.0rem;
+  font-weight: 700;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  padding: 5px 10px;
+  border-radius: 3px;
+  line-height: 1;
+  pointer-events: none;
+}
+
+.ziak-card__badge--bestseller {
+  background: var(--ziak-ink);
+  color: #FFFFFF;
+}
+
+.ziak-card__badge--new {
+  background: #E4DAC5;
+  color: #4A3F2A;
+}
+
+.ziak-card__badge--limited {
+  background: #FFFFFF;
+  color: var(--ziak-ink);
+  border: 1px solid var(--ziak-ink);
+  padding: 4px 9px;
+}
+
+.ziak-card__badge--discount {
+  background: var(--ziak-red);
+  color: #FFFFFF;
+}
+
+/* ── Wishlist heart (top-right) ────────────────────────── */
+.ziak-card__wishlist {
+  position: absolute;
+  top: 11px;
+  right: 11px;
+  z-index: 3;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  color: #9A9A9A;
+  transition: color 0.2s, background 0.2s, transform 0.2s;
+}
+
+.ziak-card__wishlist:hover {
+  color: var(--ziak-red);
+  background: #FFFFFF;
+  transform: scale(1.1);
+}
+
+.ziak-card__wishlist.is-liked {
+  color: var(--ziak-red);
+}
+
+.ziak-card__wishlist.is-liked svg {
+  fill: var(--ziak-red);
+}
+
+/* ── Quick-view (eye) — appears on hover ───────────────── */
+.ziak-card__quickview {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) scale(0.8);
+  z-index: 3;
+  width: 46px;
+  height: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #FFFFFF;
+  border: none;
+  border-radius: 50%;
+  color: var(--ziak-ink);
+  cursor: pointer;
+  opacity: 0;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.18);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.ziak-card:hover .ziak-card__quickview {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* ── Out-of-stock overlay ──────────────────────────────── */
+.ziak-card__oos {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 4;
+  width: 78px;
+  height: 78px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 50%;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ziak-ink);
+  line-height: 1.25;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
+}
+
+.ziak-card--oos .ziak-card__oos { display: flex; }
+
+.ziak-card--oos .ziak-card__img {
+  filter: grayscale(1);
+  opacity: 0.55;
+}
+
+.ziak-card--oos .ziak-card__quickview { display: none; }
+
+/* ── Info ──────────────────────────────────────────────── */
+.ziak-card__info {
+  padding: 10px 14px 2px;
+}
+
+.ziak-card__title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--ziak-ink);
+  margin: 0 0 2px;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+.ziak-card__title-link {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.2s;
+}
+
+.ziak-card__title-link:hover { color: #555555; }
+
+.ziak-card__subtitle {
+  font-size: 1.3rem;
+  font-weight: 400;
+  color: var(--ziak-muted);
+  margin: 0 0 3px;
+}
+
+/* ── Price ─────────────────────────────────────────────── */
+.ziak-card__price {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 3px;
+}
+
+.ziak-card__price-current {
+  font-size: 1.55rem;
+  font-weight: 700;
+  color: var(--ziak-ink);
+}
+
+.ziak-card__price-current--sale { color: var(--ziak-red); }
+
+.ziak-card__price-compare {
+  font-size: 1.3rem;
+  font-weight: 400;
+  color: #9A9A9A;
+  text-decoration: line-through;
+}
+
+/* ── Meta line (limited / free delivery / stock left) ──── */
+.ziak-card__meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 1.15rem;
+  font-weight: 500;
+  color: #555555;
+  margin-bottom: 4px;
+}
+
+.ziak-card__meta svg {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+
+.ziak-card__meta--stock { color: var(--ziak-red); }
+
+/* ── Rating ────────────────────────────────────────────── */
+.ziak-card__rating {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 2px;
+}
+
+.ziak-card__stars {
+  color: #E8A317;
+  font-size: 1.3rem;
+  letter-spacing: 0.05em;
+}
+
+.ziak-card__review-count {
+  font-size: 1.15rem;
+  color: var(--ziak-muted);
+}
+
+/* ── Add to cart ───────────────────────────────────────── */
+.ziak-card__cta {
+  padding: 2px 14px 12px;
+  margin-top: auto;
+}
+
+.ziak-card__atc {
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: 'Inter', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--ziak-ink);
+  background: #FFFFFF;
+  border: 1.5px solid var(--ziak-ink);
+  border-radius: 4px;
+  padding: 11px 14px;
+  cursor: pointer;
+  transition: background 0.22s ease, color 0.22s ease, border-color 0.22s ease;
+}
+
+.ziak-card__atc svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Hover → solid black */
+.ziak-card__atc:hover,
+.ziak-card:hover .ziak-card__atc {
+  background: var(--ziak-ink);
+  color: #FFFFFF;
+  border-color: var(--ziak-ink);
+}
+
+/* Added-to-cart state */
+.ziak-card__atc.is-added,
+.ziak-card:hover .ziak-card__atc.is-added {
+  background: var(--ziak-ink);
+  color: #FFFFFF;
+  border-color: var(--ziak-ink);
+}
+
+/* Out-of-stock button */
+.ziak-card--oos .ziak-card__atc,
+.ziak-card__atc[disabled] {
+  background: #E3E3E3;
+  color: #8C8C8C;
+  border-color: #E3E3E3;
+  cursor: not-allowed;
+}
+
+.ziak-card--oos:hover .ziak-card__atc {
+  background: #E3E3E3;
+  color: #8C8C8C;
+  border-color: #E3E3E3;
+}
+
+/* ── Disabled (sold out) whole-card state ──────────────── */
+.ziak-card--disabled {
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+.ziak-card--disabled:hover {
+  box-shadow: none;
+  transform: none;
+}
+
+.ziak-card--disabled .ziak-card__atc {
+  background: #E3E3E3;
+  color: #8C8C8C;
+  border-color: #E3E3E3;
+}
+
+/* ── Responsive ────────────────────────────────────────── */
+@media (max-width: 749px) {
+  .ziak-card__title { font-size: 1.4rem; }
+  .ziak-card__atc { font-size: 1.1rem; padding: 10px 12px; }
+}

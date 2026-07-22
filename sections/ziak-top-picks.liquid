@@ -1,4 +1,6 @@
 {{ 'section-ziak-top-picks.css' | asset_url | stylesheet_tag }}
+{{ 'ziak-card.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'ziak-card.js' | asset_url }}" defer="defer"></script>
 
 <div class="ziak-picks" id="ziak-top-picks" style="padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px;">
 
@@ -17,50 +19,32 @@
   <div class="ziak-picks__grid">
     {%- for block in section.blocks -%}
       {%- if block.type == 'product_card' -%}
-        <div class="ziak-picks__card" id="ziak-picks-card-{{ forloop.index }}" {{ block.shopify_attributes }}>
+        {%- liquid
+          assign pick_badge_type = 'bestseller'
+          if block.settings.badge_style == 'red'
+            assign pick_badge_type = 'discount'
+          elsif block.settings.badge_style == 'blue'
+            assign pick_badge_type = 'new'
+          endif
 
-          <!-- Optional badge -->
-          {%- if block.settings.badge_text != blank -%}
-            <span class="ziak-picks__badge ziak-picks__badge--{{ block.settings.badge_style }}" id="ziak-picks-badge-{{ forloop.index }}">
-              {{ block.settings.badge_text }}
-            </span>
-          {%- endif -%}
-
-          <!-- Product Image -->
-          <a href="{{ block.settings.product_link }}" class="ziak-picks__img-wrap" id="ziak-picks-img-{{ forloop.index }}">
-            {%- if block.settings.product_image != blank -%}
-              {{
-                block.settings.product_image
-                | image_url: width: 600
-                | image_tag:
-                  sizes: '20vw',
-                  widths: '200, 400, 600',
-                  loading: 'lazy',
-                  class: 'ziak-picks__img'
-              }}
-            {%- else -%}
-              {{ 'product-apparel-1' | placeholder_svg_tag: 'ziak-picks__img ziak-picks__img--placeholder' }}
-            {%- endif -%}
-          </a>
-
-          <!-- Product Name -->
-          <a href="{{ block.settings.product_link }}" class="ziak-picks__name" id="ziak-picks-name-{{ forloop.index }}">
-            {{ block.settings.product_name }}
-          </a>
-
-          <!-- Price -->
-          <div class="ziak-picks__pricing">
-            {%- if block.settings.original_price != blank -%}
-              <span class="ziak-picks__price-original">{{ block.settings.original_price }}</span>
-            {%- endif -%}
-            {%- if block.settings.sale_price != blank -%}
-              <span class="ziak-picks__price-sale">{{ block.settings.sale_price }}</span>
-            {%- else -%}
-              <span class="ziak-picks__price-regular">{{ block.settings.regular_price }}</span>
-            {%- endif -%}
-          </div>
-
-        </div>
+          assign pick_price = block.settings.regular_price
+          assign pick_compare = ''
+          if block.settings.sale_price != blank
+            assign pick_price = block.settings.sale_price
+            assign pick_compare = block.settings.original_price
+          endif
+        -%}
+        {%- render 'ziak-card',
+          index: forloop.index,
+          card_image: block.settings.product_image,
+          card_url: block.settings.product_link,
+          card_title: block.settings.product_name,
+          card_price: pick_price,
+          card_compare: pick_compare,
+          badge_text: block.settings.badge_text,
+          badge_type: pick_badge_type,
+          shopify_attributes: block.shopify_attributes
+        -%}
       {%- endif -%}
     {%- endfor -%}
   </div>

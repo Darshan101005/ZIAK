@@ -329,3 +329,19 @@
     height: 15px;
   }
 }
+
+/* ══════════════════════════════════════════════════════════
+   Unified ZIAK card: the carousel card is now just a flex
+   sizing/JS wrapper. Strip its own box styling so the nested
+   .ziak-card provides all visuals.
+   ══════════════════════════════════════════════════════════ */
+.ziak-carousel__card {
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  overflow: visible;
+}
+.ziak-carousel__card:hover {
+  box-shadow: none;
+}

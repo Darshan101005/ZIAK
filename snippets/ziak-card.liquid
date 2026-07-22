@@ -1,0 +1,204 @@
+{% comment %}
+  ZIAK — Unified Product Card
+  ---------------------------------------------------------------
+  One card used everywhere. Works with a REAL product object OR
+  with manual values (for demo/landing sections without products).
+
+  Accepts (real product mode):
+  - product:        {Object}  Shopify product. If given, all fields derive from it.
+  - show_rating:    {Boolean} Show stars + count (from reviews metafield). Default false.
+  - show_add_to_cart:{Boolean} Show the ADD TO CART button. Default true.
+
+  Accepts (manual mode — used when `product` is blank):
+  - card_image:      {Image}  image_picker value
+  - card_url:        {String} link
+  - card_title:      {String}
+  - card_subtitle:   {String} colour / variant label
+  - card_price:      {String} already-formatted current price (e.g. "₹6,499")
+  - card_compare:    {String} already-formatted compare price (strikethrough)
+  - badge_text:      {String} badge label
+  - badge_type:      {String} bestseller | new | limited | discount
+  - meta_text:       {String} small line under price (e.g. "Free Delivery")
+  - meta_icon:       {String} truck | clock  (optional icon before meta_text)
+  - stock_left:      {String} e.g. "Only 15 Left" (shows in red)
+  - show_rating / rating_stars / rating_count
+  - show_add_to_cart
+
+  Shared:
+  - index:  {Number} unique suffix for ids
+  - state:  {String} force a state: 'oos' | 'disabled'  (optional)
+{% endcomment %}
+
+{%- liquid
+  assign show_atc = show_add_to_cart
+  if show_add_to_cart == nil
+    assign show_atc = true
+  endif
+
+  assign card_state = state
+  assign is_product = false
+  if product != blank
+    assign is_product = true
+  endif
+-%}
+
+{%- if is_product -%}
+  {%- liquid
+    assign p_url = product.url
+    assign p_title = product.title
+    assign p_subtitle = product.variants.first.option1 | default: product.type
+    assign p_available = product.available
+    assign p_image = product.featured_image
+    assign p_variant = product.selected_or_first_available_variant
+
+    assign on_sale = false
+    if product.compare_at_price > product.price
+      assign on_sale = true
+    endif
+
+    assign price_display = product.price | money
+    assign compare_display = product.compare_at_price | money
+
+    assign discount_pct = 0
+    if on_sale
+      assign discount_pct = product.compare_at_price | minus: product.price | times: 100.0 | divided_by: product.compare_at_price | round
+    endif
+
+    comment
+      Badge priority: discount > limited > new > bestseller
+    endcomment
+    assign b_type = ''
+    assign b_text = ''
+    if on_sale
+      assign b_type = 'discount'
+      assign b_text = discount_pct | append: '% OFF'
+    elsif product.tags contains 'limited' or product.tags contains 'limited-edition'
+      assign b_type = 'limited'
+      assign b_text = 'LIMITED'
+    elsif product.tags contains 'new' or product.tags contains 'new-arrivals'
+      assign b_type = 'new'
+      assign b_text = 'NEW'
+    elsif product.tags contains 'bestseller' or product.tags contains 'best-seller' or product.tags contains 'best-sellers'
+      assign b_type = 'bestseller'
+      assign b_text = 'BESTSELLER'
+    endif
+
+    if p_available == false
+      assign card_state = 'oos'
+    endif
+  -%}
+{%- else -%}
+  {%- liquid
+    assign p_url = card_url | default: '#'
+    assign p_title = card_title | default: 'Product'
+    assign p_subtitle = card_subtitle
+    assign p_available = true
+    assign price_display = card_price
+    assign compare_display = card_compare
+    assign on_sale = false
+    if card_compare != blank
+      assign on_sale = true
+    endif
+    assign b_type = badge_type
+    assign b_text = badge_text
+  -%}
+{%- endif -%}
+
+<article
+  class="ziak-card
+    {%- if card_state == 'oos' %} ziak-card--oos{% endif -%}
+    {%- if card_state == 'disabled' %} ziak-card--disabled{% endif -%}"
+  id="ziak-card-{{ index }}"
+  {{ shopify_attributes }}
+>
+  <div class="ziak-card__media">
+    {%- if b_text != blank -%}
+      <span class="ziak-card__badge ziak-card__badge--{{ b_type | default: 'bestseller' }}">{{ b_text }}</span>
+    {%- endif -%}
+
+    <button type="button" class="ziak-card__wishlist" aria-label="Add {{ p_title | escape }} to wishlist">
+      <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+    </button>
+
+    <a href="{{ p_url }}" class="ziak-card__quickview" aria-label="View {{ p_title | escape }}">
+      <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+    </a>
+
+    <span class="ziak-card__oos">Out of Stock</span>
+
+    <a href="{{ p_url }}" class="ziak-card__media-link" tabindex="-1" aria-hidden="true">
+      {%- if is_product and p_image -%}
+        {{ p_image | image_url: width: 600 | image_tag: loading: 'lazy', widths: '200, 400, 600', class: 'ziak-card__img', alt: p_image.alt | default: p_title }}
+      {%- elsif card_image != blank -%}
+        {{ card_image | image_url: width: 600 | image_tag: loading: 'lazy', widths: '200, 400, 600', class: 'ziak-card__img', alt: p_title }}
+      {%- else -%}
+        {{ 'product-apparel-1' | placeholder_svg_tag: 'ziak-card__img ziak-card__img--placeholder' }}
+      {%- endif -%}
+    </a>
+  </div>
+
+  <div class="ziak-card__info">
+    <h3 class="ziak-card__title">
+      <a href="{{ p_url }}" class="ziak-card__title-link">{{ p_title }}</a>
+    </h3>
+
+    {%- if p_subtitle != blank -%}
+      <p class="ziak-card__subtitle">{{ p_subtitle }}</p>
+    {%- endif -%}
+
+    <div class="ziak-card__price">
+      <span class="ziak-card__price-current{% if on_sale %} ziak-card__price-current--sale{% endif %}">{{ price_display }}</span>
+      {%- if on_sale and compare_display != blank -%}
+        <span class="ziak-card__price-compare">{{ compare_display }}</span>
+      {%- endif -%}
+    </div>
+
+    {%- if stock_left != blank -%}
+      <div class="ziak-card__meta ziak-card__meta--stock">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        {{ stock_left }}
+      </div>
+    {%- elsif meta_text != blank -%}
+      <div class="ziak-card__meta">
+        {%- if meta_icon == 'truck' -%}
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+        {%- elsif meta_icon == 'clock' -%}
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        {%- endif -%}
+        {{ meta_text }}
+      </div>
+    {%- endif -%}
+
+    {%- if show_rating and rating_stars != blank -%}
+      <div class="ziak-card__rating">
+        <span class="ziak-card__stars">{{ rating_stars }}</span>
+        <span class="ziak-card__review-count">({{ rating_count }})</span>
+      </div>
+    {%- endif -%}
+  </div>
+
+  {%- if show_atc -%}
+    <div class="ziak-card__cta">
+      {%- if is_product and p_available -%}
+        <button
+          type="button"
+          class="ziak-card__atc"
+          data-ziak-atc
+          data-variant-id="{{ p_variant.id }}"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          <span class="ziak-card__atc-label">Add to Cart</span>
+        </button>
+      {%- elsif is_product -%}
+        <button type="button" class="ziak-card__atc" disabled>
+          <span class="ziak-card__atc-label">Out of Stock</span>
+        </button>
+      {%- else -%}
+        <a href="{{ p_url }}" class="ziak-card__atc">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          <span class="ziak-card__atc-label">Add to Cart</span>
+        </a>
+      {%- endif -%}
+    </div>
+  {%- endif -%}
+</article>
