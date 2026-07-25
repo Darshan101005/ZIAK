@@ -1,0 +1,397 @@
+{{ 'section-ziak-hero.css' | asset_url | stylesheet_tag }}
+{{ 'section-ziak-cart.css' | asset_url | stylesheet_tag }}
+{{ 'ziak-card.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'ziak-card.js' | asset_url }}" defer="defer"></script>
+
+<!-- Lucide icons (same approach as the rest of the ZIAK sections) -->
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
+
+<style>
+  .shopify-section-group-header-group { display: none !important; }
+  body { background-color: #FFFFFF !important; }
+
+  /* ── Fixed white header (same as collection/contact) ── */
+  #ziak-cart-nav {
+    position: relative !important;
+    top: auto !important; left: auto !important; right: auto !important;
+    background: #FFFFFF !important;
+    border-bottom: 1px solid #E8E8E8 !important;
+  }
+  #ziak-cart-nav .ziak-hero__nav-link,
+  #ziak-cart-nav .ziak-hero__nav-link--dropdown { color: #1A1A1A !important; }
+  #ziak-cart-nav .ziak-hero__nav-link--dropdown::after { border-top-color: #1A1A1A !important; }
+  #ziak-cart-nav .ziak-hero__nav-icon { color: #1A1A1A !important; opacity: 1 !important; }
+  #ziak-cart-nav .ziak-hero__nav-icon svg { stroke: #1A1A1A !important; }
+  #ziak-cart-nav .ziak-hero__logo-placeholder { color: #1A1A1A !important; opacity: 1 !important; }
+  #ziak-cart-nav .ziak-hero__logo-img { filter: none !important; }
+  #ziak-cart-nav .ziak-hero__mega-menu {
+    position: fixed !important; top: auto !important; left: 0 !important; right: 0 !important; width: 100vw !important;
+  }
+</style>
+
+<!-- ══════════ ANNOUNCEMENT + HEADER (collection style) ══════════ -->
+<div class="ziak-hero__announcement" id="ziak-cart-announcement" style="background:#1A1A1A;color:#FFFFFF;">
+  <span>{{ section.settings.announcement_text | default: 'FREE SHIPPING ON ALL ORDERS OVER ₹999 — SHOP ZIAK NOW' }}</span>
+</div>
+
+<div class="ziak-hero" id="ziak-cart-hero" style="min-height:auto;background:#FFFFFF;">
+  <nav class="ziak-hero__nav" id="ziak-cart-nav" aria-label="Main navigation" style="background:#FFFFFF;border-bottom:1px solid #E8E8E8;">
+    <div class="ziak-hero__nav-left">
+      <div class="ziak-hero__dropdown-wrapper">
+        <a href="{{ section.settings.link_men_url | default: '/collections/mens' }}" class="ziak-hero__nav-link ziak-hero__nav-link--dropdown" style="color:#1A1A1A;">MEN</a>
+        <div class="ziak-hero__mega-menu" style="background:#FFFFFF;">
+          <div class="ziak-hero__mega-menu-column">
+            <p class="ziak-hero__mega-menu-heading">Boots</p>
+            <a href="#" class="ziak-hero__mega-menu-link">All Styles</a>
+            <a href="#" class="ziak-hero__mega-menu-link">Lace-Up</a>
+            <a href="#" class="ziak-hero__mega-menu-link">Chelsea</a>
+            <a href="#" class="ziak-hero__mega-menu-link">Chukka</a>
+          </div>
+          <div class="ziak-hero__mega-menu-column">
+            <p class="ziak-hero__mega-menu-heading">Sneakers</p>
+            <a href="#" class="ziak-hero__mega-menu-link">All Styles</a>
+            <a href="#" class="ziak-hero__mega-menu-link">Low Top</a>
+            <a href="#" class="ziak-hero__mega-menu-link">High Top</a>
+            <p class="ziak-hero__mega-menu-heading ziak-hero__mega-menu-divider">Shoes</p>
+            <a href="#" class="ziak-hero__mega-menu-link">Dress Shoes</a>
+            <a href="#" class="ziak-hero__mega-menu-link">Casual Shoes</a>
+          </div>
+          <div class="ziak-hero__mega-menu-column">
+            <p class="ziak-hero__mega-menu-heading">Jackets</p>
+            <a href="#" class="ziak-hero__mega-menu-link">All Jackets</a>
+            <a href="#" class="ziak-hero__mega-menu-link">Leather</a>
+            <p class="ziak-hero__mega-menu-heading ziak-hero__mega-menu-divider">Gift Cards</p>
+          </div>
+        </div>
+      </div>
+      <a href="{{ section.settings.link_about_url | default: '/pages/about' }}" class="ziak-hero__nav-link" style="color:#1A1A1A;">ABOUT</a>
+    </div>
+
+    <div class="ziak-hero__nav-center">
+      <a href="{{ routes.root_url }}" class="ziak-hero__logo-placeholder" style="color:#1A1A1A;">
+        {%- if settings.logo != blank -%}
+          {{ settings.logo | image_url: width: 300 | image_tag: alt: shop.name, class: 'ziak-hero__logo-img', width: 110 }}
+        {%- else -%}
+          ZIAK
+        {%- endif -%}
+      </a>
+    </div>
+
+    <div class="ziak-hero__nav-right">
+      <a href="#" class="ziak-hero__nav-link" style="color:#1A1A1A;">STORES</a>
+      <a href="#" class="ziak-hero__nav-link" style="color:#1A1A1A;">HELP</a>
+      <a href="{{ routes.account_url }}" class="ziak-hero__nav-icon" aria-label="Account" style="color:#1A1A1A;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      </a>
+      <a href="{{ routes.search_url }}" class="ziak-hero__nav-icon" aria-label="Search" style="color:#1A1A1A;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      </a>
+      <a href="{{ routes.cart_url }}" class="ziak-hero__nav-icon" aria-label="Cart" style="color:#1A1A1A;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+      </a>
+    </div>
+  </nav>
+</div>
+
+<div class="ziak-cart" id="ziak-cart">
+
+  <!-- Breadcrumb -->
+  <nav class="ziak-cart__crumb" aria-label="Breadcrumb">
+    <a href="{{ routes.root_url }}">Home</a>
+    <span>›</span>
+    <span>Your Cart</span>
+  </nav>
+
+  <!-- Heading -->
+  <div class="ziak-cart__head">
+    <h1 class="ziak-cart__title">Your Cart ({{ cart.item_count }})</h1>
+    <p class="ziak-cart__sub">Review your items and proceed to checkout.</p>
+  </div>
+
+  {%- if cart.item_count == 0 -%}
+    <!-- ══════════ EMPTY STATE ══════════ -->
+    <div class="ziak-cart__empty">
+      <span class="ziak-cart__empty-icon"><i data-lucide="shopping-bag"></i></span>
+      <p class="ziak-cart__empty-title">Your cart is empty</p>
+      <p class="ziak-cart__empty-text">Looks like you haven't added anything yet.</p>
+      <a href="{{ section.settings.continue_url | default: '/collections/all' }}" class="ziak-cart__empty-btn">START SHOPPING</a>
+    </div>
+  {%- else -%}
+
+  <!-- ══════════ MAIN GRID ══════════ -->
+  <div class="ziak-cart__grid">
+
+    <!-- LEFT: items -->
+    <div class="ziak-cart__main">
+      <div class="ziak-cart__table">
+        <div class="ziak-cart__table-head">
+          <span class="ziak-cart__th ziak-cart__th--product">PRODUCT</span>
+          <span class="ziak-cart__th ziak-cart__th--price">PRICE</span>
+          <span class="ziak-cart__th ziak-cart__th--qty">QUANTITY</span>
+          <span class="ziak-cart__th ziak-cart__th--total">TOTAL</span>
+        </div>
+
+        {%- for item in cart.items -%}
+          <div class="ziak-cart__row">
+            <div class="ziak-cart__product">
+              <a href="{{ item.url }}" class="ziak-cart__thumb">
+                {%- if item.image -%}
+                  {{ item.image | image_url: width: 200 | image_tag: loading: 'lazy', alt: item.product.title, class: 'ziak-cart__thumb-img' }}
+                {%- endif -%}
+              </a>
+              <div class="ziak-cart__info">
+                <a href="{{ item.url }}" class="ziak-cart__name">{{ item.product.title }}</a>
+                {%- unless item.product.has_only_default_variant -%}
+                  {%- for opt in item.options_with_values -%}
+                    <span class="ziak-cart__opt">{{ opt.value }}</span>
+                  {%- endfor -%}
+                {%- endunless -%}
+                <div class="ziak-cart__actions">
+                  <span class="ziak-cart__wishlist" role="button" tabindex="0" data-line="{{ forloop.index }}">
+                    <i data-lucide="heart"></i> Move to Wishlist
+                  </span>
+                  <a href="{{ item.url_to_remove }}" class="ziak-cart__remove">
+                    <i data-lucide="trash-2"></i> Remove
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="ziak-cart__price" data-label="Price">{{ item.final_price | money }}</div>
+
+            <div class="ziak-cart__qty" data-label="Quantity">
+              <a href="{{ routes.cart_change_url }}?line={{ forloop.index }}&quantity={{ item.quantity | minus: 1 }}" class="ziak-cart__qty-btn" aria-label="Decrease quantity">−</a>
+              <span class="ziak-cart__qty-val">{{ item.quantity }}</span>
+              <a href="{{ routes.cart_change_url }}?line={{ forloop.index }}&quantity={{ item.quantity | plus: 1 }}" class="ziak-cart__qty-btn" aria-label="Increase quantity">+</a>
+            </div>
+
+            <div class="ziak-cart__total" data-label="Total">{{ item.final_line_price | money }}</div>
+          </div>
+        {%- endfor -%}
+      </div>
+
+      <!-- Coupon -->
+      <div class="ziak-cart__coupon">
+        <span class="ziak-cart__coupon-icon"><i data-lucide="tag"></i></span>
+        <div class="ziak-cart__coupon-copy">
+          <p class="ziak-cart__coupon-title">Have a coupon code?</p>
+          <p class="ziak-cart__coupon-hint">Enter it here</p>
+        </div>
+        <input type="text" id="ziak-coupon-input" class="ziak-cart__coupon-input" placeholder="Enter coupon code">
+        <button type="button" id="ziak-coupon-apply" class="ziak-cart__coupon-apply">APPLY</button>
+      </div>
+    </div>
+
+    <!-- RIGHT: summary -->
+    <aside class="ziak-cart__side">
+      <div class="ziak-cart__summary">
+        <h2 class="ziak-cart__summary-title">ORDER SUMMARY</h2>
+
+        <div class="ziak-cart__sum-row">
+          <span>Subtotal ({{ cart.item_count }} item{% if cart.item_count != 1 %}s{% endif %})</span>
+          <span>{{ cart.original_total_price | money }}</span>
+        </div>
+
+        {%- if cart.total_discounts > 0 -%}
+          <div class="ziak-cart__sum-row ziak-cart__sum-row--discount">
+            <span>Discount</span>
+            <span>− {{ cart.total_discounts | money }}</span>
+          </div>
+        {%- endif -%}
+
+        <div class="ziak-cart__sum-row">
+          <span>Shipping <i data-lucide="info" class="ziak-cart__sum-info"></i></span>
+          <span class="ziak-cart__free">FREE</span>
+        </div>
+
+        {%- assign threshold = section.settings.free_shipping_threshold | times: 100 -%}
+        {%- if cart.total_price >= threshold -%}
+          <p class="ziak-cart__ship-msg">You've unlocked free shipping!</p>
+        {%- else -%}
+          {%- assign remaining = threshold | minus: cart.total_price -%}
+          <p class="ziak-cart__ship-msg ziak-cart__ship-msg--pending">Add {{ remaining | money }} more for free shipping.</p>
+        {%- endif -%}
+
+        <div class="ziak-cart__sum-total">
+          <div>
+            <span class="ziak-cart__sum-total-label">Total</span>
+            <span class="ziak-cart__sum-total-note">(Inclusive of all taxes)</span>
+          </div>
+          <span class="ziak-cart__sum-total-val">{{ cart.total_price | money }}</span>
+        </div>
+
+        <form action="{{ routes.cart_url }}" method="post" class="ziak-cart__checkout-form">
+          <button type="submit" name="checkout" class="ziak-cart__checkout">PROCEED TO CHECKOUT</button>
+        </form>
+
+        <div class="ziak-cart__or"><span>OR</span></div>
+
+        <a href="{{ section.settings.continue_url | default: '/collections/all' }}" class="ziak-cart__continue">
+          <i data-lucide="arrow-left"></i> CONTINUE SHOPPING
+        </a>
+      </div>
+
+      <!-- Trust badges -->
+      <div class="ziak-cart__trust">
+        <div class="ziak-cart__trust-item">
+          <span class="ziak-cart__trust-icon"><i data-lucide="lock"></i></span>
+          <div>
+            <p class="ziak-cart__trust-title">SECURE CHECKOUT</p>
+            <p class="ziak-cart__trust-text">100% secure and encrypted payments.</p>
+          </div>
+        </div>
+        <div class="ziak-cart__trust-item">
+          <span class="ziak-cart__trust-icon"><i data-lucide="rotate-ccw"></i></span>
+          <div>
+            <p class="ziak-cart__trust-title">EASY RETURNS</p>
+            <p class="ziak-cart__trust-text">7-day easy returns &amp; exchanges.</p>
+          </div>
+        </div>
+        <div class="ziak-cart__trust-item">
+          <span class="ziak-cart__trust-icon"><i data-lucide="truck"></i></span>
+          <div>
+            <p class="ziak-cart__trust-title">FREE SHIPPING</p>
+            <p class="ziak-cart__trust-text">Free shipping on all orders.</p>
+          </div>
+        </div>
+        <div class="ziak-cart__trust-item">
+          <span class="ziak-cart__trust-icon"><i data-lucide="headphones"></i></span>
+          <div>
+            <p class="ziak-cart__trust-title">CUSTOMER SUPPORT</p>
+            <p class="ziak-cart__trust-text">We're here to help you.</p>
+          </div>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <!-- ══════════ YOU MAY ALSO LIKE ══════════ -->
+  {%- assign rec_collection = section.settings.recommendations_collection -%}
+  {%- if rec_collection != blank and rec_collection.products.size > 0 -%}
+    <div class="ziak-cart__recs">
+      <div class="ziak-cart__recs-head">
+        <h2 class="ziak-cart__recs-title">YOU MAY ALSO LIKE</h2>
+        <a href="{{ rec_collection.url }}" class="ziak-cart__recs-viewall">View All <i data-lucide="arrow-right"></i></a>
+      </div>
+      <div class="ziak-cart__recs-grid">
+        {%- for product in rec_collection.products limit: 4 -%}
+          {%- render 'ziak-card', product: product, index: product.id -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  {%- endif -%}
+
+  {%- endif -%}{%- comment -%} end item_count > 0 {%- endcomment -%}
+
+  <!-- ══════════ FEATURE STRIP ══════════ -->
+  <div class="ziak-cart__features">
+    <div class="ziak-cart__feature">
+      <span class="ziak-cart__feature-icon"><i data-lucide="truck"></i></span>
+      <div>
+        <p class="ziak-cart__feature-title">FREE SHIPPING</p>
+        <p class="ziak-cart__feature-text">On all prepaid orders</p>
+      </div>
+    </div>
+    <div class="ziak-cart__feature">
+      <span class="ziak-cart__feature-icon"><i data-lucide="rotate-ccw"></i></span>
+      <div>
+        <p class="ziak-cart__feature-title">EASY RETURNS</p>
+        <p class="ziak-cart__feature-text">7-day easy returns</p>
+      </div>
+    </div>
+    <div class="ziak-cart__feature">
+      <span class="ziak-cart__feature-icon"><i data-lucide="shield-check"></i></span>
+      <div>
+        <p class="ziak-cart__feature-title">SECURE PAYMENTS</p>
+        <p class="ziak-cart__feature-text">Safe &amp; trusted payments</p>
+      </div>
+    </div>
+    <div class="ziak-cart__feature">
+      <span class="ziak-cart__feature-icon"><i data-lucide="award"></i></span>
+      <div>
+        <p class="ziak-cart__feature-title">QUALITY ASSURED</p>
+        <p class="ziak-cart__feature-text">Crafted to last</p>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /.ziak-cart -->
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    if (typeof lucide !== 'undefined') lucide.createIcons();
+
+    /* Coupon: apply via Shopify discount URL (applies at checkout) */
+    var applyBtn = document.getElementById('ziak-coupon-apply');
+    var input = document.getElementById('ziak-coupon-input');
+    if (applyBtn && input) {
+      function applyCoupon() {
+        var code = (input.value || '').trim();
+        if (!code) { input.focus(); return; }
+        window.location.href = '/discount/' + encodeURIComponent(code) + '?redirect=/cart';
+      }
+      applyBtn.addEventListener('click', applyCoupon);
+      input.addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); applyCoupon(); } });
+    }
+
+    /* "Move to Wishlist" — visual toggle (no wishlist backend yet) */
+    document.querySelectorAll('.ziak-cart__wishlist').forEach(function (el) {
+      el.addEventListener('click', function () { el.classList.toggle('is-liked'); });
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "ZIAK Cart",
+  "tag": "section",
+  "class": "ziak-cart-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Top Bar"
+    },
+    {
+      "type": "text",
+      "id": "announcement_text",
+      "default": "FREE SHIPPING ON ALL ORDERS OVER ₹999 — SHOP ZIAK NOW",
+      "label": "Announcement text"
+    },
+    {
+      "type": "url",
+      "id": "link_men_url",
+      "label": "MEN link"
+    },
+    {
+      "type": "url",
+      "id": "link_about_url",
+      "label": "ABOUT link"
+    },
+    {
+      "type": "header",
+      "content": "Cart Options"
+    },
+    {
+      "type": "url",
+      "id": "continue_url",
+      "label": "\"Continue shopping\" link"
+    },
+    {
+      "type": "number",
+      "id": "free_shipping_threshold",
+      "default": 999,
+      "label": "Free shipping threshold (in store currency, e.g. 999)"
+    },
+    {
+      "type": "collection",
+      "id": "recommendations_collection",
+      "label": "\"You may also like\" collection"
+    }
+  ],
+  "presets": [
+    {
+      "name": "ZIAK Cart"
+    }
+  ]
+}
+{% endschema %}

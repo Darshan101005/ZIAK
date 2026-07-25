@@ -1,0 +1,177 @@
+/* ══════════════════════════════════════════════════════════
+   ZIAK — About: The Workshop / Journey of Every Pair
+   ══════════════════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&display=swap');
+
+.ziak-workshop {
+  --w-ink: #1F1B16;
+  --w-muted: #6E655A;
+  --w-accent: #9A6B3F;
+  --w-line: #D9CFC1;
+  /* Landscape but with more height than 16/9 */
+  --w-media-ratio: 4 / 3;
+  font-family: 'Inter', Helvetica, sans-serif;
+  color: var(--w-ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+.ziak-workshop * { box-sizing: border-box; }
+
+.ziak-workshop__inner {
+  width: 100%;
+  padding: 0 24px;   /* small side gap on both sides */
+}
+
+/* ── Header ── */
+.ziak-workshop__head {
+  text-align: center;
+  margin-bottom: 40px;
+  padding: 0 40px;   /* side padding lives here, not on the full inner wrapper */
+}
+
+.ziak-workshop__eyebrow {
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--w-accent);
+  margin: 0 0 18px;
+  position: relative;
+  padding-bottom: 14px;
+}
+.ziak-workshop__eyebrow::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 2px;
+  background: var(--w-accent);
+}
+
+.ziak-workshop__heading {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(3.4rem, 4.6vw, 5rem);
+  font-weight: 600;
+  line-height: 1.1;
+  margin: 0 0 18px;
+  color: var(--w-ink);
+}
+
+.ziak-workshop__sub {
+  font-size: 1.5rem;
+  line-height: 1.6;
+  color: var(--w-muted);
+  max-width: 620px;
+  margin: 0 auto;
+}
+
+/* ── Grid ── */
+.ziak-workshop__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;     /* gaps between each card */
+}
+
+.ziak-workshop__item { display: flex; flex-direction: column; }
+
+/* ── Picture + hover effect ── */
+.ziak-workshop__media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: var(--w-media-ratio);
+  overflow: hidden;
+  border-radius: 4px;
+  background: #E8E0D4;
+}
+
+.ziak-workshop__img,
+.ziak-workshop__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.22, 0.61, 0.36, 1), filter 0.5s ease;
+}
+
+/* subtle darkening overlay that fades on hover */
+.ziak-workshop__media::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(20, 16, 12, 0.25), rgba(20, 16, 12, 0));
+  opacity: 1;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+
+.ziak-workshop__item:hover .ziak-workshop__img {
+  transform: scale(1.07);
+  filter: brightness(1.05);
+}
+.ziak-workshop__item:hover .ziak-workshop__media::after {
+  opacity: 0.35;
+}
+
+.ziak-workshop__img--placeholder {
+  object-fit: contain;
+  padding: 30px;
+  opacity: 0.5;
+}
+
+/* ── Caption ── */
+.ziak-workshop__caption {
+  padding: 16px 18px 20px;
+}
+
+.ziak-workshop__row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--w-line);
+  margin-bottom: 14px;
+}
+
+.ziak-workshop__icon {
+  display: inline-flex;
+  align-items: center;
+  color: var(--w-accent);
+}
+.ziak-workshop__icon i { width: 26px; height: 26px; stroke-width: 1.4; }
+
+.ziak-workshop__num {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--w-accent);
+  line-height: 1;
+}
+
+.ziak-workshop__title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--w-ink);
+}
+
+.ziak-workshop__desc {
+  font-size: 1.35rem;
+  line-height: 1.6;
+  color: var(--w-muted);
+  margin: 0;
+}
+
+@media (max-width: 990px) {
+  .ziak-workshop__grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+}
+
+@media (max-width: 749px) {
+  .ziak-workshop__inner { padding: 0 16px; }
+  .ziak-workshop__grid { grid-template-columns: 1fr; gap: 16px; }
+  .ziak-workshop__media { aspect-ratio: 4 / 3; }
+}

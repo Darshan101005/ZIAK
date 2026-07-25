@@ -22,6 +22,24 @@
       "type": "ziak-about-founders-letter",
       "settings": {}
     },
+    "ziak_about_workshop": {
+      "type": "ziak-about-workshop",
+      "blocks": {
+        "step_1": { "type": "step", "settings": { "icon": "layers", "number": "01", "title": "Leather Selection", "description": "We handpick premium leathers for their strength, texture, and natural character." } },
+        "step_2": { "type": "step", "settings": { "icon": "scissors", "number": "02", "title": "Precision Cutting", "description": "Every piece is cut with accuracy to ensure the perfect fit, shape, and balance." } },
+        "step_3": { "type": "step", "settings": { "icon": "pen-tool", "number": "03", "title": "Hand Stitching", "description": "Our craftsmen stitch with care, ensuring strength in every seam and elegance in every step." } },
+        "step_4": { "type": "step", "settings": { "icon": "search", "number": "04", "title": "Quality Inspection", "description": "Every pair is inspected multiple times to guarantee lasting quality you can trust." } }
+      },
+      "block_order": ["step_1", "step_2", "step_3", "step_4"],
+      "settings": {
+        "eyebrow": "THE WORKSHOP",
+        "heading": "The Journey of Every Pair",
+        "subtext": "From the finest materials to the final polish, every step is carried out with care, precision, and respect for the craft.",
+        "bg_color": "#F5F0E9",
+        "padding_top": 72,
+        "padding_bottom": 72
+      }
+    },
     "ziak_about_stand_for": {
       "type": "ziak-about-stand-for",
       "settings": {}
@@ -39,6 +57,7 @@
     "ziak_about_story",
     "ziak_about_values",
     "ziak_about_founders_letter",
+    "ziak_about_workshop",
     "ziak_about_stand_for",
     "ziak_about_text_overlay"
   ]

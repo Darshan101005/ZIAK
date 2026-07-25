@@ -30,13 +30,20 @@
   }
 }
 
-/* ── Warm off-white site background ── */
+/* ── Site background: white everywhere, off-white only on About ── */
 body {
-  background-color: #FDFBF7 !important;
+  background-color: #FFFFFF !important;
 }
 
 /* Kill Dawn's gradient background on body too */
 .gradient {
+  background: #FFFFFF !important;
+}
+
+/* About page keeps the warm off-white */
+body.template-page-about,
+body.template-page-about .gradient {
+  background-color: #FDFBF7 !important;
   background: #FDFBF7 !important;
 }
 
