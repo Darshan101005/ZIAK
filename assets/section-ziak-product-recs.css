@@ -1,0 +1,120 @@
+/* ══════════════════════════════════════════════════════════
+   ZIAK — Product page: You May Also Like (standalone, bottom)
+   ~25% taller than the original in-product block.
+   ══════════════════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap');
+
+.ziak-precs {
+  --pr-ink: #1A1A1A;
+  --pr-accent: #C77B3B;
+  --pr-line: #E6E4DF;
+  font-family: 'Inter', Helvetica, sans-serif;
+  color: var(--pr-ink);
+  background: #FFFFFF;
+  -webkit-font-smoothing: antialiased;
+}
+.ziak-precs *, .ziak-precs *::before, .ziak-precs *::after { box-sizing: border-box; }
+
+.ziak-precs__wrap {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 40px;
+  border-top: 1px solid var(--pr-line);
+  padding-top: 36px;
+}
+
+.ziak-precs__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+.ziak-precs__title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin: 0;
+}
+.ziak-precs__viewall {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--pr-ink);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.ziak-precs__viewall:hover { color: var(--pr-accent); }
+.ziak-precs__viewall svg { width: 16px; height: 16px; transition: transform 0.2s; }
+.ziak-precs__viewall:hover svg { transform: translateX(3px); }
+
+.ziak-precs__grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+}
+
+/* Taller cards in this section (+~25% height via taller media) */
+.ziak-precs .ziak-card { --ziak-media-ratio: 4 / 5; }
+
+/* Promo banner card — never collapses, matches the taller cards */
+.ziak-precs__promo {
+  position: relative;
+  border-radius: 6px;
+  overflow: hidden;
+  background: #1A1A1A;
+  display: flex;
+  align-items: flex-end;
+  min-height: 440px;
+}
+.ziak-precs__promo-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.45;
+}
+.ziak-precs__promo-content {
+  position: relative;
+  z-index: 2;
+  padding: 28px 24px;
+  color: #FFFFFF;
+}
+.ziak-precs__promo-heading {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 2.1rem;
+  font-weight: 600;
+  font-style: italic;
+  line-height: 1.25;
+  margin: 0 0 18px;
+}
+.ziak-precs__promo-cta {
+  display: inline-block;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #FFFFFF;
+  background: transparent;
+  border: 1.5px solid #FFFFFF;
+  border-radius: 4px;
+  padding: 11px 20px;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s;
+}
+.ziak-precs__promo-cta:hover { background: #FFFFFF; color: var(--pr-ink); }
+
+/* ── Responsive ── */
+@media (max-width: 990px) {
+  .ziak-precs__grid { grid-template-columns: repeat(3, 1fr); }
+  .ziak-precs__promo { min-height: 350px; }
+}
+@media (max-width: 749px) {
+  .ziak-precs__wrap { padding-left: 18px; padding-right: 18px; }
+  .ziak-precs__grid { grid-template-columns: repeat(2, 1fr); }
+  .ziak-precs__promo { min-height: 275px; grid-column: span 2; }
+}

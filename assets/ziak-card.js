@@ -18,14 +18,7 @@
     '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
 
   document.addEventListener('click', function (e) {
-    /* ── Wishlist ── */
-    var heart = e.target.closest('.ziak-card__wishlist');
-    if (heart) {
-      e.preventDefault();
-      e.stopPropagation();
-      heart.classList.toggle('is-liked');
-      return;
-    }
+    /* Wishlist hearts are handled globally by ziak-wishlist.js */
 
     /* ── Add to cart ── */
     var btn = e.target.closest('[data-ziak-atc]');

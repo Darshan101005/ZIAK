@@ -6,7 +6,8 @@
         "announcement_text": "FREE SHIPPING ON ALL ORDERS OVER ₹999 — SHOP ZIAK NOW",
         "link_about_url": "/pages/about",
         "continue_url": "/collections/all",
-        "free_shipping_threshold": 999
+        "free_shipping_threshold": 999,
+        "recommendations_collection": "all"
       }
     }
   },

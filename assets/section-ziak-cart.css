@@ -22,7 +22,6 @@
 .ziak-cart__crumb,
 .ziak-cart__head,
 .ziak-cart__grid,
-.ziak-cart__recs,
 .ziak-cart__features,
 .ziak-cart__empty {
   max-width: 1200px;
@@ -348,22 +347,58 @@
 .ziak-cart__trust-title { font-size: 1.25rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; margin: 2px 0 3px; }
 .ziak-cart__trust-text { font-size: 1.2rem; color: var(--k-muted); margin: 0; }
 
-/* ── You may also like ── */
-.ziak-cart__recs { padding-top: 44px; }
+/* ── You may also like (inside left column) ── */
+.ziak-cart__recs {
+  padding-top: 28px;
+  padding-bottom: 6px;
+  /* no extra left/right padding — inherits from .ziak-cart__main */
+}
 .ziak-cart__recs-head {
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--k-line);
 }
-.ziak-cart__recs-title { font-size: 1.5rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin: 0; }
+.ziak-cart__recs-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin: 0;
+  position: relative;
+  padding-bottom: 10px;
+}
+.ziak-cart__recs-title::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  width: 30px;
+  height: 2px;
+  background: var(--k-accent);
+}
 .ziak-cart__recs-viewall {
-  display: inline-flex; align-items: center; gap: 6px;
-  font-size: 1.25rem; font-weight: 600; color: var(--k-ink); text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--k-ink);
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  transition: color 0.2s;
 }
-.ziak-cart__recs-viewall i { width: 16px; height: 16px; }
+.ziak-cart__recs-viewall i { width: 16px; height: 16px; transition: transform 0.2s; }
 .ziak-cart__recs-viewall:hover { color: var(--k-accent); }
-.ziak-cart__recs-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+.ziak-cart__recs-viewall:hover i { transform: translateX(3px); }
+/* 3 equal cards that fill the left column perfectly */
+.ziak-cart__recs-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
 
 /* ── Bottom feature strip ── */
 .ziak-cart__features {
@@ -407,8 +442,10 @@
 
 /* ══════════ Responsive ══════════ */
 @media (max-width: 990px) {
+  /* grid stacks: left col full width, right col below */
   .ziak-cart__grid { grid-template-columns: 1fr; }
-  .ziak-cart__recs-grid { grid-template-columns: repeat(2, 1fr); }
+  /* recs now in the left col; 3 cards still fit on tablet */
+  .ziak-cart__recs-grid { grid-template-columns: repeat(3, 1fr); }
   .ziak-cart__features { grid-template-columns: 1fr 1fr; gap: 18px 0; }
   .ziak-cart__feature:nth-child(2) { border-right: none; }
 }
@@ -417,7 +454,6 @@
   .ziak-cart__crumb,
   .ziak-cart__head,
   .ziak-cart__grid,
-  .ziak-cart__recs,
   .ziak-cart__features,
   .ziak-cart__empty { padding-left: 20px; padding-right: 20px; }
 
@@ -443,7 +479,8 @@
   }
   .ziak-cart__coupon { flex-wrap: wrap; }
   .ziak-cart__coupon-input { flex: 1 1 100%; order: 3; }
-  .ziak-cart__recs-grid { grid-template-columns: repeat(2, 1fr); }
+  /* 2-across on small mobile */
+  .ziak-cart__recs-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
   .ziak-cart__features { grid-template-columns: 1fr; }
   .ziak-cart__feature { border-right: none; border-bottom: 1px solid #E2E0DA; padding-bottom: 16px; }
   .ziak-cart__feature:last-child { border-bottom: none; }

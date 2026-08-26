@@ -1,0 +1,333 @@
+{{ 'section-ziak-hero.css' | asset_url | stylesheet_tag }}
+{{ 'section-ziak-wishlist.css' | asset_url | stylesheet_tag }}
+
+<!-- Lucide icons (same approach as the rest of the ZIAK sections) -->
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
+
+<style>
+  .shopify-section-group-header-group { display: none !important; }
+  body { background-color: #FFFFFF !important; }
+
+  #ziak-wishlist-nav {
+    position: relative !important;
+    top: auto !important; left: auto !important; right: auto !important;
+    background: #FFFFFF !important;
+    border-bottom: 1px solid #E8E8E8 !important;
+  }
+  #ziak-wishlist-nav .ziak-hero__nav-link,
+  #ziak-wishlist-nav .ziak-hero__nav-link--dropdown { color: #1A1A1A !important; }
+  #ziak-wishlist-nav .ziak-hero__nav-link--dropdown::after { border-top-color: #1A1A1A !important; }
+  #ziak-wishlist-nav .ziak-hero__nav-icon { color: #1A1A1A !important; opacity: 1 !important; }
+  #ziak-wishlist-nav .ziak-hero__nav-icon svg { stroke: #1A1A1A !important; }
+  #ziak-wishlist-nav .ziak-hero__logo-placeholder { color: #1A1A1A !important; opacity: 1 !important; }
+  #ziak-wishlist-nav .ziak-hero__logo-img { filter: none !important; }
+  #ziak-wishlist-nav .ziak-hero__mega-menu {
+    position: fixed !important; top: auto !important; left: 0 !important; right: 0 !important; width: 100vw !important;
+  }
+</style>
+
+<!-- ══════════ ANNOUNCEMENT BAR ══════════ -->
+<div class="ziak-hero__announcement" id="ziak-wishlist-announcement" style="background:#1A1A1A;color:#FFFFFF;">
+  <span>{{ section.settings.announcement_text | default: 'FREE SHIPPING ON ALL ORDERS OVER ₹999 — SHOP ZIAK NOW' }}</span>
+</div>
+
+<!-- ══════════ HEADER ══════════ -->
+<div class="ziak-hero" id="ziak-wishlist-hero" style="min-height:auto;background:#FFFFFF;">
+  <nav class="ziak-hero__nav" id="ziak-wishlist-nav" aria-label="Main navigation" style="background:#FFFFFF;border-bottom:1px solid #E8E8E8;">
+    <div class="ziak-hero__nav-left">
+      <div class="ziak-hero__dropdown-wrapper">
+        <a href="{{ section.settings.link_men_url | default: '/collections/mens' }}" class="ziak-hero__nav-link ziak-hero__nav-link--dropdown" style="color:#1A1A1A;">MEN</a>
+        <div class="ziak-hero__mega-menu" style="background:#FFFFFF;">
+          <div class="ziak-hero__mega-menu-column">
+            <p class="ziak-hero__mega-menu-heading">Boots</p>
+            <a href="#" class="ziak-hero__mega-menu-link">All Styles</a>
+            <a href="#" class="ziak-hero__mega-menu-link">Lace-Up</a>
+            <a href="#" class="ziak-hero__mega-menu-link">Chelsea</a>
+            <a href="#" class="ziak-hero__mega-menu-link">Chukka</a>
+          </div>
+          <div class="ziak-hero__mega-menu-column">
+            <p class="ziak-hero__mega-menu-heading">Sneakers</p>
+            <a href="#" class="ziak-hero__mega-menu-link">All Styles</a>
+            <a href="#" class="ziak-hero__mega-menu-link">Low Top</a>
+            <a href="#" class="ziak-hero__mega-menu-link">High Top</a>
+            <p class="ziak-hero__mega-menu-heading ziak-hero__mega-menu-divider">Shoes</p>
+            <a href="#" class="ziak-hero__mega-menu-link">Dress Shoes</a>
+            <a href="#" class="ziak-hero__mega-menu-link">Casual Shoes</a>
+          </div>
+          <div class="ziak-hero__mega-menu-column">
+            <p class="ziak-hero__mega-menu-heading">Jackets</p>
+            <a href="#" class="ziak-hero__mega-menu-link">All Jackets</a>
+            <a href="#" class="ziak-hero__mega-menu-link">Leather</a>
+            <p class="ziak-hero__mega-menu-heading ziak-hero__mega-menu-divider">Gift Cards</p>
+          </div>
+        </div>
+      </div>
+      <a href="{{ section.settings.link_about_url | default: '/pages/about' }}" class="ziak-hero__nav-link" style="color:#1A1A1A;">ABOUT</a>
+    </div>
+
+    <div class="ziak-hero__nav-center">
+      <a href="{{ routes.root_url }}" class="ziak-hero__logo-placeholder" style="color:#1A1A1A;">
+        {%- if settings.logo != blank -%}
+          {{ settings.logo | image_url: width: 300 | image_tag: alt: shop.name, class: 'ziak-hero__logo-img', width: 110 }}
+        {%- else -%}
+          ZIAK
+        {%- endif -%}
+      </a>
+    </div>
+
+    <div class="ziak-hero__nav-right">
+      <a href="#" class="ziak-hero__nav-link" style="color:#1A1A1A;">STORES</a>
+      <a href="#" class="ziak-hero__nav-link" style="color:#1A1A1A;">HELP</a>
+      <a href="/pages/wishlist" class="ziak-hero__nav-icon ziak-wish-link" aria-label="Wishlist" style="color:#1A1A1A;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        <span class="ziak-wish-count" data-ziak-wishlist-count style="display:none;">0</span>
+      </a>
+      <a href="{{ routes.account_url }}" class="ziak-hero__nav-icon" aria-label="Account" style="color:#1A1A1A;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      </a>
+      <a href="{{ routes.search_url }}" class="ziak-hero__nav-icon" aria-label="Search" style="color:#1A1A1A;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      </a>
+      <a href="{{ routes.cart_url }}" class="ziak-hero__nav-icon" aria-label="Cart" style="color:#1A1A1A;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+      </a>
+    </div>
+  </nav>
+</div>
+
+<!-- ══════════ WISHLIST BODY ══════════ -->
+<div class="ziak-wl" id="ziak-wl">
+  <nav class="ziak-wl__crumb" aria-label="Breadcrumb">
+    <a href="{{ routes.root_url }}">Home</a>
+    <span>›</span>
+    <span>Wishlist</span>
+  </nav>
+
+  <div class="ziak-wl__head">
+    <span class="ziak-wl__head-icon"><i data-lucide="heart"></i></span>
+    <h1 class="ziak-wl__title">{{ section.settings.heading | default: 'My Wishlist' }}</h1>
+    <p class="ziak-wl__count"><span data-ziak-wl-count>0</span> items saved for later</p>
+  </div>
+
+  <!-- Table (rendered by JS) -->
+  <div class="ziak-wl__table" data-ziak-wl-table hidden>
+    <div class="ziak-wl__thead">
+      <span class="ziak-wl__th ziak-wl__th--product">PRODUCT</span>
+      <span class="ziak-wl__th ziak-wl__th--price">PRICE</span>
+      <span class="ziak-wl__th ziak-wl__th--avail">AVAILABILITY</span>
+      <span class="ziak-wl__th ziak-wl__th--date">ADDED ON</span>
+      <span class="ziak-wl__th ziak-wl__th--action">ACTION</span>
+    </div>
+    <div class="ziak-wl__rows" data-ziak-wl-rows></div>
+  </div>
+
+  <!-- Empty state -->
+  <div class="ziak-wl__empty" data-ziak-wl-empty hidden>
+    <span class="ziak-wl__empty-icon"><i data-lucide="heart"></i></span>
+    <p class="ziak-wl__empty-title">Your wishlist is empty</p>
+    <p class="ziak-wl__empty-text">Tap the heart on any product to save it here for later.</p>
+    <a href="{{ section.settings.continue_url | default: '/collections/all' }}" class="ziak-wl__empty-btn">START SHOPPING</a>
+  </div>
+
+  <!-- Footer note (matches design) -->
+  <div class="ziak-wl__note" data-ziak-wl-note hidden>
+    <div class="ziak-wl__note-left">
+      <span class="ziak-wl__note-icon"><i data-lucide="bookmark"></i></span>
+      <div>
+        <p class="ziak-wl__note-title">Still deciding?</p>
+        <p class="ziak-wl__note-text">Your favorites are safe with us. Take your time.</p>
+      </div>
+    </div>
+    <a href="{{ section.settings.continue_url | default: '/collections/all' }}" class="ziak-wl__note-btn">CONTINUE SHOPPING</a>
+  </div>
+</div>
+
+<script>
+  (function () {
+    function ready(fn) {
+      if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', fn);
+      else fn();
+    }
+
+    ready(function () {
+      if (typeof lucide !== 'undefined') lucide.createIcons();
+
+      var root = document.getElementById('ziak-wl');
+      if (!root || !window.ZiakWishlist) return;
+
+      var rowsEl = root.querySelector('[data-ziak-wl-rows]');
+      var tableEl = root.querySelector('[data-ziak-wl-table]');
+      var emptyEl = root.querySelector('[data-ziak-wl-empty]');
+      var noteEl = root.querySelector('[data-ziak-wl-note]');
+      var countEls = root.querySelectorAll('[data-ziak-wl-count]');
+
+      function esc(s) {
+        return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
+          return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+        });
+      }
+
+      function fmtDate(ts) {
+        if (!ts) return '—';
+        var d = new Date(ts);
+        var m = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        return d.getDate() + ' ' + m[d.getMonth()] + ', ' + d.getFullYear();
+      }
+
+      function keyOf(item) { return (item.handle && item.handle.length) ? item.handle : item.url; }
+
+      function rowHTML(item) {
+        var k = keyOf(item);
+        var avail = item.available !== false;
+        var img = item.image
+          ? '<img src="' + esc(item.image) + '" alt="' + esc(item.title) + '" class="ziak-wl__thumb-img">'
+          : '';
+        var actionBtn = item.variantId
+          ? '<button type="button" class="ziak-wl__atc" data-wl-atc data-variant-id="' + esc(item.variantId) + '">ADD TO CART</button>'
+          : '<a href="' + esc(item.url) + '" class="ziak-wl__atc">VIEW PRODUCT</a>';
+
+        return '' +
+          '<div class="ziak-wl__row" data-wl-key="' + esc(k) + '">' +
+            '<button type="button" class="ziak-wl__x" data-wl-remove aria-label="Remove">' +
+              '<i data-lucide="x"></i>' +
+            '</button>' +
+            '<div class="ziak-wl__product">' +
+              '<a href="' + esc(item.url) + '" class="ziak-wl__thumb">' + img + '</a>' +
+              '<div class="ziak-wl__info">' +
+                '<a href="' + esc(item.url) + '" class="ziak-wl__name">' + esc(item.title) + '</a>' +
+                (item.subtitle ? '<span class="ziak-wl__opt">' + esc(item.subtitle) + '</span>' : '') +
+              '</div>' +
+            '</div>' +
+            '<div class="ziak-wl__price" data-label="Price">' + esc(item.price) + '</div>' +
+            '<div class="ziak-wl__avail" data-label="Availability">' +
+              (avail
+                ? '<span class="ziak-wl__dot ziak-wl__dot--in"></span> In Stock'
+                : '<span class="ziak-wl__dot ziak-wl__dot--out"></span> Out of Stock') +
+            '</div>' +
+            '<div class="ziak-wl__date" data-label="Added on">' + fmtDate(item.addedOn) + '</div>' +
+            '<div class="ziak-wl__action">' +
+              actionBtn +
+              '<button type="button" class="ziak-wl__icon-btn" data-wl-remove aria-label="Remove from wishlist">' +
+                '<i data-lucide="trash-2"></i>' +
+              '</button>' +
+            '</div>' +
+          '</div>';
+      }
+
+      function render() {
+        var items = window.ZiakWishlist.all();
+        countEls.forEach(function (el) { el.textContent = items.length; });
+
+        if (!items.length) {
+          if (tableEl) tableEl.hidden = true;
+          if (noteEl) noteEl.hidden = true;
+          if (emptyEl) emptyEl.hidden = false;
+          return;
+        }
+
+        if (emptyEl) emptyEl.hidden = true;
+        if (tableEl) tableEl.hidden = false;
+        if (noteEl) noteEl.hidden = false;
+
+        // newest first
+        var sorted = items.slice().sort(function (a, b) { return (b.addedOn || 0) - (a.addedOn || 0); });
+        rowsEl.innerHTML = sorted.map(rowHTML).join('');
+        if (typeof lucide !== 'undefined') lucide.createIcons();
+      }
+
+      // Remove + add-to-cart via delegation
+      rowsEl.addEventListener('click', function (e) {
+        var remove = e.target.closest('[data-wl-remove]');
+        if (remove) {
+          var row = remove.closest('.ziak-wl__row');
+          if (row) window.ZiakWishlist.remove(row.getAttribute('data-wl-key'));
+          return;
+        }
+
+        var atc = e.target.closest('[data-wl-atc]');
+        if (atc) {
+          var variantId = atc.getAttribute('data-variant-id');
+          if (!variantId || atc.classList.contains('is-loading')) return;
+          atc.classList.add('is-loading');
+          var prev = atc.textContent;
+          fetch('/cart/add.js', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+            body: JSON.stringify({ items: [{ id: variantId, quantity: 1 }] })
+          })
+            .then(function (r) { if (!r.ok) throw new Error('fail'); return r.json(); })
+            .then(function () {
+              atc.textContent = 'ADDED ✓';
+              atc.classList.add('is-added');
+              setTimeout(function () { atc.textContent = prev; atc.classList.remove('is-added'); }, 1800);
+              // refresh header cart bubble if present
+              var bubble = document.getElementById('cart-icon-bubble');
+              if (bubble) {
+                fetch('/?section_id=cart-icon-bubble').then(function (r) { return r.text(); }).then(function (html) {
+                  var doc = new DOMParser().parseFromString(html, 'text/html');
+                  var fresh = doc.getElementById('cart-icon-bubble');
+                  if (fresh) bubble.innerHTML = fresh.innerHTML;
+                }).catch(function () {});
+              }
+            })
+            .catch(function () { window.location.href = '/cart'; })
+            .finally(function () { atc.classList.remove('is-loading'); });
+          return;
+        }
+      });
+
+      document.addEventListener('ziak:wishlist:updated', render);
+      render();
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "ZIAK Wishlist",
+  "tag": "section",
+  "class": "ziak-wishlist-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Top Bar"
+    },
+    {
+      "type": "text",
+      "id": "announcement_text",
+      "default": "FREE SHIPPING ON ALL ORDERS OVER ₹999 — SHOP ZIAK NOW",
+      "label": "Announcement text"
+    },
+    {
+      "type": "url",
+      "id": "link_men_url",
+      "label": "MEN link"
+    },
+    {
+      "type": "url",
+      "id": "link_about_url",
+      "label": "ABOUT link"
+    },
+    {
+      "type": "header",
+      "content": "Wishlist"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "default": "My Wishlist",
+      "label": "Heading"
+    },
+    {
+      "type": "url",
+      "id": "continue_url",
+      "label": "\"Continue shopping\" link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "ZIAK Wishlist"
+    }
+  ]
+}
+{% endschema %}

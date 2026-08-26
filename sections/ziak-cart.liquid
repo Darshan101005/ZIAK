@@ -80,6 +80,10 @@
     <div class="ziak-hero__nav-right">
       <a href="#" class="ziak-hero__nav-link" style="color:#1A1A1A;">STORES</a>
       <a href="#" class="ziak-hero__nav-link" style="color:#1A1A1A;">HELP</a>
+      <a href="/pages/wishlist" class="ziak-hero__nav-icon ziak-wish-link" aria-label="Wishlist" style="color:#1A1A1A;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        <span class="ziak-wish-count" data-ziak-wishlist-count style="display:none;">0</span>
+      </a>
       <a href="{{ routes.account_url }}" class="ziak-hero__nav-icon" aria-label="Account" style="color:#1A1A1A;">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
       </a>
@@ -147,7 +151,21 @@
                   {%- endfor -%}
                 {%- endunless -%}
                 <div class="ziak-cart__actions">
-                  <span class="ziak-cart__wishlist" role="button" tabindex="0" data-line="{{ forloop.index }}">
+                  <span
+                    class="ziak-cart__wishlist"
+                    role="button"
+                    tabindex="0"
+                    data-ziak-wishlist-move
+                    data-line="{{ forloop.index }}"
+                    data-handle="{{ item.product.handle }}"
+                    data-url="{{ item.url }}"
+                    data-title="{{ item.product.title | escape }}"
+                    data-subtitle="{% unless item.product.has_only_default_variant %}{{ item.variant.title | escape }}{% endunless %}"
+                    data-image="{% if item.image %}{{ item.image | image_url: width: 300 }}{% endif %}"
+                    data-price="{{ item.final_price | money | escape }}"
+                    data-available="true"
+                    data-variant-id="{{ item.variant.id }}"
+                  >
                     <i data-lucide="heart"></i> Move to Wishlist
                   </span>
                   <a href="{{ item.url_to_remove }}" class="ziak-cart__remove">
@@ -180,6 +198,26 @@
         <input type="text" id="ziak-coupon-input" class="ziak-cart__coupon-input" placeholder="Enter coupon code">
         <button type="button" id="ziak-coupon-apply" class="ziak-cart__coupon-apply">APPLY</button>
       </div>
+
+      <!-- ══════════ YOU MAY ALSO LIKE (inside left column) ══════════ -->
+      {%- assign rec_collection = section.settings.recommendations_collection -%}
+      {%- if rec_collection != blank and rec_collection.products.size > 0 -%}
+        <div class="ziak-cart__recs">
+          <div class="ziak-cart__recs-head">
+            <h2 class="ziak-cart__recs-title">YOU MAY ALSO LIKE</h2>
+            <a href="{{ rec_collection.url }}" class="ziak-cart__recs-viewall">View All <i data-lucide="arrow-right"></i></a>
+          </div>
+          <div class="ziak-cart__recs-grid">
+            {%- assign recs_limit = 4 -%}
+            {%- if rec_collection.products.size >= 3 -%}
+              {%- assign recs_limit = 3 -%}
+            {%- endif -%}
+            {%- for product in rec_collection.products limit: recs_limit -%}
+              {%- render 'ziak-card', product: product, index: product.id -%}
+            {%- endfor -%}
+          </div>
+        </div>
+      {%- endif -%}
     </div>
 
     <!-- RIGHT: summary -->
@@ -265,21 +303,7 @@
     </aside>
   </div>
 
-  <!-- ══════════ YOU MAY ALSO LIKE ══════════ -->
-  {%- assign rec_collection = section.settings.recommendations_collection -%}
-  {%- if rec_collection != blank and rec_collection.products.size > 0 -%}
-    <div class="ziak-cart__recs">
-      <div class="ziak-cart__recs-head">
-        <h2 class="ziak-cart__recs-title">YOU MAY ALSO LIKE</h2>
-        <a href="{{ rec_collection.url }}" class="ziak-cart__recs-viewall">View All <i data-lucide="arrow-right"></i></a>
-      </div>
-      <div class="ziak-cart__recs-grid">
-        {%- for product in rec_collection.products limit: 4 -%}
-          {%- render 'ziak-card', product: product, index: product.id -%}
-        {%- endfor -%}
-      </div>
-    </div>
-  {%- endif -%}
+
 
   {%- endif -%}{%- comment -%} end item_count > 0 {%- endcomment -%}
 
@@ -334,10 +358,7 @@
       input.addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); applyCoupon(); } });
     }
 
-    /* "Move to Wishlist" — visual toggle (no wishlist backend yet) */
-    document.querySelectorAll('.ziak-cart__wishlist').forEach(function (el) {
-      el.addEventListener('click', function () { el.classList.toggle('is-liked'); });
-    });
+    /* "Move to Wishlist" is handled globally by ziak-wishlist.js (adds to wishlist + removes the line) */
   });
 </script>
 

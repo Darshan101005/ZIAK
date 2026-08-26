@@ -122,6 +122,10 @@
     <div class="ziak-hero__nav-right">
       <a href="#" class="ziak-hero__nav-link" style="color:#1A1A1A;">STORES</a>
       <a href="#" class="ziak-hero__nav-link" style="color:#1A1A1A;">HELP</a>
+      <a href="/pages/wishlist" class="ziak-hero__nav-icon ziak-wish-link" aria-label="Wishlist" style="color:#1A1A1A;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        <span class="ziak-wish-count" data-ziak-wishlist-count style="display:none;">0</span>
+      </a>
       <a href="{{ routes.account_url }}" class="ziak-hero__nav-icon" aria-label="Account" style="color:#1A1A1A;">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
       </a>
@@ -302,12 +306,13 @@
           {%- assign idx = forloop.index0 -%}
           {%- assign ph_badge_text = '' -%}
           {%- if ph_best[idx] == '1' -%}{%- assign ph_badge_text = 'BESTSELLER' -%}{%- endif -%}
+          {%- assign ph_price = ph_prices[idx] | prepend: '$' -%}
           {%- render 'ziak-card',
             index: forloop.index,
             card_url: '#',
             card_title: ph_names[idx],
             card_subtitle: ph_colors[idx],
-            card_price: ph_prices[idx] | prepend: '$',
+            card_price: ph_price,
             badge_text: ph_badge_text,
             badge_type: 'bestseller',
             show_rating: true,

@@ -1,0 +1,191 @@
+/* ══════════════════════════════════════════════════════════
+   ZIAK — Product page: The ZIAK Difference (text + image)
+   ══════════════════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&display=swap');
+
+.ziak-pstory {
+  --ps-ink: #1A1A1A;
+  --ps-muted: #6E655A;
+  --ps-accent: #C77B3B;
+  --ps-line: #E6E4DF;
+  --ps-media-ratio: 4 / 5;
+  font-family: 'Inter', Helvetica, sans-serif;
+  color: var(--ps-ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+.ziak-pstory * { box-sizing: border-box; }
+
+.ziak-pstory__inner {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 40px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 60px;
+}
+.ziak-pstory__inner--reverse .ziak-pstory__copy { order: 2; }
+.ziak-pstory__inner--reverse .ziak-pstory__media-wrap { order: 1; }
+
+/* ── Text ── */
+.ziak-pstory__copy { max-width: 520px; }
+
+.ziak-pstory__eyebrow {
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--ps-accent);
+  margin: 0 0 18px;
+  position: relative;
+  padding-bottom: 14px;
+}
+.ziak-pstory__eyebrow::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 40px;
+  height: 2px;
+  background: var(--ps-accent);
+}
+
+.ziak-pstory__heading {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(2.8rem, 3.4vw, 4rem);
+  font-weight: 600;
+  line-height: 1.12;
+  margin: 0 0 20px;
+  color: var(--ps-ink);
+}
+
+.ziak-pstory__body {
+  font-size: 1.4rem;
+  line-height: 1.75;
+  color: var(--ps-muted);
+  margin: 0 0 26px;
+}
+.ziak-pstory__body p { margin: 0 0 14px; }
+.ziak-pstory__body p:last-child { margin-bottom: 0; }
+
+/* ── Point list ── */
+.ziak-pstory__list {
+  list-style: none;
+  margin: 0 0 30px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.ziak-pstory__point {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+.ziak-pstory__point-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(199, 123, 59, 0.12);
+  color: var(--ps-accent);
+}
+.ziak-pstory__point-icon i { width: 20px; height: 20px; stroke-width: 1.8; }
+.ziak-pstory__point-text {
+  font-size: 1.35rem;
+  line-height: 1.55;
+  color: var(--ps-muted);
+  padding-top: 6px;
+}
+.ziak-pstory__point-text strong { color: var(--ps-ink); font-weight: 700; }
+
+/* ── Button ── */
+.ziak-pstory__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 30px;
+  background: var(--ps-ink);
+  color: #fff;
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 2px;
+  transition: background 0.25s ease, transform 0.25s ease;
+}
+.ziak-pstory__btn i { width: 18px; height: 18px; transition: transform 0.25s ease; }
+.ziak-pstory__btn:hover { background: var(--ps-accent); transform: translateY(-2px); }
+.ziak-pstory__btn:hover i { transform: translateX(4px); }
+
+/* ── Image + hover zoom ── */
+.ziak-pstory__media-wrap { width: 100%; }
+
+.ziak-pstory__media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: var(--ps-media-ratio);
+  overflow: hidden;
+  border-radius: 6px;
+  background: #F5F3EF;
+  box-shadow: 0 24px 60px rgba(26, 22, 18, 0.12);
+}
+
+.ziak-pstory__img,
+.ziak-pstory__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform 0.7s cubic-bezier(0.22, 0.61, 0.36, 1), filter 0.5s ease;
+}
+
+/* subtle overlay that lifts on hover */
+.ziak-pstory__media::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(20, 16, 12, 0.18), rgba(20, 16, 12, 0));
+  opacity: 1;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+.ziak-pstory__media:hover .ziak-pstory__img {
+  transform: scale(1.07);
+  filter: brightness(1.04);
+}
+.ziak-pstory__media:hover::after { opacity: 0.4; }
+
+.ziak-pstory__img--placeholder {
+  object-fit: contain;
+  padding: 40px;
+  opacity: 0.5;
+}
+
+/* ── Responsive ── */
+@media (max-width: 990px) {
+  .ziak-pstory__inner {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+  /* image always on top when stacked */
+  .ziak-pstory__copy { order: 2; max-width: none; }
+  .ziak-pstory__media-wrap { order: 1; }
+  .ziak-pstory__inner--reverse .ziak-pstory__copy { order: 2; }
+  .ziak-pstory__inner--reverse .ziak-pstory__media-wrap { order: 1; }
+  .ziak-pstory__media { aspect-ratio: 16 / 11; }
+}
+
+@media (max-width: 749px) {
+  .ziak-pstory__inner { padding: 0 18px; }
+  .ziak-pstory__heading { font-size: 2.6rem; }
+  .ziak-pstory__media { aspect-ratio: 4 / 5; }
+}

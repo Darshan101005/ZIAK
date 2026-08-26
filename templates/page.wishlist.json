@@ -1,0 +1,14 @@
+{
+  "sections": {
+    "ziak_wishlist": {
+      "type": "ziak-wishlist",
+      "settings": {
+        "announcement_text": "FREE SHIPPING ON ALL ORDERS OVER ₹999 — SHOP ZIAK NOW",
+        "link_about_url": "/pages/about",
+        "heading": "My Wishlist",
+        "continue_url": "/collections/all"
+      }
+    }
+  },
+  "order": ["ziak_wishlist"]
+}

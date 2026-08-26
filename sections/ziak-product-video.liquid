@@ -1,0 +1,236 @@
+{{ 'section-ziak-product-video.css' | asset_url | stylesheet_tag }}
+
+<!-- Lucide icons (same approach as the rest of the ZIAK sections) -->
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
+
+<section
+  class="ziak-pvideo"
+  id="ziak-product-video-{{ section.id }}"
+  style="background-color: {{ section.settings.bg_color }}; padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px;"
+>
+  <div class="ziak-pvideo__inner">
+
+    <!-- ── LEFT: copy ── -->
+    <div class="ziak-pvideo__copy">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="ziak-pvideo__eyebrow">{{ section.settings.eyebrow }}</p>
+      {%- endif -%}
+      {%- if section.settings.heading != blank -%}
+        <h2 class="ziak-pvideo__heading">{{ section.settings.heading }}</h2>
+      {%- endif -%}
+      {%- if section.settings.body != blank -%}
+        <div class="ziak-pvideo__body">{{ section.settings.body }}</div>
+      {%- endif -%}
+      {%- if section.settings.button_label != blank -%}
+        <a
+          href="{{ section.settings.button_url | default: '#ziak-product-video-' | append: section.id }}"
+          class="ziak-pvideo__btn"
+        >
+          <i data-lucide="play"></i>
+          <span>{{ section.settings.button_label }}</span>
+        </a>
+      {%- endif -%}
+    </div>
+
+    <!-- ── CENTER: video ── -->
+    <div class="ziak-pvideo__stage">
+      <div class="ziak-pvideo__frame">
+        {%- if section.settings.video != blank -%}
+          {{
+            section.settings.video
+            | video_tag:
+              controls: true,
+              image_size: '1100x',
+              muted: section.settings.autoplay,
+              autoplay: section.settings.autoplay,
+              loop: section.settings.loop,
+              playsinline: true,
+              class: 'ziak-pvideo__video'
+          }}
+        {%- elsif section.settings.video_url != blank -%}
+          <div class="ziak-pvideo__embed">
+            {{ section.settings.video_url | external_video_tag: class: 'ziak-pvideo__video' }}
+          </div>
+        {%- else -%}
+          <div class="ziak-pvideo__placeholder">
+            <span class="ziak-pvideo__placeholder-icon"><i data-lucide="play"></i></span>
+            <p class="ziak-pvideo__placeholder-text">Add your workshop video here</p>
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+
+    <!-- ── RIGHT: feature stats ── -->
+    <div class="ziak-pvideo__features">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'feature' -%}
+          <div class="ziak-pvideo__feature" {{ block.shopify_attributes }}>
+            <span class="ziak-pvideo__feature-icon"><i data-lucide="{{ block.settings.icon }}"></i></span>
+            <div class="ziak-pvideo__feature-copy">
+              <p class="ziak-pvideo__feature-value">{{ block.settings.value }}</p>
+              <p class="ziak-pvideo__feature-label">{{ block.settings.label }}</p>
+            </div>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    if (typeof lucide !== 'undefined') lucide.createIcons();
+  });
+</script>
+
+{% schema %}
+{
+  "name": "ZIAK Product Video",
+  "tag": "section",
+  "class": "ziak-product-video-section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Left — Copy"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "default": "BEHIND EVERY ZIAK PAIR",
+      "label": "Eyebrow"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "default": "Crafted With Precision. Made With Passion.",
+      "label": "Heading"
+    },
+    {
+      "type": "richtext",
+      "id": "body",
+      "default": "<p>Every ZIAK pair is the result of hours of skilled handwork. Watch how raw leather is transformed into footwear built to last a lifetime.</p>",
+      "label": "Body text"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "default": "WATCH OUR WORKSHOP FILM",
+      "label": "Button label"
+    },
+    {
+      "type": "url",
+      "id": "button_url",
+      "label": "Button link (optional — defaults to the video)"
+    },
+    {
+      "type": "header",
+      "content": "Center — Video"
+    },
+    {
+      "type": "video",
+      "id": "video",
+      "label": "Video (upload)"
+    },
+    {
+      "type": "video_url",
+      "id": "video_url",
+      "label": "Or paste a YouTube / Vimeo URL",
+      "accept": ["youtube", "vimeo"]
+    },
+    {
+      "type": "checkbox",
+      "id": "autoplay",
+      "default": false,
+      "label": "Autoplay (muted)"
+    },
+    {
+      "type": "checkbox",
+      "id": "loop",
+      "default": false,
+      "label": "Loop video"
+    },
+    {
+      "type": "header",
+      "content": "Appearance"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "default": "#1A1A1A",
+      "label": "Background color"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 48
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature stat",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "default": "clock",
+          "options": [
+            { "value": "clock", "label": "Clock" },
+            { "value": "users", "label": "Users / team" },
+            { "value": "shield-check", "label": "Shield check" },
+            { "value": "hammer", "label": "Hammer" },
+            { "value": "scissors", "label": "Scissors" },
+            { "value": "award", "label": "Award" },
+            { "value": "gem", "label": "Gem" },
+            { "value": "sparkles", "label": "Sparkles" },
+            { "value": "heart", "label": "Heart" },
+            { "value": "check-circle", "label": "Check circle" }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "value",
+          "default": "90+ SECONDS",
+          "label": "Value"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "default": "Of craftsmanship per pair",
+          "label": "Label"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "ZIAK Product Video",
+      "blocks": [
+        { "type": "feature", "settings": { "icon": "clock", "value": "90+ SECONDS", "label": "Of craftsmanship per pair" } },
+        { "type": "feature", "settings": { "icon": "users", "value": "20+ EXPERTS", "label": "Skilled artisans involved" } },
+        { "type": "feature", "settings": { "icon": "shield-check", "value": "STRICT QUALITY CHECKS", "label": "Before every pair ships" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -297,6 +297,9 @@
         document.documentElement.classList.add('shopify-design-mode');
       }
     </script>
+
+    {%- comment -%} ZIAK — global wishlist store (localStorage) available on every page {%- endcomment -%}
+    <script src="{{ 'ziak-wishlist.js' | asset_url }}" defer="defer"></script>
   </head>
 
   <body class="gradient template-{{ template | replace: '.', '-' }}{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">
