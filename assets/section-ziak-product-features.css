@@ -57,3 +57,11 @@
   .ziak-pfeat__item { border-right: none; border-bottom: 1px solid #E2E0DA; padding-bottom: 16px; }
   .ziak-pfeat__item:last-child { border-bottom: none; }
 }
+
+/* ── Small-phone polish ── */
+@media (max-width: 480px) {
+  .ziak-pfeat__wrap { padding-left: 16px; padding-right: 16px; }
+  .ziak-pfeat__grid { padding: 18px 14px; }
+  .ziak-pfeat__item { padding: 4px 14px; }
+  .ziak-pfeat__title { font-size: 1.15rem; }
+}

@@ -36,7 +36,8 @@
 
 <!-- ══════════ HEADER (white nav, same as collection) ══════════ -->
 <div class="ziak-hero" id="ziak-contact-hero" style="min-height:auto;background:#FFFFFF;">
-  <nav class="ziak-hero__nav" id="ziak-contact-nav" aria-label="Main navigation" style="background:#FFFFFF;border-bottom:1px solid #E8E8E8;">
+  {%- render 'ziak-mobile-nav' -%}
+    <nav class="ziak-hero__nav" id="ziak-contact-nav" aria-label="Main navigation" style="background:#FFFFFF;border-bottom:1px solid #E8E8E8;">
     <div class="ziak-hero__nav-left">
       <div class="ziak-hero__dropdown-wrapper">
         <a href="{{ section.settings.link_men_url | default: '/collections/mens' }}" class="ziak-hero__nav-link ziak-hero__nav-link--dropdown" style="color:#1A1A1A;">MEN</a>

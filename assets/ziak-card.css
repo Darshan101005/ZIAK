@@ -373,3 +373,12 @@
   .ziak-card__title { font-size: 1.4rem; }
   .ziak-card__atc { font-size: 1.1rem; padding: 10px 12px; }
 }
+
+/* ── Small-phone polish (2-up cards get narrow, tighten internals) ── */
+@media (max-width: 480px) {
+  .ziak-card__info { padding: 8px 10px 2px; }
+  .ziak-card__title { font-size: 1.3rem; }
+  .ziak-card__subtitle { font-size: 1.15rem; }
+  .ziak-card__atc { font-size: 1.05rem; padding: 9px 10px; letter-spacing: 0.03em; }
+  .ziak-card__wishlist { top: 8px; right: 8px; }
+}

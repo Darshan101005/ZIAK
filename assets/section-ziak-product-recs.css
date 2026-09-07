@@ -118,3 +118,12 @@
   .ziak-precs__grid { grid-template-columns: repeat(2, 1fr); }
   .ziak-precs__promo { min-height: 275px; grid-column: span 2; }
 }
+
+/* ── Small-phone polish ── */
+@media (max-width: 480px) {
+  .ziak-precs__wrap { padding-left: 16px; padding-right: 16px; }
+  .ziak-precs__grid { gap: 10px; }
+  .ziak-precs__promo { min-height: 220px; }
+  .ziak-precs__title { font-size: 1.3rem; }
+  .ziak-precs__viewall { font-size: 1.1rem; }
+}

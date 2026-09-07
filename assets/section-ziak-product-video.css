@@ -209,3 +209,13 @@
   .ziak-pvideo__frame { aspect-ratio: 16 / 10; max-height: 340px; }
   .ziak-pvideo__heading { font-size: 2.4rem; }
 }
+
+/* ── Small-phone polish ── */
+@media (max-width: 480px) {
+  .ziak-pvideo__inner { padding: 0 16px; gap: 22px; }
+  .ziak-pvideo__heading { font-size: 2.1rem; }
+  .ziak-pvideo__eyebrow { font-size: 0.95rem; letter-spacing: 0.2em; }
+  .ziak-pvideo__btn { width: 100%; justify-content: center; font-size: 0.95rem; padding: 14px 18px; }
+  .ziak-pvideo__frame { max-height: 300px; }
+  .ziak-pvideo__feature { padding: 16px; }
+}

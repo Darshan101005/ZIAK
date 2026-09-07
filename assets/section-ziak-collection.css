@@ -1032,3 +1032,70 @@
   .ziak-coll__pill { flex-shrink: 0; }
   .ziak-coll__toolbar { flex-direction: column; align-items: flex-start; }
 }
+
+/* ══════════════════════════════════════════════════════════
+   MOBILE REDESIGN (phones ≤749) — desktop layout untouched.
+   Sidebar removed (filters live in the Filter panel + pills),
+   "Need help" relocated into the filter panel, pills scroll
+   horizontally, products go 2-up.
+   ══════════════════════════════════════════════════════════ */
+
+/* "Need help" block only shows inside the filter panel on mobile.
+   Base = hidden so the DESKTOP filter panel stays exactly as before. */
+.ziak-coll__fp-help { display: none; }
+.ziak-coll__fp-help-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 11px 0;
+  font-family: 'Inter', sans-serif;
+  font-size: 1.35rem;
+  color: #333333;
+  text-decoration: none;
+  border-bottom: 1px solid #F0F0F0;
+  transition: color 0.2s;
+}
+.ziak-coll__fp-help-link:last-child { border-bottom: none; }
+.ziak-coll__fp-help-link:hover { color: #1A1A1A; }
+.ziak-coll__fp-help-link svg { color: #A05A45; flex-shrink: 0; }
+
+@media screen and (max-width: 749px) {
+  /* Remove the whole left sidebar + its floating reveal button */
+  .ziak-coll__sidebar,
+  .ziak-coll__sb-reveal { display: none !important; }
+
+  /* Main content spans the full width (no flex row) */
+  .ziak-coll { display: block; }
+  .ziak-coll__main {
+    width: 100%;
+    max-width: 100%;
+    padding: 14px 16px 48px;
+  }
+
+  /* Two products per row — minmax(0,1fr) lets tracks shrink so they
+     always fit the screen (fixes the "1 card + peek" overflow). */
+  .ziak-coll__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 12px;
+  }
+
+  /* Category pills: edge-to-edge horizontal scroll strip */
+  .ziak-coll__pills {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    margin-left: -16px;
+    margin-right: -16px;
+    padding: 0 16px 6px;
+  }
+  .ziak-coll__pills::-webkit-scrollbar { display: none; }
+  .ziak-coll__pill { flex-shrink: 0; white-space: nowrap; }
+
+  /* Toolbar wraps cleanly (count / filter / sort) */
+  .ziak-coll__toolbar { flex-wrap: wrap; gap: 10px; }
+
+  /* Reveal the relocated Need-help block inside the filter panel */
+  .ziak-coll__fp-help { display: block; }
+}

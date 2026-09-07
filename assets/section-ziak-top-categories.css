@@ -238,3 +238,23 @@
     padding: 1rem 1rem 1rem;
   }
 }
+
+/* ── Mobile: full width with equal side spacing (fixes right-side gap/overflow) ── */
+@media screen and (max-width: 749px) {
+  .ziak-topcats {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding-left: 12px;
+    padding-right: 12px;
+    overflow: hidden;
+  }
+  .ziak-topcats__grid,
+  .ziak-topcats__small-grid {
+    width: 100%;
+    max-width: 100%;
+  }
+  .ziak-topcats__small-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

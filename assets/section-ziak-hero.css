@@ -468,3 +468,190 @@ body:has(.ziak-hero-section) .section-header {
     justify-content: center;
   }
 }
+
+/* ── Small-phone header polish (shared by every ZIAK header) ── */
+@media screen and (max-width: 480px) {
+  .ziak-hero__nav { padding: 0.7rem 0.9rem; }
+  .ziak-hero__nav-right { gap: 0.35rem; }
+  .ziak-hero__nav-icon { width: 2.4rem; height: 2.4rem; }
+  .ziak-hero__nav-icon svg { width: 21px; height: 21px; }
+  .ziak-hero__logo-placeholder { width: 92px; }
+  .ziak-hero__announcement { font-size: 0.9rem; letter-spacing: 0.04em; padding: 0.55rem 0.8rem; }
+}
+
+/* ══════════════════════════════════════════════════════════
+   ZIAK mobile header bar + drawer (phones only).
+   Desktop is fully preserved: .ziak-mnav / drawer / overlay are
+   display:none at >=750px, and the original .ziak-hero__nav is
+   only hidden inside the <=749px query.
+   ══════════════════════════════════════════════════════════ */
+.ziak-mnav { display: none; }
+
+/* Keep the drawer + overlay completely out of the desktop render */
+@media screen and (min-width: 750px) {
+  .ziak-mnav__drawer,
+  .ziak-mnav__overlay { display: none !important; }
+}
+
+@media screen and (max-width: 749px) {
+  /* Swap the desktop nav for the purpose-built mobile bar */
+  .ziak-hero__nav { display: none !important; }
+
+  .ziak-mnav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    padding: 0.65rem 1rem;
+    background: #FFFFFF;
+    border-bottom: 1px solid #E8E8E8;
+    position: relative;
+    z-index: 60;
+  }
+
+  /* Left: lone icons */
+  .ziak-mnav__icons { display: flex; align-items: center; gap: 0.5rem; flex: 1 1 0; justify-content: flex-end; order: 3; }
+  .ziak-mnav__icon {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.4rem;
+    height: 2.4rem;
+    color: #1A1A1A;
+    text-decoration: none;
+  }
+  .ziak-mnav__icon svg { width: 22px; height: 22px; stroke: #1A1A1A; fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+
+  /* Center: logo */
+  .ziak-mnav__logo {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 700;
+    font-size: 2rem;
+    letter-spacing: 0.16em;
+    color: #1A1A1A;
+    text-decoration: none;
+  }
+  .ziak-mnav__logo-img { height: 26px; width: auto; display: block; }
+
+  /* Right: hamburger */
+  .ziak-mnav__burger {
+    flex: 1 1 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    order: -1;
+    background: none;
+    border: none;
+    padding: 0.3rem;
+    cursor: pointer;
+    color: #1A1A1A;
+  }
+  .ziak-mnav__burger svg { width: 26px; height: 26px; stroke: #1A1A1A; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+}
+
+/* ── Drawer + overlay (styles apply on mobile; hidden on desktop above) ── */
+.ziak-mnav__overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 998;
+}
+.ziak-mnav__overlay.is-open { opacity: 1; }
+
+.ziak-mnav__drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 82%;
+  max-width: 330px;
+  background: #FFFFFF;
+  z-index: 999;
+  transform: translateX(100%);
+  transition: transform 0.32s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  box-shadow: -8px 0 30px rgba(0, 0, 0, 0.14);
+  font-family: 'Inter', Helvetica, sans-serif;
+}
+.ziak-mnav__drawer.is-open { transform: translateX(0); }
+
+.ziak-mnav__drawer-hd {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.2rem 1.4rem;
+  border-bottom: 1px solid #EEEEEE;
+}
+.ziak-mnav__drawer-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #888888;
+}
+.ziak-mnav__drawer-close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #1A1A1A;
+  display: flex;
+  padding: 0.2rem;
+}
+.ziak-mnav__drawer-close svg { width: 22px; height: 22px; }
+
+.ziak-mnav__links {
+  display: flex;
+  flex-direction: column;
+  padding: 0.6rem 0;
+}
+.ziak-mnav__link {
+  padding: 1.05rem 1.4rem;
+  font-size: 1.55rem;
+  font-weight: 600;
+  color: #1A1A1A;
+  text-decoration: none;
+  border-bottom: 1px solid #F3F3F3;
+  transition: background 0.2s;
+}
+.ziak-mnav__link:hover { background: #F7F6F3; }
+
+.ziak-mnav__account {
+  margin-top: auto;
+  padding: 1.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  border-top: 1px solid #EEEEEE;
+}
+.ziak-mnav__acct-line {
+  font-size: 1.45rem;
+  font-weight: 600;
+  color: #1A1A1A;
+  text-decoration: none;
+  padding: 0.4rem 0;
+}
+.ziak-mnav__acct-btn {
+  display: block;
+  text-align: center;
+  padding: 1rem 1.2rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  background: #1A1A1A;
+  color: #FFFFFF;
+  border: 1.5px solid #1A1A1A;
+  border-radius: 4px;
+  transition: background 0.2s, color 0.2s;
+}
+.ziak-mnav__acct-btn--outline { background: transparent; color: #1A1A1A; }
+.ziak-mnav__acct-btn--outline:hover { background: #1A1A1A; color: #FFFFFF; }

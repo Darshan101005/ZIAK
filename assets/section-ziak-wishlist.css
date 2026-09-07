@@ -291,3 +291,13 @@
   .ziak-wl__note { flex-direction: column; align-items: flex-start; }
   .ziak-wl__note-btn { width: 100%; justify-content: center; }
 }
+
+/* ── Small-phone polish ── */
+@media (max-width: 480px) {
+  .ziak-wl { padding-left: 16px; padding-right: 16px; }
+  .ziak-wl__title { font-size: 2.6rem; }
+  .ziak-wl__row { padding: 18px 16px 20px; }
+  .ziak-wl__action { flex-wrap: wrap; gap: 8px; }
+  .ziak-wl__atc { flex: 1 1 100%; }
+  .ziak-wl__icon-btn { flex: 0 0 auto; }
+}

@@ -68,7 +68,8 @@
 
 <!-- Nav: white bg, black text, with full mega menus -->
 <div class="ziak-hero" id="ziak-coll-hero" style="min-height:auto;background:#FFFFFF;">
-  <nav class="ziak-hero__nav" id="ziak-coll-nav" aria-label="Main navigation" style="background:#FFFFFF;border-bottom:1px solid #E8E8E8;">
+  {%- render 'ziak-mobile-nav' -%}
+    <nav class="ziak-hero__nav" id="ziak-coll-nav" aria-label="Main navigation" style="background:#FFFFFF;border-bottom:1px solid #E8E8E8;">
 
     <!-- Left Nav -->
     <div class="ziak-hero__nav-left">
@@ -414,6 +415,19 @@
           <button class="ziak-coll__swatch" style="background:#A08060;border:1px solid #ddd;" aria-label="Chestnut" title="Chestnut"></button>
           <button class="ziak-coll__swatch" style="background:#F5F0E8;border:1px solid #ddd;" aria-label="Cream" title="Cream"></button>
         </div>
+      </div>
+
+      <!-- Need help (relocated from the sidebar on mobile) -->
+      <div class="ziak-coll__fp-group ziak-coll__fp-help">
+        <h4 class="ziak-coll__fp-group-title">Need Help?</h4>
+        <a href="/pages/size-guide" class="ziak-coll__fp-help-link">
+          Size Guide
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+        <a href="/pages/contact" class="ziak-coll__fp-help-link">
+          Contact Us
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
       </div>
 
     </div><!-- /.ziak-coll__fp-bd -->

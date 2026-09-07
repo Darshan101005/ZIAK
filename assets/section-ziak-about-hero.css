@@ -88,3 +88,12 @@
     padding-bottom: 3rem;
   }
 }
+
+/* ── Small-phone polish ── */
+@media screen and (max-width: 480px) {
+  .ziak-about-hero__content { padding-bottom: 3rem; max-width: 100%; }
+  .ziak-about__headline { font-size: 3rem; }
+  .ziak-about__subheadline { font-size: 1.7rem; }
+  .ziak-about__divider { margin: 1.8rem 0; }
+  .ziak-about__body { font-size: 1.3rem; max-width: 100%; }
+}

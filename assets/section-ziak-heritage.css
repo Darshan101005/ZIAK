@@ -332,3 +332,19 @@
     max-width: 60px;
   }
 }
+
+/* ── Mobile pass: let the stats row wrap into 2×2 instead of overflowing ── */
+@media screen and (max-width: 749px) {
+  .ziak-heritage__stats {
+    flex-wrap: wrap;
+    gap: 0.5rem 0;
+  }
+  .ziak-heritage__stat {
+    border-right: none;
+    padding: 0 0.6rem;
+  }
+}
+@media screen and (max-width: 480px) {
+  .ziak-heritage__heading { font-size: 2.3rem; }
+  .ziak-heritage__reviews { padding: 2.4rem 1rem 2.8rem; }
+}
