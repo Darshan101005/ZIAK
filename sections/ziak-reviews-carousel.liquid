@@ -1,0 +1,125 @@
+{{ 'section-ziak-reviews-carousel.css' | asset_url | stylesheet_tag }}
+
+<section
+  class="ziak-rc"
+  id="ziak-rc-{{ section.id }}"
+  style="background-color: {{ section.settings.bg_color }}; padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px;"
+>
+  <div class="ziak-rc__inner">
+    <div class="ziak-rc__head">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="ziak-rc__eyebrow">{{ section.settings.eyebrow }}</p>
+      {%- endif -%}
+      {%- if section.settings.heading != blank -%}
+        <h2 class="ziak-rc__title">{{ section.settings.heading }}</h2>
+      {%- endif -%}
+    </div>
+
+    <div class="ziak-rc__viewport" data-rc-viewport>
+      <div class="ziak-rc__track" data-rc-track>
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'review' -%}
+            <article class="ziak-rc__card" {{ block.shopify_attributes }}>
+              <div class="ziak-rc__card-top">
+                <div class="ziak-rc__stars" aria-label="{{ block.settings.stars }} out of 5 stars">
+                  {%- for i in (1..5) -%}
+                    <span class="ziak-rc__star{% if i <= block.settings.stars %} is-on{% endif %}">
+                      <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    </span>
+                  {%- endfor -%}
+                </div>
+                <span class="ziak-rc__quote" aria-hidden="true">&rdquo;</span>
+              </div>
+
+              <p class="ziak-rc__text">{{ block.settings.text }}</p>
+
+              <div class="ziak-rc__person">
+                <span class="ziak-rc__avatar" style="background: {{ block.settings.avatar_color | default: '#C77B3B' }};">
+                  {{ block.settings.name | slice: 0 | upcase }}
+                </span>
+                <div class="ziak-rc__person-meta">
+                  <span class="ziak-rc__name">{{ block.settings.name }}</span>
+                  {%- if block.settings.location != blank -%}
+                    <span class="ziak-rc__loc">{% if block.settings.flag != blank %}{{ block.settings.flag }} {% endif %}{{ block.settings.location }}</span>
+                  {%- endif -%}
+                </div>
+              </div>
+            </article>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </div>
+
+    <div class="ziak-rc__arrows">
+      <button type="button" class="ziak-rc__arrow" data-rc-prev aria-label="Previous reviews">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <button type="button" class="ziak-rc__arrow ziak-rc__arrow--next" data-rc-next aria-label="Next reviews">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<script>
+  (function () {
+    var root = document.getElementById('ziak-rc-{{ section.id }}');
+    if (!root) return;
+    var viewport = root.querySelector('[data-rc-viewport]');
+    var track = root.querySelector('[data-rc-track]');
+    var prev = root.querySelector('[data-rc-prev]');
+    var next = root.querySelector('[data-rc-next]');
+    if (!viewport || !track) return;
+
+    function step() {
+      var card = track.querySelector('.ziak-rc__card');
+      if (!card) return viewport.clientWidth * 0.8;
+      var gap = parseInt(getComputedStyle(track).columnGap || getComputedStyle(track).gap || '20', 10) || 20;
+      return card.getBoundingClientRect().width + gap;
+    }
+    if (next) next.addEventListener('click', function () { viewport.scrollBy({ left: step(), behavior: 'smooth' }); });
+    if (prev) prev.addEventListener('click', function () { viewport.scrollBy({ left: -step(), behavior: 'smooth' }); });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "ZIAK Reviews Carousel",
+  "tag": "section",
+  "class": "ziak-reviews-carousel-section",
+  "disabled_on": { "groups": ["header", "footer"] },
+  "settings": [
+    { "type": "text", "id": "eyebrow", "default": "REVIEWS", "label": "Eyebrow" },
+    { "type": "text", "id": "heading", "default": "Loved By ZIAK Customers", "label": "Heading" },
+    { "type": "color", "id": "bg_color", "default": "#F7F6F3", "label": "Background color" },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 120, "step": 4, "unit": "px", "label": "Top padding", "default": 64 },
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 120, "step": 4, "unit": "px", "label": "Bottom padding", "default": 64 }
+  ],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Review",
+      "settings": [
+        { "type": "range", "id": "stars", "min": 1, "max": 5, "step": 1, "label": "Stars", "default": 5 },
+        { "type": "textarea", "id": "text", "label": "Review text", "default": "Beautifully made and incredibly comfortable. Easily the best formal shoes I own." },
+        { "type": "text", "id": "name", "label": "Name", "default": "Rahul S." },
+        { "type": "text", "id": "location", "label": "Location", "default": "India" },
+        { "type": "text", "id": "flag", "label": "Flag emoji (optional)", "default": "🇮🇳" },
+        { "type": "color", "id": "avatar_color", "label": "Avatar color", "default": "#C77B3B" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "ZIAK Reviews Carousel",
+      "blocks": [
+        { "type": "review", "settings": { "stars": 5, "text": "The Derby pair is stunning — premium leather and a perfect fit. I get compliments every time.", "name": "Rahul S.", "location": "Mumbai, India", "flag": "🇮🇳", "avatar_color": "#C77B3B" } },
+        { "type": "review", "settings": { "stars": 5, "text": "My Chelsea boots are beautifully crafted. Comfortable straight out of the box.", "name": "Arjun M.", "location": "Delhi, India", "flag": "🇮🇳", "avatar_color": "#1A1A1A" } },
+        { "type": "review", "settings": { "stars": 4, "text": "Classic brogues done right. Sharp detailing and they age gracefully.", "name": "Vikram P.", "location": "Bengaluru, India", "flag": "🇮🇳", "avatar_color": "#6E1B33" } },
+        { "type": "review", "settings": { "stars": 5, "text": "The loafers are my everyday go-to now. Elegant and easy to wear.", "name": "Karan D.", "location": "Pune, India", "flag": "🇮🇳", "avatar_color": "#C77B3B" } },
+        { "type": "review", "settings": { "stars": 5, "text": "Formal shoes that actually last. Worth every rupee.", "name": "Aditya N.", "location": "Chennai, India", "flag": "🇮🇳", "avatar_color": "#1A1A1A" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

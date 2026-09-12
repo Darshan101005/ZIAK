@@ -38,37 +38,16 @@
     <div class="ziak-hero__nav-left">
       <div class="ziak-hero__dropdown-wrapper">
         <a href="{{ section.settings.link_men_url | default: '/collections/mens' }}" class="ziak-hero__nav-link ziak-hero__nav-link--dropdown" style="color:#1A1A1A;">MEN</a>
-        <div class="ziak-hero__mega-menu" style="background:#FFFFFF;">
-          <div class="ziak-hero__mega-menu-column">
-            <p class="ziak-hero__mega-menu-heading">Boots</p>
-            <a href="#" class="ziak-hero__mega-menu-link">All Styles</a>
-            <a href="#" class="ziak-hero__mega-menu-link">Lace-Up</a>
-            <a href="#" class="ziak-hero__mega-menu-link">Chelsea</a>
-            <a href="#" class="ziak-hero__mega-menu-link">Chukka</a>
-          </div>
-          <div class="ziak-hero__mega-menu-column">
-            <p class="ziak-hero__mega-menu-heading">Sneakers</p>
-            <a href="#" class="ziak-hero__mega-menu-link">All Styles</a>
-            <a href="#" class="ziak-hero__mega-menu-link">Low Top</a>
-            <a href="#" class="ziak-hero__mega-menu-link">High Top</a>
-            <p class="ziak-hero__mega-menu-heading ziak-hero__mega-menu-divider">Shoes</p>
-            <a href="#" class="ziak-hero__mega-menu-link">Dress Shoes</a>
-            <a href="#" class="ziak-hero__mega-menu-link">Casual Shoes</a>
-          </div>
-          <div class="ziak-hero__mega-menu-column">
-            <p class="ziak-hero__mega-menu-heading">Jackets</p>
-            <a href="#" class="ziak-hero__mega-menu-link">All Jackets</a>
-            <a href="#" class="ziak-hero__mega-menu-link">Leather</a>
-            <p class="ziak-hero__mega-menu-heading ziak-hero__mega-menu-divider">Gift Cards</p>
-          </div>
-        </div>
+        {%- render 'ziak-mega-menu' -%}
       </div>
       <a href="{{ section.settings.link_about_url | default: '/pages/about' }}" class="ziak-hero__nav-link" style="color:#1A1A1A;">ABOUT</a>
     </div>
 
     <div class="ziak-hero__nav-center">
       <a href="{{ routes.root_url }}" class="ziak-hero__logo-placeholder" style="color:#1A1A1A;">
-        {%- if settings.logo != blank -%}
+        {%- if settings.logo_svg_url != blank -%}
+          <img src="{{ settings.logo_svg_url }}" alt="{{ shop.name | escape }}" class="ziak-hero__logo-img" width="120">
+        {%- elsif settings.logo != blank -%}
           {{ settings.logo | image_url: width: 300 | image_tag: alt: shop.name, class: 'ziak-hero__logo-img', width: 110 }}
         {%- else -%}
           ZIAK
@@ -84,13 +63,13 @@
         <span class="ziak-wish-count" data-ziak-wishlist-count style="display:none;">0</span>
       </a>
       <a href="{{ routes.account_url }}" class="ziak-hero__nav-icon" aria-label="Account" style="color:#1A1A1A;">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M18 20a6 6 0 0 0-12 0"/><circle cx="12" cy="10" r="4"/></svg>
       </a>
       <a href="{{ routes.search_url }}" class="ziak-hero__nav-icon" aria-label="Search" style="color:#1A1A1A;">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
       </a>
       <a href="{{ routes.cart_url }}" class="ziak-hero__nav-icon" aria-label="Cart" style="color:#1A1A1A;">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
       </a>
     </div>
   </nav>

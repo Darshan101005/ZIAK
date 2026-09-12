@@ -4,7 +4,7 @@
     "ziak_hero": {
       "type": "ziak-hero",
       "settings": {
-        "announcement_text": "FREE SHIPPING AND RETURNS IN THE U.S.",
+        "announcement_text": "FREE SHIPPING ON ALL ORDERS OVER ₹999 — ALL OVER INDIA",
         "announcement_link_text": "DETAILS",
         "nav_link_1_text": "MEN",
         "nav_link_1_dropdown": true,
@@ -12,36 +12,43 @@
         "nav_link_2_dropdown": true,
         "nav_link_3_text": "ABOUT",
         "nav_right_link_1_text": "STORES",
-        "nav_right_link_2_text": "RESALE",
+        "nav_right_link_2_text": "",
         "nav_right_link_3_text": "HELP",
         "show_account_icon": true,
         "show_search_icon": true,
         "show_cart_icon": true,
         "heading": "Highest Quality. Honest Prices.",
         "subheading": "Handcrafted With Integrity",
-        "button_1_text": "SHOP MEN",
-        "button_2_text": "SHOP WOMEN"
+        "button_1_text": "SHOP THE COLLECTION",
+        "button_2_text": "OUR STORY"
       }
     },
     "ziak_top_categories": {
       "type": "ziak-top-categories",
       "settings": {
         "section_title": "Shop By Category",
-        "featured_label": "Bestsellers",
-        "featured_sub": "Shop our most popular items",
+        "featured_label": "All Shoes",
+        "featured_sub": "Explore the full collection",
         "featured_btn_text": "Shop now",
-        "cat_1_label": "Men's",
+        "featured_link": "/collections/all",
+        "cat_1_label": "Bestsellers",
         "cat_1_btn": "Shop now",
-        "cat_2_label": "Women's",
+        "cat_1_link": "/collections/all?sort_by=best-selling",
+        "cat_2_label": "Formal Shoes",
         "cat_2_btn": "Shop now",
-        "cat_3_label": "Kids",
+        "cat_2_link": "/collections/formal-shoes",
+        "cat_3_label": "Brogues",
         "cat_3_btn": "Shop now",
-        "cat_4_label": "Apparels",
+        "cat_3_link": "/collections/brogues",
+        "cat_4_label": "Derby Shoes",
         "cat_4_btn": "Shop now",
-        "cat_5_label": "Accessories",
+        "cat_4_link": "/collections/derby-shoes",
+        "cat_5_label": "Chelsea Boots",
         "cat_5_btn": "Shop now",
-        "cat_6_label": "Backpacks",
+        "cat_5_link": "/collections/chelsea-boots",
+        "cat_6_label": "Loafers",
         "cat_6_btn": "Shop now",
+        "cat_6_link": "/collections/loafers",
         "padding_top": 36,
         "padding_bottom": 36
       }
@@ -149,6 +156,24 @@
       },
       "block_order": ["rev_1", "rev_2", "rev_3"]
     },
+    "ziak_reviews_carousel": {
+      "type": "ziak-reviews-carousel",
+      "settings": {
+        "eyebrow": "REVIEWS",
+        "heading": "Loved By ZIAK Customers",
+        "bg_color": "#F7F6F3",
+        "padding_top": 64,
+        "padding_bottom": 64
+      },
+      "blocks": {
+        "rc1": { "type": "review", "settings": { "stars": 5, "text": "The Derby pair is stunning — premium leather and a perfect fit. I get compliments every time.", "name": "Rahul S.", "location": "Mumbai, India", "flag": "🇮🇳", "avatar_color": "#C77B3B" } },
+        "rc2": { "type": "review", "settings": { "stars": 5, "text": "My Chelsea boots are beautifully crafted. Comfortable straight out of the box.", "name": "Arjun M.", "location": "Delhi, India", "flag": "🇮🇳", "avatar_color": "#1A1A1A" } },
+        "rc3": { "type": "review", "settings": { "stars": 4, "text": "Classic brogues done right. Sharp detailing and they age gracefully.", "name": "Vikram P.", "location": "Bengaluru, India", "flag": "🇮🇳", "avatar_color": "#6E1B33" } },
+        "rc4": { "type": "review", "settings": { "stars": 5, "text": "The loafers are my everyday go-to now. Elegant and easy to wear.", "name": "Karan D.", "location": "Pune, India", "flag": "🇮🇳", "avatar_color": "#C77B3B" } },
+        "rc5": { "type": "review", "settings": { "stars": 5, "text": "Formal shoes that actually last. Worth every rupee.", "name": "Aditya N.", "location": "Chennai, India", "flag": "🇮🇳", "avatar_color": "#1A1A1A" } }
+      },
+      "block_order": ["rc1", "rc2", "rc3", "rc4", "rc5"]
+    },
     "ziak_why": {
       "type": "ziak-why",
       "settings": {
@@ -168,6 +193,7 @@
     "ziak_heritage",
     "ziak_top_picks",
     "ziak_reviews",
+    "ziak_reviews_carousel",
     "ziak_why",
     "featured_collection"
   ]

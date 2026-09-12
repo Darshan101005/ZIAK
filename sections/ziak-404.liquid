@@ -1,0 +1,146 @@
+{{ 'section-ziak-hero.css' | asset_url | stylesheet_tag }}
+{{ 'section-ziak-404.css' | asset_url | stylesheet_tag }}
+
+<!-- Lucide icons (same approach as the rest of the ZIAK sections) -->
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
+
+<style>
+  .shopify-section-group-header-group { display: none !important; }
+  body { background-color: #FFFFFF !important; }
+
+  #ziak-404-nav {
+    position: relative !important;
+    top: auto !important; left: auto !important; right: auto !important;
+    background: #FFFFFF !important;
+    border-bottom: 1px solid #E8E8E8 !important;
+  }
+  #ziak-404-nav .ziak-hero__nav-link,
+  #ziak-404-nav .ziak-hero__nav-link--dropdown { color: #1A1A1A !important; }
+  #ziak-404-nav .ziak-hero__nav-link--dropdown::after { border-top-color: #1A1A1A !important; }
+  #ziak-404-nav .ziak-hero__nav-icon { color: #1A1A1A !important; opacity: 1 !important; }
+  #ziak-404-nav .ziak-hero__nav-icon svg { stroke: #1A1A1A !important; }
+  #ziak-404-nav .ziak-hero__logo-placeholder { color: #1A1A1A !important; opacity: 1 !important; }
+  #ziak-404-nav .ziak-hero__logo-img { filter: none !important; }
+  #ziak-404-nav .ziak-hero__mega-menu {
+    position: fixed !important; top: auto !important; left: 0 !important; right: 0 !important; width: 100vw !important;
+  }
+</style>
+
+<!-- ══════════ ANNOUNCEMENT BAR ══════════ -->
+<div class="ziak-hero__announcement" id="ziak-404-announcement" style="background:#1A1A1A;color:#FFFFFF;">
+  <span>{{ section.settings.announcement_text | default: 'FREE SHIPPING ON ALL ORDERS OVER ₹999 — ALL OVER INDIA' }}</span>
+</div>
+
+<!-- ══════════ HEADER ══════════ -->
+<div class="ziak-hero" id="ziak-404-hero" style="min-height:auto;background:#FFFFFF;">
+  {%- render 'ziak-mobile-nav' -%}
+    <nav class="ziak-hero__nav" id="ziak-404-nav" aria-label="Main navigation" style="background:#FFFFFF;border-bottom:1px solid #E8E8E8;">
+    <div class="ziak-hero__nav-left">
+      <div class="ziak-hero__dropdown-wrapper">
+        <a href="/collections/all" class="ziak-hero__nav-link ziak-hero__nav-link--dropdown" style="color:#1A1A1A;">MEN</a>
+        {%- render 'ziak-mega-menu' -%}
+      </div>
+      <a href="/pages/about" class="ziak-hero__nav-link" style="color:#1A1A1A;">ABOUT</a>
+    </div>
+
+    <div class="ziak-hero__nav-center">
+      <a href="{{ routes.root_url }}" class="ziak-hero__logo-placeholder" style="color:#1A1A1A;">
+        {%- if settings.logo_svg_url != blank -%}
+          <img src="{{ settings.logo_svg_url }}" alt="{{ shop.name | escape }}" class="ziak-hero__logo-img" width="120">
+        {%- elsif settings.logo != blank -%}
+          {{ settings.logo | image_url: width: 300 | image_tag: alt: shop.name, class: 'ziak-hero__logo-img', width: 110 }}
+        {%- else -%}
+          ZIAK
+        {%- endif -%}
+      </a>
+    </div>
+
+    <div class="ziak-hero__nav-right">
+      <a href="#" class="ziak-hero__nav-link" style="color:#1A1A1A;">STORES</a>
+      <a href="#" class="ziak-hero__nav-link" style="color:#1A1A1A;">HELP</a>
+      <a href="/pages/wishlist" class="ziak-hero__nav-icon ziak-wish-link" aria-label="Wishlist" style="color:#1A1A1A;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        <span class="ziak-wish-count" data-ziak-wishlist-count style="display:none;">0</span>
+      </a>
+      <a href="{{ routes.account_url }}" class="ziak-hero__nav-icon" aria-label="Account" style="color:#1A1A1A;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M18 20a6 6 0 0 0-12 0"/><circle cx="12" cy="10" r="4"/></svg>
+      </a>
+      <a href="{{ routes.search_url }}" class="ziak-hero__nav-icon" aria-label="Search" style="color:#1A1A1A;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      </a>
+      <a href="{{ routes.cart_url }}" class="ziak-hero__nav-icon" aria-label="Cart" style="color:#1A1A1A;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+      </a>
+    </div>
+  </nav>
+</div>
+
+<!-- ══════════ 404 BODY ══════════ -->
+<div class="ziak-404">
+  <div class="ziak-404__inner">
+    <p class="ziak-404__code">404</p>
+    <h1 class="ziak-404__title">{{ section.settings.heading | default: 'Page Not Found' }}</h1>
+    <p class="ziak-404__text">{{ section.settings.message | default: "The page you're looking for has moved, sold out, or never existed. Let's get you back on the right path." }}</p>
+
+    <form action="{{ routes.search_url }}" method="get" role="search" class="ziak-404__search">
+      <span class="ziak-404__search-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      </span>
+      <input type="search" name="q" placeholder="Search for shoes…" class="ziak-404__search-input" aria-label="Search">
+      <input type="hidden" name="options[prefix]" value="last">
+      <button type="submit" class="ziak-404__search-btn">Search</button>
+    </form>
+
+    <div class="ziak-404__actions">
+      <a href="{{ routes.root_url }}" class="ziak-404__btn ziak-404__btn--primary">BACK TO HOME</a>
+      <a href="{{ section.settings.shop_url | default: '/collections/all' }}" class="ziak-404__btn ziak-404__btn--ghost">SHOP ALL SHOES</a>
+    </div>
+
+    {%- if section.blocks.size > 0 -%}
+      <div class="ziak-404__links">
+        <span class="ziak-404__links-label">Popular:</span>
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'link' and block.settings.label != blank -%}
+            <a href="{{ block.settings.url | default: '#' }}" class="ziak-404__chip" {{ block.shopify_attributes }}>{{ block.settings.label }}</a>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "ZIAK 404",
+  "tag": "section",
+  "class": "ziak-404-section",
+  "settings": [
+    { "type": "header", "content": "Top Bar" },
+    { "type": "text", "id": "announcement_text", "default": "FREE SHIPPING ON ALL ORDERS OVER ₹999 — ALL OVER INDIA", "label": "Announcement text" },
+    { "type": "header", "content": "404 Content" },
+    { "type": "text", "id": "heading", "default": "Page Not Found", "label": "Heading" },
+    { "type": "textarea", "id": "message", "default": "The page you're looking for has moved, sold out, or never existed. Let's get you back on the right path.", "label": "Message" },
+    { "type": "url", "id": "shop_url", "label": "\"Shop all\" link" }
+  ],
+  "blocks": [
+    {
+      "type": "link",
+      "name": "Popular link",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Label", "default": "Formal Shoes" },
+        { "type": "url", "id": "url", "label": "Link" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "ZIAK 404",
+      "blocks": [
+        { "type": "link", "settings": { "label": "Formal Shoes" } },
+        { "type": "link", "settings": { "label": "Chelsea Boots" } },
+        { "type": "link", "settings": { "label": "Loafers" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

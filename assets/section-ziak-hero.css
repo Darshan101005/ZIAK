@@ -83,8 +83,14 @@ body:has(.ziak-hero-section) .section-header {
 
 .ziak-hero__nav-center {
   position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  width: max-content;
+  max-width: 60%;
+  /* Centered via auto-margins (pixel-snapped) instead of translateX(-50%),
+     which was landing on a half-pixel and softening/blurring the logo. */
 }
 
 /* Increased nav link font-size by ~3% (1.2rem -> 1.4rem) */
@@ -655,3 +661,26 @@ body:has(.ziak-hero-section) .section-header {
 }
 .ziak-mnav__acct-btn--outline { background: transparent; color: #1A1A1A; }
 .ziak-mnav__acct-btn--outline:hover { background: #1A1A1A; color: #FFFFFF; }
+
+/* ── Logo image (raster or uploaded SVG) fits centered in the logo slot ── */
+.ziak-hero__logo-placeholder {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.ziak-hero__logo-img {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  margin: 0 auto;
+}
+.ziak-mnav__logo-img {
+  height: 28px;
+  width: auto;
+  max-width: 160px;
+  object-fit: contain;
+  display: block;
+}

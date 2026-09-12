@@ -75,34 +75,7 @@
     <div class="ziak-hero__nav-left">
       <div class="ziak-hero__dropdown-wrapper">
         <a href="/collections/mens" class="ziak-hero__nav-link ziak-hero__nav-link--dropdown" style="color:#1A1A1A;">MEN</a>
-        <div class="ziak-hero__mega-menu" style="background:#FFFFFF;">
-          <div class="ziak-hero__mega-menu-column">
-            <p class="ziak-hero__mega-menu-heading">Boots</p>
-            <a href="#" class="ziak-hero__mega-menu-link">All Styles</a>
-            <a href="#" class="ziak-hero__mega-menu-link">Lace-Up</a>
-            <a href="#" class="ziak-hero__mega-menu-link">Chelsea</a>
-            <a href="#" class="ziak-hero__mega-menu-link">Chukka</a>
-            <a href="#" class="ziak-hero__mega-menu-link">Western</a>
-            <p class="ziak-hero__mega-menu-heading ziak-hero__mega-menu-divider">Warehouse</p>
-          </div>
-          <div class="ziak-hero__mega-menu-column">
-            <p class="ziak-hero__mega-menu-heading">Sneakers</p>
-            <a href="#" class="ziak-hero__mega-menu-link">All Styles</a>
-            <a href="#" class="ziak-hero__mega-menu-link">Low Top</a>
-            <a href="#" class="ziak-hero__mega-menu-link">High Top</a>
-            <p class="ziak-hero__mega-menu-heading ziak-hero__mega-menu-divider">Shoes</p>
-            <a href="#" class="ziak-hero__mega-menu-link">All Styles</a>
-            <a href="#" class="ziak-hero__mega-menu-link">Dress Shoes</a>
-            <a href="#" class="ziak-hero__mega-menu-link">Casual Shoes</a>
-          </div>
-          <div class="ziak-hero__mega-menu-column">
-            <p class="ziak-hero__mega-menu-heading">Jackets</p>
-            <a href="#" class="ziak-hero__mega-menu-link">All Jackets</a>
-            <a href="#" class="ziak-hero__mega-menu-link">Leather</a>
-            <a href="#" class="ziak-hero__mega-menu-link">Waxed Canvas</a>
-            <p class="ziak-hero__mega-menu-heading ziak-hero__mega-menu-divider">Gift Cards</p>
-          </div>
-        </div>
+        {%- render 'ziak-mega-menu' -%}
       </div>
 
       <a href="/pages/about" class="ziak-hero__nav-link" style="color:#1A1A1A;">ABOUT</a>
@@ -111,7 +84,9 @@
     <!-- Center Logo -->
     <div class="ziak-hero__nav-center">
       <a href="{{ routes.root_url }}" class="ziak-hero__logo-placeholder" style="color:#1A1A1A;">
-        {%- if settings.logo != blank -%}
+        {%- if settings.logo_svg_url != blank -%}
+          <img src="{{ settings.logo_svg_url }}" alt="{{ shop.name | escape }}" class="ziak-hero__logo-img" width="120">
+        {%- elsif settings.logo != blank -%}
           {{ settings.logo | image_url: width: 300 | image_tag: alt: shop.name, class: 'ziak-hero__logo-img', width: 120 }}
         {%- else -%}
           ZIAK
@@ -128,13 +103,13 @@
         <span class="ziak-wish-count" data-ziak-wishlist-count style="display:none;">0</span>
       </a>
       <a href="{{ routes.account_url }}" class="ziak-hero__nav-icon" aria-label="Account" style="color:#1A1A1A;">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M18 20a6 6 0 0 0-12 0"/><circle cx="12" cy="10" r="4"/></svg>
       </a>
       <a href="{{ routes.search_url }}" class="ziak-hero__nav-icon" aria-label="Search" style="color:#1A1A1A;">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
       </a>
       <a href="{{ routes.cart_url }}" class="ziak-hero__nav-icon" aria-label="Cart" style="color:#1A1A1A;">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
       </a>
     </div>
 
@@ -178,10 +153,10 @@
       <ul class="ziak-coll__sb-nav">
         <li><a href="{{ collection.url }}" class="ziak-coll__sb-link{% if no_filter %} ziak-coll__sb-link--active{% endif %}">All Shoes</a></li>
         <li><a href="{{ collection.url }}?filter.p.product_type=Formal+Shoes" class="ziak-coll__sb-link{% if active_product_type == 'Formal Shoes' %} ziak-coll__sb-link--active{% endif %}">Formal Shoes</a></li>
-        <li><a href="{{ collection.url }}?filter.p.product_type=Casual+Shoes" class="ziak-coll__sb-link{% if active_product_type == 'Casual Shoes' %} ziak-coll__sb-link--active{% endif %}">Casual Shoes</a></li>
+        <li><a href="{{ collection.url }}?filter.p.product_type=Brogues" class="ziak-coll__sb-link{% if active_product_type == 'Brogues' %} ziak-coll__sb-link--active{% endif %}">Brogues</a></li>
+        <li><a href="{{ collection.url }}?filter.p.product_type=Derby+Shoes" class="ziak-coll__sb-link{% if active_product_type == 'Derby Shoes' %} ziak-coll__sb-link--active{% endif %}">Derby Shoes</a></li>
+        <li><a href="{{ collection.url }}?filter.p.product_type=Chelsea+Boots" class="ziak-coll__sb-link{% if active_product_type == 'Chelsea Boots' %} ziak-coll__sb-link--active{% endif %}">Chelsea Boots</a></li>
         <li><a href="{{ collection.url }}?filter.p.product_type=Loafers" class="ziak-coll__sb-link{% if active_product_type == 'Loafers' %} ziak-coll__sb-link--active{% endif %}">Loafers</a></li>
-        <li><a href="{{ collection.url }}?filter.p.product_type=Boots" class="ziak-coll__sb-link{% if active_product_type == 'Boots' %} ziak-coll__sb-link--active{% endif %}">Boots</a></li>
-        <li><a href="{{ collection.url }}?filter.p.product_type=Sneakers" class="ziak-coll__sb-link{% if active_product_type == 'Sneakers' %} ziak-coll__sb-link--active{% endif %}">Sneakers</a></li>
       </ul>
 
 
@@ -268,11 +243,11 @@
     <!-- Category pills -->
     <div class="ziak-coll__pills">
       <a href="{{ collection.url }}" class="ziak-coll__pill ziak-coll__pill--active">All</a>
-      <a href="{{ collection.url }}?filter.p.product_type=Dress+Shoes" class="ziak-coll__pill">Dress Shoes</a>
-      <a href="{{ collection.url }}?filter.p.product_type=Casual+Shoes" class="ziak-coll__pill">Casual Shoes</a>
-      <a href="{{ collection.url }}?filter.p.product_type=Loafers" class="ziak-coll__pill">Loafers & Boat Shoes</a>
-      <a href="{{ collection.url }}?filter.p.product_type=Boots" class="ziak-coll__pill">Boots</a>
-      <a href="{{ collection.url }}?filter.p.product_type=Sneakers" class="ziak-coll__pill">Sneakers</a>
+      <a href="{{ collection.url }}?filter.p.product_type=Formal+Shoes" class="ziak-coll__pill">Formal Shoes</a>
+      <a href="{{ collection.url }}?filter.p.product_type=Brogues" class="ziak-coll__pill">Brogues</a>
+      <a href="{{ collection.url }}?filter.p.product_type=Derby+Shoes" class="ziak-coll__pill">Derby Shoes</a>
+      <a href="{{ collection.url }}?filter.p.product_type=Chelsea+Boots" class="ziak-coll__pill">Chelsea Boots</a>
+      <a href="{{ collection.url }}?filter.p.product_type=Loafers" class="ziak-coll__pill">Loafers</a>
     </div>
 
     <!-- ══════════ PRODUCT GRID ══════════ -->
@@ -387,17 +362,17 @@
       <!-- Price -->
       <div class="ziak-coll__fp-group">
         <h4 class="ziak-coll__fp-group-title">Price Range</h4>
-        <label class="ziak-coll__fp-check"><input type="checkbox" name="price" value="under-150"> Under $150</label>
-        <label class="ziak-coll__fp-check"><input type="checkbox" name="price" value="150-200"> $150 – $200</label>
-        <label class="ziak-coll__fp-check"><input type="checkbox" name="price" value="200-250"> $200 – $250</label>
-        <label class="ziak-coll__fp-check"><input type="checkbox" name="price" value="over-250"> Above $250</label>
+        <label class="ziak-coll__fp-check"><input type="checkbox" name="price" value="under-1000"> Under ₹1,000</label>
+        <label class="ziak-coll__fp-check"><input type="checkbox" name="price" value="1000-2000"> ₹1,000 – ₹2,000</label>
+        <label class="ziak-coll__fp-check"><input type="checkbox" name="price" value="2000-3000"> ₹2,000 – ₹3,000</label>
+        <label class="ziak-coll__fp-check"><input type="checkbox" name="price" value="over-3000"> Above ₹3,000</label>
       </div>
 
       <!-- Size -->
       <div class="ziak-coll__fp-group">
-        <h4 class="ziak-coll__fp-group-title">Size (US)</h4>
+        <h4 class="ziak-coll__fp-group-title">Size (UK)</h4>
         <div class="ziak-coll__size-row">
-          {%- assign size_opts = "6,6.5,7,7.5,8,8.5,9,9.5,10,10.5,11,12,13" | split: "," -%}
+          {%- assign size_opts = "6,7,8,9,10" | split: "," -%}
         {%- for sz in size_opts -%}
             <button class="ziak-coll__size-chip" type="button">{{ sz }}</button>
           {%- endfor -%}
@@ -409,11 +384,7 @@
         <h4 class="ziak-coll__fp-group-title">Color</h4>
         <div class="ziak-coll__color-row">
           <button class="ziak-coll__swatch" style="background:#1A1A1A;" aria-label="Black" title="Black"></button>
-          <button class="ziak-coll__swatch" style="background:#8B5A2B;" aria-label="Brown" title="Brown"></button>
-          <button class="ziak-coll__swatch" style="background:#C4913A;" aria-label="Tan" title="Tan"></button>
-          <button class="ziak-coll__swatch" style="background:#5C3A2A;" aria-label="Espresso" title="Espresso"></button>
-          <button class="ziak-coll__swatch" style="background:#A08060;border:1px solid #ddd;" aria-label="Chestnut" title="Chestnut"></button>
-          <button class="ziak-coll__swatch" style="background:#F5F0E8;border:1px solid #ddd;" aria-label="Cream" title="Cream"></button>
+          <button class="ziak-coll__swatch" style="background:#6B4226;" aria-label="Brown" title="Brown"></button>
         </div>
       </div>
 

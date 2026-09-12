@@ -48,6 +48,7 @@
         {%- assign cat_btn   = section.settings[btn_key] | default: 'Shop now' -%}
         {%- assign cat_link  = section.settings[link_key] -%}
 
+        {%- if cat_label != blank -%}
         <div class="ziak-topcats__card ziak-topcats__card--small" id="ziak-topcats-card-{{ i }}">
           {%- if cat_img != blank -%}
             {{
@@ -70,6 +71,7 @@
             </a>
           </div>
         </div>
+        {%- endif -%}
       {%- endfor -%}
 
     </div>

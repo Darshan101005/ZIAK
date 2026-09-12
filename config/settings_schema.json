@@ -16,6 +16,12 @@
         "label": "t:settings_schema.logo.settings.logo_image.label"
       },
       {
+        "type": "text",
+        "id": "logo_svg_url",
+        "label": "Logo image URL (SVG)",
+        "info": "For an SVG logo: upload it in Content → Files, copy its URL, and paste it here. It shows centered in every header (desktop + mobile). Leave blank to use the image logo above, or the ZIAK text."
+      },
+      {
         "type": "range",
         "id": "logo_width",
         "min": 50,

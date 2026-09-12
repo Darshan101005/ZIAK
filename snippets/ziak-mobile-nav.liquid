@@ -13,7 +13,7 @@
       <span class="ziak-wish-count" data-ziak-wishlist-count style="display:none;">0</span>
     </a>
     <a href="{{ routes.cart_url }}" class="ziak-mnav__icon" aria-label="Cart">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
     </a>
     <a href="{{ routes.search_url }}" class="ziak-mnav__icon" aria-label="Search">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
@@ -22,7 +22,9 @@
 
   <!-- Center: logo -->
   <a href="{{ routes.root_url }}" class="ziak-mnav__logo" aria-label="{{ shop.name | escape }}">
-    {%- if settings.logo != blank -%}
+    {%- if settings.logo_svg_url != blank -%}
+      <img src="{{ settings.logo_svg_url }}" alt="{{ shop.name | escape }}" class="ziak-mnav__logo-img">
+    {%- elsif settings.logo != blank -%}
       {{ settings.logo | image_url: width: 240 | image_tag: alt: shop.name, class: 'ziak-mnav__logo-img', width: 96 }}
     {%- else -%}
       ZIAK
@@ -46,10 +48,14 @@
   </div>
 
   <nav class="ziak-mnav__links" aria-label="Mobile navigation">
-    <a href="/collections/mens" class="ziak-mnav__link">Men</a>
+    <a href="/collections/all" class="ziak-mnav__link">All Shoes</a>
+    <a href="/collections/formal-shoes" class="ziak-mnav__link">Formal Shoes</a>
+    <a href="/collections/brogues" class="ziak-mnav__link">Brogues</a>
+    <a href="/collections/derby-shoes" class="ziak-mnav__link">Derby Shoes</a>
+    <a href="/collections/chelsea-boots" class="ziak-mnav__link">Chelsea Boots</a>
+    <a href="/collections/loafers" class="ziak-mnav__link">Loafers</a>
     <a href="/pages/about" class="ziak-mnav__link">About</a>
-    <a href="#" class="ziak-mnav__link">Stores</a>
-    <a href="/pages/contact" class="ziak-mnav__link">Help</a>
+    <a href="/pages/contact" class="ziak-mnav__link">Contact</a>
     <a href="/pages/size-guide" class="ziak-mnav__link">Size Guide</a>
   </nav>
 
