@@ -172,9 +172,20 @@
 
   .ziak-founders__body-grid {
     grid-template-columns: 1fr;
+    gap: 2.6rem;
   }
 
   .ziak-founders__title {
     font-size: 2.8rem;
+  }
+
+  /* Stacked on mobile — drop the vertical dividers (they show as a line
+     on the right of each column) and reset the side padding. */
+  .ziak-founders__body-col:nth-child(1),
+  .ziak-founders__body-col:nth-child(2),
+  .ziak-founders__body-col:nth-child(3) {
+    border-right: none;
+    padding-left: 0;
+    padding-right: 0;
   }
 }

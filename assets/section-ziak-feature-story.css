@@ -1,0 +1,337 @@
+/* ==========================================================================
+   ZIAK — Feature Story (long-form editorial with image + video)
+   Full-bleed hero image, reading column, image/duo/video blocks, closing CTA
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap');
+
+.ziak-feature {
+  --ink: #1A1A1A;
+  --muted: #6B6B6B;
+  --accent: #C77B3B;
+  --soft: #F7F6F3;
+  --line: #E7E3DC;
+  background: #FFFFFF;
+  color: var(--ink);
+  padding-bottom: clamp(5rem, 8vw, 9rem);
+  -webkit-font-smoothing: antialiased;
+}
+
+.ziak-feature * { box-sizing: border-box; }
+
+.ziak-feature__img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ── Placeholders ── */
+.ziak-feature__ph {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1.4rem;
+  width: 100%;
+  background: var(--soft);
+  border: 1px dashed #CFC9BE;
+  color: #A79E8E;
+  font-family: 'Inter', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.ziak-feature__ph--hero { aspect-ratio: 16 / 8; }
+.ziak-feature__ph--img { aspect-ratio: 3 / 2; }
+.ziak-feature__ph--video { aspect-ratio: 16 / 9; }
+
+.ziak-feature__play {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--ink);
+  color: #FFFFFF;
+}
+.ziak-feature__play svg { width: 24px; height: 24px; margin-left: 3px; }
+
+/* ── Hero ── */
+.ziak-feature__hero {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: clamp(4rem, 7vw, 8rem) 2rem clamp(3rem, 4vw, 4rem);
+  text-align: center;
+}
+
+.ziak-feature__eyebrow {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 2rem;
+}
+
+.ziak-feature__title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(3.8rem, 6vw, 7rem);
+  font-weight: 700;
+  line-height: 1.06;
+  letter-spacing: -0.01em;
+  margin: 0 0 2rem;
+}
+
+.ziak-feature__meta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 2.6rem;
+}
+.ziak-feature__dot { color: var(--line); }
+
+.ziak-feature__lead p {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(2rem, 2.4vw, 2.4rem);
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--ink);
+  margin: 0;
+}
+
+/* ── Hero media (full-bleed) ── */
+.ziak-feature__hero-media {
+  margin: 0 0 clamp(3.4rem, 5vw, 5rem);
+  width: 100%;
+  max-height: 76vh;
+  overflow: hidden;
+}
+.ziak-feature__hero-media .ziak-feature__img { max-height: 76vh; }
+
+/* ── Body reading column ── */
+.ziak-feature__body {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.ziak-feature__subhead {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(2.6rem, 3.2vw, 3.4rem);
+  font-weight: 700;
+  line-height: 1.18;
+  margin: 4.4rem 0 1.8rem;
+}
+
+.ziak-feature__rich p {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.7rem;
+  line-height: 1.85;
+  color: #33322F;
+  margin: 0 0 2.2rem;
+}
+.ziak-feature__rich a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+.ziak-feature__rich ul,
+.ziak-feature__rich ol {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.7rem;
+  line-height: 1.8;
+  color: #33322F;
+  margin: 0 0 2.2rem;
+  padding-left: 2.2rem;
+}
+.ziak-feature__rich li { margin-bottom: 0.8rem; }
+
+/* Pull quote */
+.ziak-feature__quote {
+  margin: 3.8rem 0;
+  padding-left: 2.6rem;
+  border-left: 3px solid var(--accent);
+}
+.ziak-feature__quote p {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(2.2rem, 2.8vw, 2.8rem);
+  font-style: italic;
+  line-height: 1.45;
+  margin: 0 0 1rem;
+}
+.ziak-feature__quote cite {
+  display: block;
+  font-family: 'Inter', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  font-style: normal;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* Figures (single image) */
+.ziak-feature__figure {
+  margin: clamp(3.2rem, 4.5vw, 4.8rem) 0;
+}
+.ziak-feature__figure figcaption,
+.ziak-feature__video-wrap figcaption {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.25rem;
+  color: var(--muted);
+  text-align: center;
+  margin-top: 1.2rem;
+}
+.ziak-feature__figure .ziak-feature__img { border-radius: 4px; }
+
+/* Wide image breaks out of the reading column */
+.ziak-feature__figure--wide {
+  width: 100vw;
+  max-width: 1500px;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0 2rem;
+}
+
+/* Duo — image + text */
+.ziak-feature__duo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2.4rem, 4vw, 5rem);
+  align-items: center;
+  width: 100vw;
+  max-width: 1300px;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0 clamp(2rem, 5vw, 5rem);
+  margin: clamp(3.4rem, 5vw, 5.5rem) 0;
+}
+.ziak-feature__duo--rev .ziak-feature__duo-media { order: 2; }
+.ziak-feature__duo-media .ziak-feature__img { border-radius: 4px; }
+.ziak-feature__duo-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(2.2rem, 2.8vw, 3rem);
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0 0 1.4rem;
+}
+
+/* Video */
+.ziak-feature__video-wrap {
+  width: 100vw;
+  max-width: 1300px;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0 2rem;
+  margin: clamp(3.4rem, 5vw, 5.5rem) 0;
+}
+.ziak-feature__video,
+.ziak-feature__video-wrap video {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+.ziak-feature__video-embed {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.ziak-feature__video-embed iframe {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  border: 0;
+}
+
+/* ── Closing CTA ── */
+.ziak-feature__cta {
+  max-width: 760px;
+  margin: clamp(4rem, 6vw, 6rem) auto 0;
+  padding: clamp(3.4rem, 5vw, 5rem) 2rem;
+  text-align: center;
+  background: var(--soft);
+  border-radius: 6px;
+}
+.ziak-feature__cta-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(2.8rem, 3.6vw, 4rem);
+  font-weight: 700;
+  line-height: 1.14;
+  margin: 0 0 1.4rem;
+}
+.ziak-feature__cta-text p {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.6rem;
+  line-height: 1.7;
+  color: var(--muted);
+  margin: 0 auto 2.6rem;
+  max-width: 48ch;
+}
+.ziak-feature__cta-btn {
+  display: inline-block;
+  font-family: 'Inter', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #FFFFFF;
+  background: var(--ink);
+  border: 1.5px solid var(--ink);
+  padding: 1.5rem 3rem;
+  border-radius: 3px;
+  transition: background 0.24s ease, color 0.24s ease;
+}
+.ziak-feature__cta-btn:hover { background: transparent; color: var(--ink); }
+
+/* ── Back link ── */
+.ziak-feature__foot {
+  max-width: 760px;
+  margin: clamp(4rem, 6vw, 6rem) auto 0;
+  padding: 3rem 2rem 0;
+  border-top: 1px solid var(--line);
+}
+.ziak-feature__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--ink);
+  transition: gap 0.24s ease, color 0.24s ease;
+}
+.ziak-feature__back svg { width: 16px; height: 16px; transition: transform 0.24s ease; }
+.ziak-feature__back:hover { color: var(--accent); }
+.ziak-feature__back:hover svg { transform: translateX(-4px); }
+
+/* ── Responsive ── */
+@media (max-width: 749px) {
+  .ziak-feature__duo {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .ziak-feature__duo--rev .ziak-feature__duo-media { order: 0; }
+  .ziak-feature__rich p,
+  .ziak-feature__rich ul,
+  .ziak-feature__rich ol { font-size: 1.6rem; }
+  .ziak-feature__lead p { font-size: 1.9rem; }
+  .ziak-feature__play { width: 54px; height: 54px; }
+}

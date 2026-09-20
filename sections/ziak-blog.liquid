@@ -1,0 +1,250 @@
+{{ 'section-ziak-hero.css' | asset_url | stylesheet_tag }}
+{{ 'section-ziak-blog.css' | asset_url | stylesheet_tag }}
+
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
+
+<style>
+  .shopify-section-group-header-group { display: none !important; }
+  body { background-color: #FFFFFF !important; }
+
+  #ziak-blog-nav {
+    position: relative !important;
+    top: auto !important; left: auto !important; right: auto !important;
+    background: #FFFFFF !important;
+    border-bottom: 1px solid #E8E8E8 !important;
+  }
+  #ziak-blog-nav .ziak-hero__nav-link,
+  #ziak-blog-nav .ziak-hero__nav-link--dropdown { color: #1A1A1A !important; }
+  #ziak-blog-nav .ziak-hero__nav-link--dropdown::after { border-top-color: #1A1A1A !important; }
+  #ziak-blog-nav .ziak-hero__nav-icon { color: #1A1A1A !important; opacity: 1 !important; }
+  #ziak-blog-nav .ziak-hero__nav-icon svg { stroke: #1A1A1A !important; }
+  #ziak-blog-nav .ziak-hero__logo-placeholder { color: #1A1A1A !important; opacity: 1 !important; }
+  #ziak-blog-nav .ziak-hero__logo-img { filter: none !important; }
+  #ziak-blog-nav .ziak-hero__mega-menu {
+    position: fixed !important; top: auto !important; left: 0 !important; right: 0 !important; width: 100vw !important;
+  }
+</style>
+
+<!-- ══════════ ANNOUNCEMENT + HEADER (About-page style) ══════════ -->
+<div class="ziak-hero__announcement" id="ziak-blog-announcement" style="background:#1A1A1A;color:#FFFFFF;">
+  <span>{{ section.settings.announcement_text | default: 'FREE SHIPPING ON ALL ORDERS OVER ₹999 — ALL OVER INDIA' }}</span>
+</div>
+
+<div class="ziak-hero" id="ziak-blog-hero" style="min-height:auto;background:#FFFFFF;">
+  {%- render 'ziak-mobile-nav' -%}
+    <nav class="ziak-hero__nav" id="ziak-blog-nav" aria-label="Main navigation" style="background:#FFFFFF;border-bottom:1px solid #E8E8E8;">
+    <div class="ziak-hero__nav-left">
+      <div class="ziak-hero__dropdown-wrapper">
+        <a href="/collections/all" class="ziak-hero__nav-link ziak-hero__nav-link--dropdown" style="color:#1A1A1A;">MEN</a>
+        {%- render 'ziak-mega-menu' -%}
+      </div>
+      <a href="/pages/about" class="ziak-hero__nav-link" style="color:#1A1A1A;">ABOUT</a>
+    </div>
+    <div class="ziak-hero__nav-center">
+      <a href="{{ routes.root_url }}" class="ziak-hero__logo-placeholder" style="color:#1A1A1A;">
+        {%- if settings.logo_svg_url != blank -%}
+          <img src="{{ settings.logo_svg_url }}" alt="{{ shop.name | escape }}" class="ziak-hero__logo-img" width="120">
+        {%- elsif settings.logo != blank -%}
+          {{ settings.logo | image_url: width: 300 | image_tag: alt: shop.name, class: 'ziak-hero__logo-img', width: 110 }}
+        {%- else -%}ZIAK{%- endif -%}
+      </a>
+    </div>
+    <div class="ziak-hero__nav-right">
+      <a href="/pages/our-store" class="ziak-hero__nav-link" style="color:#1A1A1A;">STORES</a>
+      <a href="/pages/contact" class="ziak-hero__nav-link" style="color:#1A1A1A;">HELP</a>
+      <a href="/pages/wishlist" class="ziak-hero__nav-icon ziak-wish-link" aria-label="Wishlist" style="color:#1A1A1A;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        <span class="ziak-wish-count" data-ziak-wishlist-count style="display:none;">0</span>
+      </a>
+      <a href="{{ routes.account_url }}" class="ziak-hero__nav-icon" aria-label="Account" style="color:#1A1A1A;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M18 20a6 6 0 0 0-12 0"/><circle cx="12" cy="10" r="4"/></svg>
+      </a>
+      <a href="{{ routes.search_url }}" class="ziak-hero__nav-icon" aria-label="Search" style="color:#1A1A1A;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      </a>
+      <a href="{{ routes.cart_url }}" class="ziak-hero__nav-icon" aria-label="Cart" style="color:#1A1A1A;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+      </a>
+    </div>
+  </nav>
+</div>
+
+<div class="ziak-blog">
+
+  <!-- ══════════ 1. JOURNAL HERO ══════════ -->
+  <section class="ziak-blog__hero">
+    <div class="ziak-blog__hero-copy">
+      <p class="ziak-blog__eyebrow">{{ section.settings.hero_eyebrow | default: 'THE ZIAK JOURNAL' }}</p>
+      <h1 class="ziak-blog__hero-title">{{ section.settings.hero_heading | default: 'More Than Shoes' }}</h1>
+      <span class="ziak-blog__rule"></span>
+      <p class="ziak-blog__hero-tagline">{{ section.settings.hero_tagline | default: 'PEOPLE. PROCESS. PURPOSE.' }}</p>
+      <div class="ziak-blog__hero-body">{{ section.settings.hero_body }}</div>
+    </div>
+    <div class="ziak-blog__hero-media">
+      {%- if section.settings.hero_image != blank -%}
+        {{ section.settings.hero_image | image_url: width: 1400 | image_tag: loading: 'lazy', class: 'ziak-blog__cover', alt: 'ZIAK craftsmanship' }}
+      {%- else -%}{{ 'lifestyle-1' | placeholder_svg_tag: 'ziak-blog__cover ziak-blog__cover--ph' }}{%- endif -%}
+      {%- if section.settings.hero_side_text != blank -%}
+        <span class="ziak-blog__hero-side">{{ section.settings.hero_side_text }}</span>
+      {%- endif -%}
+    </div>
+  </section>
+
+  <!-- ══════════ 2. FEATURED + OUR STORY ══════════ -->
+  <section class="ziak-blog__top">
+    <article class="ziak-blog__featured">
+      {%- if section.settings.featured_image != blank -%}
+        {{ section.settings.featured_image | image_url: width: 1400 | image_tag: loading: 'lazy', class: 'ziak-blog__cover', alt: section.settings.featured_heading }}
+      {%- else -%}{{ 'lifestyle-2' | placeholder_svg_tag: 'ziak-blog__cover ziak-blog__cover--ph' }}{%- endif -%}
+      <div class="ziak-blog__featured-body">
+        <p class="ziak-blog__eyebrow ziak-blog__eyebrow--light">{{ section.settings.featured_eyebrow | default: 'FEATURED' }}</p>
+        <h2 class="ziak-blog__featured-title">{{ section.settings.featured_heading | default: 'The Art of Shoemaking' }}</h2>
+        <p class="ziak-blog__featured-text">{{ section.settings.featured_body | default: 'A closer look at the craftsmanship, techniques, and people behind every pair of ZIAK shoes.' }}</p>
+        <a href="{{ section.settings.featured_url | default: '#' }}" class="ziak-blog__read-btn">
+          {{ section.settings.featured_btn | default: 'READ STORY' }}
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+      <div class="ziak-blog__featured-foot">
+        <span class="ziak-blog__date">{{ section.settings.featured_date | default: 'AUG 28, 2026' }}</span>
+        <span class="ziak-blog__count">{{ section.settings.featured_count | default: '01 / 05' }}</span>
+      </div>
+    </article>
+
+    <aside class="ziak-blog__story">
+      <a href="{{ section.settings.os_url | default: '/pages/our-store' }}" class="ziak-blog__story-media">
+        {%- if section.settings.os_image != blank -%}
+          {{ section.settings.os_image | image_url: width: 900 | image_tag: loading: 'lazy', class: 'ziak-blog__cover', alt: section.settings.os_heading }}
+        {%- else -%}{{ 'lifestyle-1' | placeholder_svg_tag: 'ziak-blog__cover ziak-blog__cover--ph' }}{%- endif -%}
+      </a>
+      <p class="ziak-blog__eyebrow">{{ section.settings.os_eyebrow | default: 'OUR STORY' }}</p>
+      <h3 class="ziak-blog__story-title">{{ section.settings.os_heading | default: 'Inside Our Delhi Store' }}</h3>
+      <p class="ziak-blog__story-text">{{ section.settings.os_body | default: 'Take a step inside and explore a space designed for people who appreciate the finer things.' }}</p>
+      <a href="{{ section.settings.os_url | default: '/pages/our-store' }}" class="ziak-blog__more">READ MORE
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </aside>
+  </section>
+
+  <!-- ══════════ 3. POST GRID ══════════ -->
+  <section class="ziak-blog__grid">
+    {%- for block in section.blocks -%}
+      {%- if block.type == 'post' -%}
+        <article class="ziak-blog__post" {{ block.shopify_attributes }}>
+          <a href="{{ block.settings.url | default: '#' }}" class="ziak-blog__post-media">
+            {%- if block.settings.image != blank -%}
+              {{ block.settings.image | image_url: width: 800 | image_tag: loading: 'lazy', class: 'ziak-blog__cover', alt: block.settings.heading }}
+            {%- else -%}{{ 'product-1' | placeholder_svg_tag: 'ziak-blog__cover ziak-blog__cover--ph' }}{%- endif -%}
+          </a>
+          <p class="ziak-blog__eyebrow">{{ block.settings.category }}</p>
+          <h3 class="ziak-blog__post-title">{{ block.settings.heading }}</h3>
+          <p class="ziak-blog__post-text">{{ block.settings.body }}</p>
+          <div class="ziak-blog__post-foot">
+            <a href="{{ block.settings.url | default: '#' }}" class="ziak-blog__more">READ MORE
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+            <span class="ziak-blog__date">{{ block.settings.date }}</span>
+          </div>
+        </article>
+      {%- endif -%}
+    {%- endfor -%}
+  </section>
+
+  <!-- ══════════ 4. NEWSLETTER ══════════ -->
+  <section
+    class="ziak-blog__nl"
+    style="{% if section.settings.nl_bg != blank %}background-image: linear-gradient(90deg, rgba(18,15,12,0.82), rgba(18,15,12,0.4) 70%), url('{{ section.settings.nl_bg | image_url: width: 2000 }}');{% else %}background-color:#161310;{% endif %}"
+  >
+    <div class="ziak-blog__nl-inner">
+      <div class="ziak-blog__nl-copy">
+        <p class="ziak-blog__eyebrow ziak-blog__eyebrow--light">{{ section.settings.nl_eyebrow | default: 'STAY CONNECTED' }}</p>
+        <h2 class="ziak-blog__nl-title">{{ section.settings.nl_heading | default: 'Good Stories go Further' }}</h2>
+      </div>
+      <div class="ziak-blog__nl-form-wrap">
+        <p class="ziak-blog__nl-text">{{ section.settings.nl_body | default: 'Subscribe to our newsletter for new stories, style guides, and updates from ZIAK.' }}</p>
+        {%- form 'customer', class: 'ziak-blog__nl-form' -%}
+          <input type="hidden" name="contact[tags]" value="newsletter">
+          <input type="email" name="contact[email]" class="ziak-blog__nl-input" placeholder="Your email address" required aria-label="Email address">
+          <button type="submit" class="ziak-blog__nl-submit" aria-label="Subscribe">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+          {%- if form.posted_successfully? -%}<p class="ziak-blog__nl-ok">Thanks for subscribing.</p>{%- endif -%}
+        {%- endform -%}
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    if (typeof lucide !== 'undefined') lucide.createIcons();
+  });
+</script>
+
+{% schema %}
+{
+  "name": "ZIAK Blog",
+  "tag": "section",
+  "class": "ziak-blog-section",
+  "settings": [
+    { "type": "header", "content": "Top Bar" },
+    { "type": "text", "id": "announcement_text", "default": "FREE SHIPPING ON ALL ORDERS OVER ₹999 — ALL OVER INDIA", "label": "Announcement" },
+
+    { "type": "header", "content": "1. Journal Hero" },
+    { "type": "text", "id": "hero_eyebrow", "default": "THE ZIAK JOURNAL", "label": "Eyebrow" },
+    { "type": "text", "id": "hero_heading", "default": "More Than Shoes", "label": "Heading" },
+    { "type": "text", "id": "hero_tagline", "default": "PEOPLE. PROCESS. PURPOSE.", "label": "Tagline" },
+    { "type": "richtext", "id": "hero_body", "default": "<p>Stories, ideas, and perspectives from our world — crafted for a brighter tomorrow.</p>", "label": "Body" },
+    { "type": "image_picker", "id": "hero_image", "label": "Hero image (you add)" },
+    { "type": "text", "id": "hero_side_text", "default": "CRAFT · PEOPLE · CULTURE · A BRIGHTER TOMORROW", "label": "Right-edge text" },
+
+    { "type": "header", "content": "2. Featured Story" },
+    { "type": "text", "id": "featured_eyebrow", "default": "FEATURED", "label": "Eyebrow" },
+    { "type": "text", "id": "featured_heading", "default": "The Art of Shoemaking", "label": "Heading" },
+    { "type": "textarea", "id": "featured_body", "default": "A closer look at the craftsmanship, techniques, and people behind every pair of ZIAK shoes.", "label": "Body" },
+    { "type": "text", "id": "featured_btn", "default": "READ STORY", "label": "Button text" },
+    { "type": "url", "id": "featured_url", "label": "Button link" },
+    { "type": "text", "id": "featured_date", "default": "AUG 28, 2026", "label": "Date" },
+    { "type": "text", "id": "featured_count", "default": "01 / 05", "label": "Counter label" },
+    { "type": "image_picker", "id": "featured_image", "label": "Featured image (you add)" },
+
+    { "type": "header", "content": "2b. Our Story Card" },
+    { "type": "text", "id": "os_eyebrow", "default": "OUR STORY", "label": "Eyebrow" },
+    { "type": "text", "id": "os_heading", "default": "Inside Our Delhi Store", "label": "Heading" },
+    { "type": "textarea", "id": "os_body", "default": "Take a step inside and explore a space designed for people who appreciate the finer things.", "label": "Body" },
+    { "type": "url", "id": "os_url", "label": "Link", "info": "Defaults to /pages/our-store" },
+    { "type": "image_picker", "id": "os_image", "label": "Image (you add)" },
+
+    { "type": "header", "content": "4. Newsletter" },
+    { "type": "image_picker", "id": "nl_bg", "label": "Background image (you add)" },
+    { "type": "text", "id": "nl_eyebrow", "default": "STAY CONNECTED", "label": "Eyebrow" },
+    { "type": "text", "id": "nl_heading", "default": "Good Stories go Further", "label": "Heading" },
+    { "type": "textarea", "id": "nl_body", "default": "Subscribe to our newsletter for new stories, style guides, and updates from ZIAK.", "label": "Body" }
+  ],
+  "blocks": [
+    {
+      "type": "post",
+      "name": "Post card",
+      "settings": [
+        { "type": "text", "id": "category", "default": "STYLE GUIDE", "label": "Category" },
+        { "type": "text", "id": "heading", "default": "Post title", "label": "Heading" },
+        { "type": "textarea", "id": "body", "default": "Short description of the post.", "label": "Body" },
+        { "type": "url", "id": "url", "label": "Link" },
+        { "type": "text", "id": "date", "default": "AUG 20, 2026", "label": "Date" },
+        { "type": "image_picker", "id": "image", "label": "Image (you add)" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "ZIAK Blog",
+      "blocks": [
+        { "type": "post", "settings": { "category": "STYLE GUIDE", "heading": "5 Versatile Shoes Every Man Should Own", "body": "Timeless styles that work for every occasion — from workdays to weekends.", "url": "#", "date": "AUG 20, 2026" } },
+        { "type": "post", "settings": { "category": "SUSTAINABILITY", "heading": "A More Responsible Tomorrow", "body": "How we're making thoughtful choices today for a better tomorrow.", "url": "/pages/sustainability", "date": "AUG 05, 2026" } },
+        { "type": "post", "settings": { "category": "COMMUNITY", "heading": "People Who Move Us", "body": "Conversations with individuals who inspire us through their journey, craft, and purpose.", "url": "/pages/community", "date": "JUL 18, 2026" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

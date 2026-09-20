@@ -1,0 +1,30 @@
+{
+  "sections": {
+    "ziak_article": {
+      "type": "ziak-article",
+      "blocks": {
+        "h1": { "type": "heading", "settings": { "text": "Better Choices, Every Step" } },
+        "p1": { "type": "text", "settings": { "text": "<p>Responsibility isn't a single decision — it's a series of small, honest ones. At ZIAK, we're working to make each pair of shoes a little kinder to the world it's made in, without ever compromising on the quality you expect.</p>" } },
+        "h2": { "type": "heading", "settings": { "text": "Materials That Matter" } },
+        "p2": { "type": "text", "settings": { "text": "<p>We choose leathers and components from suppliers who share our standards. That means favouring responsibly sourced materials, reducing waste in our cutting process, and packaging that protects your shoes without excess.</p>" } },
+        "h3": { "type": "heading", "settings": { "text": "Made to Last" } },
+        "p3": { "type": "text", "settings": { "text": "<p>The most sustainable shoe is the one you keep. We build for longevity — durable construction, repairable soles, and timeless design that stays out of the landfill and in your rotation for years.</p>" } },
+        "q1": { "type": "quote", "settings": { "text": "Buy less, choose well, make it last. Good shoes should outlive trends.", "cite": "ZIAK Design Principles" } },
+        "h4": { "type": "heading", "settings": { "text": "The Road Ahead" } },
+        "p4": { "type": "text", "settings": { "text": "<p>We know we're not perfect, and we're not pretending to be. But we're measuring what we do, setting real goals, and sharing our progress honestly. A more responsible tomorrow is built one thoughtful step at a time.</p>" } }
+      },
+      "block_order": ["h1", "p1", "h2", "p2", "h3", "p3", "q1", "h4", "p4"],
+      "settings": {
+        "announcement_text": "FREE SHIPPING ON ALL ORDERS OVER ₹999 — ALL OVER INDIA",
+        "eyebrow": "SUSTAINABILITY",
+        "heading": "A More Responsible Tomorrow",
+        "date": "AUG 05, 2026",
+        "read_time": "5 MIN READ",
+        "intro": "<p>Thoughtful choices today, for a better tomorrow. Here's how we're working to make ZIAK more responsible — one step at a time.</p>",
+        "back_label": "BACK TO THE JOURNAL",
+        "back_url": "/pages/blog"
+      }
+    }
+  },
+  "order": ["ziak_article"]
+}

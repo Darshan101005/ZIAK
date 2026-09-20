@@ -55,13 +55,21 @@
   flex-shrink: 0;
 }
 
-/* ---------- Product Grid: 5 cols × 2 rows ---------- */
+/* ---------- Product Row: single horizontal scrolling row ---------- */
 .ziak-picks__grid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  /* Subtle vertical separators between columns */
-  border-left: 1px solid #ebebeb;
-  border-top: 1px solid #ebebeb;
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  padding-bottom: 10px;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+.ziak-picks__grid > .ziak-card {
+  flex: 0 0 auto;
+  /* ~5 in view on desktop; scroll horizontally for the rest */
+  width: calc((100% - 64px) / 5);
+  scroll-snap-align: start;
 }
 
 /* ---------- Individual Card ---------- */
@@ -194,8 +202,8 @@
 
 /* Tablet: 3 columns */
 @media screen and (max-width: 1024px) {
-  .ziak-picks__grid {
-    grid-template-columns: repeat(3, 1fr);
+  .ziak-picks__grid > .ziak-card {
+    width: calc((100% - 32px) / 3);
   }
 
   .ziak-picks__title {
@@ -210,8 +218,8 @@
     padding-right: 0.5rem;
   }
 
-  .ziak-picks__grid {
-    grid-template-columns: repeat(2, 1fr);
+  .ziak-picks__grid > .ziak-card {
+    width: calc((100% - 16px) / 2);
   }
 
   .ziak-picks__title {

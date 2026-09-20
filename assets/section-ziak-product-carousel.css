@@ -37,9 +37,9 @@
 
 /* ---------- Card ---------- */
 .ziak-carousel__card {
-  /* 5 cards visible with 4 gaps of 16px between them */
-  min-width: calc((100% - 64px) / 5);
-  max-width: calc((100% - 64px) / 5);
+  /* 4 full cards in view + a peek of the next ("4 in front, 1 in back") */
+  min-width: calc((100% - 64px) / 4.4);
+  max-width: calc((100% - 64px) / 4.4);
   flex-shrink: 0;
   background: #ffffff;
   border: 1px solid #ebebeb;

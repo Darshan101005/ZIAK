@@ -74,7 +74,7 @@
     <!-- Left Nav -->
     <div class="ziak-hero__nav-left">
       <div class="ziak-hero__dropdown-wrapper">
-        <a href="/collections/mens" class="ziak-hero__nav-link ziak-hero__nav-link--dropdown" style="color:#1A1A1A;">MEN</a>
+        <a href="/collections/all" class="ziak-hero__nav-link ziak-hero__nav-link--dropdown" style="color:#1A1A1A;">MEN</a>
         {%- render 'ziak-mega-menu' -%}
       </div>
 
@@ -96,8 +96,8 @@
 
     <!-- Right Nav -->
     <div class="ziak-hero__nav-right">
-      <a href="#" class="ziak-hero__nav-link" style="color:#1A1A1A;">STORES</a>
-      <a href="#" class="ziak-hero__nav-link" style="color:#1A1A1A;">HELP</a>
+      <a href="/pages/our-store" class="ziak-hero__nav-link" style="color:#1A1A1A;">STORES</a>
+      <a href="/pages/contact" class="ziak-hero__nav-link" style="color:#1A1A1A;">HELP</a>
       <a href="/pages/wishlist" class="ziak-hero__nav-icon ziak-wish-link" aria-label="Wishlist" style="color:#1A1A1A;">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
         <span class="ziak-wish-count" data-ziak-wishlist-count style="display:none;">0</span>
@@ -150,13 +150,13 @@
         {%- assign no_filter = false -%}
       {%- endif -%}
 
-      <ul class="ziak-coll__sb-nav">
-        <li><a href="{{ collection.url }}" class="ziak-coll__sb-link{% if no_filter %} ziak-coll__sb-link--active{% endif %}">All Shoes</a></li>
-        <li><a href="{{ collection.url }}?filter.p.product_type=Formal+Shoes" class="ziak-coll__sb-link{% if active_product_type == 'Formal Shoes' %} ziak-coll__sb-link--active{% endif %}">Formal Shoes</a></li>
-        <li><a href="{{ collection.url }}?filter.p.product_type=Brogues" class="ziak-coll__sb-link{% if active_product_type == 'Brogues' %} ziak-coll__sb-link--active{% endif %}">Brogues</a></li>
-        <li><a href="{{ collection.url }}?filter.p.product_type=Derby+Shoes" class="ziak-coll__sb-link{% if active_product_type == 'Derby Shoes' %} ziak-coll__sb-link--active{% endif %}">Derby Shoes</a></li>
-        <li><a href="{{ collection.url }}?filter.p.product_type=Chelsea+Boots" class="ziak-coll__sb-link{% if active_product_type == 'Chelsea Boots' %} ziak-coll__sb-link--active{% endif %}">Chelsea Boots</a></li>
-        <li><a href="{{ collection.url }}?filter.p.product_type=Loafers" class="ziak-coll__sb-link{% if active_product_type == 'Loafers' %} ziak-coll__sb-link--active{% endif %}">Loafers</a></li>
+      <ul class="ziak-coll__sb-nav" id="ziak-coll-sb-cats">
+        <li><a href="{{ collection.url }}" class="ziak-coll__sb-link ziak-coll__sb-link--active" data-category="">All Shoes</a></li>
+        <li><a href="{{ collection.url }}?category=Formal+Shoes" class="ziak-coll__sb-link" data-category="Formal Shoes">Formal Shoes</a></li>
+        <li><a href="{{ collection.url }}?category=Brogues" class="ziak-coll__sb-link" data-category="Brogues">Brogues</a></li>
+        <li><a href="{{ collection.url }}?category=Derby+Shoes" class="ziak-coll__sb-link" data-category="Derby Shoes">Derby Shoes</a></li>
+        <li><a href="{{ collection.url }}?category=Chelsea+Boots" class="ziak-coll__sb-link" data-category="Chelsea Boots">Chelsea Boots</a></li>
+        <li><a href="{{ collection.url }}?category=Loafers" class="ziak-coll__sb-link" data-category="Loafers">Loafers</a></li>
       </ul>
 
 
@@ -213,9 +213,9 @@
 
     <!-- Toolbar: count + filter + sort -->
     <div class="ziak-coll__toolbar">
-      <p class="ziak-coll__count">
+      <p class="ziak-coll__count" id="ziak-coll-count">
         {%- if collection.products_count > 0 -%}
-          Showing {{ paginate.current_offset | plus: 1 }}–{{ paginate.current_offset | plus: paginate.page_size | at_most: collection.products_count }} of {{ collection.products_count }} products
+          {{ collection.products_count }} styles
         {%- else -%}
           24 styles available
         {%- endif -%}
@@ -240,14 +240,14 @@
       </div>
     </div>
 
-    <!-- Category pills -->
-    <div class="ziak-coll__pills">
-      <a href="{{ collection.url }}" class="ziak-coll__pill ziak-coll__pill--active">All</a>
-      <a href="{{ collection.url }}?filter.p.product_type=Formal+Shoes" class="ziak-coll__pill">Formal Shoes</a>
-      <a href="{{ collection.url }}?filter.p.product_type=Brogues" class="ziak-coll__pill">Brogues</a>
-      <a href="{{ collection.url }}?filter.p.product_type=Derby+Shoes" class="ziak-coll__pill">Derby Shoes</a>
-      <a href="{{ collection.url }}?filter.p.product_type=Chelsea+Boots" class="ziak-coll__pill">Chelsea Boots</a>
-      <a href="{{ collection.url }}?filter.p.product_type=Loafers" class="ziak-coll__pill">Loafers</a>
+    <!-- Category pills — client-side reorder ("selected first, then More from ZIAK") -->
+    <div class="ziak-coll__pills" id="ziak-coll-pills">
+      <a href="{{ collection.url }}" class="ziak-coll__pill ziak-coll__pill--active" data-category="">All</a>
+      <a href="{{ collection.url }}?category=Formal+Shoes" class="ziak-coll__pill" data-category="Formal Shoes">Formal Shoes</a>
+      <a href="{{ collection.url }}?category=Brogues" class="ziak-coll__pill" data-category="Brogues">Brogues</a>
+      <a href="{{ collection.url }}?category=Derby+Shoes" class="ziak-coll__pill" data-category="Derby Shoes">Derby Shoes</a>
+      <a href="{{ collection.url }}?category=Chelsea+Boots" class="ziak-coll__pill" data-category="Chelsea Boots">Chelsea Boots</a>
+      <a href="{{ collection.url }}?category=Loafers" class="ziak-coll__pill" data-category="Loafers">Loafers</a>
     </div>
 
     <!-- ══════════ PRODUCT GRID ══════════ -->
@@ -359,13 +359,18 @@
 
     <div class="ziak-coll__fp-bd">
 
-      <!-- Price -->
+      <!-- Price — dynamic dual-handle range slider (bounds set from products in JS) -->
       <div class="ziak-coll__fp-group">
         <h4 class="ziak-coll__fp-group-title">Price Range</h4>
-        <label class="ziak-coll__fp-check"><input type="checkbox" name="price" value="under-1000"> Under ₹1,000</label>
-        <label class="ziak-coll__fp-check"><input type="checkbox" name="price" value="1000-2000"> ₹1,000 – ₹2,000</label>
-        <label class="ziak-coll__fp-check"><input type="checkbox" name="price" value="2000-3000"> ₹2,000 – ₹3,000</label>
-        <label class="ziak-coll__fp-check"><input type="checkbox" name="price" value="over-3000"> Above ₹3,000</label>
+        <div class="ziak-coll__price" id="ziak-price">
+          <div class="ziak-coll__price-track"><span class="ziak-coll__price-fill" id="ziak-price-fill"></span></div>
+          <input type="range" class="ziak-coll__price-input" id="ziak-price-min" min="0" max="100" step="1" value="0" aria-label="Minimum price">
+          <input type="range" class="ziak-coll__price-input" id="ziak-price-max" min="0" max="100" step="1" value="100" aria-label="Maximum price">
+        </div>
+        <div class="ziak-coll__price-vals">
+          <span id="ziak-price-min-label">₹0</span>
+          <span id="ziak-price-max-label">₹0</span>
+        </div>
       </div>
 
       <!-- Size -->
@@ -383,8 +388,8 @@
       <div class="ziak-coll__fp-group">
         <h4 class="ziak-coll__fp-group-title">Color</h4>
         <div class="ziak-coll__color-row">
-          <button class="ziak-coll__swatch" style="background:#1A1A1A;" aria-label="Black" title="Black"></button>
-          <button class="ziak-coll__swatch" style="background:#6B4226;" aria-label="Brown" title="Brown"></button>
+          <button class="ziak-coll__swatch" style="background:#1A1A1A;" aria-label="Black" title="Black" data-color="Black"></button>
+          <button class="ziak-coll__swatch" style="background:#6B4226;" aria-label="Brown" title="Brown" data-color="Brown"></button>
         </div>
       </div>
 
@@ -468,22 +473,7 @@
     if (filterOverlay) filterOverlay.addEventListener('click', function(e){ if(e.target===filterOverlay) closeFilter(); });
     document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeFilter(); });
 
-    /* ── Filter reset ── */
-    if (filterReset) filterReset.addEventListener('click', function () {
-      document.querySelectorAll('.ziak-coll__fp-check input').forEach(function(c){ c.checked=false; });
-      document.querySelectorAll('.ziak-coll__size-chip').forEach(function(c){ c.classList.remove('active'); });
-      document.querySelectorAll('.ziak-coll__swatch').forEach(function(s){ s.classList.remove('active'); });
-    });
-
-    /* ── Size chips ── */
-    document.querySelectorAll('.ziak-coll__size-chip').forEach(function(chip){
-      chip.addEventListener('click', function(){ this.classList.toggle('active'); });
-    });
-
-    /* ── Color swatches ── */
-    document.querySelectorAll('.ziak-coll__swatch').forEach(function(sw){
-      sw.addEventListener('click', function(){ this.classList.toggle('active'); });
-    });
+    /* Filter + category behaviour is handled by the controller below. */
 
     /* ── Heart / wishlist ── */
     document.querySelectorAll('.ziak-coll__heart').forEach(function(btn){
@@ -496,36 +486,196 @@
       });
     });
 
-    /* ── Sidebar category active state ──
-       Handles both filter.p.product_type (categories) and
-       filter.p.tag (New Arrivals, Best Sellers, Sale). */
-    (function() {
-      var urlParams  = new URLSearchParams(window.location.search);
-      var activeType = urlParams.get('filter.p.product_type') || '';
-      var activeTag  = urlParams.get('filter.p.tag') || '';
+    /* ══════════ COLLECTION CONTROLLER ══════════
+       Renders ALL products, then client-side:
+        • Category select → matching cards first, "More from ZIAK" divider, then the rest
+        • Working filters: dynamic price slider, size chips, colour swatches
+       No page reload; URL keeps ?category= for shareable links. */
+    (function () {
+      var grid = document.getElementById('ziak-product-grid');
+      if (!grid) return;
 
-      document.querySelectorAll('.ziak-coll__sb-link').forEach(function(link) {
-        link.classList.remove('ziak-coll__sb-link--active');
+      var cards   = Array.prototype.slice.call(grid.querySelectorAll('.ziak-card'));
+      var countEl = document.getElementById('ziak-coll-count');
 
-        var linkSearch = link.href.split('?')[1] || '';
-        var linkParams = new URLSearchParams(linkSearch);
-        var linkType   = linkParams.get('filter.p.product_type') || '';
-        var linkTag    = linkParams.get('filter.p.tag') || '';
+      var minInput = document.getElementById('ziak-price-min');
+      var maxInput = document.getElementById('ziak-price-max');
+      var fill     = document.getElementById('ziak-price-fill');
+      var minLabel = document.getElementById('ziak-price-min-label');
+      var maxLabel = document.getElementById('ziak-price-max-label');
+      var applyBtn = document.getElementById('ziak-filter-apply');
+      var resetBtn = document.getElementById('ziak-filter-reset');
 
-        var isAllShoes = (!linkType && !linkTag);
-        var noFilter   = (!activeType && !activeTag);
+      var selectedCategory = '';
+      var bounds = { min: 0, max: 0 };
+      var state  = { priceMin: 0, priceMax: 0, sizes: [], colors: [] };
 
-        if (isAllShoes && noFilter) {
-          // "All Shoes" — active when no filter at all
-          link.classList.add('ziak-coll__sb-link--active');
-        } else if (linkType && linkType === activeType) {
-          // Category filter matches
-          link.classList.add('ziak-coll__sb-link--active');
-        } else if (linkTag && linkTag === activeTag) {
-          // Tag filter matches (New Arrivals / Best Sellers / Sale)
-          link.classList.add('ziak-coll__sb-link--active');
+      // "More from ZIAK" divider element
+      var divider = document.createElement('div');
+      divider.className = 'ziak-coll__more-divider';
+      divider.innerHTML = '<span>More from ZIAK</span>';
+
+      function money(n) { return '\u20B9' + Number(n).toLocaleString('en-IN'); }
+
+      function initPrice() {
+        var prices = cards
+          .map(function (c) { return parseFloat(c.getAttribute('data-price')) || 0; })
+          .filter(function (v) { return v > 0; });
+        var lo = prices.length ? Math.floor(Math.min.apply(null, prices)) : 0;
+        var hi = prices.length ? Math.ceil(Math.max.apply(null, prices)) : 0;
+        if (lo === hi) { hi = lo + 1; }
+        bounds.min = lo; bounds.max = hi;
+        state.priceMin = lo; state.priceMax = hi;
+        if (minInput && maxInput) {
+          minInput.min = lo; minInput.max = hi; minInput.value = lo;
+          maxInput.min = lo; maxInput.max = hi; maxInput.value = hi;
         }
+        updatePriceUI();
+      }
+
+      function updatePriceUI() {
+        var range = (bounds.max - bounds.min) || 1;
+        var loPct = (state.priceMin - bounds.min) / range * 100;
+        var hiPct = (state.priceMax - bounds.min) / range * 100;
+        if (fill) { fill.style.left = loPct + '%'; fill.style.right = (100 - hiPct) + '%'; }
+        if (minLabel) minLabel.textContent = money(state.priceMin);
+        if (maxLabel) maxLabel.textContent = money(state.priceMax);
+      }
+
+      function passes(card) {
+        var price = parseFloat(card.getAttribute('data-price')) || 0;
+        if (price > 0 && (price < state.priceMin || price > state.priceMax)) return false;
+
+        if (state.sizes.length) {
+          var sizes = (card.getAttribute('data-sizes') || '').split(',').map(function (s) { return s.trim(); });
+          var okSize = state.sizes.some(function (s) { return sizes.indexOf(s) !== -1; });
+          if (!okSize) return false;
+        }
+        if (state.colors.length) {
+          var colors = (card.getAttribute('data-colors') || '').toLowerCase().split(',').map(function (c) { return c.trim(); });
+          var okColor = state.colors.some(function (c) { return colors.indexOf(c.toLowerCase()) !== -1; });
+          if (!okColor) return false;
+        }
+        return true;
+      }
+
+      function updateActive() {
+        document.querySelectorAll('.ziak-coll__pill').forEach(function (p) {
+          p.classList.toggle('ziak-coll__pill--active', (p.getAttribute('data-category') || '') === selectedCategory);
+        });
+        var sb = document.getElementById('ziak-coll-sb-cats');
+        if (sb) sb.querySelectorAll('.ziak-coll__sb-link').forEach(function (l) {
+          l.classList.toggle('ziak-coll__sb-link--active', (l.getAttribute('data-category') || '') === selectedCategory);
+        });
+      }
+
+      function render() {
+        var matches = [], others = [], visible = 0;
+        var selNorm = (selectedCategory || '').trim().toLowerCase();
+
+        cards.forEach(function (card) {
+          var ok = passes(card);
+          card.classList.toggle('is-hidden', !ok);
+          if (ok) visible++;
+          var type = (card.getAttribute('data-type') || '').trim().toLowerCase();
+          if (ok && selNorm && type === selNorm) matches.push(card);
+          else others.push(card);
+        });
+
+        if (divider.parentNode) divider.parentNode.removeChild(divider);
+        matches.forEach(function (c) { grid.appendChild(c); });
+
+        var visibleOthers = others.filter(function (c) { return !c.classList.contains('is-hidden'); });
+        if (selectedCategory && matches.length && visibleOthers.length) grid.appendChild(divider);
+
+        others.forEach(function (c) { grid.appendChild(c); });
+
+        if (countEl) countEl.textContent = visible + (visible === 1 ? ' style' : ' styles');
+        updateActive();
+      }
+
+      function setCategory(cat, push) {
+        selectedCategory = cat || '';
+        if (push) {
+          var url = new URL(window.location.href);
+          if (selectedCategory) url.searchParams.set('category', selectedCategory);
+          else url.searchParams.delete('category');
+          history.pushState({}, '', url);
+        }
+        render();
+      }
+
+      // Category links (pills + sidebar)
+      function bindCategory(link) {
+        link.addEventListener('click', function (e) {
+          e.preventDefault();
+          setCategory(this.getAttribute('data-category') || '', true);
+          var toolbar = document.querySelector('.ziak-coll__pills');
+          if (toolbar) toolbar.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        });
+      }
+      document.querySelectorAll('.ziak-coll__pill[data-category]').forEach(bindCategory);
+      var sbCats = document.getElementById('ziak-coll-sb-cats');
+      if (sbCats) sbCats.querySelectorAll('.ziak-coll__sb-link[data-category]').forEach(bindCategory);
+
+      // Price slider
+      if (minInput) minInput.addEventListener('input', function () {
+        if (parseInt(minInput.value, 10) > parseInt(maxInput.value, 10)) minInput.value = maxInput.value;
+        state.priceMin = parseInt(minInput.value, 10);
+        updatePriceUI(); render();
       });
+      if (maxInput) maxInput.addEventListener('input', function () {
+        if (parseInt(maxInput.value, 10) < parseInt(minInput.value, 10)) maxInput.value = minInput.value;
+        state.priceMax = parseInt(maxInput.value, 10);
+        updatePriceUI(); render();
+      });
+
+      // Size chips
+      document.querySelectorAll('.ziak-coll__size-chip').forEach(function (chip) {
+        chip.addEventListener('click', function () {
+          this.classList.toggle('active');
+          var sz = this.textContent.trim();
+          var i = state.sizes.indexOf(sz);
+          if (this.classList.contains('active')) { if (i === -1) state.sizes.push(sz); }
+          else if (i !== -1) state.sizes.splice(i, 1);
+          render();
+        });
+      });
+
+      // Colour swatches
+      document.querySelectorAll('.ziak-coll__swatch').forEach(function (sw) {
+        sw.addEventListener('click', function () {
+          this.classList.toggle('active');
+          var col = (this.getAttribute('data-color') || this.getAttribute('title') || '').trim();
+          var i = state.colors.indexOf(col);
+          if (this.classList.contains('active')) { if (i === -1) state.colors.push(col); }
+          else if (i !== -1) state.colors.splice(i, 1);
+          render();
+        });
+      });
+
+      // Apply just closes the panel (filters are live); Clear resets everything
+      if (applyBtn) applyBtn.addEventListener('click', function () {
+        if (typeof closeFilter === 'function') closeFilter();
+      });
+      if (resetBtn) resetBtn.addEventListener('click', function () {
+        state.sizes = []; state.colors = [];
+        document.querySelectorAll('.ziak-coll__size-chip').forEach(function (c) { c.classList.remove('active'); });
+        document.querySelectorAll('.ziak-coll__swatch').forEach(function (s) { s.classList.remove('active'); });
+        state.priceMin = bounds.min; state.priceMax = bounds.max;
+        if (minInput) minInput.value = bounds.min;
+        if (maxInput) maxInput.value = bounds.max;
+        updatePriceUI(); render();
+      });
+
+      // Back/forward navigation
+      window.addEventListener('popstate', function () {
+        setCategory(new URLSearchParams(window.location.search).get('category') || '', false);
+      });
+
+      // Init
+      initPrice();
+      setCategory(new URLSearchParams(window.location.search).get('category') || '', false);
     })();
 
   });

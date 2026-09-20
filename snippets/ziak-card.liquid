@@ -86,6 +86,23 @@
     if p_available == false
       assign card_state = 'oos'
     endif
+
+    comment
+      Filter/sort data for collection page (harmless elsewhere)
+    endcomment
+    assign card_type = product.type
+    assign card_price_num = product.price | divided_by: 100
+    assign card_sizes = ''
+    assign card_colors = ''
+    for opt in product.options_with_values
+      assign oname = opt.name | downcase
+      if oname contains 'size'
+        assign card_sizes = opt.values | join: ','
+      endif
+      if oname contains 'color' or oname contains 'colour'
+        assign card_colors = opt.values | join: ','
+      endif
+    endfor
   -%}
 {%- else -%}
   {%- liquid
@@ -109,6 +126,10 @@
     {%- if card_state == 'oos' %} ziak-card--oos{% endif -%}
     {%- if card_state == 'disabled' %} ziak-card--disabled{% endif -%}"
   id="ziak-card-{{ index }}"
+  data-type="{{ card_type | escape }}"
+  data-price="{{ card_price_num }}"
+  data-sizes="{{ card_sizes | escape }}"
+  data-colors="{{ card_colors | escape }}"
   {{ shopify_attributes }}
 >
   <div class="ziak-card__media">

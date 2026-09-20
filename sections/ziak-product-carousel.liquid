@@ -16,28 +16,45 @@
 
     <!-- Track -->
     <div class="ziak-carousel__track" id="ziak-carousel-track">
-      {%- for block in section.blocks -%}
-        {%- liquid
-          assign carousel_price = block.settings.sale_price | prepend: '₹ '
-          assign carousel_compare = ''
-          if block.settings.original_price != blank
-            assign carousel_compare = block.settings.original_price | prepend: '₹ '
-          endif
-        -%}
-        <div class="ziak-carousel__card" id="ziak-card-{{ forloop.index }}" {{ block.shopify_attributes }}>
-          {%- render 'ziak-card',
-            index: forloop.index,
-            card_image: block.settings.product_image,
-            card_url: block.settings.product_link,
-            card_title: block.settings.product_title,
-            card_subtitle: block.settings.extra_colors_text,
-            card_price: carousel_price,
-            card_compare: carousel_compare,
-            badge_text: block.settings.discount_text,
-            badge_type: 'discount'
+      {%- liquid
+        assign carousel_source = section.settings.collection.products
+        if section.settings.collection == blank
+          assign carousel_source = collections.all.products
+        endif
+        assign carousel_limit = section.settings.products_limit | default: 10
+      -%}
+      {%- if carousel_source.size > 0 -%}
+        {%- comment -%} Real products from the selected collection {%- endcomment -%}
+        {%- for product in carousel_source limit: carousel_limit -%}
+          <div class="ziak-carousel__card" id="ziak-card-{{ forloop.index }}">
+            {%- render 'ziak-card', product: product, index: forloop.index -%}
+          </div>
+        {%- endfor -%}
+      {%- else -%}
+        {%- comment -%} Fallback: manual demo blocks when there are no products {%- endcomment -%}
+        {%- for block in section.blocks -%}
+          {%- liquid
+            assign carousel_price = block.settings.sale_price | prepend: '₹ '
+            assign carousel_compare = ''
+            if block.settings.original_price != blank
+              assign carousel_compare = block.settings.original_price | prepend: '₹ '
+            endif
           -%}
-        </div>
-      {%- endfor -%}
+          <div class="ziak-carousel__card" id="ziak-card-{{ forloop.index }}" {{ block.shopify_attributes }}>
+            {%- render 'ziak-card',
+              index: forloop.index,
+              card_image: block.settings.product_image,
+              card_url: block.settings.product_link,
+              card_title: block.settings.product_title,
+              card_subtitle: block.settings.extra_colors_text,
+              card_price: carousel_price,
+              card_compare: carousel_compare,
+              badge_text: block.settings.discount_text,
+              badge_type: 'discount'
+            -%}
+          </div>
+        {%- endfor -%}
+      {%- endif -%}
     </div>
 
     <!-- Right arrow -->
@@ -78,7 +95,7 @@
     function getVisibleCount() {
       if (window.innerWidth <= 749)  return 2;
       if (window.innerWidth <= 1024) return 3;
-      return 5;
+      return 4;
     }
 
     function getCardWidth() {
@@ -200,6 +217,21 @@
       "type": "text",
       "id": "section_title",
       "label": "Section heading"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Products from collection",
+      "info": "Select a collection to show your real products. Leave blank to use all products."
+    },
+    {
+      "type": "range",
+      "id": "products_limit",
+      "min": 4,
+      "max": 20,
+      "step": 1,
+      "label": "Max products to show",
+      "default": 10
     },
     {
       "type": "range",

@@ -258,12 +258,73 @@
     width: 100%;
   }
 
+  /* Timeline becomes vertical on mobile so every marker stays connected
+     (the horizontal scroll broke the connecting line past the fold). */
   .ziak-story__timeline {
-    overflow-x: auto;
-    padding-bottom: 16px;
+    flex-direction: column;
+    align-items: stretch;
+    overflow: visible;
+    padding: 0;
+    width: 100%;
+  }
+
+  /* Remove the horizontal connecting line */
+  .ziak-story__timeline::before {
+    display: none;
   }
 
   .ziak-story__node {
-    min-width: 110px;
+    flex: none;
+    min-width: 0;
+    width: 100%;
+    flex-direction: row;
+    align-items: flex-start;
+    text-align: left;
+    gap: 22px;
+    padding-bottom: 36px;
+  }
+
+  .ziak-story__node:last-child {
+    padding-bottom: 0;
+  }
+
+  /* Vertical connector: runs from each icon centre down to the next node's icon */
+  .ziak-story__node:not(:last-child)::before {
+    content: '';
+    position: absolute;
+    top: 24px;
+    left: 24px;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 100%;
+    background-color: #CCCCCC;
+    z-index: 0;
+  }
+
+  /* Icon is the marker sitting on the line */
+  .ziak-story__node-icon {
+    margin-bottom: 0;
+    flex-shrink: 0;
+    background: #F9F6F0;
+    border-radius: 50%;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* Hide the desktop dot on mobile — the icon is the marker now */
+  .ziak-story__node::after {
+    display: none;
+  }
+
+  .ziak-story__node-body {
+    margin-top: 0;
+    padding-top: 4px;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .ziak-story__node-desc {
+    max-width: none;
+    margin: 0;
   }
 }

@@ -62,6 +62,33 @@
   };
   window.ZiakWishlist = API;
 
+  /* ── Cart counter (trolley bubble) — injected onto every cart icon ── */
+  function updateCartBubbles(count) {
+    document.querySelectorAll('a[aria-label="Cart"]').forEach(function (link) {
+      link.classList.add('ziak-cart-link');
+      var b = link.querySelector('.ziak-cart-count');
+      if (!b) {
+        b = document.createElement('span');
+        b.className = 'ziak-cart-count';
+        b.setAttribute('data-ziak-cart-count', '');
+        link.appendChild(b);
+      }
+      b.textContent = count;
+      b.style.display = count > 0 ? '' : 'none';
+    });
+  }
+  window.ZiakCart = {
+    refresh: function () {
+      fetch('/cart.js', { headers: { Accept: 'application/json' } })
+        .then(function (r) { return r.json(); })
+        .then(function (cart) {
+          updateCartBubbles(cart.item_count || 0);
+          document.dispatchEvent(new CustomEvent('ziak:cart:synced', { detail: cart }));
+        })
+        .catch(function () {});
+    }
+  };
+
   /* ── Inject small shared styles once (count bubble) ── */
   function injectStyles() {
     if (document.getElementById('ziak-wishlist-styles')) return;
@@ -69,7 +96,11 @@
       '.ziak-wish-link{position:relative;}' +
       '.ziak-wish-count{position:absolute;top:-7px;right:-9px;min-width:16px;height:16px;padding:0 4px;' +
       'background:#C77B3B;color:#fff;border-radius:9px;font-size:10px;line-height:16px;text-align:center;' +
-      'font-weight:700;box-sizing:border-box;pointer-events:none;}';
+      'font-weight:700;box-sizing:border-box;pointer-events:none;z-index:5;}' +
+      '.ziak-cart-link{position:relative;}' +
+      '.ziak-cart-count{position:absolute;top:-7px;right:-9px;min-width:16px;height:16px;padding:0 4px;' +
+      'background:#1A1A1A;color:#fff;border-radius:9px;font-size:10px;line-height:16px;text-align:center;' +
+      'font-weight:700;box-sizing:border-box;pointer-events:none;z-index:5;}';
     var s = document.createElement('style');
     s.id = 'ziak-wishlist-styles';
     s.textContent = css;
@@ -139,6 +170,7 @@
     injectStyles();
     updateBubbles();
     syncHearts();
+    window.ZiakCart.refresh();
   }
 
   if (document.readyState === 'loading') {

@@ -1,0 +1,167 @@
+{{ 'section-ziak-hero.css' | asset_url | stylesheet_tag }}
+{{ 'section-ziak-article.css' | asset_url | stylesheet_tag }}
+
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
+
+<style>
+  .shopify-section-group-header-group { display: none !important; }
+  body { background-color: #FFFFFF !important; }
+
+  #ziak-article-nav {
+    position: relative !important;
+    top: auto !important; left: auto !important; right: auto !important;
+    background: #FFFFFF !important;
+    border-bottom: 1px solid #E8E8E8 !important;
+  }
+  #ziak-article-nav .ziak-hero__nav-link,
+  #ziak-article-nav .ziak-hero__nav-link--dropdown { color: #1A1A1A !important; }
+  #ziak-article-nav .ziak-hero__nav-link--dropdown::after { border-top-color: #1A1A1A !important; }
+  #ziak-article-nav .ziak-hero__nav-icon { color: #1A1A1A !important; opacity: 1 !important; }
+  #ziak-article-nav .ziak-hero__nav-icon svg { stroke: #1A1A1A !important; }
+  #ziak-article-nav .ziak-hero__logo-placeholder { color: #1A1A1A !important; opacity: 1 !important; }
+  #ziak-article-nav .ziak-hero__logo-img { filter: none !important; }
+  #ziak-article-nav .ziak-hero__mega-menu {
+    position: fixed !important; top: auto !important; left: 0 !important; right: 0 !important; width: 100vw !important;
+  }
+</style>
+
+<!-- ══════════ ANNOUNCEMENT + HEADER (About-page style) ══════════ -->
+<div class="ziak-hero__announcement" id="ziak-article-announcement" style="background:#1A1A1A;color:#FFFFFF;">
+  <span>{{ section.settings.announcement_text | default: 'FREE SHIPPING ON ALL ORDERS OVER ₹999 — ALL OVER INDIA' }}</span>
+</div>
+
+<div class="ziak-hero" id="ziak-article-hero" style="min-height:auto;background:#FFFFFF;">
+  {%- render 'ziak-mobile-nav' -%}
+  <nav class="ziak-hero__nav" id="ziak-article-nav" aria-label="Main navigation" style="background:#FFFFFF;border-bottom:1px solid #E8E8E8;">
+    <div class="ziak-hero__nav-left">
+      <div class="ziak-hero__dropdown-wrapper">
+        <a href="/collections/all" class="ziak-hero__nav-link ziak-hero__nav-link--dropdown" style="color:#1A1A1A;">MEN</a>
+        {%- render 'ziak-mega-menu' -%}
+      </div>
+      <a href="/pages/about" class="ziak-hero__nav-link" style="color:#1A1A1A;">ABOUT</a>
+    </div>
+    <div class="ziak-hero__nav-center">
+      <a href="{{ routes.root_url }}" class="ziak-hero__logo-placeholder" style="color:#1A1A1A;">
+        {%- if settings.logo_svg_url != blank -%}
+          <img src="{{ settings.logo_svg_url }}" alt="{{ shop.name | escape }}" class="ziak-hero__logo-img" width="120">
+        {%- elsif settings.logo != blank -%}
+          {{ settings.logo | image_url: width: 300 | image_tag: alt: shop.name, class: 'ziak-hero__logo-img', width: 110 }}
+        {%- else -%}ZIAK{%- endif -%}
+      </a>
+    </div>
+    <div class="ziak-hero__nav-right">
+      <a href="/pages/our-store" class="ziak-hero__nav-link" style="color:#1A1A1A;">STORES</a>
+      <a href="/pages/contact" class="ziak-hero__nav-link" style="color:#1A1A1A;">HELP</a>
+      <a href="/pages/wishlist" class="ziak-hero__nav-icon ziak-wish-link" aria-label="Wishlist" style="color:#1A1A1A;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        <span class="ziak-wish-count" data-ziak-wishlist-count style="display:none;">0</span>
+      </a>
+      <a href="{{ routes.account_url }}" class="ziak-hero__nav-icon" aria-label="Account" style="color:#1A1A1A;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M18 20a6 6 0 0 0-12 0"/><circle cx="12" cy="10" r="4"/></svg>
+      </a>
+      <a href="{{ routes.search_url }}" class="ziak-hero__nav-icon" aria-label="Search" style="color:#1A1A1A;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      </a>
+      <a href="{{ routes.cart_url }}" class="ziak-hero__nav-icon" aria-label="Cart" style="color:#1A1A1A;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+      </a>
+    </div>
+  </nav>
+</div>
+
+<!-- ══════════ ARTICLE ══════════ -->
+<article class="ziak-article">
+  <header class="ziak-article__head">
+    {%- if section.settings.eyebrow != blank -%}
+      <p class="ziak-article__eyebrow">{{ section.settings.eyebrow }}</p>
+    {%- endif -%}
+    <h1 class="ziak-article__title">{{ section.settings.heading | default: 'Article Title' }}</h1>
+    <div class="ziak-article__meta">
+      {%- if section.settings.date != blank -%}<span>{{ section.settings.date }}</span>{%- endif -%}
+      {%- if section.settings.read_time != blank -%}<span class="ziak-article__dot">·</span><span>{{ section.settings.read_time }}</span>{%- endif -%}
+    </div>
+    <span class="ziak-article__rule"></span>
+  </header>
+
+  <div class="ziak-article__body">
+    {%- if section.settings.intro != blank -%}
+      <div class="ziak-article__lead">{{ section.settings.intro }}</div>
+    {%- endif -%}
+
+    {%- for block in section.blocks -%}
+      {%- case block.type -%}
+        {%- when 'heading' -%}
+          <h2 class="ziak-article__subhead" {{ block.shopify_attributes }}>{{ block.settings.text }}</h2>
+        {%- when 'text' -%}
+          <div class="ziak-article__text" {{ block.shopify_attributes }}>{{ block.settings.text }}</div>
+        {%- when 'quote' -%}
+          <blockquote class="ziak-article__quote" {{ block.shopify_attributes }}>
+            <p>{{ block.settings.text }}</p>
+            {%- if block.settings.cite != blank -%}<cite>{{ block.settings.cite }}</cite>{%- endif -%}
+          </blockquote>
+      {%- endcase -%}
+    {%- endfor -%}
+
+    <div class="ziak-article__foot">
+      <a href="{{ section.settings.back_url | default: '/pages/blog' }}" class="ziak-article__back">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+        {{ section.settings.back_label | default: 'BACK TO THE JOURNAL' }}
+      </a>
+    </div>
+  </div>
+</article>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    if (typeof lucide !== 'undefined') lucide.createIcons();
+  });
+</script>
+
+{% schema %}
+{
+  "name": "ZIAK Article",
+  "tag": "section",
+  "class": "ziak-article-section",
+  "settings": [
+    { "type": "header", "content": "Top Bar" },
+    { "type": "text", "id": "announcement_text", "default": "FREE SHIPPING ON ALL ORDERS OVER ₹999 — ALL OVER INDIA", "label": "Announcement" },
+
+    { "type": "header", "content": "Article Header" },
+    { "type": "text", "id": "eyebrow", "default": "JOURNAL", "label": "Eyebrow / Category" },
+    { "type": "text", "id": "heading", "default": "Article Title", "label": "Title" },
+    { "type": "text", "id": "date", "default": "AUG 2026", "label": "Date" },
+    { "type": "text", "id": "read_time", "default": "4 MIN READ", "label": "Read time" },
+
+    { "type": "header", "content": "Body" },
+    { "type": "richtext", "id": "intro", "label": "Intro / Lead paragraph" },
+
+    { "type": "header", "content": "Footer Link" },
+    { "type": "text", "id": "back_label", "default": "BACK TO THE JOURNAL", "label": "Back link label" },
+    { "type": "url", "id": "back_url", "label": "Back link", "info": "Defaults to /pages/blog" }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "name": "Subheading",
+      "settings": [
+        { "type": "text", "id": "text", "default": "Section heading", "label": "Text" }
+      ]
+    },
+    {
+      "type": "text",
+      "name": "Paragraph",
+      "settings": [
+        { "type": "richtext", "id": "text", "default": "<p>Write your paragraph here.</p>", "label": "Text" }
+      ]
+    },
+    {
+      "type": "quote",
+      "name": "Pull quote",
+      "settings": [
+        { "type": "text", "id": "text", "default": "A short, memorable line.", "label": "Quote" },
+        { "type": "text", "id": "cite", "label": "Attribution" }
+      ]
+    }
+  ]
+}
+{% endschema %}

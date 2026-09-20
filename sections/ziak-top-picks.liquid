@@ -15,38 +15,53 @@
     {%- endif -%}
   </div>
 
-  <!-- 5-column × 2-row product grid -->
+  <!-- Single horizontal row of products -->
   <div class="ziak-picks__grid">
-    {%- for block in section.blocks -%}
-      {%- if block.type == 'product_card' -%}
-        {%- liquid
-          assign pick_badge_type = 'bestseller'
-          if block.settings.badge_style == 'red'
-            assign pick_badge_type = 'discount'
-          elsif block.settings.badge_style == 'blue'
-            assign pick_badge_type = 'new'
-          endif
+    {%- liquid
+      assign picks_source = section.settings.collection.products
+      if section.settings.collection == blank
+        assign picks_source = collections.all.products
+      endif
+      assign picks_limit = section.settings.products_limit | default: 10
+    -%}
+    {%- if picks_source.size > 0 -%}
+      {%- comment -%} Real products from the selected collection {%- endcomment -%}
+      {%- for product in picks_source limit: picks_limit -%}
+        {%- render 'ziak-card', product: product, index: forloop.index -%}
+      {%- endfor -%}
+    {%- else -%}
+      {%- comment -%} Fallback: manual demo blocks when there are no products {%- endcomment -%}
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'product_card' -%}
+          {%- liquid
+            assign pick_badge_type = 'bestseller'
+            if block.settings.badge_style == 'red'
+              assign pick_badge_type = 'discount'
+            elsif block.settings.badge_style == 'blue'
+              assign pick_badge_type = 'new'
+            endif
 
-          assign pick_price = block.settings.regular_price
-          assign pick_compare = ''
-          if block.settings.sale_price != blank
-            assign pick_price = block.settings.sale_price
-            assign pick_compare = block.settings.original_price
-          endif
-        -%}
-        {%- render 'ziak-card',
-          index: forloop.index,
-          card_image: block.settings.product_image,
-          card_url: block.settings.product_link,
-          card_title: block.settings.product_name,
-          card_price: pick_price,
-          card_compare: pick_compare,
-          badge_text: block.settings.badge_text,
-          badge_type: pick_badge_type,
-          shopify_attributes: block.shopify_attributes
-        -%}
-      {%- endif -%}
-    {%- endfor -%}
+            assign pick_price = block.settings.regular_price
+            assign pick_compare = ''
+            if block.settings.sale_price != blank
+              assign pick_price = block.settings.sale_price
+              assign pick_compare = block.settings.original_price
+            endif
+          -%}
+          {%- render 'ziak-card',
+            index: forloop.index,
+            card_image: block.settings.product_image,
+            card_url: block.settings.product_link,
+            card_title: block.settings.product_name,
+            card_price: pick_price,
+            card_compare: pick_compare,
+            badge_text: block.settings.badge_text,
+            badge_type: pick_badge_type,
+            shopify_attributes: block.shopify_attributes
+          -%}
+        {%- endif -%}
+      {%- endfor -%}
+    {%- endif -%}
   </div>
 
 </div>
@@ -65,6 +80,21 @@
       "id": "section_title",
       "default": "Top picks right now",
       "label": "Section title"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Products from collection",
+      "info": "Select a collection to show your real products. Leave blank to use all products."
+    },
+    {
+      "type": "range",
+      "id": "products_limit",
+      "min": 4,
+      "max": 20,
+      "step": 1,
+      "label": "Max products to show",
+      "default": 10
     },
     {
       "type": "url",

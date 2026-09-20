@@ -41,6 +41,12 @@
 
     {{ content_for_header }}
 
+    {%- comment -%} Redirect the old default "frontpage" collection to the ZIAK homepage {%- endcomment -%}
+    {%- if collection.handle == 'frontpage' -%}
+      <meta http-equiv="refresh" content="0; url={{ routes.root_url }}">
+      <script>window.location.replace({{ routes.root_url | json }});</script>
+    {%- endif -%}
+
     {%- liquid
       assign body_font_bold = settings.type_body_font | font_modify: 'weight', 'bold'
       assign body_font_italic = settings.type_body_font | font_modify: 'style', 'italic'

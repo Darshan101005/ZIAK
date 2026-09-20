@@ -1,0 +1,316 @@
+{{ 'section-ziak-hero.css' | asset_url | stylesheet_tag }}
+{{ 'section-ziak-store.css' | asset_url | stylesheet_tag }}
+
+<!-- Lucide icons (same approach as the rest of the ZIAK sections) -->
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
+
+<style>
+  .shopify-section-group-header-group { display: none !important; }
+  body { background-color: #FFFFFF !important; }
+
+  #ziak-store-nav {
+    position: relative !important;
+    top: auto !important; left: auto !important; right: auto !important;
+    background: #FFFFFF !important;
+    border-bottom: 1px solid #E8E8E8 !important;
+  }
+  #ziak-store-nav .ziak-hero__nav-link,
+  #ziak-store-nav .ziak-hero__nav-link--dropdown { color: #1A1A1A !important; }
+  #ziak-store-nav .ziak-hero__nav-link--dropdown::after { border-top-color: #1A1A1A !important; }
+  #ziak-store-nav .ziak-hero__nav-icon { color: #1A1A1A !important; opacity: 1 !important; }
+  #ziak-store-nav .ziak-hero__nav-icon svg { stroke: #1A1A1A !important; }
+  #ziak-store-nav .ziak-hero__logo-placeholder { color: #1A1A1A !important; opacity: 1 !important; }
+  #ziak-store-nav .ziak-hero__logo-img { filter: none !important; }
+  #ziak-store-nav .ziak-hero__mega-menu {
+    position: fixed !important; top: auto !important; left: 0 !important; right: 0 !important; width: 100vw !important;
+  }
+</style>
+
+<!-- ══════════ ANNOUNCEMENT + HEADER (same as About / other pages) ══════════ -->
+<div class="ziak-hero__announcement" id="ziak-store-announcement" style="background:#1A1A1A;color:#FFFFFF;">
+  <span>{{ section.settings.announcement_text | default: 'FREE SHIPPING ON ALL ORDERS OVER ₹999 — ALL OVER INDIA' }}</span>
+</div>
+
+<div class="ziak-hero" id="ziak-store-hero" style="min-height:auto;background:#FFFFFF;">
+  {%- render 'ziak-mobile-nav' -%}
+    <nav class="ziak-hero__nav" id="ziak-store-nav" aria-label="Main navigation" style="background:#FFFFFF;border-bottom:1px solid #E8E8E8;">
+    <div class="ziak-hero__nav-left">
+      <div class="ziak-hero__dropdown-wrapper">
+        <a href="/collections/all" class="ziak-hero__nav-link ziak-hero__nav-link--dropdown" style="color:#1A1A1A;">MEN</a>
+        {%- render 'ziak-mega-menu' -%}
+      </div>
+      <a href="/pages/about" class="ziak-hero__nav-link" style="color:#1A1A1A;">ABOUT</a>
+    </div>
+    <div class="ziak-hero__nav-center">
+      <a href="{{ routes.root_url }}" class="ziak-hero__logo-placeholder" style="color:#1A1A1A;">
+        {%- if settings.logo_svg_url != blank -%}
+          <img src="{{ settings.logo_svg_url }}" alt="{{ shop.name | escape }}" class="ziak-hero__logo-img" width="120">
+        {%- elsif settings.logo != blank -%}
+          {{ settings.logo | image_url: width: 300 | image_tag: alt: shop.name, class: 'ziak-hero__logo-img', width: 110 }}
+        {%- else -%}
+          ZIAK
+        {%- endif -%}
+      </a>
+    </div>
+    <div class="ziak-hero__nav-right">
+      <a href="/pages/our-store" class="ziak-hero__nav-link" style="color:#1A1A1A;">STORES</a>
+      <a href="/pages/contact" class="ziak-hero__nav-link" style="color:#1A1A1A;">HELP</a>
+      <a href="/pages/wishlist" class="ziak-hero__nav-icon ziak-wish-link" aria-label="Wishlist" style="color:#1A1A1A;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        <span class="ziak-wish-count" data-ziak-wishlist-count style="display:none;">0</span>
+      </a>
+      <a href="{{ routes.account_url }}" class="ziak-hero__nav-icon" aria-label="Account" style="color:#1A1A1A;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M18 20a6 6 0 0 0-12 0"/><circle cx="12" cy="10" r="4"/></svg>
+      </a>
+      <a href="{{ routes.search_url }}" class="ziak-hero__nav-icon" aria-label="Search" style="color:#1A1A1A;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      </a>
+      <a href="{{ routes.cart_url }}" class="ziak-hero__nav-icon" aria-label="Cart" style="color:#1A1A1A;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+      </a>
+    </div>
+  </nav>
+</div>
+
+<div class="ziak-store">
+
+  <!-- ══════════ 1. HERO (split) ══════════ -->
+  <section class="ziak-store__hero">
+    <div class="ziak-store__hero-copy">
+      <p class="ziak-store__eyebrow">{{ section.settings.hero_eyebrow | default: 'OUR STORE' }}</p>
+      <h1 class="ziak-store__hero-title">{{ section.settings.hero_heading | default: 'Visit Us In Delhi' }}</h1>
+      <div class="ziak-store__hero-body">{{ section.settings.hero_body }}</div>
+      {%- if section.settings.hero_btn_text != blank -%}
+        <a href="{{ section.settings.hero_btn_url | default: '#' }}" class="ziak-store__btn ziak-store__btn--dark">
+          {{ section.settings.hero_btn_text }}
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      {%- endif -%}
+      <p class="ziak-store__hero-tagline">{{ section.settings.hero_tagline | default: 'SEE · FEEL · EXPERIENCE · ZIAK' }}</p>
+    </div>
+
+    <div class="ziak-store__hero-media">
+      {%- if section.settings.hero_image != blank -%}
+        {{ section.settings.hero_image | image_url: width: 1400 | image_tag: loading: 'lazy', class: 'ziak-store__hero-img', alt: 'ZIAK store interior' }}
+      {%- else -%}
+        {{ 'lifestyle-1' | placeholder_svg_tag: 'ziak-store__hero-img ziak-store__hero-img--ph' }}
+      {%- endif -%}
+      {%- if section.settings.hero_side_text != blank -%}
+        <span class="ziak-store__hero-side">{{ section.settings.hero_side_text }}</span>
+      {%- endif -%}
+      {%- if section.settings.hero_badge != blank -%}
+        <span class="ziak-store__hero-badge">{{ section.settings.hero_badge }}</span>
+      {%- endif -%}
+    </div>
+  </section>
+
+  <!-- ══════════ 2. STORE DETAILS + MAP ══════════ -->
+  <section class="ziak-store__details">
+    <div class="ziak-store__details-col">
+      <p class="ziak-store__col-label">STORE DETAILS</p>
+      <div class="ziak-store__addr">
+        <span class="ziak-store__addr-pin"><i data-lucide="map-pin"></i></span>
+        <div class="ziak-store__addr-text">{{ section.settings.store_address | default: '<strong>ZIAK</strong><br>Select CITYWALK<br>Saket, New Delhi – 110017<br>India' }}</div>
+      </div>
+      {%- if section.settings.directions_url != blank or true -%}
+        <a href="{{ section.settings.directions_url | default: '#' }}" class="ziak-store__btn ziak-store__btn--ghost" target="_blank" rel="noopener">
+          GET DIRECTIONS
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><polyline points="7 7 17 7 17 17"/></svg>
+        </a>
+      {%- endif -%}
+    </div>
+
+    <div class="ziak-store__details-col ziak-store__details-info">
+      <div class="ziak-store__info-row">
+        <span class="ziak-store__info-icon"><i data-lucide="clock"></i></span>
+        <div>
+          <p class="ziak-store__info-title">STORE HOURS</p>
+          <p class="ziak-store__info-text">{{ section.settings.hours_days | default: 'Mon – Sun' }} &nbsp; {{ section.settings.hours_time | default: '10:00 AM – 9:00 PM' }}</p>
+        </div>
+      </div>
+      <div class="ziak-store__info-row">
+        <span class="ziak-store__info-icon"><i data-lucide="phone"></i></span>
+        <div>
+          <p class="ziak-store__info-title">CONTACT</p>
+          <p class="ziak-store__info-text"><a href="tel:{{ section.settings.contact_phone | default: '+919876543210' | replace: ' ', '' }}">{{ section.settings.contact_phone | default: '+91 98765 43210' }}</a></p>
+        </div>
+      </div>
+      <div class="ziak-store__info-row">
+        <span class="ziak-store__info-icon"><i data-lucide="mail"></i></span>
+        <div>
+          <p class="ziak-store__info-title">EMAIL</p>
+          <p class="ziak-store__info-text"><a href="mailto:{{ section.settings.contact_email | default: 'delhi@ziak.in' }}">{{ section.settings.contact_email | default: 'delhi@ziak.in' }}</a></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="ziak-store__details-col ziak-store__map-col">
+      {%- assign map_q = section.settings.map_query | default: 'Select Citywalk, Saket, New Delhi' -%}
+      <div class="ziak-store__map">
+        <iframe
+          class="ziak-store__map-frame"
+          src="https://www.google.com/maps?q={{ map_q | url_encode }}&output=embed"
+          title="ZIAK store location map"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          allowfullscreen
+        ></iframe>
+        <a href="https://www.google.com/maps/search/?api=1&query={{ map_q | url_encode }}" class="ziak-store__map-expand" target="_blank" rel="noopener" aria-label="Open map in new tab">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14L21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ 3. FEATURE STRIP ══════════ -->
+  {%- if section.blocks.size > 0 -%}
+    <section class="ziak-store__features">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'feature' -%}
+          <div class="ziak-store__feature" {{ block.shopify_attributes }}>
+            <span class="ziak-store__feature-icon"><i data-lucide="{{ block.settings.icon }}"></i></span>
+            <p class="ziak-store__feature-title">{{ block.settings.title }}</p>
+            <p class="ziak-store__feature-text">{{ block.settings.text }}</p>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </section>
+  {%- endif -%}
+
+  <!-- ══════════ 4. GALLERY / BENTO ══════════ -->
+  <section class="ziak-store__gallery-wrap">
+    <div class="ziak-store__gallery">
+      <div class="ziak-store__g ziak-store__g--large">
+        {%- if section.settings.gallery_1 != blank -%}
+          {{ section.settings.gallery_1 | image_url: width: 1200 | image_tag: loading: 'lazy', class: 'ziak-store__g-img', alt: 'ZIAK storefront' }}
+        {%- else -%}{{ 'lifestyle-2' | placeholder_svg_tag: 'ziak-store__g-img ziak-store__g-img--ph' }}{%- endif -%}
+      </div>
+      <div class="ziak-store__g ziak-store__g--top">
+        {%- if section.settings.gallery_2 != blank -%}
+          {{ section.settings.gallery_2 | image_url: width: 800 | image_tag: loading: 'lazy', class: 'ziak-store__g-img', alt: 'ZIAK interior' }}
+        {%- else -%}{{ 'product-1' | placeholder_svg_tag: 'ziak-store__g-img ziak-store__g-img--ph' }}{%- endif -%}
+      </div>
+      <div class="ziak-store__g ziak-store__g--bottom">
+        {%- if section.settings.gallery_3 != blank -%}
+          {{ section.settings.gallery_3 | image_url: width: 800 | image_tag: loading: 'lazy', class: 'ziak-store__g-img', alt: 'ZIAK shoes display' }}
+        {%- else -%}{{ 'product-2' | placeholder_svg_tag: 'ziak-store__g-img ziak-store__g-img--ph' }}{%- endif -%}
+      </div>
+      <div class="ziak-store__g ziak-store__g--panel">
+        <p class="ziak-store__panel-top">{{ section.settings.gallery_panel_top | default: 'A SPACE FOR PEOPLE WHO APPRECIATE THE FINER THINGS.' }}</p>
+        <p class="ziak-store__panel-quote">{{ section.settings.gallery_quote | default: '“More than a store, it’s a place to belong.”' }}</p>
+        <p class="ziak-store__panel-brand">{{ section.settings.gallery_brand | default: 'ZIAK' }}</p>
+      </div>
+    </div>
+    <p class="ziak-store__gallery-tagline">{{ section.settings.gallery_tagline | default: 'DELHI · FOOTWEAR · COMMUNITY' }}</p>
+  </section>
+
+  <!-- ══════════ 5. CTA BANNER (text only — add background image) ══════════ -->
+  <section
+    class="ziak-store__cta"
+    style="{% if section.settings.cta_bg != blank %}background-image: linear-gradient(90deg, rgba(20,16,12,0.72) 0%, rgba(20,16,12,0.35) 55%, rgba(20,16,12,0.15) 100%), url('{{ section.settings.cta_bg | image_url: width: 2000 }}');{% else %}background-color:#1A1A1A;{% endif %}"
+  >
+    <div class="ziak-store__cta-inner">
+      <div class="ziak-store__cta-copy">
+        <p class="ziak-store__cta-eyebrow">{{ section.settings.cta_eyebrow | default: "WE'D LOVE TO MEET YOU" }}</p>
+        <h2 class="ziak-store__cta-title">{{ section.settings.cta_heading | default: 'See the Difference in Person' }}</h2>
+        <p class="ziak-store__cta-text">{{ section.settings.cta_body | default: "Visit our Delhi store and experience ZIAK the way it's meant to be." }}</p>
+      </div>
+      {%- if section.settings.cta_btn_text != blank -%}
+        <a href="{{ section.settings.cta_btn_url | default: '#' }}" class="ziak-store__cta-btn">
+          {{ section.settings.cta_btn_text }}
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      {%- endif -%}
+    </div>
+  </section>
+
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    if (typeof lucide !== 'undefined') lucide.createIcons();
+  });
+</script>
+
+{% schema %}
+{
+  "name": "ZIAK Store",
+  "tag": "section",
+  "class": "ziak-store-section",
+  "settings": [
+    { "type": "header", "content": "Top Bar" },
+    { "type": "text", "id": "announcement_text", "default": "FREE SHIPPING ON ALL ORDERS OVER ₹999 — ALL OVER INDIA", "label": "Announcement text" },
+
+    { "type": "header", "content": "1. Hero" },
+    { "type": "text", "id": "hero_eyebrow", "default": "OUR STORE", "label": "Eyebrow" },
+    { "type": "text", "id": "hero_heading", "default": "Visit Us In Delhi", "label": "Heading" },
+    { "type": "richtext", "id": "hero_body", "default": "<p>Step into a space where craftsmanship, comfort, and contemporary style come together. Explore our latest collections, experience the quality up close, and get expert advice from our team.</p>", "label": "Body" },
+    { "type": "text", "id": "hero_btn_text", "default": "GET DIRECTIONS", "label": "Button text" },
+    { "type": "url", "id": "hero_btn_url", "label": "Button link" },
+    { "type": "text", "id": "hero_tagline", "default": "SEE · FEEL · EXPERIENCE · ZIAK", "label": "Bottom tagline" },
+    { "type": "image_picker", "id": "hero_image", "label": "Hero image (you add)" },
+    { "type": "text", "id": "hero_side_text", "default": "CRAFTED FOR A BRIGHTER TOMORROW", "label": "Right-edge vertical text" },
+    { "type": "text", "id": "hero_badge", "default": "DELHI STORE — EST. 2023", "label": "Corner badge" },
+
+    { "type": "header", "content": "2. Store Details" },
+    { "type": "richtext", "id": "store_address", "default": "<p><strong>ZIAK</strong><br/>Select CITYWALK<br/>Saket, New Delhi – 110017<br/>India</p>", "label": "Address" },
+    { "type": "url", "id": "directions_url", "label": "Get directions link" },
+    { "type": "text", "id": "hours_days", "default": "Mon – Sun", "label": "Store hours — days" },
+    { "type": "text", "id": "hours_time", "default": "10:00 AM – 9:00 PM", "label": "Store hours — time" },
+    { "type": "text", "id": "contact_phone", "default": "+91 98765 43210", "label": "Phone" },
+    { "type": "text", "id": "contact_email", "default": "delhi@ziak.in", "label": "Email" },
+    { "type": "text", "id": "map_query", "default": "Select Citywalk, Saket, New Delhi", "label": "Map location (address to show)" },
+
+    { "type": "header", "content": "4. Gallery" },
+    { "type": "image_picker", "id": "gallery_1", "label": "Large image (you add)" },
+    { "type": "image_picker", "id": "gallery_2", "label": "Top small image (you add)" },
+    { "type": "image_picker", "id": "gallery_3", "label": "Bottom small image (you add)" },
+    { "type": "text", "id": "gallery_panel_top", "default": "A SPACE FOR PEOPLE WHO APPRECIATE THE FINER THINGS.", "label": "Panel top text" },
+    { "type": "text", "id": "gallery_quote", "default": "“More than a store, it’s a place to belong.”", "label": "Panel quote" },
+    { "type": "text", "id": "gallery_brand", "default": "ZIAK", "label": "Panel brand" },
+    { "type": "text", "id": "gallery_tagline", "default": "DELHI · FOOTWEAR · COMMUNITY", "label": "Bottom tagline" },
+
+    { "type": "header", "content": "5. CTA Banner (add background image)" },
+    { "type": "image_picker", "id": "cta_bg", "label": "Background image (you add)" },
+    { "type": "text", "id": "cta_eyebrow", "default": "WE'D LOVE TO MEET YOU", "label": "Eyebrow" },
+    { "type": "text", "id": "cta_heading", "default": "See the Difference in Person", "label": "Heading" },
+    { "type": "text", "id": "cta_body", "default": "Visit our Delhi store and experience ZIAK the way it's meant to be.", "label": "Body" },
+    { "type": "text", "id": "cta_btn_text", "default": "PLAN YOUR VISIT", "label": "Button text" },
+    { "type": "url", "id": "cta_btn_url", "label": "Button link" }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature",
+      "settings": [
+        {
+          "type": "select", "id": "icon", "label": "Icon", "default": "footprints",
+          "options": [
+            { "value": "footprints", "label": "Footprints / shoes" },
+            { "value": "shirt", "label": "Apparel / hanger" },
+            { "value": "message-circle", "label": "Chat / assistance" },
+            { "value": "gift", "label": "Gift" },
+            { "value": "sparkles", "label": "Sparkles" },
+            { "value": "award", "label": "Award" },
+            { "value": "hand-heart", "label": "Care" },
+            { "value": "ruler", "label": "Ruler / fit" }
+          ]
+        },
+        { "type": "text", "id": "title", "default": "TRY BEFORE YOU BUY", "label": "Title" },
+        { "type": "text", "id": "text", "default": "Experience the perfect fit", "label": "Subtitle" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "ZIAK Store",
+      "blocks": [
+        { "type": "feature", "settings": { "icon": "footprints", "title": "TRY BEFORE YOU BUY", "text": "Experience the perfect fit" } },
+        { "type": "feature", "settings": { "icon": "shirt", "title": "EXCLUSIVE IN-STORE COLLECTIONS", "text": "Styles you won't find online" } },
+        { "type": "feature", "settings": { "icon": "message-circle", "title": "EXPERT ASSISTANCE", "text": "Personalized styling advice" } },
+        { "type": "feature", "settings": { "icon": "gift", "title": "SAME CRAFTSMANSHIP", "text": "You love, now closer to you" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

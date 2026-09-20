@@ -1,0 +1,29 @@
+{%- assign target = section.settings.target | default: '/' -%}
+<meta http-equiv="refresh" content="0; url={{ target }}">
+<script>window.location.replace({{ target | json }});</script>
+<style>
+  .shopify-section-group-header-group,
+  .shopify-section-group-footer-group { display: none !important; }
+  body { background: #FFFFFF !important; }
+  .ziak-redirect {
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-family: 'Inter', Helvetica, sans-serif;
+    font-size: 1.4rem;
+    color: #1A1A1A;
+  }
+  .ziak-redirect a { color: #C77B3B; text-decoration: underline; }
+</style>
+<div class="ziak-redirect">Redirecting… <a href="{{ target }}">Continue</a></div>
+
+{% schema %}
+{
+  "name": "ZIAK Redirect",
+  "settings": [
+    { "type": "text", "id": "target", "label": "Redirect to (URL)", "default": "/" }
+  ]
+}
+{% endschema %}

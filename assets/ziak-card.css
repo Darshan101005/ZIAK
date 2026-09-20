@@ -16,7 +16,8 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  background: #FFFFFF;
+  /* Beige lower body creates a visual partition against the white media area */
+  background: #EDEAE3;
   border: 1px solid var(--ziak-line);
   border-radius: 6px;
   overflow: hidden;
@@ -36,7 +37,8 @@
   aspect-ratio: var(--ziak-media-ratio);
   width: 100%;
   overflow: hidden;
-  background: var(--ziak-media-bg);
+  /* White image area — contrasts with the beige card body below */
+  background: #FFFFFF;
 }
 
 .ziak-card__media-link {
@@ -49,9 +51,9 @@
 .ziak-card__media img {
   width: 100% !important;
   height: 100% !important;
-  object-fit: contain !important;
+  object-fit: cover !important;
   object-position: center;
-  padding: 12px;
+  padding: 0;
   box-sizing: border-box;
   display: block;
   transition: transform 0.4s ease, filter 0.3s ease;
@@ -61,7 +63,9 @@
   transform: scale(1.05);
 }
 
+/* Placeholder art still shows fully (contained) with a little breathing room */
 .ziak-card__img--placeholder {
+  object-fit: contain !important;
   padding: 20px;
   opacity: 0.4;
 }

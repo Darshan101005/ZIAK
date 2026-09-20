@@ -1,0 +1,63 @@
+{
+  "sections": {
+    "ziak_blog": {
+      "type": "ziak-blog",
+      "blocks": {
+        "post1": {
+          "type": "post",
+          "settings": {
+            "category": "SHOE CARE",
+            "heading": "How to Care for Your Leather Shoes",
+            "body": "Simple habits that keep leather supple, clean, and lasting for years — a short guide to looking after every pair.",
+            "url": "/pages/leather-care",
+            "date": "AUG 20, 2026"
+          }
+        },
+        "post2": {
+          "type": "post",
+          "settings": {
+            "category": "SUSTAINABILITY",
+            "heading": "A More Responsible Tomorrow",
+            "body": "How we're making thoughtful choices today — from materials to makers — for a better tomorrow.",
+            "url": "/pages/sustainability",
+            "date": "AUG 05, 2026"
+          }
+        },
+        "post3": {
+          "type": "post",
+          "settings": {
+            "category": "COMMUNITY",
+            "heading": "People Who Move Us",
+            "body": "Conversations with the individuals who inspire us through their journey, craft, and purpose.",
+            "url": "/pages/community",
+            "date": "JUL 18, 2026"
+          }
+        }
+      },
+      "block_order": ["post1", "post2", "post3"],
+      "settings": {
+        "announcement_text": "FREE SHIPPING ON ALL ORDERS OVER ₹999 — ALL OVER INDIA",
+        "hero_eyebrow": "THE ZIAK JOURNAL",
+        "hero_heading": "More Than Shoes",
+        "hero_tagline": "PEOPLE. PROCESS. PURPOSE.",
+        "hero_body": "<p>Stories, ideas, and perspectives from our world — crafted for a brighter tomorrow.</p>",
+        "hero_side_text": "CRAFT · PEOPLE · CULTURE · A BRIGHTER TOMORROW",
+        "featured_eyebrow": "FEATURED",
+        "featured_heading": "The Art of Shoemaking",
+        "featured_body": "A closer look at the craftsmanship, the techniques, and the people behind every pair of ZIAK shoes.",
+        "featured_btn": "READ STORY",
+        "featured_url": "/pages/shoemaking",
+        "featured_date": "AUG 28, 2026",
+        "featured_count": "01 / 05",
+        "os_eyebrow": "OUR STORY",
+        "os_heading": "Inside Our Delhi Store",
+        "os_body": "Take a step inside and explore a space designed for people who appreciate the finer things.",
+        "os_url": "/pages/our-store",
+        "nl_eyebrow": "STAY CONNECTED",
+        "nl_heading": "Good Stories go Further",
+        "nl_body": "Subscribe to our newsletter for new stories, style guides, and updates from ZIAK."
+      }
+    }
+  },
+  "order": ["ziak_blog"]
+}

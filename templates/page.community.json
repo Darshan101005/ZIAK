@@ -1,0 +1,29 @@
+{
+  "sections": {
+    "ziak_article": {
+      "type": "ziak-article",
+      "blocks": {
+        "h1": { "type": "heading", "settings": { "text": "Built Around People" } },
+        "p1": { "type": "text", "settings": { "text": "<p>ZIAK has never been only about shoes. It's about the people who wear them, the makers who craft them, and the everyday moments they carry you through. From the first sketch to the final stitch, our work is shaped by the community that surrounds it.</p>" } },
+        "h2": { "type": "heading", "settings": { "text": "Craft Is a Conversation" } },
+        "p2": { "type": "text", "settings": { "text": "<p>Every pair we make begins with listening. We talk to the artisans who understand leather like a language, and to the customers who tell us how a shoe should feel after a long day on their feet. Those conversations become the details you can see and the comfort you can't.</p>" } },
+        "q1": { "type": "quote", "settings": { "text": "A great shoe is quiet. It supports you all day and never asks for attention.", "cite": "The ZIAK Workshop" } },
+        "p3": { "type": "text", "settings": { "text": "<p>We celebrate the individuals who move us forward — the mentors, the first-time founders, the craftspeople keeping traditions alive. Their stories remind us that style is personal, and that the best design serves real lives.</p>" } },
+        "h3": { "type": "heading", "settings": { "text": "Where We Go From Here" } },
+        "p4": { "type": "text", "settings": { "text": "<p>Community isn't a campaign for us. It's a commitment. As ZIAK grows, we'll keep sharing the people and ideas that shape who we are — and inviting you to be part of the journey.</p>" } }
+      },
+      "block_order": ["h1", "p1", "h2", "p2", "q1", "p3", "h3", "p4"],
+      "settings": {
+        "announcement_text": "FREE SHIPPING ON ALL ORDERS OVER ₹999 — ALL OVER INDIA",
+        "eyebrow": "COMMUNITY",
+        "heading": "People Who Move Us",
+        "date": "JUL 18, 2026",
+        "read_time": "4 MIN READ",
+        "intro": "<p>Behind every pair of ZIAK shoes is a community of makers, wearers, and dreamers. These are the people who move us.</p>",
+        "back_label": "BACK TO THE JOURNAL",
+        "back_url": "/pages/blog"
+      }
+    }
+  },
+  "order": ["ziak_article"]
+}

@@ -28,7 +28,7 @@
       <div class="ziak-topcats__overlay">
         <p class="ziak-topcats__label">{{ section.settings.featured_label | default: 'Bestsellers' }}</p>
         <p class="ziak-topcats__sub">{{ section.settings.featured_sub | default: 'Shop our most popular items' }}</p>
-        <a href="{{ section.settings.featured_link }}" class="ziak-topcats__btn" id="ziak-topcats-featured-btn">
+        <a href="{{ section.settings.featured_link | default: '/collections/all' }}" class="ziak-topcats__btn" id="ziak-topcats-featured-btn">
           {{ section.settings.featured_btn_text | default: 'Shop now' }}
         </a>
       </div>
@@ -47,6 +47,10 @@
         {%- assign cat_label = section.settings[label_key] -%}
         {%- assign cat_btn   = section.settings[btn_key] | default: 'Shop now' -%}
         {%- assign cat_link  = section.settings[link_key] -%}
+        {%- comment -%} Auto-link to the category by its label when no link is set {%- endcomment -%}
+        {%- if cat_link == blank and cat_label != blank -%}
+          {%- assign cat_link = cat_label | url_encode | prepend: '/collections/all?category=' -%}
+        {%- endif -%}
 
         {%- if cat_label != blank -%}
         <div class="ziak-topcats__card ziak-topcats__card--small" id="ziak-topcats-card-{{ i }}">
