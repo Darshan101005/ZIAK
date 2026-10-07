@@ -30,9 +30,7 @@
 </style>
 
 <!-- ══════════ ANNOUNCEMENT BAR (black, same as collection) ══════════ -->
-<div class="ziak-hero__announcement" id="ziak-contact-announcement" style="background:#1A1A1A;color:#FFFFFF;">
-  <span>{{ section.settings.announcement_text | default: 'FREE SHIPPING ON ALL ORDERS OVER ₹999 — SHOP ZIAK NOW' }}</span>
-</div>
+<div class="ziak-hero__announcement" id="ziak-contact-announcement" style="background:#1A1A1A;color:#FFFFFF;"><span>FREE SHIPPING ON ALL ORDERS, ALL OVER INDIA <a href="{{ shop.shipping_policy.url | default: '/policies/shipping-policy' }}" style="color:inherit;text-decoration:underline;font-weight:700;">DETAILS</a></span></div>
 
 <!-- ══════════ HEADER (white nav, same as collection) ══════════ -->
 <div class="ziak-hero" id="ziak-contact-hero" style="min-height:auto;background:#FFFFFF;">
@@ -44,6 +42,7 @@
         {%- render 'ziak-mega-menu' -%}
       </div>
       <a href="{{ section.settings.link_about_url | default: '/pages/about' }}" class="ziak-hero__nav-link" style="color:#1A1A1A;">ABOUT</a>
+      <a href="/pages/blog" class="ziak-hero__nav-link" style="color:#1A1A1A;">BLOG</a>
     </div>
 
     <div class="ziak-hero__nav-center">
@@ -137,7 +136,7 @@
           <span class="ziak-contact__touch-icon"><i data-lucide="phone"></i></span>
           <div class="ziak-contact__touch-body">
             <p class="ziak-contact__touch-title">CALL US</p>
-            <p class="ziak-contact__touch-text">Speak with our support team.<br>{{ section.settings.phone_number | default: '+91 98765 43210' }}</p>
+            <p class="ziak-contact__touch-text">Speak with our support team.<br>{{ section.settings.phone_number | default: '+91 95558 30185' }}</p>
           </div>
         </div>
 
@@ -292,7 +291,7 @@ T. Nagar, Chennai – 600017, India' | newline_to_br }}</p>
     {
       "type": "text",
       "id": "phone_number",
-      "default": "+91 98765 43210",
+      "default": "+91 95558 30185",
       "label": "Phone number"
     },
     {

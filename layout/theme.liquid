@@ -306,6 +306,14 @@
 
     {%- comment -%} ZIAK — global wishlist store (localStorage) available on every page {%- endcomment -%}
     <script src="{{ 'ziak-wishlist.js' | asset_url }}" defer="defer"></script>
+
+    {%- comment -%} ZIAK — hide the page scrollbar site-wide (scrolling still works) {%- endcomment -%}
+    <style>
+      html { scrollbar-width: none; -ms-overflow-style: none; }
+      html::-webkit-scrollbar,
+      body::-webkit-scrollbar { width: 0; height: 0; display: none; }
+      body { scrollbar-width: none; -ms-overflow-style: none; }
+    </style>
   </head>
 
   <body class="gradient template-{{ template | replace: '.', '-' }}{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">

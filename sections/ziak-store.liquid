@@ -27,9 +27,7 @@
 </style>
 
 <!-- ══════════ ANNOUNCEMENT + HEADER (same as About / other pages) ══════════ -->
-<div class="ziak-hero__announcement" id="ziak-store-announcement" style="background:#1A1A1A;color:#FFFFFF;">
-  <span>{{ section.settings.announcement_text | default: 'FREE SHIPPING ON ALL ORDERS OVER ₹999 — ALL OVER INDIA' }}</span>
-</div>
+<div class="ziak-hero__announcement" id="ziak-store-announcement" style="background:#1A1A1A;color:#FFFFFF;"><span>FREE SHIPPING ON ALL ORDERS, ALL OVER INDIA <a href="{{ shop.shipping_policy.url | default: '/policies/shipping-policy' }}" style="color:inherit;text-decoration:underline;font-weight:700;">DETAILS</a></span></div>
 
 <div class="ziak-hero" id="ziak-store-hero" style="min-height:auto;background:#FFFFFF;">
   {%- render 'ziak-mobile-nav' -%}
@@ -40,6 +38,7 @@
         {%- render 'ziak-mega-menu' -%}
       </div>
       <a href="/pages/about" class="ziak-hero__nav-link" style="color:#1A1A1A;">ABOUT</a>
+      <a href="/pages/blog" class="ziak-hero__nav-link" style="color:#1A1A1A;">BLOG</a>
     </div>
     <div class="ziak-hero__nav-center">
       <a href="{{ routes.root_url }}" class="ziak-hero__logo-placeholder" style="color:#1A1A1A;">
@@ -74,6 +73,10 @@
 
 <div class="ziak-store">
 
+  {%- comment -%} ZIAK store location — hardcoded so every button/map points to the real address {%- endcomment -%}
+  {%- assign map_q = 'A-398, Lane No 11, Mahavir Enclave Part 2, New Delhi 110059' -%}
+  {%- assign maps_link = map_q | url_encode | prepend: 'https://www.google.com/maps/search/?api=1&query=' -%}
+
   <!-- ══════════ 1. HERO (split) ══════════ -->
   <section class="ziak-store__hero">
     <div class="ziak-store__hero-copy">
@@ -81,7 +84,7 @@
       <h1 class="ziak-store__hero-title">{{ section.settings.hero_heading | default: 'Visit Us In Delhi' }}</h1>
       <div class="ziak-store__hero-body">{{ section.settings.hero_body }}</div>
       {%- if section.settings.hero_btn_text != blank -%}
-        <a href="{{ section.settings.hero_btn_url | default: '#' }}" class="ziak-store__btn ziak-store__btn--dark">
+        <a href="{{ maps_link }}" class="ziak-store__btn ziak-store__btn--dark" target="_blank" rel="noopener">
           {{ section.settings.hero_btn_text }}
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </a>
@@ -110,10 +113,10 @@
       <p class="ziak-store__col-label">STORE DETAILS</p>
       <div class="ziak-store__addr">
         <span class="ziak-store__addr-pin"><i data-lucide="map-pin"></i></span>
-        <div class="ziak-store__addr-text">{{ section.settings.store_address | default: '<strong>ZIAK</strong><br>Select CITYWALK<br>Saket, New Delhi – 110017<br>India' }}</div>
+        <a class="ziak-store__addr-text" href="{{ maps_link }}" target="_blank" rel="noopener"><strong>ZIAK STORE</strong><br>A-398, Ground Floor, Lane No. 11<br>Mahavir Enclave Part-II<br>New Delhi – 110059</a>
       </div>
       {%- if section.settings.directions_url != blank or true -%}
-        <a href="{{ section.settings.directions_url | default: '#' }}" class="ziak-store__btn ziak-store__btn--ghost" target="_blank" rel="noopener">
+        <a href="{{ maps_link }}" class="ziak-store__btn ziak-store__btn--ghost" target="_blank" rel="noopener">
           GET DIRECTIONS
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><polyline points="7 7 17 7 17 17"/></svg>
         </a>
@@ -132,7 +135,7 @@
         <span class="ziak-store__info-icon"><i data-lucide="phone"></i></span>
         <div>
           <p class="ziak-store__info-title">CONTACT</p>
-          <p class="ziak-store__info-text"><a href="tel:{{ section.settings.contact_phone | default: '+919876543210' | replace: ' ', '' }}">{{ section.settings.contact_phone | default: '+91 98765 43210' }}</a></p>
+          <p class="ziak-store__info-text"><a href="tel:{{ section.settings.contact_phone | default: '+919555830185' | replace: ' ', '' }}">{{ section.settings.contact_phone | default: '+91 95558 30185' }}</a></p>
         </div>
       </div>
       <div class="ziak-store__info-row">
@@ -145,7 +148,6 @@
     </div>
 
     <div class="ziak-store__details-col ziak-store__map-col">
-      {%- assign map_q = section.settings.map_query | default: 'Select Citywalk, Saket, New Delhi' -%}
       <div class="ziak-store__map">
         <iframe
           class="ziak-store__map-frame"
@@ -216,7 +218,7 @@
         <p class="ziak-store__cta-text">{{ section.settings.cta_body | default: "Visit our Delhi store and experience ZIAK the way it's meant to be." }}</p>
       </div>
       {%- if section.settings.cta_btn_text != blank -%}
-        <a href="{{ section.settings.cta_btn_url | default: '#' }}" class="ziak-store__cta-btn">
+        <a href="{{ maps_link }}" class="ziak-store__cta-btn" target="_blank" rel="noopener">
           {{ section.settings.cta_btn_text }}
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </a>
@@ -253,13 +255,13 @@
     { "type": "text", "id": "hero_badge", "default": "DELHI STORE — EST. 2023", "label": "Corner badge" },
 
     { "type": "header", "content": "2. Store Details" },
-    { "type": "richtext", "id": "store_address", "default": "<p><strong>ZIAK</strong><br/>Select CITYWALK<br/>Saket, New Delhi – 110017<br/>India</p>", "label": "Address" },
+    { "type": "richtext", "id": "store_address", "default": "<p><strong>ZIAK STORE</strong><br/>A-398, Ground Floor, Lane No. 11<br/>Mahavir Enclave Part-II<br/>New Delhi – 110059</p>", "label": "Address" },
     { "type": "url", "id": "directions_url", "label": "Get directions link" },
     { "type": "text", "id": "hours_days", "default": "Mon – Sun", "label": "Store hours — days" },
     { "type": "text", "id": "hours_time", "default": "10:00 AM – 9:00 PM", "label": "Store hours — time" },
-    { "type": "text", "id": "contact_phone", "default": "+91 98765 43210", "label": "Phone" },
+    { "type": "text", "id": "contact_phone", "default": "+91 95558 30185", "label": "Phone" },
     { "type": "text", "id": "contact_email", "default": "delhi@ziak.in", "label": "Email" },
-    { "type": "text", "id": "map_query", "default": "Select Citywalk, Saket, New Delhi", "label": "Map location (address to show)" },
+    { "type": "text", "id": "map_query", "default": "ZIAK STORE, A-398, Lane No 11, Mahavir Enclave Part 2, New Delhi 110059", "label": "Map location (address to show)" },
 
     { "type": "header", "content": "4. Gallery" },
     { "type": "image_picker", "id": "gallery_1", "label": "Large image (you add)" },

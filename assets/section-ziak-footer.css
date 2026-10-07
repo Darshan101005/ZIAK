@@ -70,8 +70,9 @@
 /* Email form row */
 .ziak-footer__email-row {
   display: flex;
-  gap: 0;
+  gap: 8px;
   width: 100%;
+  align-items: stretch;
 }
 
 .ziak-footer__email-input {
@@ -79,7 +80,6 @@
   min-width: 0;
   padding: 0.75rem 1rem;
   border: 1px solid rgba(255,255,255,0.4);
-  border-right: none;
   font-size: 1.3rem;
   color: #ffffff;
   outline: none;

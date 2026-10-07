@@ -12,12 +12,7 @@
 {%- comment -%} ZIAK About Page Hero — same nav structure, about-specific content {%- endcomment -%}
 
 <!-- Announcement Bar (same as homepage) -->
-<div class="ziak-hero__announcement" id="ziak-about-announcement">
-  <span>{{ section.settings.announcement_text | default: 'FREE SHIPPING AND RETURNS IN THE U.S.' }}</span>
-  {%- if section.settings.announcement_link_text != blank -%}
-    <a href="{{ section.settings.announcement_link }}">{{ section.settings.announcement_link_text }}</a>
-  {%- endif -%}
-</div>
+<div class="ziak-hero__announcement" id="ziak-about-announcement"><span>FREE SHIPPING ON ALL ORDERS, ALL OVER INDIA <a href="{{ shop.shipping_policy.url | default: '/policies/shipping-policy' }}" style="color:inherit;text-decoration:underline;font-weight:700;">DETAILS</a></span></div>
 
 <!-- Hero wrapper (reuses homepage hero CSS) -->
 <div class="ziak-hero" id="ziak-about-hero">
@@ -33,6 +28,7 @@
         {%- render 'ziak-mega-menu' -%}
       </div>
       <a href="/pages/about" class="ziak-hero__nav-link" id="ziak-about-nav-about">ABOUT</a>
+      <a href="/pages/blog" class="ziak-hero__nav-link" id="ziak-about-nav-blog">BLOG</a>
     </div>
 
     <!-- Center Logo -->

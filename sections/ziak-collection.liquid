@@ -62,9 +62,7 @@
 
 <!-- ════════ ZIAK COLLECTION HEADER ════════ -->
 <!-- Announcement bar: black bg, white text -->
-<div class="ziak-hero__announcement" id="ziak-coll-announcement" style="background:#1A1A1A;color:#FFFFFF;">
-  <span>Free Shipping On All Orders Over ₹999 — Shop ZIAK Now</span>
-</div>
+<div class="ziak-hero__announcement" id="ziak-coll-announcement" style="background:#1A1A1A;color:#FFFFFF;"><span>FREE SHIPPING ON ALL ORDERS, ALL OVER INDIA <a href="{{ shop.shipping_policy.url | default: '/policies/shipping-policy' }}" style="color:inherit;text-decoration:underline;font-weight:700;">DETAILS</a></span></div>
 
 <!-- Nav: white bg, black text, with full mega menus -->
 <div class="ziak-hero" id="ziak-coll-hero" style="min-height:auto;background:#FFFFFF;">
@@ -79,6 +77,7 @@
       </div>
 
       <a href="/pages/about" class="ziak-hero__nav-link" style="color:#1A1A1A;">ABOUT</a>
+      <a href="/pages/blog" class="ziak-hero__nav-link" style="color:#1A1A1A;">BLOG</a>
     </div>
 
     <!-- Center Logo -->
@@ -325,20 +324,6 @@
         {%- else -%}
           <span class="ziak-coll__pg-btn ziak-coll__pg-arrow ziak-coll__pg-off">›</span>
         {%- endif -%}
-      </div>
-    </nav>
-    {%- else -%}
-    <!-- Demo pagination — always shown for placeholder/single-page collections -->
-    <nav class="ziak-coll__pagination" aria-label="Products pagination">
-      <div class="ziak-coll__pg-inner">
-        <span class="ziak-coll__pg-btn ziak-coll__pg-arrow ziak-coll__pg-off">‹</span>
-        <span class="ziak-coll__pg-btn ziak-coll__pg-active">1</span>
-        <a href="#" class="ziak-coll__pg-btn">2</a>
-        <a href="#" class="ziak-coll__pg-btn">3</a>
-        <a href="#" class="ziak-coll__pg-btn">4</a>
-        <span class="ziak-coll__pg-ellipsis">…</span>
-        <a href="#" class="ziak-coll__pg-btn">8</a>
-        <a href="#" class="ziak-coll__pg-btn ziak-coll__pg-arrow">›</a>
       </div>
     </nav>
     {%- endif -%}

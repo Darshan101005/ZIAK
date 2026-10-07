@@ -24,9 +24,7 @@
 </style>
 
 <!-- ══════════ ANNOUNCEMENT + HEADER (About-page style) ══════════ -->
-<div class="ziak-hero__announcement" id="ziak-feature-announcement" style="background:#1A1A1A;color:#FFFFFF;">
-  <span>{{ section.settings.announcement_text | default: 'FREE SHIPPING ON ALL ORDERS OVER ₹999 — ALL OVER INDIA' }}</span>
-</div>
+<div class="ziak-hero__announcement" id="ziak-feature-announcement" style="background:#1A1A1A;color:#FFFFFF;"><span>FREE SHIPPING ON ALL ORDERS, ALL OVER INDIA <a href="{{ shop.shipping_policy.url | default: '/policies/shipping-policy' }}" style="color:inherit;text-decoration:underline;font-weight:700;">DETAILS</a></span></div>
 
 <div class="ziak-hero" id="ziak-feature-hero" style="min-height:auto;background:#FFFFFF;">
   {%- render 'ziak-mobile-nav' -%}
@@ -37,6 +35,7 @@
         {%- render 'ziak-mega-menu' -%}
       </div>
       <a href="/pages/about" class="ziak-hero__nav-link" style="color:#1A1A1A;">ABOUT</a>
+      <a href="/pages/blog" class="ziak-hero__nav-link" style="color:#1A1A1A;">BLOG</a>
     </div>
     <div class="ziak-hero__nav-center">
       <a href="{{ routes.root_url }}" class="ziak-hero__logo-placeholder" style="color:#1A1A1A;">

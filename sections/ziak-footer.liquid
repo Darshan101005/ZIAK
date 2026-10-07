@@ -37,6 +37,12 @@
         <li><a href="/pages/wishlist" class="ziak-footer__link">Wishlist</a></li>
         {%- if shop.privacy_policy.url != blank -%}<li><a href="{{ shop.privacy_policy.url }}" class="ziak-footer__link">Privacy Policy</a></li>{%- endif -%}
         {%- if shop.terms_of_service.url != blank -%}<li><a href="{{ shop.terms_of_service.url }}" class="ziak-footer__link">Terms of Service</a></li>{%- endif -%}
+        {%- comment -%} Remaining shop policies (Refund, Shipping, Contact info, Legal notice) {%- endcomment -%}
+        {%- for policy in shop.policies -%}
+          {%- if policy.url != blank and policy.url != shop.privacy_policy.url and policy.url != shop.terms_of_service.url -%}
+            <li><a href="{{ policy.url }}" class="ziak-footer__link">{{ policy.title }}</a></li>
+          {%- endif -%}
+        {%- endfor -%}
       </ul>
     </div>
 
@@ -94,12 +100,25 @@
         {%- endif -%}
       </div>
 
-      <!-- Country selector -->
-      <div class="ziak-footer__country">
-        <select class="ziak-footer__country-select" id="ziak-footer-country" aria-label="Select country/currency">
-          <option selected>{{ section.settings.country_label }}</option>
-        </select>
-      </div>
+      <!-- Currency / country selector (Shopify localization) -->
+      {%- if localization.available_countries.size > 1 -%}
+        {%- form 'localization', id: 'ziak-footer-localization', class: 'ziak-footer__country' -%}
+          <input type="hidden" name="return_to" value="{{ request.path }}">
+          <select class="ziak-footer__country-select" name="country_code" aria-label="Select currency" onchange="this.form.submit()">
+            {%- for country in localization.available_countries -%}
+              <option value="{{ country.iso_code }}"{% if country.iso_code == localization.country.iso_code %} selected{% endif %}>
+                {{ country.name }} ({{ country.currency.iso_code }} {{ country.currency.symbol }})
+              </option>
+            {%- endfor -%}
+          </select>
+        {%- endform -%}
+      {%- else -%}
+        <div class="ziak-footer__country">
+          <select class="ziak-footer__country-select" aria-label="Currency">
+            <option selected>{{ section.settings.country_label }}</option>
+          </select>
+        </div>
+      {%- endif -%}
 
     </div>
   </div>

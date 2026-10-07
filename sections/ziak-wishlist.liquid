@@ -27,9 +27,7 @@
 </style>
 
 <!-- ══════════ ANNOUNCEMENT BAR ══════════ -->
-<div class="ziak-hero__announcement" id="ziak-wishlist-announcement" style="background:#1A1A1A;color:#FFFFFF;">
-  <span>{{ section.settings.announcement_text | default: 'FREE SHIPPING ON ALL ORDERS OVER ₹999 — SHOP ZIAK NOW' }}</span>
-</div>
+<div class="ziak-hero__announcement" id="ziak-wishlist-announcement" style="background:#1A1A1A;color:#FFFFFF;"><span>FREE SHIPPING ON ALL ORDERS, ALL OVER INDIA <a href="{{ shop.shipping_policy.url | default: '/policies/shipping-policy' }}" style="color:inherit;text-decoration:underline;font-weight:700;">DETAILS</a></span></div>
 
 <!-- ══════════ HEADER ══════════ -->
 <div class="ziak-hero" id="ziak-wishlist-hero" style="min-height:auto;background:#FFFFFF;">
@@ -41,6 +39,7 @@
         {%- render 'ziak-mega-menu' -%}
       </div>
       <a href="{{ section.settings.link_about_url | default: '/pages/about' }}" class="ziak-hero__nav-link" style="color:#1A1A1A;">ABOUT</a>
+      <a href="/pages/blog" class="ziak-hero__nav-link" style="color:#1A1A1A;">BLOG</a>
     </div>
 
     <div class="ziak-hero__nav-center">

@@ -12,12 +12,7 @@
 </style>
 
 <!-- ══════════ ANNOUNCEMENT BAR (same as home/about) ══════════ -->
-<div class="ziak-hero__announcement" id="ziak-sg-announcement">
-  <span>{{ section.settings.announcement_text | default: 'FREE SHIPPING AND RETURNS IN THE U.S.' }}</span>
-  {%- if section.settings.announcement_link_text != blank -%}
-    <a href="{{ section.settings.announcement_link }}">{{ section.settings.announcement_link_text }}</a>
-  {%- endif -%}
-</div>
+<div class="ziak-hero__announcement" id="ziak-sg-announcement"><span>FREE SHIPPING ON ALL ORDERS, ALL OVER INDIA <a href="{{ shop.shipping_policy.url | default: '/policies/shipping-policy' }}" style="color:inherit;text-decoration:underline;font-weight:700;">DETAILS</a></span></div>
 
 <!-- ══════════ HERO (same overlay nav + big media as home/about) ══════════ -->
 <div class="ziak-hero" id="ziak-sg-hero">
@@ -31,6 +26,7 @@
         {%- render 'ziak-mega-menu' -%}
       </div>
       <a href="{{ section.settings.link_about_url | default: '/pages/about' }}" class="ziak-hero__nav-link">ABOUT</a>
+      <a href="/pages/blog" class="ziak-hero__nav-link">BLOG</a>
     </div>
 
     <div class="ziak-hero__nav-center">
@@ -452,7 +448,7 @@
     {
       "type": "text",
       "id": "whatsapp_number",
-      "default": "+91 98765 43210",
+      "default": "+91 95558 30185",
       "label": "WhatsApp number"
     }
   ],

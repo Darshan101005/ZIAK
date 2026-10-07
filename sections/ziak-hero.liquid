@@ -7,12 +7,7 @@
 {%- endcomment -%}
 
 <!-- Announcement Bar -->
-<div class="ziak-hero__announcement" id="ziak-announcement-bar">
-  <span>{{ section.settings.announcement_text }}</span>
-  {%- if section.settings.announcement_link_text != blank -%}
-    <a href="{{ section.settings.announcement_link }}">{{ section.settings.announcement_link_text }}</a>
-  {%- endif -%}
-</div>
+<div class="ziak-hero__announcement" id="ziak-announcement-bar"><span>FREE SHIPPING ON ALL ORDERS, ALL OVER INDIA <a href="{{ shop.shipping_policy.url | default: '/policies/shipping-policy' }}" style="color:inherit;text-decoration:underline;font-weight:700;">DETAILS</a></span></div>
 
 <!-- Hero Section -->
 <div class="ziak-hero" id="ziak-hero-section">
@@ -41,6 +36,7 @@
           {{ section.settings.nav_link_3_text }}
         </a>
       {%- endif -%}
+      <a href="/pages/blog" class="ziak-hero__nav-link" id="ziak-nav-link-blog">Blog</a>
     </div>
 
     <!-- Center Logo -->

@@ -121,7 +121,8 @@
 .ziak-store__addr { display: flex; gap: 14px; margin: 22px 0 26px; }
 .ziak-store__addr-pin { color: var(--st-ink); flex: none; }
 .ziak-store__addr-pin i { width: 26px; height: 26px; }
-.ziak-store__addr-text { font-family: 'Playfair Display', Georgia, serif; font-size: 1.55rem; line-height: 1.5; }
+.ziak-store__addr-text { font-family: 'Playfair Display', Georgia, serif; font-size: 1.55rem; line-height: 1.5; color: inherit; text-decoration: none; display: block; transition: color 0.2s; }
+a.ziak-store__addr-text:hover { color: var(--st-accent); }
 .ziak-store__addr-text p { margin: 0; }
 .ziak-store__addr-text strong { font-weight: 700; }
 
@@ -208,7 +209,7 @@
 }
 .ziak-store__cta-eyebrow { color: rgba(255,255,255,0.85); margin-bottom: 14px; }
 .ziak-store__cta-eyebrow::after { content: ''; display: block; width: 40px; height: 2px; background: var(--st-accent); margin-top: 12px; }
-.ziak-store__cta-title { font-family: 'Playfair Display', Georgia, serif; font-size: clamp(2.6rem, 4vw, 3.8rem); font-weight: 600; margin: 0 0 12px; }
+.ziak-store__cta-title { font-family: 'Playfair Display', Georgia, serif; font-size: clamp(2.6rem, 4vw, 3.8rem); font-weight: 600; margin: 0 0 12px; color: #FFFFFF; }
 .ziak-store__cta-text { font-size: 1.4rem; color: rgba(255,255,255,0.85); margin: 0; max-width: 480px; }
 .ziak-store__cta-btn {
   flex: none;
