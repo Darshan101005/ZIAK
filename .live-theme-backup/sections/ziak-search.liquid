@@ -1,0 +1,271 @@
+{{ 'section-ziak-hero.css' | asset_url | stylesheet_tag }}
+{{ 'section-ziak-search.css' | asset_url | stylesheet_tag }}
+{{ 'ziak-card.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'ziak-card.js' | asset_url }}" defer="defer"></script>
+
+<!-- Lucide icons (same approach as the rest of the ZIAK sections) -->
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
+
+<style>
+  /* Hide Dawn's default header — this page uses its own ZIAK nav */
+  .shopify-section-group-header-group { display: none !important; }
+  body { background-color: #FFFFFF !important; }
+
+  /* ── Fixed white header (same as the contact page) ── */
+  #ziak-search-nav {
+    position: relative !important;
+    top: auto !important; left: auto !important; right: auto !important;
+    background: #FFFFFF !important;
+    border-bottom: 1px solid #E8E8E8 !important;
+  }
+  #ziak-search-nav .ziak-hero__nav-link,
+  #ziak-search-nav .ziak-hero__nav-link--dropdown { color: #1A1A1A !important; }
+  #ziak-search-nav .ziak-hero__nav-link--dropdown::after { border-top-color: #1A1A1A !important; }
+  #ziak-search-nav .ziak-hero__nav-icon { color: #1A1A1A !important; opacity: 1 !important; }
+  #ziak-search-nav .ziak-hero__nav-icon svg { stroke: #1A1A1A !important; }
+  #ziak-search-nav .ziak-hero__logo-placeholder { color: #1A1A1A !important; opacity: 1 !important; }
+  #ziak-search-nav .ziak-hero__logo-img { filter: none !important; }
+  #ziak-search-nav .ziak-hero__mega-menu {
+    position: fixed !important; top: auto !important; left: 0 !important; right: 0 !important; width: 100vw !important;
+  }
+</style>
+
+<!-- ══════════ ANNOUNCEMENT BAR ══════════ -->
+<div class="ziak-hero__announcement" id="ziak-search-announcement" style="background:#1A1A1A;color:#FFFFFF;"><span>FREE SHIPPING ON ALL ORDERS, ALL OVER INDIA <a href="{{ shop.shipping_policy.url | default: '/policies/shipping-policy' }}" style="color:inherit;text-decoration:underline;font-weight:700;">DETAILS</a></span></div>
+
+<!-- ══════════ HEADER ══════════ -->
+<div class="ziak-hero" id="ziak-search-hero" style="min-height:auto;background:#FFFFFF;">
+  {%- render 'ziak-mobile-nav' -%}
+    <nav class="ziak-hero__nav" id="ziak-search-nav" aria-label="Main navigation" style="background:#FFFFFF;border-bottom:1px solid #E8E8E8;">
+    <div class="ziak-hero__nav-left">
+      <div class="ziak-hero__dropdown-wrapper">
+        <a href="{{ section.settings.link_men_url | default: '/collections/mens' }}" class="ziak-hero__nav-link ziak-hero__nav-link--dropdown" style="color:#1A1A1A;">MEN</a>
+        {%- render 'ziak-mega-menu' -%}
+      </div>
+      <a href="{{ section.settings.link_about_url | default: '/pages/about' }}" class="ziak-hero__nav-link" style="color:#1A1A1A;">ABOUT</a>
+      <a href="/pages/blog" class="ziak-hero__nav-link" style="color:#1A1A1A;">BLOG</a>
+    </div>
+
+    <div class="ziak-hero__nav-center">
+      <a href="{{ routes.root_url }}" class="ziak-hero__logo-placeholder" style="color:#1A1A1A;">
+        {%- if settings.logo_svg_url != blank -%}
+          <img src="{{ settings.logo_svg_url }}" alt="{{ shop.name | escape }}" class="ziak-hero__logo-img" width="120">
+        {%- elsif settings.logo != blank -%}
+          {{ settings.logo | image_url: width: 300 | image_tag: alt: shop.name, class: 'ziak-hero__logo-img', width: 110 }}
+        {%- else -%}
+          ZIAK
+        {%- endif -%}
+      </a>
+    </div>
+
+    <div class="ziak-hero__nav-right">
+      <a href="/pages/our-store" class="ziak-hero__nav-link" style="color:#1A1A1A;">STORES</a>
+      <a href="/pages/contact" class="ziak-hero__nav-link" style="color:#1A1A1A;">HELP</a>
+      <a href="/pages/wishlist" class="ziak-hero__nav-icon ziak-wish-link" aria-label="Wishlist" style="color:#1A1A1A;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        <span class="ziak-wish-count" data-ziak-wishlist-count style="display:none;">0</span>
+      </a>
+      <a href="{{ routes.account_url }}" class="ziak-hero__nav-icon" aria-label="Account" style="color:#1A1A1A;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M18 20a6 6 0 0 0-12 0"/><circle cx="12" cy="10" r="4"/></svg>
+      </a>
+      <a href="{{ routes.search_url }}" class="ziak-hero__nav-icon" aria-label="Search" style="color:#1A1A1A;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      </a>
+      <a href="{{ routes.cart_url }}" class="ziak-hero__nav-icon" aria-label="Cart" style="color:#1A1A1A;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+      </a>
+    </div>
+  </nav>
+</div>
+
+<!-- ══════════ SEARCH BODY ══════════ -->
+<div class="ziak-search" id="ziak-search">
+  <div class="ziak-search__head">
+    <p class="ziak-search__eyebrow">{{ section.settings.eyebrow | default: 'FIND YOUR PAIR' }}</p>
+    <h1 class="ziak-search__title">{{ section.settings.heading | default: 'Search' }}</h1>
+    <p class="ziak-search__sub">{{ section.settings.subheading | default: 'Search our collection of handcrafted footwear.' }}</p>
+
+    <form action="{{ routes.search_url }}" method="get" role="search" class="ziak-search__form">
+      <span class="ziak-search__form-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      </span>
+      <input
+        type="search"
+        name="q"
+        value="{{ search.terms | escape }}"
+        placeholder="{{ section.settings.placeholder | default: 'Search for shoes, boots, sneakers…' }}"
+        class="ziak-search__input"
+        aria-label="Search"
+        autocomplete="off"
+      >
+      <input type="hidden" name="options[prefix]" value="last">
+      <button type="submit" class="ziak-search__submit">Search</button>
+    </form>
+
+    {%- unless search.performed -%}
+      {%- if section.blocks.size > 0 -%}
+        <div class="ziak-search__suggest">
+          <span class="ziak-search__suggest-label">Popular:</span>
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'suggestion' and block.settings.term != blank -%}
+              <a href="{{ routes.search_url }}?q={{ block.settings.term | url_encode }}&options[prefix]=last" class="ziak-search__chip" {{ block.shopify_attributes }}>{{ block.settings.term }}</a>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    {%- endunless -%}
+  </div>
+
+  {%- if search.performed -%}
+    {%- paginate search.results by 12 -%}
+      <div class="ziak-search__results">
+        <p class="ziak-search__count">
+          {%- if search.results_count > 0 -%}
+            {{ search.results_count }} result{% if search.results_count != 1 %}s{% endif %} for <strong>&ldquo;{{ search.terms }}&rdquo;</strong>
+          {%- else -%}
+            No results for <strong>&ldquo;{{ search.terms }}&rdquo;</strong>
+          {%- endif -%}
+        </p>
+
+        {%- if search.results_count > 0 -%}
+          <div class="ziak-search__grid">
+            {%- for item in search.results -%}
+              {%- case item.object_type -%}
+                {%- when 'product' -%}
+                  {%- render 'ziak-card', product: item, index: forloop.index -%}
+                {%- else -%}
+                  <a href="{{ item.url }}" class="ziak-search__misc">
+                    <span class="ziak-search__misc-type">{{ item.object_type }}</span>
+                    <span class="ziak-search__misc-title">{{ item.title | truncate: 60 }}</span>
+                    {%- if item.object_type == 'article' and item.excerpt != blank -%}
+                      <span class="ziak-search__misc-excerpt">{{ item.excerpt | strip_html | truncate: 110 }}</span>
+                    {%- endif -%}
+                    <span class="ziak-search__misc-cta">View <i data-lucide="arrow-right"></i></span>
+                  </a>
+              {%- endcase -%}
+            {%- endfor -%}
+          </div>
+
+          {%- if paginate.pages > 1 -%}
+            <nav class="ziak-search__pager" aria-label="Pagination">
+              {%- if paginate.previous -%}
+                <a href="{{ paginate.previous.url }}" class="ziak-search__pager-btn"><i data-lucide="chevron-left"></i> Prev</a>
+              {%- endif -%}
+              {%- for part in paginate.parts -%}
+                {%- if part.is_link -%}
+                  <a href="{{ part.url }}" class="ziak-search__pager-num">{{ part.title }}</a>
+                {%- else -%}
+                  <span class="ziak-search__pager-num {% if part.title == paginate.current_page %}is-current{% endif %}">{{ part.title }}</span>
+                {%- endif -%}
+              {%- endfor -%}
+              {%- if paginate.next -%}
+                <a href="{{ paginate.next.url }}" class="ziak-search__pager-btn">Next <i data-lucide="chevron-right"></i></a>
+              {%- endif -%}
+            </nav>
+          {%- endif -%}
+        {%- else -%}
+          <div class="ziak-search__empty">
+            <span class="ziak-search__empty-icon"><i data-lucide="search-x"></i></span>
+            <p class="ziak-search__empty-title">We couldn't find a match</p>
+            <p class="ziak-search__empty-text">Try a different word, check the spelling, or browse the full collection.</p>
+            <a href="{{ section.settings.browse_url | default: '/collections/all' }}" class="ziak-search__empty-btn">BROWSE ALL SHOES</a>
+          </div>
+        {%- endif -%}
+      </div>
+    {%- endpaginate -%}
+  {%- endif -%}
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    if (typeof lucide !== 'undefined') lucide.createIcons();
+  });
+</script>
+
+{% schema %}
+{
+  "name": "ZIAK Search",
+  "tag": "section",
+  "class": "ziak-search-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Top Bar"
+    },
+    {
+      "type": "text",
+      "id": "announcement_text",
+      "default": "FREE SHIPPING ON ALL ORDERS OVER ₹999 — SHOP ZIAK NOW",
+      "label": "Announcement text"
+    },
+    {
+      "type": "url",
+      "id": "link_men_url",
+      "label": "MEN link"
+    },
+    {
+      "type": "url",
+      "id": "link_about_url",
+      "label": "ABOUT link"
+    },
+    {
+      "type": "header",
+      "content": "Search Header"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "default": "FIND YOUR PAIR",
+      "label": "Eyebrow"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "default": "Search",
+      "label": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "default": "Search our collection of handcrafted footwear.",
+      "label": "Subheading"
+    },
+    {
+      "type": "text",
+      "id": "placeholder",
+      "default": "Search for shoes, boots, sneakers…",
+      "label": "Input placeholder"
+    },
+    {
+      "type": "url",
+      "id": "browse_url",
+      "label": "\"Browse all\" link (no-results state)"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "suggestion",
+      "name": "Popular search",
+      "settings": [
+        {
+          "type": "text",
+          "id": "term",
+          "label": "Search term",
+          "default": "Boots"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "ZIAK Search",
+      "blocks": [
+        { "type": "suggestion", "settings": { "term": "Boots" } },
+        { "type": "suggestion", "settings": { "term": "Sneakers" } },
+        { "type": "suggestion", "settings": { "term": "Loafers" } },
+        { "type": "suggestion", "settings": { "term": "Oxford" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,259 @@
+/* ══════════════════════════════════════════════════════════
+   ZIAK — Our Store (offline store) page
+   ══════════════════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap');
+
+.ziak-store {
+  --st-ink: #1A1A1A;
+  --st-muted: #6E655A;
+  --st-line: #E2DFD8;
+  --st-soft: #F3F1EC;
+  --st-accent: #C77B3B;
+  font-family: 'Inter', Helvetica, sans-serif;
+  color: var(--st-ink);
+  background: #FFFFFF;
+  -webkit-font-smoothing: antialiased;
+}
+.ziak-store *, .ziak-store *::before, .ziak-store *::after { box-sizing: border-box; }
+
+.ziak-store__eyebrow,
+.ziak-store__col-label,
+.ziak-store__cta-eyebrow {
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--st-muted);
+  margin: 0 0 16px;
+  position: relative;
+}
+
+/* Shared buttons */
+.ziak-store__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 15px 28px;
+  transition: background 0.2s, color 0.2s, transform 0.2s;
+}
+.ziak-store__btn svg { width: 17px; height: 17px; }
+.ziak-store__btn--dark { background: var(--st-ink); color: #fff; border: 1.5px solid var(--st-ink); }
+.ziak-store__btn--dark:hover { background: #000; transform: translateY(-2px); }
+.ziak-store__btn--ghost { background: transparent; color: var(--st-ink); border: 1.5px solid var(--st-ink); }
+.ziak-store__btn--ghost:hover { background: var(--st-ink); color: #fff; }
+
+/* ── 1. HERO ── */
+.ziak-store__hero {
+  display: grid;
+  grid-template-columns: 42% 58%;
+  align-items: stretch;
+  min-height: 560px;
+  background: var(--st-soft);
+}
+.ziak-store__hero-copy {
+  padding: 70px clamp(28px, 5vw, 80px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.ziak-store__eyebrow::after {
+  content: '';
+  position: absolute;
+  left: 0; bottom: -8px;
+  width: 46px; height: 2px;
+  background: var(--st-ink);
+}
+.ziak-store__hero-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(3.4rem, 5vw, 5.4rem);
+  font-weight: 600;
+  line-height: 1.05;
+  margin: 22px 0 24px;
+}
+.ziak-store__hero-body { font-size: 1.4rem; line-height: 1.8; color: var(--st-muted); max-width: 400px; margin-bottom: 34px; }
+.ziak-store__hero-body p { margin: 0; }
+.ziak-store__hero-copy .ziak-store__btn { align-self: flex-start; margin-bottom: 40px; }
+.ziak-store__hero-tagline { font-size: 1.15rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--st-ink); margin: 0; }
+
+.ziak-store__hero-media { position: relative; overflow: hidden; min-height: 400px; }
+.ziak-store__hero-img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.ziak-store__hero-img--ph { background: #E7E3DC; }
+.ziak-store__hero-side {
+  position: absolute;
+  right: 14px; top: 50%;
+  transform: translateY(-50%) rotate(180deg);
+  writing-mode: vertical-rl;
+  font-size: 1rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #fff;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.4);
+}
+.ziak-store__hero-badge {
+  position: absolute;
+  right: 26px; bottom: 22px;
+  font-size: 1rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #fff;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.5);
+}
+
+/* ── 2. DETAILS + MAP ── */
+.ziak-store__details {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.15fr;
+  gap: 0;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 60px 40px;
+}
+.ziak-store__details-col { padding: 6px 40px; border-right: 1px solid var(--st-line); }
+.ziak-store__details-col:last-child { border-right: none; }
+.ziak-store__col-label::after { content: ''; display: block; width: 40px; height: 2px; background: var(--st-ink); margin-top: 12px; }
+
+.ziak-store__addr { display: flex; gap: 14px; margin: 22px 0 26px; }
+.ziak-store__addr-pin { color: var(--st-ink); flex: none; }
+.ziak-store__addr-pin i { width: 26px; height: 26px; }
+.ziak-store__addr-text { font-family: 'Playfair Display', Georgia, serif; font-size: 1.55rem; line-height: 1.5; color: inherit; text-decoration: none; display: block; transition: color 0.2s; }
+a.ziak-store__addr-text:hover { color: var(--st-accent); }
+.ziak-store__addr-text p { margin: 0; }
+.ziak-store__addr-text strong { font-weight: 700; }
+
+.ziak-store__details-info { display: flex; flex-direction: column; justify-content: center; gap: 26px; }
+.ziak-store__info-row { display: flex; align-items: flex-start; gap: 16px; }
+.ziak-store__info-icon { color: var(--st-ink); flex: none; }
+.ziak-store__info-icon i { width: 24px; height: 24px; stroke-width: 1.6; }
+.ziak-store__info-title { font-size: 1.1rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; margin: 0 0 5px; }
+.ziak-store__info-text { font-size: 1.35rem; color: var(--st-muted); margin: 0; }
+.ziak-store__info-text a { color: inherit; text-decoration: none; }
+.ziak-store__info-text a:hover { color: var(--st-accent); }
+
+.ziak-store__map-col { padding-right: 0; }
+.ziak-store__map { position: relative; width: 100%; height: 100%; min-height: 220px; border-radius: 6px; overflow: hidden; background: var(--st-soft); }
+.ziak-store__map-frame { width: 100%; height: 100%; min-height: 220px; border: 0; display: block; }
+.ziak-store__map-expand {
+  position: absolute; top: 12px; right: 12px;
+  width: 34px; height: 34px;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: #fff; border-radius: 6px; color: var(--st-ink);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+.ziak-store__map-expand svg { width: 16px; height: 16px; }
+
+/* ── 3. FEATURES ── */
+.ziak-store__features {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 36px 40px 44px;
+  border-top: 1px solid var(--st-line);
+}
+.ziak-store__feature { text-align: center; padding: 6px 24px; border-right: 1px solid var(--st-line); }
+.ziak-store__feature:last-child { border-right: none; }
+.ziak-store__feature-icon { color: var(--st-ink); display: inline-flex; margin-bottom: 14px; }
+.ziak-store__feature-icon i { width: 30px; height: 30px; stroke-width: 1.4; }
+.ziak-store__feature-title { font-size: 1.2rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin: 0 0 6px; }
+.ziak-store__feature-text { font-size: 1.2rem; color: var(--st-muted); margin: 0; }
+
+/* ── 4. GALLERY / BENTO ── */
+.ziak-store__gallery-wrap { max-width: 1400px; margin: 0 auto; padding: 30px 40px 40px; }
+.ziak-store__gallery {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1fr;
+  grid-template-rows: repeat(2, minmax(180px, 1fr));
+  gap: 16px;
+}
+.ziak-store__g { position: relative; overflow: hidden; border-radius: 4px; background: var(--st-soft); }
+.ziak-store__g-img { width: 100%; height: 100%; object-fit: cover; display: block; min-height: 180px; }
+.ziak-store__g-img--ph { background: #E7E3DC; }
+.ziak-store__g--large { grid-row: 1 / span 2; }
+.ziak-store__g--top { grid-column: 2; grid-row: 1; }
+.ziak-store__g--bottom { grid-column: 2; grid-row: 2; }
+.ziak-store__g--panel {
+  grid-column: 3; grid-row: 1 / span 2;
+  background: #1A1A1A;
+  color: #F4F1EC;
+  padding: 34px 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.ziak-store__panel-top { font-size: 1.15rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; line-height: 2; margin: 0 0 26px; }
+.ziak-store__panel-top::after { content: ''; display: block; width: 38px; height: 2px; background: var(--st-accent); margin-top: 18px; }
+.ziak-store__panel-quote { font-family: 'Playfair Display', Georgia, serif; font-style: italic; font-size: 1.9rem; line-height: 1.35; margin: 0 0 26px; }
+.ziak-store__panel-brand { font-family: 'Playfair Display', Georgia, serif; font-size: 1.6rem; letter-spacing: 0.1em; margin: 0; }
+.ziak-store__gallery-tagline { font-size: 1.1rem; font-weight: 600; letter-spacing: 0.24em; text-transform: uppercase; color: var(--st-muted); margin: 22px 0 0; }
+
+/* ── 5. CTA ── */
+.ziak-store__cta {
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+}
+.ziak-store__cta-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 70px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+}
+.ziak-store__cta-eyebrow { color: rgba(255,255,255,0.85); margin-bottom: 14px; }
+.ziak-store__cta-eyebrow::after { content: ''; display: block; width: 40px; height: 2px; background: var(--st-accent); margin-top: 12px; }
+.ziak-store__cta-title { font-family: 'Playfair Display', Georgia, serif; font-size: clamp(2.6rem, 4vw, 3.8rem); font-weight: 600; margin: 0 0 12px; color: #FFFFFF; }
+.ziak-store__cta-text { font-size: 1.4rem; color: rgba(255,255,255,0.85); margin: 0; max-width: 480px; }
+.ziak-store__cta-btn {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: #F4EFE7;
+  color: #1A1A1A;
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 16px 30px;
+  transition: background 0.2s, transform 0.2s;
+}
+.ziak-store__cta-btn svg { width: 17px; height: 17px; }
+.ziak-store__cta-btn:hover { background: #fff; transform: translateY(-2px); }
+
+/* ── Responsive ── */
+@media (max-width: 990px) {
+  .ziak-store__hero { grid-template-columns: 1fr; }
+  .ziak-store__hero-media { min-height: 340px; order: -1; }
+  .ziak-store__details { grid-template-columns: 1fr; gap: 30px; padding: 40px 24px; }
+  .ziak-store__details-col { border-right: none; border-bottom: 1px solid var(--st-line); padding: 0 0 26px; }
+  .ziak-store__details-col:last-child { border-bottom: none; padding-bottom: 0; }
+  .ziak-store__map { min-height: 260px; }
+  .ziak-store__features { grid-template-columns: 1fr 1fr; gap: 26px 0; }
+  .ziak-store__feature:nth-child(2) { border-right: none; }
+  .ziak-store__gallery { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+  .ziak-store__g--large { grid-row: auto; grid-column: 1 / -1; }
+  .ziak-store__g--top { grid-column: 1; grid-row: auto; }
+  .ziak-store__g--bottom { grid-column: 2; grid-row: auto; }
+  .ziak-store__g--panel { grid-column: 1 / -1; grid-row: auto; }
+  .ziak-store__cta-inner { flex-direction: column; align-items: flex-start; }
+}
+
+@media (max-width: 749px) {
+  .ziak-store__hero-copy { padding: 44px 20px; }
+  .ziak-store__details, .ziak-store__features, .ziak-store__gallery-wrap, .ziak-store__cta-inner { padding-left: 18px; padding-right: 18px; }
+  .ziak-store__features { grid-template-columns: 1fr; }
+  .ziak-store__feature { border-right: none; border-bottom: 1px solid var(--st-line); padding-bottom: 24px; }
+  .ziak-store__feature:last-child { border-bottom: none; }
+  .ziak-store__gallery { grid-template-columns: 1fr; }
+  .ziak-store__g--top, .ziak-store__g--bottom { grid-column: 1; }
+  .ziak-store__g-img { min-height: 220px; }
+}

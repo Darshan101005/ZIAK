@@ -79,6 +79,8 @@
   <nav class="ziak-wl__crumb" aria-label="Breadcrumb">
     <a href="{{ routes.root_url }}">Home</a>
     <span>›</span>
+    <a href="/collections/all">Collection</a>
+    <span>›</span>
     <span>Wishlist</span>
   </nav>
 
@@ -226,6 +228,8 @@
         var atc = e.target.closest('[data-wl-atc]');
         if (atc) {
           var variantId = atc.getAttribute('data-variant-id');
+          var row = atc.closest('.ziak-wl__row');
+          var rowKey = row ? row.getAttribute('data-wl-key') : '';
           if (!variantId || atc.classList.contains('is-loading')) return;
           atc.classList.add('is-loading');
           var prev = atc.textContent;
@@ -236,6 +240,8 @@
           })
             .then(function (r) { if (!r.ok) throw new Error('fail'); return r.json(); })
             .then(function () {
+              // Moving an item to the cart also removes it from the wishlist.
+              window.ZiakWishlist.remove(rowKey);
               atc.textContent = 'ADDED ✓';
               atc.classList.add('is-added');
               setTimeout(function () { atc.textContent = prev; atc.classList.remove('is-added'); }, 1800);

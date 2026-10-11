@@ -1,0 +1,34 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "ziak-search",
+      "blocks": {
+        "s1": { "type": "suggestion", "settings": { "term": "Formal Shoes" } },
+        "s2": { "type": "suggestion", "settings": { "term": "Brogues" } },
+        "s3": { "type": "suggestion", "settings": { "term": "Derby" } },
+        "s4": { "type": "suggestion", "settings": { "term": "Chelsea Boots" } },
+        "s5": { "type": "suggestion", "settings": { "term": "Loafers" } }
+      },
+      "block_order": ["s1", "s2", "s3", "s4", "s5"],
+      "settings": {
+        "announcement_text": "FREE SHIPPING ON ALL ORDERS OVER ₹999 — SHOP ZIAK NOW",
+        "link_about_url": "/pages/about",
+        "eyebrow": "FIND YOUR PAIR",
+        "heading": "Search",
+        "subheading": "Search our collection of handcrafted footwear.",
+        "placeholder": "Search for shoes, boots, sneakers…",
+        "browse_url": "/collections/all"
+      }
+    }
+  },
+  "order": ["main"]
+}

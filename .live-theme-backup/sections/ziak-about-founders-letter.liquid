@@ -1,0 +1,80 @@
+{{ 'section-ziak-about-founders-letter.css' | asset_url | stylesheet_tag }}
+
+<section class="ziak-founders" id="ziak-founders-letter">
+  <div class="ziak-founders__grid">
+
+    <!-- LEFT COLUMN: Empty — add your image here via Shopify Customizer -->
+    <div class="ziak-founders__left">
+      {%- if section.settings.founder_image != blank -%}
+        {{
+          section.settings.founder_image
+          | image_url: width: 1200
+          | image_tag: loading: 'lazy', class: 'ziak-founders__image'
+        }}
+      {%- else -%}
+        <div class="ziak-founders__image-placeholder">
+          <span>Add image in Customizer</span>
+        </div>
+      {%- endif -%}
+    </div>
+
+    <!-- RIGHT COLUMN: Text content -->
+    <div class="ziak-founders__right">
+
+      <!-- Kicker -->
+      <p class="ziak-founders__kicker">FOUNDER'S LETTER</p>
+
+      <!-- Main Title -->
+      <h2 class="ziak-founders__title">A letter from our founder.</h2>
+
+      <!-- 3-Column Body Grid -->
+      <div class="ziak-founders__body-grid">
+
+        <!-- Column 1 -->
+        <div class="ziak-founders__body-col">
+          <p>I did not start ZIAK to be admired.</p>
+          <p>I started it because I could not accept forgetting.</p>
+          <p>History has shown what happens when people look away, when silence feels safer than conscience, when identity is used as a reason to harm rather than to protect.</p>
+          <p>ZIAK exists because memory matters,<br>but dignity matters more.<br>This brand was never meant to shout,<br>never meant to instruct,<br>never meant to divide.</p>
+          <p>It was meant to stand.</p>
+          <p>To stand quietly between harm and the vulnerable.<br>To remind without exploiting.<br>To unite without erasing difference.<br>To move forward without abandoning the past.</p>
+        </div>
+
+        <!-- Column 2 -->
+        <div class="ziak-founders__body-col">
+          <p>If you are reading this during a moment of pressure, remember this:</p>
+          <p>Do not trade conscience for convenience.<br>Do not trade dignity for scale.<br>Do not trade memory for momentum.</p>
+          <p>If the world demands that ZIAK pick sides, choose the human one.<br>If growth requires forgetting why we began, do not grow.<br>If relevance asks for outrage, refuse it.</p>
+          <p>This brand does not exist to win arguments.<br>It exists to endure.</p>
+          <p>Long after trends fade,<br>long after voices quiet,<br>what remains are the steps we took<br>when it mattered.</p>
+        </div>
+
+        <!-- Column 3: Closing + Signature -->
+        <div class="ziak-founders__body-col ziak-founders__body-col--sig">
+          <p class="ziak-founders__closing">Let ZIAK always be one of those steps.</p>
+          <p class="ziak-founders__sig-script">Steps, not statements.</p>
+          <p class="ziak-founders__sig-name">— Parth Vyas</p>
+        </div>
+
+      </div><!-- /.ziak-founders__body-grid -->
+    </div><!-- /.ziak-founders__right -->
+
+  </div><!-- /.ziak-founders__grid -->
+</section>
+
+{% schema %}
+{
+  "name": "ZIAK Founder's Letter",
+  "tag": "section",
+  "class": "ziak-founders-letter-section",
+  "disabled_on": { "groups": ["header", "footer"] },
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "founder_image",
+      "label": "Left column image"
+    }
+  ],
+  "presets": [{ "name": "ZIAK Founder's Letter" }]
+}
+{% endschema %}

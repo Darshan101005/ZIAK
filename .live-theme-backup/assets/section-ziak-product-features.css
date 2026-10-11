@@ -1,0 +1,67 @@
+/* ══════════════════════════════════════════════════════════
+   ZIAK — Product page: Feature / trust strip (standalone)
+   ══════════════════════════════════════════════════════════ */
+
+.ziak-pfeat {
+  --pf-ink: #1A1A1A;
+  --pf-muted: #7A7A7A;
+  --pf-line: #E6E4DF;
+  --pf-soft: #F7F6F3;
+  font-family: 'Inter', Helvetica, sans-serif;
+  color: var(--pf-ink);
+  background: #FFFFFF;
+  -webkit-font-smoothing: antialiased;
+}
+.ziak-pfeat *, .ziak-pfeat *::before, .ziak-pfeat *::after { box-sizing: border-box; }
+
+.ziak-pfeat__wrap {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.ziak-pfeat__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  background: var(--pf-soft);
+  border: 1px solid var(--pf-line);
+  border-radius: 8px;
+  padding: 24px 10px;
+}
+.ziak-pfeat__item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 4px 24px;
+  border-right: 1px solid #E2E0DA;
+}
+.ziak-pfeat__item:last-child { border-right: none; }
+.ziak-pfeat__icon { color: var(--pf-ink); display: inline-flex; }
+.ziak-pfeat__icon i { width: 28px; height: 28px; stroke-width: 1.4; }
+.ziak-pfeat__title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin: 0 0 3px;
+}
+.ziak-pfeat__text { font-size: 1.1rem; color: var(--pf-muted); margin: 0; }
+
+@media (max-width: 990px) {
+  .ziak-pfeat__grid { grid-template-columns: 1fr 1fr; gap: 18px 0; }
+  .ziak-pfeat__item:nth-child(2) { border-right: none; }
+}
+@media (max-width: 749px) {
+  .ziak-pfeat__wrap { padding-left: 18px; padding-right: 18px; }
+  .ziak-pfeat__grid { grid-template-columns: 1fr; }
+  .ziak-pfeat__item { border-right: none; border-bottom: 1px solid #E2E0DA; padding-bottom: 16px; }
+  .ziak-pfeat__item:last-child { border-bottom: none; }
+}
+
+/* ── Small-phone polish ── */
+@media (max-width: 480px) {
+  .ziak-pfeat__wrap { padding-left: 16px; padding-right: 16px; }
+  .ziak-pfeat__grid { padding: 18px 14px; }
+  .ziak-pfeat__item { padding: 4px 14px; }
+  .ziak-pfeat__title { font-size: 1.15rem; }
+}

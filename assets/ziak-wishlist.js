@@ -142,6 +142,14 @@
     if (heart) {
       e.preventDefault();
       e.stopPropagation();
+
+      /* If the card has size variants, let the size picker handle the toggle */
+      var card = heart.closest('.ziak-card');
+      if (card && card.getAttribute('data-size-opts') && typeof window.ziakShowSizePicker === 'function') {
+        window.ziakShowSizePicker(card, 'wishlist');
+        return;
+      }
+
       var nowIn = API.toggle(itemFromButton(heart));
       heart.classList.toggle('is-liked', nowIn);
       return;

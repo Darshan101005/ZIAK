@@ -159,14 +159,13 @@
 
     function updateSizeAvailability() {
       var sizeChips = $$('.ziak-pdp__size-chip');
-      var colorOpt  = selected[productOpts[0]]; // assume Color is option1
       sizeChips.forEach(function (chip) {
-        var sizeVal = chip.getAttribute('data-value');
+        var sizeVal  = chip.getAttribute('data-value');
         var testOpts = {};
         productOpts.forEach(function (name) { testOpts[name] = selected[name]; });
-        /* Find the option that matches size */
+        /* Match any option whose name contains 'size' (handles "Shoe Size" etc.) */
         for (var k = 0; k < productOpts.length; k++) {
-          if (productOpts[k].toLowerCase() === 'size') {
+          if (productOpts[k].toLowerCase().indexOf('size') !== -1) {
             testOpts[productOpts[k]] = sizeVal;
             break;
           }
@@ -199,7 +198,7 @@
     /* ── Size chips ── */
     $$('.ziak-pdp__size-chip').forEach(function (chip) {
       chip.addEventListener('click', function () {
-        if (chip.classList.contains('is-unavailable')) return;
+        /* Allow clicking sold-out sizes — button will show SOLD OUT state */
         var optName = chip.getAttribute('data-option-name');
         var value   = chip.getAttribute('data-value');
         selected[optName] = value;
@@ -251,16 +250,45 @@
       });
     }
 
-    /* ── Wishlist toggle ── */
+    /* ── Wishlist toggle (product page) ── */
     var wishBtn = $('#ziak-pdp-wishlist');
     if (wishBtn) {
+      /* Sync initial heart state from ZiakWishlist on page load */
+      function syncPdpWishState() {
+        if (!window.ZiakWishlist) return;
+        var key = wishBtn.getAttribute('data-handle') || wishBtn.getAttribute('data-url');
+        var inWish = key ? window.ZiakWishlist.has(key) : false;
+        wishBtn.classList.toggle('is-liked', inWish);
+        var lbl = wishBtn.querySelector('.ziak-pdp__wish-label');
+        if (lbl) lbl.textContent = inWish ? 'ADDED TO WISHLIST' : 'ADD TO WISHLIST';
+      }
+
       wishBtn.addEventListener('click', function () {
-        wishBtn.classList.toggle('is-liked');
-        var label = wishBtn.querySelector('.ziak-pdp__wish-label');
-        if (label) {
-          label.textContent = wishBtn.classList.contains('is-liked') ? 'ADDED TO WISHLIST' : 'ADD TO WISHLIST';
-        }
+        if (!window.ZiakWishlist) return;
+        /* Always use the ATC button's current variant ID (updated on size chip click) */
+        var atcBtn = $('#ziak-pdp-atc');
+        var vid = (atcBtn ? atcBtn.getAttribute('data-variant-id') : null)
+                  || wishBtn.getAttribute('data-variant-id');
+        if (vid) wishBtn.setAttribute('data-variant-id', vid);
+
+        var item = {
+          handle:    wishBtn.getAttribute('data-handle')   || '',
+          url:       wishBtn.getAttribute('data-url')      || '',
+          title:     wishBtn.getAttribute('data-title')    || '',
+          subtitle:  wishBtn.getAttribute('data-subtitle') || '',
+          image:     wishBtn.getAttribute('data-image')    || '',
+          price:     wishBtn.getAttribute('data-price')    || '',
+          available: wishBtn.getAttribute('data-available') !== 'false',
+          variantId: String(vid || '')
+        };
+        var nowIn = window.ZiakWishlist.toggle(item);
+        wishBtn.classList.toggle('is-liked', nowIn);
+        var lbl = wishBtn.querySelector('.ziak-pdp__wish-label');
+        if (lbl) lbl.textContent = nowIn ? 'ADDED TO WISHLIST' : 'ADD TO WISHLIST';
       });
+
+      syncPdpWishState();
+      document.addEventListener('ziak:wishlist:updated', syncPdpWishState);
     }
 
     /* ── Tabs ── */

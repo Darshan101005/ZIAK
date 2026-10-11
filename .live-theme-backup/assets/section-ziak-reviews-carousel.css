@@ -1,0 +1,140 @@
+/* ══════════════════════════════════════════════════════════
+   ZIAK — Reviews carousel
+   ══════════════════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+.ziak-rc {
+  --rc-ink: #1A1A1A;
+  --rc-muted: #7A7A7A;
+  --rc-accent: #C77B3B;
+  --rc-line: #E6E4DF;
+  font-family: 'Inter', Helvetica, sans-serif;
+  color: var(--rc-ink);
+  -webkit-font-smoothing: antialiased;
+}
+.ziak-rc *, .ziak-rc *::before, .ziak-rc *::after { box-sizing: border-box; }
+
+.ziak-rc__inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.ziak-rc__head { margin-bottom: 30px; }
+.ziak-rc__eyebrow {
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--rc-accent);
+  margin: 0 0 10px;
+}
+.ziak-rc__title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(2.4rem, 3.2vw, 3.4rem);
+  font-weight: 600;
+  margin: 0;
+}
+
+/* Viewport / track */
+.ziak-rc__viewport {
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding: 6px 4px 10px;
+  margin: 0 -4px;
+}
+.ziak-rc__viewport::-webkit-scrollbar { display: none; }
+.ziak-rc__track {
+  display: flex;
+  gap: 22px;
+  align-items: stretch;
+}
+
+/* Card */
+.ziak-rc__card {
+  flex: 0 0 auto;
+  width: 300px;
+  scroll-snap-align: start;
+  background: #FFFFFF;
+  border: 1px solid var(--rc-line);
+  border-radius: 12px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 10px 26px rgba(26, 22, 18, 0.05);
+}
+.ziak-rc__card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+.ziak-rc__stars { display: inline-flex; gap: 2px; }
+.ziak-rc__star { color: #D9D6D0; display: inline-flex; }
+.ziak-rc__star.is-on { color: var(--rc-accent); }
+.ziak-rc__star svg { fill: currentColor; }
+.ziak-rc__quote {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 3.2rem;
+  line-height: 0.6;
+  color: var(--rc-accent);
+  opacity: 0.55;
+}
+
+.ziak-rc__text {
+  font-size: 1.35rem;
+  line-height: 1.6;
+  color: #3A3A3A;
+  margin: 0 0 22px;
+  flex: 1;
+}
+
+.ziak-rc__person { display: flex; align-items: center; gap: 12px; }
+.ziak-rc__avatar {
+  flex: none;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+.ziak-rc__person-meta { display: flex; flex-direction: column; }
+.ziak-rc__name { font-size: 1.25rem; font-weight: 700; color: var(--rc-ink); }
+.ziak-rc__loc { font-size: 1.1rem; color: var(--rc-muted); }
+
+/* Arrows */
+.ziak-rc__arrows { display: flex; gap: 12px; margin-top: 26px; }
+.ziak-rc__arrow {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 1px solid var(--rc-line);
+  background: #FFFFFF;
+  color: var(--rc-ink);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, border-color 0.2s, transform 0.2s;
+}
+.ziak-rc__arrow:hover { border-color: var(--rc-accent); color: var(--rc-accent); }
+.ziak-rc__arrow--next {
+  background: var(--rc-accent);
+  border-color: var(--rc-accent);
+  color: #FFFFFF;
+}
+.ziak-rc__arrow--next:hover { background: #b06a2f; border-color: #b06a2f; color: #FFFFFF; transform: translateX(2px); }
+
+/* Responsive */
+@media (max-width: 749px) {
+  .ziak-rc__inner { padding: 0 16px; }
+  .ziak-rc__card { width: 82vw; max-width: 320px; }
+  .ziak-rc__title { font-size: 2.2rem; }
+}

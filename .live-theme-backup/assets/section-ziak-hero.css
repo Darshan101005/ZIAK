@@ -1,0 +1,686 @@
+/* ==========================================================================
+   ZIAK Hero Section
+   Full-screen hero with announcement bar, transparent navigation overlay,
+   and content positioned bottom-left matching Thursday Boot Co. style.
+   ========================================================================== */
+
+/* ---------- Hide default Shopify header when ZIAK hero is present ---------- */
+.ziak-hero-section ~ .section-header,
+body:has(.ziak-hero-section) .announcement-bar-section,
+body:has(.ziak-hero-section) .section-header {
+  display: none !important;
+}
+
+/* ---------- Announcement Bar ---------- */
+.ziak-hero__announcement {
+  background-color: #1A1A1A;
+  color: #FDFBF7;
+  text-align: center;
+  padding: 0.7rem 1.5rem;
+  font-size: 1.15rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 400;
+  position: relative;
+  z-index: 10;
+}
+
+.ziak-hero__announcement a {
+  color: #FDFBF7;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  margin-left: 0.4em;
+  font-weight: 500;
+  transition: opacity 0.2s ease;
+}
+
+.ziak-hero__announcement a:hover {
+  opacity: 0.75;
+}
+
+/* ---------- Navigation ---------- */
+.ziak-hero__nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.42rem 2.5rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  background: transparent;
+  transition: background-color 0.3s ease;
+}
+
+/* White background on hover for entire nav bar */
+.ziak-hero__nav:hover {
+  background-color: #ffffff;
+}
+
+.ziak-hero__nav:hover .ziak-hero__nav-link {
+  color: #1a1a1a;
+}
+
+.ziak-hero__nav:hover .ziak-hero__nav-link--dropdown::after {
+  border-top-color: #1a1a1a;
+}
+
+.ziak-hero__nav:hover .ziak-hero__nav-icon svg {
+  stroke: #1a1a1a;
+}
+
+.ziak-hero__nav:hover .ziak-hero__mobile-menu-btn svg {
+  stroke: #1a1a1a;
+}
+
+.ziak-hero__nav-left,
+.ziak-hero__nav-right {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.ziak-hero__nav-center {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  width: max-content;
+  max-width: 60%;
+  /* Centered via auto-margins (pixel-snapped) instead of translateX(-50%),
+     which was landing on a half-pixel and softening/blurring the logo. */
+}
+
+/* Increased nav link font-size by ~3% (1.2rem -> 1.4rem) */
+.ziak-hero__nav-link {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 1.4rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: color 0.3s ease, opacity 0.25s ease;
+  position: relative;
+  padding-bottom: 2px;
+}
+
+.ziak-hero__nav-link:hover {
+  opacity: 0.75;
+}
+
+.ziak-hero__nav-link--dropdown::after {
+  content: '';
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid #ffffff;
+  margin-left: 0.4em;
+  vertical-align: middle;
+  transition: transform 0.2s ease, border-top-color 0.3s ease;
+}
+
+.ziak-hero__logo-placeholder {
+  width: 120px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  opacity: 0.7;
+}
+
+/* Increased icon container size by ~3% */
+.ziak-hero__nav-icon {
+  color: #ffffff;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.8rem;
+  height: 2.8rem;
+  transition: opacity 0.25s ease;
+}
+
+.ziak-hero__nav-icon:hover {
+  opacity: 0.7;
+}
+
+/* Increased icon SVG size from 20px -> 24px */
+.ziak-hero__nav-icon svg {
+  width: 24px;
+  height: 24px;
+  fill: none;
+  stroke: #ffffff;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: stroke 0.3s ease;
+}
+
+/* ---------- Mega Menu Dropdown ---------- */
+.ziak-hero__dropdown-wrapper {
+  position: relative;
+}
+
+.ziak-hero__mega-menu {
+  position: fixed;
+  top: auto;
+  left: 0;
+  right: 0;
+  width: 100vw;
+  background: #ffffff;
+  padding: 3rem 4rem 3rem;
+  display: none;
+  z-index: 100;
+  border-top: 3px solid #d0d0d0;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* Mega menus are fixed full-width — no per-dropdown offset needed */
+
+.ziak-hero__dropdown-wrapper:hover > .ziak-hero__mega-menu {
+  display: flex;
+}
+
+/* When mega menu is open, force white background on nav */
+.ziak-hero__dropdown-wrapper:hover ~ .ziak-hero__nav-link,
+.ziak-hero__nav-left:has(.ziak-hero__dropdown-wrapper:hover) ~ .ziak-hero__nav-center,
+.ziak-hero__nav-left:has(.ziak-hero__dropdown-wrapper:hover) ~ .ziak-hero__nav-right {
+  color: #1a1a1a;
+}
+
+/* Active underline under the hovered dropdown link */
+.ziak-hero__dropdown-wrapper:hover > .ziak-hero__nav-link--dropdown::before {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: #1a1a1a;
+}
+
+.ziak-hero__mega-menu-column {
+  min-width: 180px;
+  margin-right: 4rem;
+}
+
+.ziak-hero__mega-menu-column:last-child {
+  margin-right: 0;
+}
+
+.ziak-hero__mega-menu-heading {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0 0 1.2rem 0;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.ziak-hero__mega-menu-link {
+  display: block;
+  color: #888888;
+  text-decoration: none;
+  font-size: 1.25rem;
+  font-weight: 400;
+  padding: 0.35rem 0;
+  transition: color 0.2s ease;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.ziak-hero__mega-menu-link:hover {
+  color: #1a1a1a;
+}
+
+.ziak-hero__mega-menu-divider {
+  margin-top: 2rem;
+}
+
+/* ---------- Hero Container ---------- */
+.ziak-hero {
+  position: relative;
+  width: 100%;
+  overflow: visible;
+}
+
+.ziak-hero__media {
+  position: relative;
+  width: 100%;
+  height: 92vh;
+  min-height: 550px;
+  overflow: hidden;
+}
+
+.ziak-hero__media img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* No tint overlay — removed the dark gradient */
+.ziak-hero__media::after {
+  display: none;
+}
+
+/* ---------- Hero Content ---------- */
+.ziak-hero__content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 6rem 4rem 5rem;
+  z-index: 2;
+}
+
+.ziak-hero__heading {
+  font-family: 'Georgia', 'Times New Roman', serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(3.2rem, 5vw, 5.6rem);
+  color: #ffffff;
+  line-height: 1.15;
+  margin: 0 0 1.8rem 0;
+  max-width: 600px;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+.ziak-hero__subheading {
+  font-size: clamp(1.3rem, 1.8vw, 1.7rem);
+  color: #ffffff;
+  font-weight: 400;
+  letter-spacing: 0.03em;
+  margin: 0 0 2.5rem 0;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* ---------- CTA Buttons ---------- */
+.ziak-hero__buttons {
+  display: flex;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+}
+
+.ziak-hero__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.2rem 3rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 160px;
+}
+
+.ziak-hero__btn--primary {
+  background-color: #ffffff;
+  color: #1a1a1a;
+  border-color: #ffffff;
+}
+
+.ziak-hero__btn--primary:hover {
+  background-color: transparent;
+  color: #ffffff;
+  border-color: #ffffff;
+}
+
+.ziak-hero__btn--secondary {
+  background-color: #ffffff;
+  color: #1a1a1a;
+  border-color: #ffffff;
+}
+
+.ziak-hero__btn--secondary:hover {
+  background-color: transparent;
+  color: #ffffff;
+  border-color: #ffffff;
+}
+
+/* ---------- Responsive ---------- */
+
+/* Tablet */
+@media screen and (max-width: 990px) {
+  .ziak-hero__nav {
+    padding: 0.8rem 1.5rem;
+  }
+
+  .ziak-hero__nav-left,
+  .ziak-hero__nav-right {
+    gap: 1.2rem;
+  }
+
+  .ziak-hero__nav-link {
+    font-size: 1.2rem;
+  }
+
+  .ziak-hero__content {
+    padding: 5rem 3rem 4rem;
+  }
+
+  .ziak-hero__mega-menu {
+    display: none !important;
+  }
+}
+
+/* Mobile */
+@media screen and (max-width: 749px) {
+  .ziak-hero__announcement {
+    font-size: 1rem;
+    padding: 0.6rem 1rem;
+    letter-spacing: 0.08em;
+  }
+
+  .ziak-hero__nav {
+    padding: 0.8rem 1.2rem;
+  }
+
+  .ziak-hero__nav-left {
+    display: none;
+  }
+
+  .ziak-hero__nav-right {
+    gap: 0.8rem;
+  }
+
+  .ziak-hero__nav-right .ziak-hero__nav-link {
+    display: none;
+  }
+
+  .ziak-hero__nav-center {
+    position: relative;
+    left: auto;
+    transform: none;
+  }
+
+  .ziak-hero__media {
+    height: 75vh;
+    min-height: 450px;
+  }
+
+  .ziak-hero__content {
+    padding: 4rem 2rem 3rem;
+    justify-content: flex-end;
+  }
+
+  .ziak-hero__heading {
+    font-size: 3rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .ziak-hero__subheading {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+  }
+
+  .ziak-hero__btn {
+    padding: 1rem 2.2rem;
+    font-size: 1.1rem;
+    min-width: 140px;
+  }
+
+  .ziak-hero__buttons {
+    gap: 0.8rem;
+  }
+
+  .ziak-hero__mega-menu {
+    display: none !important;
+  }
+}
+
+/* Hamburger icon for mobile */
+.ziak-hero__mobile-menu-btn {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  color: #ffffff;
+}
+
+.ziak-hero__mobile-menu-btn svg {
+  width: 26px;
+  height: 26px;
+  stroke: #ffffff;
+  stroke-width: 2;
+  fill: none;
+  transition: stroke 0.3s ease;
+}
+
+@media screen and (max-width: 749px) {
+  .ziak-hero__mobile-menu-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+/* ── Small-phone header polish (shared by every ZIAK header) ── */
+@media screen and (max-width: 480px) {
+  .ziak-hero__nav { padding: 0.7rem 0.9rem; }
+  .ziak-hero__nav-right { gap: 0.35rem; }
+  .ziak-hero__nav-icon { width: 2.4rem; height: 2.4rem; }
+  .ziak-hero__nav-icon svg { width: 21px; height: 21px; }
+  .ziak-hero__logo-placeholder { width: 92px; }
+  .ziak-hero__announcement { font-size: 0.9rem; letter-spacing: 0.04em; padding: 0.55rem 0.8rem; }
+}
+
+/* ══════════════════════════════════════════════════════════
+   ZIAK mobile header bar + drawer (phones only).
+   Desktop is fully preserved: .ziak-mnav / drawer / overlay are
+   display:none at >=750px, and the original .ziak-hero__nav is
+   only hidden inside the <=749px query.
+   ══════════════════════════════════════════════════════════ */
+.ziak-mnav { display: none; }
+
+/* Keep the drawer + overlay completely out of the desktop render */
+@media screen and (min-width: 750px) {
+  .ziak-mnav__drawer,
+  .ziak-mnav__overlay { display: none !important; }
+}
+
+@media screen and (max-width: 749px) {
+  /* Swap the desktop nav for the purpose-built mobile bar */
+  .ziak-hero__nav { display: none !important; }
+
+  .ziak-mnav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    padding: 0.65rem 1rem;
+    background: #FFFFFF;
+    border-bottom: 1px solid #E8E8E8;
+    position: relative;
+    z-index: 60;
+  }
+
+  /* Left: lone icons */
+  .ziak-mnav__icons { display: flex; align-items: center; gap: 0.5rem; flex: 1 1 0; justify-content: flex-end; order: 3; }
+  .ziak-mnav__icon {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.4rem;
+    height: 2.4rem;
+    color: #1A1A1A;
+    text-decoration: none;
+  }
+  .ziak-mnav__icon svg { width: 22px; height: 22px; stroke: #1A1A1A; fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+
+  /* Center: logo */
+  .ziak-mnav__logo {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 700;
+    font-size: 2rem;
+    letter-spacing: 0.16em;
+    color: #1A1A1A;
+    text-decoration: none;
+  }
+  .ziak-mnav__logo-img { height: 26px; width: auto; display: block; }
+
+  /* Right: hamburger */
+  .ziak-mnav__burger {
+    flex: 1 1 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    order: -1;
+    background: none;
+    border: none;
+    padding: 0.3rem;
+    cursor: pointer;
+    color: #1A1A1A;
+  }
+  .ziak-mnav__burger svg { width: 26px; height: 26px; stroke: #1A1A1A; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+}
+
+/* ── Drawer + overlay (styles apply on mobile; hidden on desktop above) ── */
+.ziak-mnav__overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 998;
+}
+.ziak-mnav__overlay.is-open { opacity: 1; }
+
+.ziak-mnav__drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 82%;
+  max-width: 330px;
+  background: #FFFFFF;
+  z-index: 999;
+  transform: translateX(100%);
+  transition: transform 0.32s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  box-shadow: -8px 0 30px rgba(0, 0, 0, 0.14);
+  font-family: 'Inter', Helvetica, sans-serif;
+}
+.ziak-mnav__drawer.is-open { transform: translateX(0); }
+
+.ziak-mnav__drawer-hd {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.2rem 1.4rem;
+  border-bottom: 1px solid #EEEEEE;
+}
+.ziak-mnav__drawer-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #888888;
+}
+.ziak-mnav__drawer-close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #1A1A1A;
+  display: flex;
+  padding: 0.2rem;
+}
+.ziak-mnav__drawer-close svg { width: 22px; height: 22px; }
+
+.ziak-mnav__links {
+  display: flex;
+  flex-direction: column;
+  padding: 0.6rem 0;
+}
+.ziak-mnav__link {
+  padding: 1.05rem 1.4rem;
+  font-size: 1.55rem;
+  font-weight: 600;
+  color: #1A1A1A;
+  text-decoration: none;
+  border-bottom: 1px solid #F3F3F3;
+  transition: background 0.2s;
+}
+.ziak-mnav__link:hover { background: #F7F6F3; }
+
+.ziak-mnav__account {
+  margin-top: auto;
+  padding: 1.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  border-top: 1px solid #EEEEEE;
+}
+.ziak-mnav__acct-line {
+  font-size: 1.45rem;
+  font-weight: 600;
+  color: #1A1A1A;
+  text-decoration: none;
+  padding: 0.4rem 0;
+}
+.ziak-mnav__acct-btn {
+  display: block;
+  text-align: center;
+  padding: 1rem 1.2rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  background: #1A1A1A;
+  color: #FFFFFF;
+  border: 1.5px solid #1A1A1A;
+  border-radius: 4px;
+  transition: background 0.2s, color 0.2s;
+}
+.ziak-mnav__acct-btn--outline { background: transparent; color: #1A1A1A; }
+.ziak-mnav__acct-btn--outline:hover { background: #1A1A1A; color: #FFFFFF; }
+
+/* ── Logo image (raster or uploaded SVG) fits centered in the logo slot ── */
+.ziak-hero__logo-placeholder {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.ziak-hero__logo-img {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  margin: 0 auto;
+}
+.ziak-mnav__logo-img {
+  height: 28px;
+  width: auto;
+  max-width: 160px;
+  object-fit: contain;
+  display: block;
+}

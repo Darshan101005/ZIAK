@@ -1,0 +1,45 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "ziak_store": {
+      "type": "ziak-store",
+      "blocks": {
+        "f1": { "type": "feature", "settings": { "icon": "footprints", "title": "TRY BEFORE YOU BUY", "text": "Experience the perfect fit" } },
+        "f2": { "type": "feature", "settings": { "icon": "shirt", "title": "EXCLUSIVE IN-STORE COLLECTIONS", "text": "Styles you won't find online" } },
+        "f3": { "type": "feature", "settings": { "icon": "message-circle", "title": "EXPERT ASSISTANCE", "text": "Personalized styling advice" } },
+        "f4": { "type": "feature", "settings": { "icon": "gift", "title": "SAME CRAFTSMANSHIP", "text": "You love, now closer to you" } }
+      },
+      "block_order": ["f1", "f2", "f3", "f4"],
+      "settings": {
+        "announcement_text": "FREE SHIPPING ON ALL ORDERS OVER ₹999 — ALL OVER INDIA",
+        "hero_eyebrow": "OUR STORE",
+        "hero_heading": "Visit Us In Delhi",
+        "hero_tagline": "SEE · FEEL · EXPERIENCE · ZIAK",
+        "hero_side_text": "CRAFTED FOR A BRIGHTER TOMORROW",
+        "hero_badge": "DELHI STORE — EST. 2023",
+        "hours_days": "Mon – Sun",
+        "hours_time": "10:00 AM – 9:00 PM",
+        "contact_phone": "+91 9555830185",
+        "contact_email": "delhi@ziak.in",
+        "map_query": "ZIAK STORE, A-398 GROUND FLOOR LANE NO 11, MAHAVIR ENCLAVE PART-II, NEW DELHI 110059",
+        "gallery_panel_top": "A SPACE FOR PEOPLE WHO APPRECIATE THE FINER THINGS.",
+        "gallery_quote": "“More than a store, it’s a place to belong.”",
+        "gallery_brand": "ZIAK",
+        "gallery_tagline": "DELHI · FOOTWEAR · COMMUNITY",
+        "cta_eyebrow": "WE'D LOVE TO MEET YOU",
+        "cta_heading": "See the Difference in Person",
+        "cta_body": "Visit our Delhi store and experience ZIAK the way it's meant to be.",
+        "cta_btn_text": "PLAN YOUR VISIT"
+      }
+    }
+  },
+  "order": ["ziak_store"]
+}

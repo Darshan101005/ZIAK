@@ -1,0 +1,243 @@
+{{ 'section-ziak-footer.css' | asset_url | stylesheet_tag }}
+
+<footer class="ziak-footer" id="ziak-footer">
+
+  <!-- ── Main 4-column layout ── -->
+  <div class="ziak-footer__grid">
+
+    <!-- Col 1: Shop -->
+    <div class="ziak-footer__col">
+      <h3 class="ziak-footer__col-heading">Shop</h3>
+      <ul class="ziak-footer__links">
+        <li><a href="/collections/all" class="ziak-footer__link">All Shoes</a></li>
+        <li><a href="/collections/formal-shoes" class="ziak-footer__link">Formal Shoes</a></li>
+        <li><a href="/collections/brogues" class="ziak-footer__link">Brogues</a></li>
+        <li><a href="/collections/derby-shoes" class="ziak-footer__link">Derby Shoes</a></li>
+        <li><a href="/collections/chelsea-boots" class="ziak-footer__link">Chelsea Boots</a></li>
+        <li><a href="/collections/loafers" class="ziak-footer__link">Loafers</a></li>
+      </ul>
+    </div>
+
+    <!-- Col 2: Company -->
+    <div class="ziak-footer__col">
+      <h3 class="ziak-footer__col-heading">Company</h3>
+      <ul class="ziak-footer__links">
+        <li><a href="/pages/about" class="ziak-footer__link">About</a></li>
+        <li><a href="/pages/our-store" class="ziak-footer__link">Our Store</a></li>
+        <li><a href="/pages/blog" class="ziak-footer__link">Blog</a></li>
+        <li><a href="/pages/contact" class="ziak-footer__link">Contact</a></li>
+      </ul>
+    </div>
+
+    <!-- Col 3: Help -->
+    <div class="ziak-footer__col">
+      <h3 class="ziak-footer__col-heading">Help</h3>
+      <ul class="ziak-footer__links">
+        <li><a href="/pages/size-guide" class="ziak-footer__link">Size Guide</a></li>
+        <li><a href="/pages/wishlist" class="ziak-footer__link">Wishlist</a></li>
+        {%- if shop.privacy_policy.url != blank -%}<li><a href="{{ shop.privacy_policy.url }}" class="ziak-footer__link">Privacy Policy</a></li>{%- endif -%}
+        {%- if shop.terms_of_service.url != blank -%}<li><a href="{{ shop.terms_of_service.url }}" class="ziak-footer__link">Terms of Service</a></li>{%- endif -%}
+        {%- comment -%} Remaining shop policies (Refund, Shipping, Contact info, Legal notice) {%- endcomment -%}
+        {%- for policy in shop.policies -%}
+          {%- if policy.url != blank and policy.url != shop.privacy_policy.url and policy.url != shop.terms_of_service.url -%}
+            <li><a href="{{ policy.url }}" class="ziak-footer__link">{{ policy.title }}</a></li>
+          {%- endif -%}
+        {%- endfor -%}
+      </ul>
+    </div>
+
+    <!-- Col 4: Email + Socials -->
+    <div class="ziak-footer__col ziak-footer__col--right">
+
+      <!-- Email signup -->
+      <p class="ziak-footer__email-label" id="ziak-footer-email-label">{{ section.settings.email_heading }}</p>
+      <form class="ziak-footer__email-form" id="ziak-footer-email-form" action="/contact#contact_form" method="post" accept-charset="UTF-8">
+        <input type="hidden" name="form_type" value="customer">
+        <input type="hidden" name="utf8" value="✓">
+        <input type="hidden" name="contact[tags]" value="newsletter">
+        <div class="ziak-footer__email-row">
+          <input
+            id="ziak-footer-email"
+            class="ziak-footer__email-input"
+            type="email"
+            name="contact[email]"
+            placeholder="email@example.com"
+            autocomplete="email"
+            required
+          >
+          <button type="submit" class="ziak-footer__email-btn" id="ziak-footer-email-btn">
+            {{ section.settings.email_btn_label }}
+          </button>
+        </div>
+      </form>
+
+      <!-- Social icons -->
+      <div class="ziak-footer__socials" id="ziak-footer-socials">
+        {%- if section.settings.social_instagram != blank -%}
+          <a href="{{ section.settings.social_instagram }}" class="ziak-footer__social-link" target="_blank" rel="noopener" aria-label="Instagram" id="ziak-footer-instagram">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+        {%- endif -%}
+        {%- if section.settings.social_facebook != blank -%}
+          <a href="{{ section.settings.social_facebook }}" class="ziak-footer__social-link" target="_blank" rel="noopener" aria-label="Facebook" id="ziak-footer-facebook">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+        {%- endif -%}
+        {%- if section.settings.social_twitter != blank -%}
+          <a href="{{ section.settings.social_twitter }}" class="ziak-footer__social-link" target="_blank" rel="noopener" aria-label="X (Twitter)" id="ziak-footer-twitter">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 4l16 16M20 4L4 20" stroke-width="2.2" stroke-linecap="round"/></svg>
+          </a>
+        {%- endif -%}
+        {%- if section.settings.social_pinterest != blank -%}
+          <a href="{{ section.settings.social_pinterest }}" class="ziak-footer__social-link" target="_blank" rel="noopener" aria-label="Pinterest" id="ziak-footer-pinterest">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.24 2.65 7.86 6.39 9.29-.09-.78-.17-1.98.04-2.83.18-.77 1.22-5.14 1.22-5.14s-.31-.62-.31-1.54c0-1.45.84-2.53 1.88-2.53.89 0 1.32.67 1.32 1.47 0 .9-.57 2.24-.87 3.48-.25 1.04.52 1.88 1.54 1.88 1.85 0 3.1-2.38 3.1-5.2 0-2.15-1.46-3.65-3.56-3.65-2.42 0-3.84 1.81-3.84 3.69 0 .73.28 1.51.63 1.94a.25.25 0 0 1 .06.24l-.24.96c-.04.15-.13.18-.29.11-1.05-.49-1.71-2.02-1.71-3.25 0-2.65 1.92-5.08 5.54-5.08 2.91 0 5.17 2.07 5.17 4.84 0 2.89-1.82 5.21-4.34 5.21-.85 0-1.64-.44-1.91-.96l-.52 1.95c-.19.72-.69 1.62-1.03 2.17.78.24 1.6.37 2.46.37 5.52 0 10-4.48 10-10S17.52 2 12 2z"/></svg>
+          </a>
+        {%- endif -%}
+        {%- if section.settings.social_youtube != blank -%}
+          <a href="{{ section.settings.social_youtube }}" class="ziak-footer__social-link" target="_blank" rel="noopener" aria-label="YouTube" id="ziak-footer-youtube">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="white" stroke="none"/></svg>
+          </a>
+        {%- endif -%}
+      </div>
+
+      <!-- Currency / country selector (Shopify localization) -->
+      {%- if localization.available_countries.size > 1 -%}
+        {%- form 'localization', id: 'ziak-footer-localization', class: 'ziak-footer__country' -%}
+          <input type="hidden" name="return_to" value="{{ request.path }}">
+          <select class="ziak-footer__country-select" name="country_code" aria-label="Select currency" onchange="this.form.submit()">
+            {%- for country in localization.available_countries -%}
+              <option value="{{ country.iso_code }}"{% if country.iso_code == localization.country.iso_code %} selected{% endif %}>
+                {{ country.name }} ({{ country.currency.iso_code }} {{ country.currency.symbol }})
+              </option>
+            {%- endfor -%}
+          </select>
+        {%- endform -%}
+      {%- else -%}
+        <div class="ziak-footer__country">
+          <select class="ziak-footer__country-select" aria-label="Currency">
+            <option selected>{{ section.settings.country_label }}</option>
+          </select>
+        </div>
+      {%- endif -%}
+
+    </div>
+  </div>
+
+  <!-- ── Bottom bar ── -->
+  <div class="ziak-footer__bottom">
+    <p class="ziak-footer__copy">{{ section.settings.copyright_text }}</p>
+  </div>
+
+</footer>
+
+{% schema %}
+{
+  "name": "ZIAK Footer",
+  "tag": "section",
+  "class": "ziak-footer-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Shop Links"
+    },
+    { "type": "text", "id": "shop_link_1_label",  "default": "Men's Boots",       "label": "Shop link 1 label" },
+    { "type": "url",  "id": "shop_link_1_url",                                     "label": "Shop link 1 URL" },
+    { "type": "text", "id": "shop_link_2_label",  "default": "Women's Boots",      "label": "Shop link 2 label" },
+    { "type": "url",  "id": "shop_link_2_url",                                     "label": "Shop link 2 URL" },
+    { "type": "text", "id": "shop_link_3_label",  "default": "Men's Sneakers",     "label": "Shop link 3 label" },
+    { "type": "url",  "id": "shop_link_3_url",                                     "label": "Shop link 3 URL" },
+    { "type": "text", "id": "shop_link_4_label",  "default": "Women's Sneakers",   "label": "Shop link 4 label" },
+    { "type": "url",  "id": "shop_link_4_url",                                     "label": "Shop link 4 URL" },
+    { "type": "text", "id": "shop_link_5_label",  "default": "Men's Shoes",        "label": "Shop link 5 label" },
+    { "type": "url",  "id": "shop_link_5_url",                                     "label": "Shop link 5 URL" },
+    { "type": "text", "id": "shop_link_6_label",  "default": "Women's Shoes",      "label": "Shop link 6 label" },
+    { "type": "url",  "id": "shop_link_6_url",                                     "label": "Shop link 6 URL" },
+    { "type": "text", "id": "shop_link_7_label",  "default": "Men's Jackets",      "label": "Shop link 7 label" },
+    { "type": "url",  "id": "shop_link_7_url",                                     "label": "Shop link 7 URL" },
+    { "type": "text", "id": "shop_link_8_label",  "default": "Women's Jackets",    "label": "Shop link 8 label" },
+    { "type": "url",  "id": "shop_link_8_url",                                     "label": "Shop link 8 URL" },
+    { "type": "text", "id": "shop_link_9_label",  "default": "Accessories",        "label": "Shop link 9 label" },
+    { "type": "url",  "id": "shop_link_9_url",                                     "label": "Shop link 9 URL" },
+    { "type": "text", "id": "shop_link_10_label", "default": "Gift Cards",         "label": "Shop link 10 label" },
+    { "type": "url",  "id": "shop_link_10_url",                                    "label": "Shop link 10 URL" },
+    {
+      "type": "header",
+      "content": "About Links"
+    },
+    { "type": "text", "id": "about_link_1_label", "default": "Our Story",         "label": "About link 1 label" },
+    { "type": "url",  "id": "about_link_1_url",                                   "label": "About link 1 URL" },
+    { "type": "text", "id": "about_link_2_label", "default": "Featured Press",    "label": "About link 2 label" },
+    { "type": "url",  "id": "about_link_2_url",                                   "label": "About link 2 URL" },
+    { "type": "text", "id": "about_link_3_label", "default": "Reviews",           "label": "About link 3 label" },
+    { "type": "url",  "id": "about_link_3_url",                                   "label": "About link 3 URL" },
+    { "type": "text", "id": "about_link_4_label", "default": "Locations",         "label": "About link 4 label" },
+    { "type": "url",  "id": "about_link_4_url",                                   "label": "About link 4 URL" },
+    { "type": "text", "id": "about_link_5_label", "default": "Ambassadors",       "label": "About link 5 label" },
+    { "type": "url",  "id": "about_link_5_url",                                   "label": "About link 5 URL" },
+    {
+      "type": "header",
+      "content": "Support Links"
+    },
+    { "type": "text", "id": "support_link_1_label", "default": "FAQ",                      "label": "Support link 1 label" },
+    { "type": "url",  "id": "support_link_1_url",                                           "label": "Support link 1 URL" },
+    { "type": "text", "id": "support_link_2_label", "default": "Shipping & Returns",        "label": "Support link 2 label" },
+    { "type": "url",  "id": "support_link_2_url",                                           "label": "Support link 2 URL" },
+    { "type": "text", "id": "support_link_3_label", "default": "Shoe Care",                 "label": "Support link 3 label" },
+    { "type": "url",  "id": "support_link_3_url",                                           "label": "Support link 3 URL" },
+    { "type": "text", "id": "support_link_4_label", "default": "Accessibility Statement",   "label": "Support link 4 label" },
+    { "type": "url",  "id": "support_link_4_url",                                           "label": "Support link 4 URL" },
+    { "type": "text", "id": "support_link_5_label", "default": "Terms of Service",          "label": "Support link 5 label" },
+    { "type": "url",  "id": "support_link_5_url",                                           "label": "Support link 5 URL" },
+    { "type": "text", "id": "support_link_6_label", "default": "Privacy Policy",            "label": "Support link 6 label" },
+    { "type": "url",  "id": "support_link_6_url",                                           "label": "Support link 6 URL" },
+    { "type": "text", "id": "support_link_7_label", "default": "Contact Us",                "label": "Support link 7 label" },
+    { "type": "url",  "id": "support_link_7_url",                                           "label": "Support link 7 URL" },
+    {
+      "type": "header",
+      "content": "Email Signup"
+    },
+    {
+      "type": "text",
+      "id": "email_heading",
+      "default": "Sign Up For Early Access & Exclusive Events",
+      "label": "Email section heading"
+    },
+    {
+      "type": "text",
+      "id": "email_btn_label",
+      "default": "JOIN TEAM ZIAK",
+      "label": "Email button label"
+    },
+    {
+      "type": "header",
+      "content": "Social Media"
+    },
+    { "type": "url", "id": "social_instagram", "label": "Instagram URL" },
+    { "type": "url", "id": "social_facebook",  "label": "Facebook URL"  },
+    { "type": "url", "id": "social_twitter",   "label": "X (Twitter) URL" },
+    { "type": "url", "id": "social_pinterest", "label": "Pinterest URL" },
+    { "type": "url", "id": "social_youtube",   "label": "YouTube URL" },
+    {
+      "type": "header",
+      "content": "Bottom Bar"
+    },
+    {
+      "type": "text",
+      "id": "country_label",
+      "default": "India (INR ₹)",
+      "label": "Country/currency label"
+    },
+    {
+      "type": "text",
+      "id": "copyright_text",
+      "default": "© 2025 ZIAK. All rights reserved.",
+      "label": "Copyright text"
+    }
+  ],
+  "presets": [
+    {
+      "name": "ZIAK Footer"
+    }
+  ]
+}
+{% endschema %}

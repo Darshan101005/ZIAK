@@ -1,0 +1,95 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "ziak_about_hero": {
+      "type": "ziak-about-hero",
+      "settings": {
+        "announcement_text": "FREE SHIPPING AND RETURNS IN THE U.S.",
+        "announcement_link_text": "DETAILS",
+        "headline": "Steps,\nnot statements.",
+        "subheadline": "Crafted with purpose.\nDesigned to endure.",
+        "body_text": "At ZIAK, we believe what you wear should reflect not only style, but values. Every pair is created with an unwavering commitment to quality, integrity, and timeless design."
+      }
+    },
+    "ziak_about_story": {
+      "type": "ziak-about-story",
+      "settings": {}
+    },
+    "ziak_about_values": {
+      "type": "ziak-about-values",
+      "settings": {}
+    },
+    "ziak_about_founders_letter": {
+      "type": "ziak-about-founders-letter",
+      "settings": {}
+    },
+    "ziak_about_team": {
+      "type": "ziak-about-team",
+      "settings": {
+        "eyebrow": "THE TEAM BEHIND ZIAK",
+        "heading": "People who turned the vision into reality.",
+        "description": "ZIAK is the result of a collective effort — a team that brought together design, creativity, technology, and guidance to turn an idea into a brand.",
+        "side_eyebrow": "OUR TEAM",
+        "side_heading": "Different perspectives. One purpose.",
+        "side_text": "ZIAK is not just a brand, it is the result of a collaboration between people with different skills, perspectives, and ideas. Each of us played a unique role in shaping the website, the visuals, the product experience, and the overall direction of ZIAK.",
+        "side_quote": "Steps, not statements.",
+        "quote": "A brand is never built by one person, but by a team that believes in something greater.",
+        "quote_source": "ZIAK TEAM"
+      },
+      "blocks": {
+        "member_1": { "type": "member", "settings": { "icon": "laptop", "name": "Deepak Roshan V & Darshan V", "role": "WEBSITE DEVELOPMENT", "bio": "Worked together to design and develop the entire website, bringing the brand’s vision to life through a clean, modern and seamless user experience.", "email": "deepakroshanv2@gmail.com<br>darshanvenkatesan@gamil.com<br>+91 9342277395" } },
+        "member_2": { "type": "member", "settings": { "icon": "camera", "name": "Chetanya Dhawan", "role": "PHOTOGRAPHY & VISUALS", "bio": "Provided all the images used on the website, including product photos, section visuals, and lifestyle shots. His guidance and creative direction helped shape the overall visual identity of ZIAK.", "email": "chetanya.dhawan@example.com" } },
+        "member_3": { "type": "member", "settings": { "icon": "pencil", "name": "Shrija Agarwal", "role": "DESIGNER", "bio": "Designed the ZIAK shoe box, adding a unique and premium touch to the brand’s unboxing experience. She also created the brand mascot and brought together aesthetics, functionality and brand identity in a seamless way.", "email": "shrija.agarwal@example.com" } },
+        "member_4": { "type": "member", "settings": { "icon": "lightbulb", "name": "Parth Vyas", "role": "FOUNDER & GUIDANCE", "bio": "The founder and driving force behind ZIAK. Provided constant guidance, support and valuable suggestions throughout the journey — from the initial concept to design, branding, and execution.", "email": "parth.vyas@example.com" } }
+      },
+      "block_order": ["member_1", "member_2", "member_3", "member_4"]
+    },
+    "ziak_about_workshop": {
+      "type": "ziak-about-workshop",
+      "blocks": {
+        "step_1": { "type": "step", "settings": { "icon": "layers", "number": "01", "title": "Leather Selection", "description": "We handpick premium leathers for their strength, texture, and natural character." } },
+        "step_2": { "type": "step", "settings": { "icon": "scissors", "number": "02", "title": "Precision Cutting", "description": "Every piece is cut with accuracy to ensure the perfect fit, shape, and balance." } },
+        "step_3": { "type": "step", "settings": { "icon": "pen-tool", "number": "03", "title": "Hand Stitching", "description": "Our craftsmen stitch with care, ensuring strength in every seam and elegance in every step." } },
+        "step_4": { "type": "step", "settings": { "icon": "search", "number": "04", "title": "Quality Inspection", "description": "Every pair is inspected multiple times to guarantee lasting quality you can trust." } }
+      },
+      "block_order": ["step_1", "step_2", "step_3", "step_4"],
+      "settings": {
+        "eyebrow": "THE WORKSHOP",
+        "heading": "The Journey of Every Pair",
+        "subtext": "From the finest materials to the final polish, every step is carried out with care, precision, and respect for the craft.",
+        "bg_color": "#F5F0E9",
+        "padding_top": 72,
+        "padding_bottom": 72
+      }
+    },
+    "ziak_about_stand_for": {
+      "type": "ziak-about-stand-for",
+      "settings": {}
+    },
+    "ziak_about_text_overlay": {
+      "type": "ziak-about-text-overlay",
+      "settings": {
+        "section_height": 340,
+        "overlay_opacity": 35
+      }
+    }
+  },
+  "order": [
+    "ziak_about_hero",
+    "ziak_about_story",
+    "ziak_about_values",
+    "ziak_about_founders_letter",
+    "ziak_about_team",
+    "ziak_about_workshop",
+    "ziak_about_stand_for",
+    "ziak_about_text_overlay"
+  ]
+}

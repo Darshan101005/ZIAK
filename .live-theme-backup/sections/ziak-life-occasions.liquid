@@ -1,0 +1,78 @@
+{{ 'section-ziak-life-occasions.css' | asset_url | stylesheet_tag }}
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
+
+<section class="ziak-life" id="ziak-life-{{ section.id }}">
+  <div class="ziak-life__intro">
+    <p class="ziak-life__eyebrow">{{ section.settings.eyebrow }}</p>
+    <h2>{{ section.settings.heading }}</h2>
+    <p class="ziak-life__description">{{ section.settings.description }}</p>
+  </div>
+
+  <div class="ziak-life__journey">
+    <svg class="ziak-life__wave" viewBox="0 0 1200 180" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0,83 C30,83 55,40 85,40 C145,40 195,83 257,83 C320,83 365,40 428,40 C490,40 538,83 600,83 C662,83 708,40 771,40 C834,40 880,83 943,83 C1005,83 1060,40 1114,40 L1200,40" />
+    </svg>
+    {%- for block in section.blocks -%}
+      <article class="ziak-life__moment ziak-life__moment--{{ forloop.index }}" {{ block.shopify_attributes }}>
+        <div class="ziak-life__icon"><i data-lucide="{{ block.settings.icon }}"></i></div>
+        <span class="ziak-life__stem" aria-hidden="true"></span>
+        <h3>{{ block.settings.title }}</h3>
+        <span class="ziak-life__rule" aria-hidden="true"></span>
+        <p>{{ block.settings.text }}</p>
+      </article>
+    {%- endfor -%}
+  </div>
+
+  <div class="ziak-life__benefits">
+    {%- for block in section.blocks offset: 0 limit: 4 -%}
+      <div class="ziak-life__benefit">
+        <i data-lucide="{{ block.settings.benefit_icon }}"></i>
+        <div><h3>{{ block.settings.benefit_title }}</h3><p>{{ block.settings.benefit_text }}</p></div>
+      </div>
+    {%- endfor -%}
+  </div>
+
+  <a class="ziak-life__cta" href="{{ section.settings.button_link | default: '/collections/all' }}">
+    {{ section.settings.button_label }} <i data-lucide="arrow-right"></i>
+  </a>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    if (typeof lucide !== 'undefined') lucide.createIcons();
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Life occasions",
+  "tag": "section",
+  "class": "ziak-life-section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "ONE PAIR. EVERY MOMENT." },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "From your everyday to life’s special days." },
+    { "type": "textarea", "id": "description", "label": "Description", "default": "Whether it’s work, travel, casual outings or celebrations — ZIAK shoes are designed to fit effortlessly into every part of your lifestyle." },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "EXPLORE THE COLLECTION" },
+    { "type": "url", "id": "button_link", "label": "Button link" }
+  ],
+  "blocks": [
+    { "type": "moment", "name": "Moment", "settings": [
+      { "type": "text", "id": "icon", "label": "Lucide icon", "default": "house" },
+      { "type": "text", "id": "title", "label": "Title", "default": "At Home" },
+      { "type": "textarea", "id": "text", "label": "Text", "default": "All-day comfort for your everyday routines." },
+      { "type": "text", "id": "benefit_icon", "label": "Benefit icon", "default": "leaf" },
+      { "type": "text", "id": "benefit_title", "label": "Benefit title", "default": "All-Season Wear" },
+      { "type": "textarea", "id": "benefit_text", "label": "Benefit text", "default": "Designed to keep you comfortable in every season." }
+    ] }
+  ],
+  "presets": [{ "name": "Life occasions", "blocks": [
+    { "type": "moment", "settings": { "icon": "house", "title": "At Home", "text": "All-day comfort for your everyday routines.", "benefit_icon": "leaf", "benefit_title": "All-Season Wear", "benefit_text": "Designed to keep you comfortable in every season." } },
+    { "type": "moment", "settings": { "icon": "briefcase-business", "title": "Office", "text": "A clean, refined look that keeps you comfortable and confident.", "benefit_icon": "shield-check", "benefit_title": "Versatile Design", "benefit_text": "Matches effortlessly with both casual and formal outfits." } },
+    { "type": "moment", "settings": { "icon": "graduation-cap", "title": "College", "text": "Stylish and versatile for classes, projects and campus life.", "benefit_icon": "gem", "benefit_title": "Every Occasion", "benefit_text": "One pair for work, travel, outings and celebrations." } },
+    { "type": "moment", "settings": { "icon": "plane", "title": "Travel", "text": "Lightweight and reliable for long journeys.", "benefit_icon": "infinity", "benefit_title": "Long-Lasting Comfort", "benefit_text": "Built with premium materials for all-day support." } },
+    { "type": "moment", "settings": { "icon": "users-round", "title": "Outings", "text": "Perfect for casual meetups, shopping and weekend plans." } },
+    { "type": "moment", "settings": { "icon": "wine", "title": "Parties", "text": "A look that fits celebrations without trying too hard." } },
+    { "type": "moment", "settings": { "icon": "calendar-days", "title": "Everyday", "text": "One pair that always fits — no matter what’s on your day." } }
+  ] }]
+}
+{% endschema %}

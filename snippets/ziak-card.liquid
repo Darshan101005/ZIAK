@@ -103,6 +103,33 @@
         assign card_colors = opt.values | join: ','
       endif
     endfor
+
+    comment
+      Size picker: "sizeLabel:variantId:available|..." — deduplicated in JS
+    endcomment
+    assign p_size_opt_pos = 0
+    for opt in product.options
+      assign opt_lc = opt | downcase
+      if opt_lc contains 'size'
+        assign p_size_opt_pos = forloop.index
+      endif
+    endfor
+    assign p_size_data = ''
+    if p_size_opt_pos > 0
+      for v in product.variants
+        unless forloop.first
+          assign p_size_data = p_size_data | append: '|'
+        endunless
+        if p_size_opt_pos == 1
+          assign v_sz = v.option1
+        elsif p_size_opt_pos == 2
+          assign v_sz = v.option2
+        else
+          assign v_sz = v.option3
+        endif
+        assign p_size_data = p_size_data | append: v_sz | append: ':' | append: v.id | append: ':' | append: v.available
+      endfor
+    endif
   -%}
 {%- else -%}
   {%- liquid
@@ -118,6 +145,7 @@
     endif
     assign b_type = badge_type
     assign b_text = badge_text
+    assign p_size_data = ''
   -%}
 {%- endif -%}
 
@@ -130,6 +158,7 @@
   data-price="{{ card_price_num }}"
   data-sizes="{{ card_sizes | escape }}"
   data-colors="{{ card_colors | escape }}"
+  {%- if p_size_data != blank %} data-size-opts="{{ p_size_data }}"{%- endif %}
   {{ shopify_attributes }}
 >
   <div class="ziak-card__media">

@@ -1,0 +1,429 @@
+/* ==========================================================================
+   ZIAK — Blog / Journal page
+   Sections: journal hero (split) · featured + our story · post grid · newsletter
+   Tokens: Playfair Display (headings) · Inter (body) · ink #1A1A1A · accent #C77B3B
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap');
+
+.ziak-blog {
+  --ink: #1A1A1A;
+  --muted: #6B6B6B;
+  --accent: #C77B3B;
+  --soft: #F7F6F3;
+  --line: #E7E3DC;
+  background: #FFFFFF;
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+.ziak-blog * { box-sizing: border-box; }
+
+/* ── Shared bits ─────────────────────────────────────────── */
+.ziak-blog__eyebrow {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 1.4rem;
+}
+
+.ziak-blog__eyebrow--light { color: #C9A98C; }
+
+.ziak-blog__date,
+.ziak-blog__count {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* Cover images fill their frame; placeholders sit softly inside */
+.ziak-blog__cover {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.ziak-blog__cover--ph {
+  object-fit: contain;
+  padding: 12% 18%;
+  background: var(--soft);
+  opacity: 0.5;
+}
+
+/* Read buttons / links */
+.ziak-blog__read-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #FFFFFF;
+  background: var(--ink);
+  border: 1.5px solid var(--ink);
+  padding: 1.3rem 2.2rem;
+  border-radius: 3px;
+  transition: background 0.24s ease, color 0.24s ease;
+}
+
+.ziak-blog__read-btn svg { width: 17px; height: 17px; }
+
+.ziak-blog__read-btn:hover { background: transparent; color: var(--ink); }
+
+.ziak-blog__more {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--ink);
+  transition: gap 0.24s ease, color 0.24s ease;
+}
+
+.ziak-blog__more svg { width: 16px; height: 16px; transition: transform 0.24s ease; }
+
+.ziak-blog__more:hover { color: var(--accent); }
+.ziak-blog__more:hover svg { transform: translateX(4px); }
+
+/* ══════════ 1. JOURNAL HERO ══════════ */
+.ziak-blog__hero {
+  display: grid;
+  grid-template-columns: minmax(0, 43fr) minmax(0, 57fr);
+  align-items: stretch;
+  border-bottom: 1px solid var(--line);
+}
+
+.ziak-blog__hero-copy {
+  padding: clamp(4rem, 7vw, 9rem) clamp(3rem, 5vw, 7rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.ziak-blog__hero-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(4.6rem, 6.5vw, 8rem);
+  font-weight: 700;
+  line-height: 1.02;
+  letter-spacing: -0.01em;
+  margin: 0 0 2.4rem;
+}
+
+.ziak-blog__rule {
+  display: block;
+  width: 64px;
+  height: 2px;
+  background: var(--accent);
+  margin-bottom: 2.4rem;
+}
+
+.ziak-blog__hero-tagline {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin: 0 0 1.8rem;
+}
+
+.ziak-blog__hero-body p {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 400;
+  line-height: 1.7;
+  color: var(--muted);
+  margin: 0;
+  max-width: 46ch;
+}
+
+.ziak-blog__hero-media {
+  position: relative;
+  min-height: 62vh;
+  overflow: hidden;
+  background: var(--soft);
+}
+
+.ziak-blog__hero-side {
+  position: absolute;
+  top: 50%;
+  right: 2.2rem;
+  transform: translateY(-50%) rotate(180deg);
+  writing-mode: vertical-rl;
+  font-family: 'Inter', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: #FFFFFF;
+  mix-blend-mode: difference;
+  pointer-events: none;
+}
+
+/* ══════════ 2. FEATURED + OUR STORY ══════════ */
+.ziak-blog__top {
+  display: grid;
+  grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
+  gap: clamp(2.4rem, 3.5vw, 5rem);
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: clamp(4rem, 6vw, 8rem) clamp(2rem, 5vw, 6rem);
+  align-items: start;
+}
+
+.ziak-blog__featured {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  overflow: hidden;
+  background: #FFFFFF;
+}
+
+.ziak-blog__featured > .ziak-blog__cover,
+.ziak-blog__featured > .ziak-blog__cover--ph {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+}
+
+.ziak-blog__featured-body { padding: clamp(2.4rem, 3vw, 3.6rem) clamp(2.4rem, 3vw, 3.6rem) 0.6rem; }
+
+.ziak-blog__featured-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(2.8rem, 3.4vw, 4rem);
+  font-weight: 700;
+  line-height: 1.1;
+  margin: 0 0 1.4rem;
+}
+
+.ziak-blog__featured-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.55rem;
+  line-height: 1.7;
+  color: var(--muted);
+  margin: 0 0 2.4rem;
+  max-width: 58ch;
+}
+
+.ziak-blog__featured-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+  padding: 2rem clamp(2.4rem, 3vw, 3.6rem);
+  border-top: 1px solid var(--line);
+}
+
+/* Our Story aside */
+.ziak-blog__story {
+  display: flex;
+  flex-direction: column;
+  padding-top: 0.4rem;
+}
+
+.ziak-blog__story-media {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border-radius: 6px;
+  background: var(--soft);
+  margin-bottom: 2.2rem;
+}
+
+.ziak-blog__story-media:hover .ziak-blog__cover { transform: scale(1.04); }
+.ziak-blog__story-media .ziak-blog__cover { transition: transform 0.5s ease; }
+
+.ziak-blog__story-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(2.4rem, 2.6vw, 3rem);
+  font-weight: 700;
+  line-height: 1.15;
+  margin: 0 0 1.2rem;
+}
+
+.ziak-blog__story-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.5rem;
+  line-height: 1.65;
+  color: var(--muted);
+  margin: 0 0 2rem;
+}
+
+/* ══════════ 3. POST GRID ══════════ */
+.ziak-blog__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(2.4rem, 3vw, 4rem);
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 clamp(2rem, 5vw, 6rem) clamp(5rem, 7vw, 9rem);
+}
+
+.ziak-blog__post { display: flex; flex-direction: column; }
+
+.ziak-blog__post-media {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  border-radius: 6px;
+  background: var(--soft);
+  margin-bottom: 2rem;
+}
+
+.ziak-blog__post-media .ziak-blog__cover { transition: transform 0.5s ease; }
+.ziak-blog__post-media:hover .ziak-blog__cover { transform: scale(1.04); }
+
+.ziak-blog__post-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(2.1rem, 2.2vw, 2.6rem);
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0 0 1.2rem;
+}
+
+.ziak-blog__post-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.45rem;
+  line-height: 1.65;
+  color: var(--muted);
+  margin: 0 0 2rem;
+  flex-grow: 1;
+}
+
+.ziak-blog__post-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1.6rem;
+  border-top: 1px solid var(--line);
+}
+
+/* ══════════ 4. NEWSLETTER ══════════ */
+.ziak-blog__nl {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: #FFFFFF;
+}
+
+.ziak-blog__nl-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(3rem, 5vw, 7rem);
+  align-items: end;
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: clamp(6rem, 9vw, 11rem) clamp(2.4rem, 5vw, 6rem);
+}
+
+.ziak-blog__nl-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(3.6rem, 5vw, 6rem);
+  font-weight: 700;
+  line-height: 1.04;
+  margin: 0;
+  color: #FFFFFF;
+}
+
+.ziak-blog__nl-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.6rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.78);
+  margin: 0 0 2.6rem;
+  max-width: 42ch;
+}
+
+.ziak-blog__nl-form {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  border-bottom: 1.5px solid rgba(255, 255, 255, 0.35);
+  padding-bottom: 1.2rem;
+  max-width: 440px;
+}
+
+.ziak-blog__nl-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #FFFFFF;
+  font-family: 'Inter', sans-serif;
+  font-size: 1.6rem;
+  letter-spacing: 0.02em;
+}
+
+.ziak-blog__nl-input::placeholder { color: rgba(255, 255, 255, 0.5); }
+
+.ziak-blog__nl-submit {
+  flex-shrink: 0;
+  width: 46px;
+  height: 46px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #FFFFFF;
+  color: var(--ink);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.24s ease, color 0.24s ease, transform 0.24s ease;
+}
+
+.ziak-blog__nl-submit svg { width: 19px; height: 19px; }
+
+.ziak-blog__nl-submit:hover {
+  background: var(--accent);
+  color: #FFFFFF;
+  transform: translateX(3px);
+}
+
+.ziak-blog__nl-ok {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.3rem;
+  color: #A9D3A0;
+  margin: 1.4rem 0 0;
+}
+
+/* ══════════ RESPONSIVE ══════════ */
+@media (max-width: 990px) {
+  .ziak-blog__hero { grid-template-columns: 1fr; }
+  .ziak-blog__hero-media { min-height: 46vh; order: -1; }
+  .ziak-blog__top { grid-template-columns: 1fr; }
+  .ziak-blog__story { border-top: 1px solid var(--line); padding-top: 3rem; }
+  .ziak-blog__story-media { aspect-ratio: 16 / 10; }
+  .ziak-blog__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ziak-blog__nl-inner { grid-template-columns: 1fr; align-items: start; gap: 2.4rem; }
+}
+
+@media (max-width: 749px) {
+  .ziak-blog__hero-copy { padding: 4.4rem 2.4rem; }
+  .ziak-blog__hero-media { min-height: 40vh; }
+  .ziak-blog__hero-side { font-size: 1rem; right: 1.4rem; }
+  .ziak-blog__grid { grid-template-columns: 1fr; }
+  .ziak-blog__featured-foot { padding-left: 2.4rem; padding-right: 2.4rem; }
+  .ziak-blog__nl-form { max-width: 100%; }
+}
+
+@media (max-width: 480px) {
+  .ziak-blog__hero-title { font-size: 4.4rem; }
+  .ziak-blog__hero-body p { font-size: 1.5rem; }
+  .ziak-blog__read-btn { width: 100%; justify-content: center; }
+}

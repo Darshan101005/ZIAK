@@ -38,7 +38,7 @@
     if opt_lower == 'color' or opt_lower == 'colour'
       assign color_option_pos = option.position
     endif
-    if opt_lower == 'size'
+    if opt_lower contains 'size'
       assign size_option_pos = option.position
     endif
   endfor
@@ -252,7 +252,7 @@
               </div>
             </div>
 
-          {%- elsif opt_lower == 'size' -%}
+          {%- elsif opt_lower contains 'size' -%}
             <!-- Size chips -->
             <div class="ziak-pdp__opt">
               <div class="ziak-pdp__opt-head">
@@ -327,7 +327,15 @@
         </form>
 
         <!-- Wishlist -->
-        <button type="button" id="ziak-pdp-wishlist" class="ziak-pdp__wish-btn">
+        <button type="button" id="ziak-pdp-wishlist" class="ziak-pdp__wish-btn"
+          data-handle="{{ product.handle }}"
+          data-url="{{ product.url }}"
+          data-title="{{ product.title | escape }}"
+          data-subtitle="{{ current_variant.option1 | escape }}"
+          data-image="{{ product.featured_image | image_url: width: 300 }}"
+          data-price="{{ current_variant.price | money }}"
+          data-available="{{ current_variant.available }}"
+          data-variant-id="{{ current_variant.id }}">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
           <span class="ziak-pdp__wish-label">ADD TO WISHLIST</span>
         </button>
@@ -381,9 +389,29 @@
             {%- endif -%}
           </div>
 
-          <!-- Reviews -->
+          <!-- Reviews — Judge.me widget -->
           <div class="ziak-pdp__tab-panel" data-tab-panel="reviews">
-            <p>Customer reviews coming soon. Check back for ratings and feedback from verified buyers.</p>
+            {%- comment %}Judge.me review widget{%- endcomment -%}
+            {%- assign has_legacy = false -%}
+            {%- if product.metafields.judgeme.widget.size > 20 -%}{%- assign has_legacy = true -%}{%- endif -%}
+            <div style="clear:both"></div>
+            <div id="judgeme_product_reviews"
+              class="jdgm-widget jdgm-review-widget"
+              data-product-title="{{ product.title | escape }}"
+              data-id="{{ product.id }}"
+              data-product-id="{{ product.id }}"
+              data-widget="review"
+              data-auto-install="false"
+              data-shop-reviews-count="{{ shop.metafields.judgeme.shop_reviews_count | default: 0 | escape }}"
+              data-entry-point="review_widget.js"
+              data-entry-key="review-widget/main.js">
+              {%- if has_legacy -%}
+                <div class="jdgm-legacy-widget-content" style="display:none;">{{ product.metafields.judgeme.widget }}</div>
+              {%- endif -%}
+            </div>
+            {%- if product.metafields.judgeme.review_widget_data -%}
+              <script>jdgm.data ||= {}; jdgm.data.reviewWidget ||= {}; jdgm.data.reviewWidget[{{ product.id }}] = {{ product.metafields.judgeme.review_widget_data }}</script>
+            {%- endif -%}
           </div>
         </div>
 

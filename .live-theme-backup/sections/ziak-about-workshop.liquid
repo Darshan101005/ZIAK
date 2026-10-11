@@ -1,0 +1,176 @@
+{{ 'section-ziak-about-workshop.css' | asset_url | stylesheet_tag }}
+
+<!-- Lucide icons (same approach as the rest of the ZIAK sections) -->
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
+
+<section
+  class="ziak-workshop"
+  id="ziak-about-workshop"
+  style="background-color: {{ section.settings.bg_color }}; padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px;"
+>
+  <div class="ziak-workshop__inner">
+
+    <!-- Header -->
+    <div class="ziak-workshop__head">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="ziak-workshop__eyebrow">{{ section.settings.eyebrow }}</p>
+      {%- endif -%}
+      {%- if section.settings.heading != blank -%}
+        <h2 class="ziak-workshop__heading">{{ section.settings.heading }}</h2>
+      {%- endif -%}
+      {%- if section.settings.subtext != blank -%}
+        <p class="ziak-workshop__sub">{{ section.settings.subtext }}</p>
+      {%- endif -%}
+    </div>
+
+    <!-- Steps grid -->
+    <div class="ziak-workshop__grid">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'step' -%}
+          <div class="ziak-workshop__item" {{ block.shopify_attributes }}>
+            <div class="ziak-workshop__media">
+              {%- if block.settings.image != blank -%}
+                {{ block.settings.image | image_url: width: 800 | image_tag: loading: 'lazy', widths: '300, 500, 800', class: 'ziak-workshop__img', alt: block.settings.title }}
+              {%- else -%}
+                {{ 'lifestyle-1' | placeholder_svg_tag: 'ziak-workshop__img ziak-workshop__img--placeholder' }}
+              {%- endif -%}
+            </div>
+
+            <div class="ziak-workshop__caption">
+              <div class="ziak-workshop__row">
+                <span class="ziak-workshop__icon"><i data-lucide="{{ block.settings.icon }}"></i></span>
+                <span class="ziak-workshop__num">{{ block.settings.number }}</span>
+                <span class="ziak-workshop__title">{{ block.settings.title }}</span>
+              </div>
+              <p class="ziak-workshop__desc">{{ block.settings.description }}</p>
+            </div>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    if (typeof lucide !== 'undefined') lucide.createIcons();
+  });
+</script>
+
+{% schema %}
+{
+  "name": "ZIAK About Workshop",
+  "tag": "section",
+  "class": "ziak-about-workshop-section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "default": "THE WORKSHOP",
+      "label": "Eyebrow"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "default": "The Journey of Every Pair",
+      "label": "Heading"
+    },
+    {
+      "type": "textarea",
+      "id": "subtext",
+      "default": "From the finest materials to the final polish, every step is carried out with care, precision, and respect for the craft.",
+      "label": "Sub text"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "default": "#F5F0E9",
+      "label": "Background color"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 72
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 72
+    }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Step",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "default": "layers",
+          "options": [
+            { "value": "layers", "label": "Leather / layers" },
+            { "value": "scissors", "label": "Scissors / cutting" },
+            { "value": "pen-tool", "label": "Needle / stitching" },
+            { "value": "search", "label": "Magnifier / inspection" },
+            { "value": "hammer", "label": "Hammer" },
+            { "value": "ruler", "label": "Ruler" },
+            { "value": "sparkles", "label": "Sparkles / polish" },
+            { "value": "award", "label": "Award" },
+            { "value": "gem", "label": "Gem" },
+            { "value": "shield-check", "label": "Shield check" }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "number",
+          "default": "01",
+          "label": "Number"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "default": "Leather Selection",
+          "label": "Title"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "default": "We handpick premium leathers for their strength, texture, and natural character.",
+          "label": "Description"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "ZIAK About Workshop",
+      "blocks": [
+        { "type": "step", "settings": { "icon": "layers", "number": "01", "title": "Leather Selection", "description": "We handpick premium leathers for their strength, texture, and natural character." } },
+        { "type": "step", "settings": { "icon": "scissors", "number": "02", "title": "Precision Cutting", "description": "Every piece is cut with accuracy to ensure the perfect fit, shape, and balance." } },
+        { "type": "step", "settings": { "icon": "pen-tool", "number": "03", "title": "Hand Stitching", "description": "Our craftsmen stitch with care, ensuring strength in every seam and elegance in every step." } },
+        { "type": "step", "settings": { "icon": "search", "number": "04", "title": "Quality Inspection", "description": "Every pair is inspected multiple times to guarantee lasting quality you can trust." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

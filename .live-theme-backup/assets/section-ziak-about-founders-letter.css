@@ -1,0 +1,191 @@
+/* ==========================================================================
+   ZIAK About — Founder's Letter Section
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@400;600&family=Dancing+Script:wght@600;700&display=swap');
+
+/* ── Section ── */
+.ziak-founders {
+  background-color: #f9f6f0;
+  padding: 0;
+  overflow: hidden;
+}
+
+/* ── Left-narrowed Two-Column Grid (~37% / 63%) ── */
+.ziak-founders__grid {
+  display: grid;
+  grid-template-columns: 0.73fr 1.27fr;
+  min-height: 531px;   /* was 551px, ~4% smaller */
+}
+
+/* ── LEFT COLUMN ── */
+.ziak-founders__left {
+  position: relative;
+  overflow: hidden;
+}
+
+.ziak-founders__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.ziak-founders__image-placeholder {
+  width: 100%;
+  height: 100%;
+  min-height: 500px;
+  background: #ede8de;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ziak-founders__image-placeholder span {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.2rem;
+  color: #9a8f82;
+  letter-spacing: 0.05em;
+}
+
+/* ── RIGHT COLUMN ── */
+.ziak-founders__right {
+  padding: 55px 48px 55px 44px;  /* ~4% smaller than 57px */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+/* Kicker */
+.ziak-founders__kicker {
+  font-family: 'Inter', Helvetica, sans-serif;
+  font-size: 1.2rem;       /* 12px */
+  font-weight: 700;
+  color: #8b5a2b;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  text-align: left;
+  margin: 0;
+  padding-bottom: 10px;
+}
+
+/* Main Title */
+.ziak-founders__title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 3.29rem;      /* ~4% smaller than 3.42rem */
+  font-weight: 400;
+  color: #111111;
+  text-align: left;
+  line-height: 1.15;
+  margin: 0;
+  padding-bottom: 26px;
+}
+
+/* ── 3-Column Body Grid: shifted right with wider gaps ── */
+.ziak-founders__body-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0;              /* gaps handled by padding on each col */
+  flex: 1;
+  margin-left: auto;   /* push entire grid to the right */
+  width: 100%;
+}
+
+.ziak-founders__body-col {
+  display: flex;
+  flex-direction: column;
+  gap: 1.28rem;            /* ~4% smaller than 1.33rem */
+  padding: 0 2.4rem;       /* equal spacing each side; dividers replace gap */
+}
+
+.ziak-founders__body-col p {
+  font-family: 'Inter', Helvetica, sans-serif;
+  font-size: 1.28rem;      /* ~4% smaller than 1.33rem */
+  font-weight: 400;
+  color: #333333;
+  line-height: 1.6;
+  text-align: left;
+  margin: 0;
+}
+
+/* ── Vertical dividers: between col1/col2 AND col2/col3 ── */
+.ziak-founders__body-col:nth-child(1) {
+  padding-left: 0;         /* flush with left edge */
+  padding-right: 2.4rem;
+  border-right: 1px solid #D3D0C9;
+}
+
+.ziak-founders__body-col:nth-child(2) {
+  padding-left: 2rem;
+  padding-right: 2.4rem;
+  border-right: 1px solid #D3D0C9;  /* divider between col2 and col3 restored */
+}
+
+.ziak-founders__body-col:nth-child(3) {
+  padding-left: 2rem;
+  padding-right: 0;        /* flush with right edge */
+}
+
+/* ── Signature Column (3rd col) ── */
+.ziak-founders__body-col--sig {
+  justify-content: center;
+  gap: 2rem;
+}
+
+.ziak-founders__closing {
+  font-family: 'Inter', Helvetica, sans-serif !important;
+  font-size: 1.4rem !important;
+  font-style: italic;
+  color: #555555 !important;
+}
+
+.ziak-founders__sig-script {
+  font-family: 'Dancing Script', cursive !important;
+  font-size: 2.28rem !important;  /* was 2.4rem, ~5% smaller */
+  font-weight: 600;
+  color: #8b5a2b !important;
+  line-height: 1.2;
+  margin: 0 !important;
+}
+
+.ziak-founders__sig-name {
+  font-family: 'Dancing Script', cursive !important;
+  font-size: 1.8rem !important;  /* 18px */
+  font-weight: 400;
+  color: #333333 !important;
+  margin: 0 !important;
+}
+
+/* ── Responsive ── */
+@media screen and (max-width: 900px) {
+  .ziak-founders__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ziak-founders__left {
+    min-height: 320px;
+  }
+
+  .ziak-founders__right {
+    padding: 48px 32px;
+  }
+
+  .ziak-founders__body-grid {
+    grid-template-columns: 1fr;
+    gap: 2.6rem;
+  }
+
+  .ziak-founders__title {
+    font-size: 2.8rem;
+  }
+
+  /* Stacked on mobile — drop the vertical dividers (they show as a line
+     on the right of each column) and reset the side padding. */
+  .ziak-founders__body-col:nth-child(1),
+  .ziak-founders__body-col:nth-child(2),
+  .ziak-founders__body-col:nth-child(3) {
+    border-right: none;
+    padding-left: 0;
+    padding-right: 0;
+  }
+}

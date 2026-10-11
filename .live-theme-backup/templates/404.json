@@ -1,0 +1,29 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "ziak-404",
+      "blocks": {
+        "l1": { "type": "link", "settings": { "label": "Formal Shoes", "url": "/collections/formal-shoes" } },
+        "l2": { "type": "link", "settings": { "label": "Chelsea Boots", "url": "/collections/chelsea-boots" } },
+        "l3": { "type": "link", "settings": { "label": "Loafers", "url": "/collections/loafers" } }
+      },
+      "block_order": ["l1", "l2", "l3"],
+      "settings": {
+        "announcement_text": "FREE SHIPPING ON ALL ORDERS OVER ₹999 — ALL OVER INDIA",
+        "heading": "Page Not Found",
+        "message": "The page you're looking for has moved, sold out, or never existed. Let's get you back on the right path.",
+        "shop_url": "/collections/all"
+      }
+    }
+  },
+  "order": ["main"]
+}

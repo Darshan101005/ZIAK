@@ -1,0 +1,118 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "ziak_product": {
+      "type": "ziak-product",
+      "settings": {
+        "announcement_text": "FREE SHIPPING ON ALL ORDERS OVER ₹999 — SHOP ZIAK NOW",
+        "link_about_url": "/pages/about",
+        "size_guide_url": "/pages/size-guide",
+        "promo_heading": "Timeless style.<br>Every step.",
+        "promo_cta_text": "EXPLORE COLLECTION",
+        "recommendations_collection": "all"
+      }
+    },
+    "ziak_product_video": {
+      "type": "ziak-product-video",
+      "blocks": {
+        "f1": { "type": "feature", "settings": { "icon": "clock", "value": "90+ SECONDS", "label": "Of craftsmanship per pair" } },
+        "f2": { "type": "feature", "settings": { "icon": "users", "value": "20+ EXPERTS", "label": "Skilled artisans involved" } },
+        "f3": { "type": "feature", "settings": { "icon": "shield-check", "value": "STRICT QUALITY CHECKS", "label": "Before every pair ships" } }
+      },
+      "block_order": ["f1", "f2", "f3"],
+      "settings": {
+        "eyebrow": "BEHIND EVERY ZIAK PAIR",
+        "heading": "Crafted With Precision. Made With Passion.",
+        "body": "<p>Every ZIAK pair is the result of hours of skilled handwork. Watch how raw leather is transformed into footwear built to last a lifetime.</p>",
+        "button_label": "WATCH OUR WORKSHOP FILM",
+        "autoplay": false,
+        "loop": false,
+        "bg_color": "#1A1A1A",
+        "padding_top": 48,
+        "padding_bottom": 48
+      }
+    },
+    "ziak_product_features": {
+      "type": "ziak-product-features",
+      "blocks": {
+        "ft1": { "type": "feature", "settings": { "icon": "truck", "title": "FREE SHIPPING", "text": "On all prepaid orders" } },
+        "ft2": { "type": "feature", "settings": { "icon": "rotate-ccw", "title": "EASY RETURNS", "text": "7-day easy returns" } },
+        "ft3": { "type": "feature", "settings": { "icon": "shield-check", "title": "SECURE PAYMENTS", "text": "Safe & trusted payments" } },
+        "ft4": { "type": "feature", "settings": { "icon": "award", "title": "QUALITY ASSURED", "text": "Crafted to last" } }
+      },
+      "block_order": ["ft1", "ft2", "ft3", "ft4"],
+      "settings": {
+        "padding_top": 24,
+        "padding_bottom": 24
+      }
+    },
+    "ziak_product_life": {
+      "type": "ziak-product-life",
+      "settings": {
+        "eyebrow": "WHAT MAKES ZIAK DIFFERENT",
+        "heading": "Designed around your real life.",
+        "description": "<p>We combine everyday comfort, versatile style and practical design — so you can wear one pair for every part of your day, without compromises.</p>",
+        "button_label": "EXPLORE THE COLLECTION",
+        "button_link": "/collections/all"
+      },
+      "blocks": {
+        "point_1": { "type": "point", "settings": { "icon": "users-round", "title": "Customer Driven", "text": "We listen to your feedback to design shoes that truly solve everyday problems." } },
+        "point_2": { "type": "point", "settings": { "icon": "feather", "title": "All-Day Comfort", "text": "Cushioned support and a lightweight design to keep you comfortable from morning to night." } },
+        "point_3": { "type": "point", "settings": { "icon": "layers-3", "title": "Built to Last", "text": "Premium materials and strong construction for everyday wear, travel and different terrains." } },
+        "point_4": { "type": "point", "settings": { "icon": "sun-medium", "title": "Made for Every Season", "text": "Breathable and versatile design that keeps you comfortable in summer, rain or winter." } },
+        "point_5": { "type": "point", "settings": { "icon": "footprints", "title": "One Pair, Many Occasions", "text": "A clean, modern look that fits work, college, travel, casual outings and celebrations." } },
+        "point_6": { "type": "point", "settings": { "icon": "settings-2", "title": "Solving Real Problems", "text": "No more sore feet, stiff shoes or style limitations — ZIAK shoes are made to keep up with your daily life." } }
+      },
+      "block_order": ["point_1", "point_2", "point_3", "point_4", "point_5", "point_6"]
+    },
+    "ziak_product_workshop": {
+      "type": "ziak-product-workshop",
+      "settings": { "eyebrow": "OUR WORKSHOP", "heading": "Where ZIAK Shoes Come to Life.", "button_label": "EXPLORE OUR PROCESS", "button_link": "/pages/about#ziak-about-workshop" },
+      "blocks": {
+        "proof_1": { "type": "proof", "settings": { "icon": "package-check", "text": "In-House Production" } },
+        "proof_2": { "type": "proof", "settings": { "icon": "shield-check", "text": "Strict Quality Control" } },
+        "proof_3": { "type": "proof", "settings": { "icon": "users-round", "text": "Skilled Craftsmen" } }
+      },
+      "block_order": ["proof_1", "proof_2", "proof_3"]
+    },
+    "ziak_product_recs": {
+      "type": "ziak-product-recs",
+      "settings": {
+        "heading": "YOU MAY ALSO LIKE",
+        "recommendations_collection": "all",
+        "promo_heading": "Timeless style.<br>Every step.",
+        "promo_cta_text": "EXPLORE COLLECTION",
+        "promo_link": "/collections/all",
+        "padding_top": 48,
+        "padding_bottom": 48
+      }
+    },
+    "ziak_product_story": {
+      "type": "ziak-product-story",
+      "blocks": {
+        "p1": { "type": "point", "settings": { "icon": "check-circle", "title": "Premium materials. ", "text": "Full-grain leather that ages beautifully." } },
+        "p2": { "type": "point", "settings": { "icon": "feather", "title": "All-day comfort. ", "text": "Cushioned footbed for lasting support." } },
+        "p3": { "type": "point", "settings": { "icon": "shield-check", "title": "Made to last. ", "text": "Durable construction backed by our craft." } }
+      },
+      "block_order": ["p1", "p2", "p3"],
+      "settings": {
+        "eyebrow": "THE ZIAK DIFFERENCE",
+        "heading": "Built To Move With You",
+        "body": "<p>This isn't just another pair of shoes. It's the product of premium materials, thoughtful design, and craftsmanship refined over generations — made to look better with every step you take.</p>",
+        "image_position": "right",
+        "bg_color": "#FFFFFF",
+        "padding_top": 72,
+        "padding_bottom": 72
+      }
+    }
+  },
+  "order": ["ziak_product", "ziak_product_video", "ziak_product_features", "ziak_product_life", "ziak_product_workshop", "ziak_product_story", "ziak_product_recs"]
+}

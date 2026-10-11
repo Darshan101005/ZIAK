@@ -1,0 +1,681 @@
+{{- 'section-ziak-collection.css' | asset_url | stylesheet_tag -}}
+{{ 'section-ziak-hero.css' | asset_url | stylesheet_tag }}
+{{ 'ziak-card.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'ziak-card.js' | asset_url }}" defer="defer"></script>
+
+<style>
+  /* Hide Dawn's default header — this page has its own ZIAK nav */
+  .shopify-section-group-header-group { display: none !important; }
+
+  /* ── Collection-page nav overrides ──
+     The hero CSS sets nav to position:absolute (for overlay-on-image).
+     On the collection page we need it static so nothing overlaps. */
+  #ziak-coll-nav {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    background: #FFFFFF !important;
+    border-bottom: 1px solid #E8E8E8 !important;
+  }
+
+  /* Always-dark links (not white-on-transparent) */
+  #ziak-coll-nav .ziak-hero__nav-link,
+  #ziak-coll-nav .ziak-hero__nav-link--dropdown {
+    color: #1A1A1A !important;
+  }
+
+  /* Dropdown arrow — always dark */
+  #ziak-coll-nav .ziak-hero__nav-link--dropdown::after {
+    border-top-color: #1A1A1A !important;
+  }
+
+  /* Icons — always visible in dark */
+  #ziak-coll-nav .ziak-hero__nav-icon {
+    color: #1A1A1A !important;
+    opacity: 1 !important;
+  }
+  #ziak-coll-nav .ziak-hero__nav-icon svg {
+    stroke: #1A1A1A !important;
+  }
+
+  /* Logo text color */
+  #ziak-coll-nav .ziak-hero__logo-placeholder {
+    color: #1A1A1A !important;
+    opacity: 1 !important;
+  }
+
+  /* Logo image — don't invert on collection page */
+  #ziak-coll-nav .ziak-hero__logo-img {
+    filter: none !important;
+  }
+
+  /* Mega menu: use fixed so it spans full viewport width from below nav */
+  #ziak-coll-nav .ziak-hero__mega-menu {
+    position: fixed !important;
+    top: auto !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100vw !important;
+  }
+</style>
+
+<!-- ════════ ZIAK COLLECTION HEADER ════════ -->
+<!-- Announcement bar: black bg, white text -->
+<div class="ziak-hero__announcement" id="ziak-coll-announcement" style="background:#1A1A1A;color:#FFFFFF;"><span>FREE SHIPPING ON ALL ORDERS, ALL OVER INDIA <a href="{{ shop.shipping_policy.url | default: '/policies/shipping-policy' }}" style="color:inherit;text-decoration:underline;font-weight:700;">DETAILS</a></span></div>
+
+<!-- Nav: white bg, black text, with full mega menus -->
+<div class="ziak-hero" id="ziak-coll-hero" style="min-height:auto;background:#FFFFFF;">
+  {%- render 'ziak-mobile-nav' -%}
+    <nav class="ziak-hero__nav" id="ziak-coll-nav" aria-label="Main navigation" style="background:#FFFFFF;border-bottom:1px solid #E8E8E8;">
+
+    <!-- Left Nav -->
+    <div class="ziak-hero__nav-left">
+      <div class="ziak-hero__dropdown-wrapper">
+        <a href="/collections/all" class="ziak-hero__nav-link ziak-hero__nav-link--dropdown" style="color:#1A1A1A;">MEN</a>
+        {%- render 'ziak-mega-menu' -%}
+      </div>
+
+      <a href="/pages/about" class="ziak-hero__nav-link" style="color:#1A1A1A;">ABOUT</a>
+      <a href="/pages/blog" class="ziak-hero__nav-link" style="color:#1A1A1A;">BLOG</a>
+    </div>
+
+    <!-- Center Logo -->
+    <div class="ziak-hero__nav-center">
+      <a href="{{ routes.root_url }}" class="ziak-hero__logo-placeholder" style="color:#1A1A1A;">
+        {%- if settings.logo_svg_url != blank -%}
+          <img src="{{ settings.logo_svg_url }}" alt="{{ shop.name | escape }}" class="ziak-hero__logo-img" width="120">
+        {%- elsif settings.logo != blank -%}
+          {{ settings.logo | image_url: width: 300 | image_tag: alt: shop.name, class: 'ziak-hero__logo-img', width: 120 }}
+        {%- else -%}
+          ZIAK
+        {%- endif -%}
+      </a>
+    </div>
+
+    <!-- Right Nav -->
+    <div class="ziak-hero__nav-right">
+      <a href="/pages/our-store" class="ziak-hero__nav-link" style="color:#1A1A1A;">STORES</a>
+      <a href="/pages/contact" class="ziak-hero__nav-link" style="color:#1A1A1A;">HELP</a>
+      <a href="/pages/wishlist" class="ziak-hero__nav-icon ziak-wish-link" aria-label="Wishlist" style="color:#1A1A1A;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        <span class="ziak-wish-count" data-ziak-wishlist-count style="display:none;">0</span>
+      </a>
+      <a href="{{ routes.account_url }}" class="ziak-hero__nav-icon" aria-label="Account" style="color:#1A1A1A;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M18 20a6 6 0 0 0-12 0"/><circle cx="12" cy="10" r="4"/></svg>
+      </a>
+      <a href="{{ routes.search_url }}" class="ziak-hero__nav-icon" aria-label="Search" style="color:#1A1A1A;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      </a>
+      <a href="{{ routes.cart_url }}" class="ziak-hero__nav-icon" aria-label="Cart" style="color:#1A1A1A;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+      </a>
+    </div>
+
+  </nav>
+</div>
+
+{% paginate collection.products by 24 %}
+
+<div class="ziak-coll" id="ziak-coll-page">
+
+  <!-- ══════════════ LEFT SIDEBAR ══════════════ -->
+  <aside class="ziak-coll__sidebar" id="ziak-sidebar">
+
+    <div class="ziak-coll__sidebar-body">
+
+      <!-- Header text -->
+      <p class="ziak-coll__sb-kicker">SHOP MEN'S SHOES</p>
+      <h2 class="ziak-coll__sb-title">All Styles</h2>
+      <p class="ziak-coll__sb-sub">Timeless designs.<br>Premium craftsmanship.</p>
+
+      <hr class="ziak-coll__sb-rule">
+
+      <!-- Collection nav -->
+      <p class="ziak-coll__sb-label">COLLECTION</p>
+      {%- comment -%}
+        Detect which product_type filter is currently active from the URL.
+        collection.active_filters gives us the live filter state.
+      {%- endcomment -%}
+      {%- assign active_product_type = '' -%}
+      {%- for f in collection.active_filters -%}
+        {%- if f.param_name == 'filter.p.product_type' -%}
+          {%- assign active_product_type = f.active_values.first.value -%}
+        {%- endif -%}
+      {%- endfor -%}
+
+      {%- assign no_filter = true -%}
+      {%- if active_product_type != '' -%}
+        {%- assign no_filter = false -%}
+      {%- endif -%}
+
+      <ul class="ziak-coll__sb-nav" id="ziak-coll-sb-cats">
+        <li><a href="{{ collection.url }}" class="ziak-coll__sb-link ziak-coll__sb-link--active" data-category="">All Shoes</a></li>
+        <li><a href="{{ collection.url }}?category=Formal+Shoes" class="ziak-coll__sb-link" data-category="Formal Shoes">Formal Shoes</a></li>
+        <li><a href="{{ collection.url }}?category=Brogues" class="ziak-coll__sb-link" data-category="Brogues">Brogues</a></li>
+        <li><a href="{{ collection.url }}?category=Derby+Shoes" class="ziak-coll__sb-link" data-category="Derby Shoes">Derby Shoes</a></li>
+        <li><a href="{{ collection.url }}?category=Chelsea+Boots" class="ziak-coll__sb-link" data-category="Chelsea Boots">Chelsea Boots</a></li>
+        <li><a href="{{ collection.url }}?category=Loafers" class="ziak-coll__sb-link" data-category="Loafers">Loafers</a></li>
+      </ul>
+
+
+      <hr class="ziak-coll__sb-rule">
+
+      <!-- Quick links — now filter on this collection instead of leaving it -->
+      <ul class="ziak-coll__sb-nav">
+        <li><a href="{{ collection.url }}?filter.p.tag=new-arrivals" class="ziak-coll__sb-link">New Arrivals</a></li>
+        <li><a href="{{ collection.url }}?filter.p.tag=best-sellers" class="ziak-coll__sb-link">Best Sellers</a></li>
+        <li><a href="{{ collection.url }}?filter.p.tag=sale" class="ziak-coll__sb-link">Sale</a></li>
+      </ul>
+
+      <hr class="ziak-coll__sb-rule">
+
+      <!-- Need help -->
+      <p class="ziak-coll__sb-label">NEED HELP?</p>
+      <ul class="ziak-coll__sb-help">
+        <li>
+          <a href="/pages/size-guide" class="ziak-coll__sb-help-link">
+            Size Guide
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </li>
+        <li>
+          <a href="/pages/contact" class="ziak-coll__sb-help-link">
+            Contact Us
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </li>
+      </ul>
+
+    </div><!-- /.ziak-coll__sidebar-body -->
+  </aside>
+
+  <!-- Floating reveal button (shown when sidebar closed) -->
+  <button class="ziak-coll__sb-reveal" id="ziak-sidebar-reveal" aria-label="Show filters" hidden>
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="9" y1="3" x2="9" y2="21"/></svg>
+  </button>
+
+  <!-- ══════════════ MAIN CONTENT ══════════════ -->
+  <main class="ziak-coll__main" id="ziak-coll-main">
+
+    <!-- Breadcrumb -->
+    <nav class="ziak-coll__breadcrumb" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span>›</span>
+      <a href="/collections">Men</a>
+      <span>›</span>
+      <span>{{ collection.title }}</span>
+    </nav>
+
+    <!-- Page Title -->
+    <h1 class="ziak-coll__heading">{{ collection.title }}</h1>
+
+    <!-- Toolbar: count + filter + sort -->
+    <div class="ziak-coll__toolbar">
+      <p class="ziak-coll__count" id="ziak-coll-count">
+        {%- if collection.products_count > 0 -%}
+          {{ collection.products_count }} styles
+        {%- else -%}
+          24 styles available
+        {%- endif -%}
+      </p>
+      <p class="ziak-coll__category-copy" id="ziak-category-copy" data-all="Our collection is built around the latter — versatile styles in considered colours and timeless silhouettes that work across occasions." data-formal-shoes="Refined silhouettes for meetings, occasions and moments that call for something sharper." data-brogues="Classic detailing with a modern attitude." data-derby-shoes="A timeless everyday essential, built around effortless versatility." data-chelsea-boots="Clean lines. Easy styling. A confident finish." data-loafers="Slip in. Step out. Stay effortlessly sharp.">Our collection is built around the latter — versatile styles in considered colours and timeless silhouettes that work across occasions.</p>
+      <div class="ziak-coll__toolbar-right">
+        <button class="ziak-coll__filter-btn" id="ziak-filter-btn" aria-label="Open filters">
+          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
+          Filter
+        </button>
+        <div class="ziak-coll__sort-wrap">
+          <select class="ziak-coll__sort-select" id="ziak-sort-select" aria-label="Sort products">
+            <option value="{{ collection.url }}?sort_by=manual"{% if collection.sort_by == blank or collection.sort_by == 'manual' %} selected{% endif %}>Sort by: Featured</option>
+            <option value="{{ collection.url }}?sort_by=best-selling"{% if collection.sort_by == 'best-selling' %} selected{% endif %}>Best Selling</option>
+            <option value="{{ collection.url }}?sort_by=title-ascending"{% if collection.sort_by == 'title-ascending' %} selected{% endif %}>A → Z</option>
+            <option value="{{ collection.url }}?sort_by=title-descending"{% if collection.sort_by == 'title-descending' %} selected{% endif %}>Z → A</option>
+            <option value="{{ collection.url }}?sort_by=price-ascending"{% if collection.sort_by == 'price-ascending' %} selected{% endif %}>Price: Low – High</option>
+            <option value="{{ collection.url }}?sort_by=price-descending"{% if collection.sort_by == 'price-descending' %} selected{% endif %}>Price: High – Low</option>
+            <option value="{{ collection.url }}?sort_by=created-descending"{% if collection.sort_by == 'created-descending' %} selected{% endif %}>Newest First</option>
+          </select>
+          <svg class="ziak-coll__sort-chevron" xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- Category pills — client-side reorder ("selected first, then More from ZIAK") -->
+    <div class="ziak-coll__pills" id="ziak-coll-pills">
+      <a href="{{ collection.url }}" class="ziak-coll__pill ziak-coll__pill--active" data-category="">All</a>
+      <a href="{{ collection.url }}?category=Formal+Shoes" class="ziak-coll__pill" data-category="Formal Shoes">Formal Shoes</a>
+      <a href="{{ collection.url }}?category=Brogues" class="ziak-coll__pill" data-category="Brogues">Brogues</a>
+      <a href="{{ collection.url }}?category=Derby+Shoes" class="ziak-coll__pill" data-category="Derby Shoes">Derby Shoes</a>
+      <a href="{{ collection.url }}?category=Chelsea+Boots" class="ziak-coll__pill" data-category="Chelsea Boots">Chelsea Boots</a>
+      <a href="{{ collection.url }}?category=Loafers" class="ziak-coll__pill" data-category="Loafers">Loafers</a>
+    </div>
+
+    <!-- ══════════ PRODUCT GRID ══════════ -->
+    <div class="ziak-coll__grid" id="ziak-product-grid">
+
+      {%- for product in collection.products -%}
+        {%- assign star_mod = forloop.index | modulo: 5 -%}
+        {%- if star_mod == 1 -%}{%- assign s_str = '★★★★★' -%}{%- assign s_cnt = 128 -%}
+        {%- elsif star_mod == 2 -%}{%- assign s_str = '★★★★★' -%}{%- assign s_cnt = 97 -%}
+        {%- elsif star_mod == 3 -%}{%- assign s_str = '★★★★☆' -%}{%- assign s_cnt = 80 -%}
+        {%- elsif star_mod == 4 -%}{%- assign s_str = '★★★★★' -%}{%- assign s_cnt = 64 -%}
+        {%- else -%}{%- assign s_str = '★★★★☆' -%}{%- assign s_cnt = 63 -%}
+        {%- endif -%}
+
+        {%- render 'ziak-card',
+          product: product,
+          index: product.id,
+          show_rating: true,
+          rating_stars: s_str,
+          rating_count: s_cnt
+        -%}
+
+      {%- else -%}
+        {%- assign ph_names   = "Lincoln Oxford,Chairman Derby,Hudson Loafer,Ryder Chukka Boot,Carter Sneaker,Drift Driver,Monaco Monk Strap,Bennett Wingtip,Oxford Classic,Derby Brogue,Suede Loafer,Chelsea Boot,Court Sneaker,Penny Loafer,Cap Toe Derby,Tassel Loafer,Desert Boot,Slip-On Pro,Plain Toe Oxford,Side-Zip Boot,Running Ace,Velvet Slipper,Boat Shoe Lite,Buckle Monk" | split: "," -%}
+        {%- assign ph_colors  = "Black,Cinnamon,Dark Brown,Tan,Black,Espresso Suede,Black,Chestnut,Brown,Oxblood,Cognac,Black,White,Cognac,Tan,Brown,Sand,Navy,Black,Dark Brown,White,Midnight Blue,Wheat,Black" | split: "," -%}
+        {%- assign ph_prices  = "188,188,178,198,158,148,198,188,168,178,168,195,145,172,165,185,155,138,175,195,148,168,142,190" | split: "," -%}
+        {%- assign ph_reviews = "128,97,80,64,113,71,52,63,88,75,92,55,110,90,77,101,59,68,84,48,122,66,95,73" | split: "," -%}
+        {%- assign ph_best    = "1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0" | split: "," -%}
+        {%- assign ph_stars   = "★★★★★,★★★★★,★★★★☆,★★★★★,★★★★★,★★★★☆,★★★★☆,★★★★★,★★★★★,★★★★☆,★★★★★,★★★★☆,★★★★★,★★★★★,★★★★☆,★★★★★,★★★★☆,★★★★★,★★★★★,★★★★☆,★★★★★,★★★★☆,★★★★★,★★★★☆" | split: "," -%}
+
+        {%- for i in (1..24) -%}
+          {%- assign idx = forloop.index0 -%}
+          {%- assign ph_badge_text = '' -%}
+          {%- if ph_best[idx] == '1' -%}{%- assign ph_badge_text = 'BESTSELLER' -%}{%- endif -%}
+          {%- assign ph_price = ph_prices[idx] | prepend: '$' -%}
+          {%- render 'ziak-card',
+            index: forloop.index,
+            card_url: '#',
+            card_title: ph_names[idx],
+            card_subtitle: ph_colors[idx],
+            card_price: ph_price,
+            badge_text: ph_badge_text,
+            badge_type: 'bestseller',
+            show_rating: true,
+            rating_stars: ph_stars[idx],
+            rating_count: ph_reviews[idx]
+          -%}
+        {%- endfor -%}
+      {%- endfor -%}
+
+    </div><!-- /.ziak-coll__grid -->
+
+    <!-- ══════════ PAGINATION ══════════ -->
+    {%- if paginate.pages > 1 -%}
+    <nav class="ziak-coll__pagination" aria-label="Products pagination">
+      <div class="ziak-coll__pg-inner">
+        {%- if paginate.previous -%}
+          <a href="{{ paginate.previous.url }}" class="ziak-coll__pg-btn ziak-coll__pg-arrow" aria-label="Previous">‹</a>
+        {%- else -%}
+          <span class="ziak-coll__pg-btn ziak-coll__pg-arrow ziak-coll__pg-off">‹</span>
+        {%- endif -%}
+        {%- for part in paginate.parts -%}
+          {%- if part.is_link -%}
+            <a href="{{ part.url }}" class="ziak-coll__pg-btn{% if part.title == paginate.current_page %} ziak-coll__pg-active{% endif %}">{{ part.title }}</a>
+          {%- else -%}
+            {%- if part.title == '&hellip;' -%}
+              <span class="ziak-coll__pg-ellipsis">…</span>
+            {%- else -%}
+              <span class="ziak-coll__pg-btn ziak-coll__pg-active">{{ part.title }}</span>
+            {%- endif -%}
+          {%- endif -%}
+        {%- endfor -%}
+        {%- if paginate.next -%}
+          <a href="{{ paginate.next.url }}" class="ziak-coll__pg-btn ziak-coll__pg-arrow" aria-label="Next">›</a>
+        {%- else -%}
+          <span class="ziak-coll__pg-btn ziak-coll__pg-arrow ziak-coll__pg-off">›</span>
+        {%- endif -%}
+      </div>
+    </nav>
+    {%- endif -%}
+  </main><!-- /.ziak-coll__main -->
+
+</div><!-- /.ziak-coll -->
+
+<!-- ══════════ FILTER PANEL ══════════ -->
+<div class="ziak-coll__filter-overlay" id="ziak-filter-overlay" aria-hidden="true">
+  <div class="ziak-coll__filter-panel" role="dialog" aria-label="Filter products" aria-modal="true">
+
+    <div class="ziak-coll__fp-hd">
+      <h3 class="ziak-coll__fp-title">Filters</h3>
+      <button class="ziak-coll__fp-close" id="ziak-filter-close" aria-label="Close filters">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+
+    <div class="ziak-coll__fp-bd">
+
+      <!-- Price — dynamic dual-handle range slider (bounds set from products in JS) -->
+      <div class="ziak-coll__fp-group">
+        <h4 class="ziak-coll__fp-group-title">Price Range</h4>
+        <div class="ziak-coll__price" id="ziak-price">
+          <div class="ziak-coll__price-track"><span class="ziak-coll__price-fill" id="ziak-price-fill"></span></div>
+          <input type="range" class="ziak-coll__price-input" id="ziak-price-min" min="0" max="100" step="1" value="0" aria-label="Minimum price">
+          <input type="range" class="ziak-coll__price-input" id="ziak-price-max" min="0" max="100" step="1" value="100" aria-label="Maximum price">
+        </div>
+        <div class="ziak-coll__price-vals">
+          <span id="ziak-price-min-label">₹0</span>
+          <span id="ziak-price-max-label">₹0</span>
+        </div>
+      </div>
+
+      <!-- Size -->
+      <div class="ziak-coll__fp-group">
+        <h4 class="ziak-coll__fp-group-title">Size (UK)</h4>
+        <div class="ziak-coll__size-row">
+          {%- assign size_opts = "6,7,8,9,10" | split: "," -%}
+        {%- for sz in size_opts -%}
+            <button class="ziak-coll__size-chip" type="button">{{ sz }}</button>
+          {%- endfor -%}
+        </div>
+      </div>
+
+      <!-- Color -->
+      <div class="ziak-coll__fp-group">
+        <h4 class="ziak-coll__fp-group-title">Color</h4>
+        <div class="ziak-coll__color-row">
+          <button class="ziak-coll__swatch" style="background:#1A1A1A;" aria-label="Black" title="Black" data-color="Black"></button>
+          <button class="ziak-coll__swatch" style="background:#6B4226;" aria-label="Brown" title="Brown" data-color="Brown"></button>
+        </div>
+      </div>
+
+      <!-- Need help (relocated from the sidebar on mobile) -->
+      <div class="ziak-coll__fp-group ziak-coll__fp-help">
+        <h4 class="ziak-coll__fp-group-title">Need Help?</h4>
+        <a href="/pages/size-guide" class="ziak-coll__fp-help-link">
+          Size Guide
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+        <a href="/pages/contact" class="ziak-coll__fp-help-link">
+          Contact Us
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+
+    </div><!-- /.ziak-coll__fp-bd -->
+
+    <div class="ziak-coll__fp-ft">
+      <button class="ziak-coll__fp-apply" id="ziak-filter-apply">Apply Filters</button>
+      <button class="ziak-coll__fp-reset" id="ziak-filter-reset">Clear All</button>
+    </div>
+
+  </div><!-- /.ziak-coll__filter-panel -->
+</div><!-- /.ziak-coll__filter-overlay -->
+
+{% endpaginate %}
+
+<script>
+(function () {
+  'use strict';
+  document.addEventListener('DOMContentLoaded', function () {
+
+
+    /* ── SIDEBAR TOGGLE — two-way switch ── */
+    var sidebar   = document.getElementById('ziak-sidebar');
+    var revealBtn = document.getElementById('ziak-sidebar-reveal');
+
+    if (sidebar && revealBtn) {
+      var iconOpen  = revealBtn.querySelector('.ziak-sb-icon-open');
+      var iconClose = revealBtn.querySelector('.ziak-sb-icon-close');
+
+      /* Set which icon is visible based on sidebar state */
+      function syncIcon() {
+        var isOpen = !sidebar.classList.contains('ziak-coll__sidebar--closed');
+        if (iconOpen)  iconOpen.style.display  = isOpen ? 'none'  : 'block';
+        if (iconClose) iconClose.style.display = isOpen ? 'block' : 'none';
+      }
+
+      /* Toggle sidebar on every click */
+      revealBtn.addEventListener('click', function () {
+        sidebar.classList.toggle('ziak-coll__sidebar--closed');
+        var nowOpen = !sidebar.classList.contains('ziak-coll__sidebar--closed');
+        localStorage.setItem('ziak_sidebar', nowOpen ? 'open' : 'closed');
+        syncIcon();
+      });
+
+      /* Restore last saved state */
+      if (localStorage.getItem('ziak_sidebar') === 'closed') {
+        sidebar.classList.add('ziak-coll__sidebar--closed');
+      }
+      syncIcon();
+    }
+
+
+    /* ── Sort select ── */
+    var sortSel = document.getElementById('ziak-sort-select');
+    if (sortSel) sortSel.addEventListener('change', function () { if (this.value) location.href = this.value; });
+
+    /* ── Filter panel ── */
+    var filterOverlay = document.getElementById('ziak-filter-overlay');
+    var filterBtn     = document.getElementById('ziak-filter-btn');
+    var filterClose   = document.getElementById('ziak-filter-close');
+    var filterReset   = document.getElementById('ziak-filter-reset');
+
+    function openFilter()  { filterOverlay.classList.add('open');  filterOverlay.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden'; }
+    function closeFilter() { filterOverlay.classList.remove('open'); filterOverlay.setAttribute('aria-hidden','true');  document.body.style.overflow=''; }
+
+    if (filterBtn)     filterBtn.addEventListener('click', openFilter);
+    if (filterClose)   filterClose.addEventListener('click', closeFilter);
+    if (filterOverlay) filterOverlay.addEventListener('click', function(e){ if(e.target===filterOverlay) closeFilter(); });
+    document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeFilter(); });
+
+    /* Filter + category behaviour is handled by the controller below. */
+
+    /* ── Heart / wishlist ── */
+    document.querySelectorAll('.ziak-coll__heart').forEach(function(btn){
+      btn.addEventListener('click', function(e){
+        e.preventDefault(); e.stopPropagation();
+        this.classList.toggle('liked');
+        var svg = this.querySelector('svg');
+        if(svg) svg.style.fill = this.classList.contains('liked') ? '#E05555' : 'none';
+        if(svg) svg.style.stroke = this.classList.contains('liked') ? '#E05555' : 'currentColor';
+      });
+    });
+
+    /* ══════════ COLLECTION CONTROLLER ══════════
+       Renders ALL products, then client-side:
+        • Category select → matching cards first, "More from ZIAK" divider, then the rest
+        • Working filters: dynamic price slider, size chips, colour swatches
+       No page reload; URL keeps ?category= for shareable links. */
+    (function () {
+      var grid = document.getElementById('ziak-product-grid');
+      if (!grid) return;
+
+      var cards   = Array.prototype.slice.call(grid.querySelectorAll('.ziak-card'));
+      var countEl = document.getElementById('ziak-coll-count');
+
+      var minInput = document.getElementById('ziak-price-min');
+      var maxInput = document.getElementById('ziak-price-max');
+      var fill     = document.getElementById('ziak-price-fill');
+      var minLabel = document.getElementById('ziak-price-min-label');
+      var maxLabel = document.getElementById('ziak-price-max-label');
+      var applyBtn = document.getElementById('ziak-filter-apply');
+      var resetBtn = document.getElementById('ziak-filter-reset');
+
+      var selectedCategory = '';
+      var bounds = { min: 0, max: 0 };
+      var state  = { priceMin: 0, priceMax: 0, sizes: [], colors: [] };
+
+      // "More from ZIAK" divider element
+      var divider = document.createElement('div');
+      divider.className = 'ziak-coll__more-divider';
+      divider.innerHTML = '<span>More from ZIAK</span>';
+
+      function money(n) { return '\u20B9' + Number(n).toLocaleString('en-IN'); }
+
+      function initPrice() {
+        var prices = cards
+          .map(function (c) { return parseFloat(c.getAttribute('data-price')) || 0; })
+          .filter(function (v) { return v > 0; });
+        var lo = prices.length ? Math.floor(Math.min.apply(null, prices)) : 0;
+        var hi = prices.length ? Math.ceil(Math.max.apply(null, prices)) : 0;
+        if (lo === hi) { hi = lo + 1; }
+        bounds.min = lo; bounds.max = hi;
+        state.priceMin = lo; state.priceMax = hi;
+        if (minInput && maxInput) {
+          minInput.min = lo; minInput.max = hi; minInput.value = lo;
+          maxInput.min = lo; maxInput.max = hi; maxInput.value = hi;
+        }
+        updatePriceUI();
+      }
+
+      function updatePriceUI() {
+        var range = (bounds.max - bounds.min) || 1;
+        var loPct = (state.priceMin - bounds.min) / range * 100;
+        var hiPct = (state.priceMax - bounds.min) / range * 100;
+        if (fill) { fill.style.left = loPct + '%'; fill.style.right = (100 - hiPct) + '%'; }
+        if (minLabel) minLabel.textContent = money(state.priceMin);
+        if (maxLabel) maxLabel.textContent = money(state.priceMax);
+      }
+
+      function passes(card) {
+        var price = parseFloat(card.getAttribute('data-price')) || 0;
+        if (price > 0 && (price < state.priceMin || price > state.priceMax)) return false;
+
+        if (state.sizes.length) {
+          var sizes = (card.getAttribute('data-sizes') || '').split(',').map(function (s) { return s.trim(); });
+          var okSize = state.sizes.some(function (s) { return sizes.indexOf(s) !== -1; });
+          if (!okSize) return false;
+        }
+        if (state.colors.length) {
+          var colors = (card.getAttribute('data-colors') || '').toLowerCase().split(',').map(function (c) { return c.trim(); });
+          var okColor = state.colors.some(function (c) { return colors.indexOf(c.toLowerCase()) !== -1; });
+          if (!okColor) return false;
+        }
+        return true;
+      }
+
+      function updateActive() {
+        document.querySelectorAll('.ziak-coll__pill').forEach(function (p) {
+          p.classList.toggle('ziak-coll__pill--active', (p.getAttribute('data-category') || '') === selectedCategory);
+        });
+        var sb = document.getElementById('ziak-coll-sb-cats');
+        if (sb) sb.querySelectorAll('.ziak-coll__sb-link').forEach(function (l) {
+          l.classList.toggle('ziak-coll__sb-link--active', (l.getAttribute('data-category') || '') === selectedCategory);
+        });
+        var categoryCopy = document.getElementById('ziak-category-copy');
+        if (categoryCopy) categoryCopy.textContent = categoryCopy.getAttribute('data-' + (selectedCategory || 'all').toLowerCase().replace(/\s+/g, '-')) || categoryCopy.getAttribute('data-all');
+      }
+
+      function render() {
+        var matches = [], others = [], visible = 0;
+        var selNorm = (selectedCategory || '').trim().toLowerCase();
+
+        cards.forEach(function (card) {
+          var ok = passes(card);
+          card.classList.toggle('is-hidden', !ok);
+          if (ok) visible++;
+          var type = (card.getAttribute('data-type') || '').trim().toLowerCase();
+          if (ok && selNorm && type === selNorm) matches.push(card);
+          else others.push(card);
+        });
+
+        if (divider.parentNode) divider.parentNode.removeChild(divider);
+        matches.forEach(function (c) { grid.appendChild(c); });
+
+        var visibleOthers = others.filter(function (c) { return !c.classList.contains('is-hidden'); });
+        if (selectedCategory && matches.length && visibleOthers.length) grid.appendChild(divider);
+
+        others.forEach(function (c) { grid.appendChild(c); });
+
+        if (countEl) countEl.textContent = visible + (visible === 1 ? ' style' : ' styles');
+        updateActive();
+      }
+
+      function setCategory(cat, push) {
+        selectedCategory = cat || '';
+        if (push) {
+          var url = new URL(window.location.href);
+          if (selectedCategory) url.searchParams.set('category', selectedCategory);
+          else url.searchParams.delete('category');
+          history.pushState({}, '', url);
+        }
+        render();
+      }
+
+      // Category links (pills + sidebar)
+      function bindCategory(link) {
+        link.addEventListener('click', function (e) {
+          e.preventDefault();
+          setCategory(this.getAttribute('data-category') || '', true);
+          var toolbar = document.querySelector('.ziak-coll__pills');
+          if (toolbar) toolbar.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        });
+      }
+      document.querySelectorAll('.ziak-coll__pill[data-category]').forEach(bindCategory);
+      var sbCats = document.getElementById('ziak-coll-sb-cats');
+      if (sbCats) sbCats.querySelectorAll('.ziak-coll__sb-link[data-category]').forEach(bindCategory);
+
+      // Price slider
+      if (minInput) minInput.addEventListener('input', function () {
+        if (parseInt(minInput.value, 10) > parseInt(maxInput.value, 10)) minInput.value = maxInput.value;
+        state.priceMin = parseInt(minInput.value, 10);
+        updatePriceUI(); render();
+      });
+      if (maxInput) maxInput.addEventListener('input', function () {
+        if (parseInt(maxInput.value, 10) < parseInt(minInput.value, 10)) maxInput.value = minInput.value;
+        state.priceMax = parseInt(maxInput.value, 10);
+        updatePriceUI(); render();
+      });
+
+      // Size chips
+      document.querySelectorAll('.ziak-coll__size-chip').forEach(function (chip) {
+        chip.addEventListener('click', function () {
+          this.classList.toggle('active');
+          var sz = this.textContent.trim();
+          var i = state.sizes.indexOf(sz);
+          if (this.classList.contains('active')) { if (i === -1) state.sizes.push(sz); }
+          else if (i !== -1) state.sizes.splice(i, 1);
+          render();
+        });
+      });
+
+      // Colour swatches
+      document.querySelectorAll('.ziak-coll__swatch').forEach(function (sw) {
+        sw.addEventListener('click', function () {
+          this.classList.toggle('active');
+          var col = (this.getAttribute('data-color') || this.getAttribute('title') || '').trim();
+          var i = state.colors.indexOf(col);
+          if (this.classList.contains('active')) { if (i === -1) state.colors.push(col); }
+          else if (i !== -1) state.colors.splice(i, 1);
+          render();
+        });
+      });
+
+      // Apply just closes the panel (filters are live); Clear resets everything
+      if (applyBtn) applyBtn.addEventListener('click', function () {
+        if (typeof closeFilter === 'function') closeFilter();
+      });
+      if (resetBtn) resetBtn.addEventListener('click', function () {
+        state.sizes = []; state.colors = [];
+        document.querySelectorAll('.ziak-coll__size-chip').forEach(function (c) { c.classList.remove('active'); });
+        document.querySelectorAll('.ziak-coll__swatch').forEach(function (s) { s.classList.remove('active'); });
+        state.priceMin = bounds.min; state.priceMax = bounds.max;
+        if (minInput) minInput.value = bounds.min;
+        if (maxInput) maxInput.value = bounds.max;
+        updatePriceUI(); render();
+      });
+
+      // Back/forward navigation
+      window.addEventListener('popstate', function () {
+        setCategory(new URLSearchParams(window.location.search).get('category') || '', false);
+      });
+
+      // Init
+      initPrice();
+      setCategory(new URLSearchParams(window.location.search).get('category') || '', false);
+    })();
+
+  });
+})();
+</script>
+
+{% schema %}
+{
+  "name": "ZIAK Collection",
+  "tag": "section",
+  "class": "ziak-collection-section",
+  "settings": [],
+  "presets": [{ "name": "ZIAK Collection" }]
+}
+{% endschema %}

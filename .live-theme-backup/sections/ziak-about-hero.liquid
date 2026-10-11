@@ -1,0 +1,186 @@
+{{ 'section-ziak-hero.css' | asset_url | stylesheet_tag }}
+{{ 'section-ziak-about-hero.css' | asset_url | stylesheet_tag }}
+
+<style>
+  /* Hide Dawn's default header group — this page has its own nav */
+  .shopify-section-group-header-group {
+    display: none !important;
+  }
+</style>
+
+
+{%- comment -%} ZIAK About Page Hero — same nav structure, about-specific content {%- endcomment -%}
+
+<!-- Announcement Bar (same as homepage) -->
+<div class="ziak-hero__announcement" id="ziak-about-announcement"><span>FREE SHIPPING ON ALL ORDERS, ALL OVER INDIA <a href="{{ shop.shipping_policy.url | default: '/policies/shipping-policy' }}" style="color:inherit;text-decoration:underline;font-weight:700;">DETAILS</a></span></div>
+
+<!-- Hero wrapper (reuses homepage hero CSS) -->
+<div class="ziak-hero" id="ziak-about-hero">
+
+  <!-- Navigation — identical structure to homepage -->
+  {%- render 'ziak-mobile-nav' -%}
+    <nav class="ziak-hero__nav" id="ziak-about-nav" aria-label="Main navigation">
+
+    <!-- Left Nav -->
+    <div class="ziak-hero__nav-left">
+      <div class="ziak-hero__dropdown-wrapper">
+        <a href="/collections/all" class="ziak-hero__nav-link ziak-hero__nav-link--dropdown" id="ziak-about-nav-men">MEN</a>
+        {%- render 'ziak-mega-menu' -%}
+      </div>
+      <a href="/pages/about" class="ziak-hero__nav-link" id="ziak-about-nav-about">ABOUT</a>
+      <a href="/pages/blog" class="ziak-hero__nav-link" id="ziak-about-nav-blog">BLOG</a>
+    </div>
+
+    <!-- Center Logo -->
+    <div class="ziak-hero__nav-center">
+      <a href="{{ routes.root_url }}" class="ziak-hero__logo-placeholder" id="ziak-about-logo">
+        {%- if settings.logo_svg_url != blank -%}
+          <img src="{{ settings.logo_svg_url }}" alt="{{ shop.name | escape }}" class="ziak-hero__logo-img" width="120">
+        {%- elsif settings.logo != blank -%}
+          {%- assign logo_alt = settings.logo.alt | default: shop.name | escape -%}
+          {{ settings.logo | image_url: width: 300 | image_tag: alt: logo_alt, class: 'ziak-hero__logo-img', width: 120 }}
+        {%- else -%}
+          ZIAK
+        {%- endif -%}
+      </a>
+    </div>
+
+    <!-- Right Nav + Icons -->
+    <div class="ziak-hero__nav-right">
+      <a href="/pages/our-store" class="ziak-hero__nav-link" id="ziak-about-nav-stores">STORES</a>
+      <a href="/pages/contact" class="ziak-hero__nav-link" id="ziak-about-nav-help">HELP</a>
+
+      <a href="/pages/wishlist" class="ziak-hero__nav-icon ziak-wish-link" id="ziak-about-wishlist" aria-label="Wishlist">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        <span class="ziak-wish-count" data-ziak-wishlist-count style="display:none;">0</span>
+      </a>
+      <a href="{{ routes.account_url }}" class="ziak-hero__nav-icon" id="ziak-about-account" aria-label="Account">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M18 20a6 6 0 0 0-12 0"/><circle cx="12" cy="10" r="4"/></svg>
+      </a>
+      <a href="{{ routes.search_url }}" class="ziak-hero__nav-icon" id="ziak-about-search" aria-label="Search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      </a>
+      <a href="{{ routes.cart_url }}" class="ziak-hero__nav-icon" id="ziak-about-cart" aria-label="Cart">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+      </a>
+      <button class="ziak-hero__mobile-menu-btn" id="ziak-about-mobile-btn" aria-label="Menu">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero Background Image -->
+  <div class="ziak-hero__media">
+    {%- if section.settings.hero_image != blank -%}
+      {{
+        section.settings.hero_image
+        | image_url: width: 3840
+        | image_tag:
+          sizes: '100vw',
+          widths: '375, 550, 750, 1100, 1500, 1780, 2000, 3000, 3840',
+          fetchpriority: 'high',
+          loading: 'eager'
+      }}
+    {%- else -%}
+      {{ 'hero-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
+    {%- endif -%}
+  </div>
+
+  <!-- About-specific Hero Content -->
+  <div class="ziak-hero__content ziak-about-hero__content" id="ziak-about-content">
+
+    <!-- Kicker / Overline -->
+    <p class="ziak-about__kicker" id="ziak-about-kicker">ABOUT US</p>
+
+    <!-- Main Headline -->
+    <h1 class="ziak-about__headline" id="ziak-about-headline">
+      {%- if section.settings.headline != blank -%}
+        {{ section.settings.headline | newline_to_br }}
+      {%- else -%}
+        Steps,<br>not statements.
+      {%- endif -%}
+    </h1>
+
+    <!-- Copper Divider -->
+    <div class="ziak-about__divider" id="ziak-about-divider"></div>
+
+    <!-- Sub-headline -->
+    <p class="ziak-about__subheadline" id="ziak-about-subheadline">
+      {%- if section.settings.subheadline != blank -%}
+        {{ section.settings.subheadline | newline_to_br }}
+      {%- else -%}
+        Crafted with purpose.<br>Designed to endure.
+      {%- endif -%}
+    </p>
+
+    <!-- Paragraph -->
+    <p class="ziak-about__body" id="ziak-about-body">
+      {{ section.settings.body_text | default: 'At ZIAK, we believe what you wear should reflect not only style, but values. Every pair is created with an unwavering commitment to quality, integrity, and timeless design.' }}
+    </p>
+
+  </div>
+
+</div>
+
+{% schema %}
+{
+  "name": "ZIAK About Hero",
+  "tag": "section",
+  "class": "ziak-about-hero-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "announcement_text",
+      "default": "FREE SHIPPING AND RETURNS IN THE U.S.",
+      "label": "Announcement bar text"
+    },
+    {
+      "type": "text",
+      "id": "announcement_link_text",
+      "default": "DETAILS",
+      "label": "Announcement link text"
+    },
+    {
+      "type": "url",
+      "id": "announcement_link",
+      "label": "Announcement link URL"
+    },
+    {
+      "type": "header",
+      "content": "Hero Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Background image"
+    },
+    {
+      "type": "header",
+      "content": "Hero Content"
+    },
+    {
+      "type": "text",
+      "id": "headline",
+      "default": "Steps,\nnot statements.",
+      "label": "Main headline"
+    },
+    {
+      "type": "text",
+      "id": "subheadline",
+      "default": "Crafted with purpose.\nDesigned to endure.",
+      "label": "Sub-headline"
+    },
+    {
+      "type": "textarea",
+      "id": "body_text",
+      "default": "At ZIAK, we believe what you wear should reflect not only style, but values. Every pair is created with an unwavering commitment to quality, integrity, and timeless design.",
+      "label": "Paragraph text"
+    }
+  ],
+  "presets": [
+    {
+      "name": "ZIAK About Hero"
+    }
+  ]
+}
+{% endschema %}

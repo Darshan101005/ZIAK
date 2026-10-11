@@ -1,0 +1,154 @@
+/* ══════════════════════════════════════════════════════════
+   ZIAK — 404 / Page not found
+   ══════════════════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Inter:wght@300;400;500;600;700&display=swap');
+
+.ziak-404 {
+  --f-ink: #1A1A1A;
+  --f-muted: #7A7A7A;
+  --f-line: #E6E4DF;
+  --f-soft: #F7F6F3;
+  --f-accent: #C77B3B;
+  font-family: 'Inter', Helvetica, sans-serif;
+  color: var(--f-ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 70px 24px 90px;
+  min-height: 60vh;
+  -webkit-font-smoothing: antialiased;
+}
+.ziak-404 *, .ziak-404 *::before, .ziak-404 *::after { box-sizing: border-box; }
+
+.ziak-404__inner {
+  width: 100%;
+  max-width: 620px;
+  text-align: center;
+}
+
+.ziak-404__code {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(7rem, 18vw, 12rem);
+  font-weight: 700;
+  line-height: 0.9;
+  letter-spacing: 0.02em;
+  margin: 0 0 6px;
+  color: var(--f-ink);
+}
+.ziak-404__code::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: var(--f-accent);
+  margin: 18px auto 0;
+}
+
+.ziak-404__title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(2.2rem, 3.4vw, 3rem);
+  font-weight: 600;
+  margin: 22px 0 10px;
+}
+.ziak-404__text {
+  font-size: 1.4rem;
+  line-height: 1.7;
+  color: var(--f-muted);
+  margin: 0 auto 30px;
+  max-width: 480px;
+}
+
+/* Search */
+.ziak-404__search {
+  display: flex;
+  align-items: center;
+  max-width: 460px;
+  margin: 0 auto 26px;
+  border: 1.5px solid var(--f-ink);
+  border-radius: 4px;
+  overflow: hidden;
+  background: #fff;
+}
+.ziak-404__search-icon { display: inline-flex; padding-left: 16px; color: var(--f-muted); }
+.ziak-404__search-icon svg { width: 20px; height: 20px; }
+.ziak-404__search-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-family: inherit;
+  font-size: 1.35rem;
+  padding: 14px 12px;
+  min-width: 0;
+  background: transparent;
+}
+.ziak-404__search-btn {
+  border: none;
+  background: var(--f-ink);
+  color: #fff;
+  font-family: inherit;
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0 24px;
+  align-self: stretch;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.ziak-404__search-btn:hover { background: #000; }
+
+/* Actions */
+.ziak-404__actions {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 28px;
+}
+.ziak-404__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 15px 30px;
+  border-radius: 3px;
+  transition: background 0.2s, color 0.2s, transform 0.2s;
+}
+.ziak-404__btn--primary { background: var(--f-ink); color: #fff; border: 1.5px solid var(--f-ink); }
+.ziak-404__btn--primary:hover { background: #000; transform: translateY(-2px); }
+.ziak-404__btn--ghost { background: transparent; color: var(--f-ink); border: 1.5px solid var(--f-ink); }
+.ziak-404__btn--ghost:hover { background: var(--f-ink); color: #fff; transform: translateY(-2px); }
+
+/* Popular links */
+.ziak-404__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+}
+.ziak-404__links-label { font-size: 1.2rem; color: var(--f-muted); }
+.ziak-404__chip {
+  display: inline-block;
+  padding: 8px 18px;
+  border: 1px solid var(--f-line);
+  border-radius: 999px;
+  font-size: 1.2rem;
+  color: var(--f-ink);
+  text-decoration: none;
+  background: #fff;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+.ziak-404__chip:hover { background: var(--f-ink); border-color: var(--f-ink); color: #fff; }
+
+@media (max-width: 749px) {
+  .ziak-404 { padding: 44px 16px 64px; }
+  .ziak-404__text { font-size: 1.3rem; }
+  .ziak-404__search-btn { padding: 0 16px; font-size: 1rem; }
+  .ziak-404__btn { padding: 14px 22px; }
+}

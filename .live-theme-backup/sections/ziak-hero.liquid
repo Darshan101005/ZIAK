@@ -1,0 +1,369 @@
+{{ 'section-ziak-hero.css' | asset_url | stylesheet_tag }}
+
+{%- comment -%}
+  ZIAK Hero Section
+  A full-screen hero with announcement bar, transparent nav, and hero content.
+  Designed to match the Thursday Boot Co. style.
+{%- endcomment -%}
+
+<!-- Announcement Bar -->
+<div class="ziak-hero__announcement" id="ziak-announcement-bar"><span>FREE SHIPPING ON ALL ORDERS, ALL OVER INDIA <a href="{{ shop.shipping_policy.url | default: '/policies/shipping-policy' }}" style="color:inherit;text-decoration:underline;font-weight:700;">DETAILS</a></span></div>
+
+<!-- Hero Section -->
+<div class="ziak-hero" id="ziak-hero-section">
+  <!-- Navigation Overlay -->
+  {%- render 'ziak-mobile-nav' -%}
+    <nav class="ziak-hero__nav" id="ziak-hero-nav" aria-label="Main navigation">
+    <!-- Left Nav Links -->
+    <div class="ziak-hero__nav-left">
+
+      {%- comment -%} MEN — dropdown with mega menu {%- endcomment -%}
+      {%- if section.settings.nav_link_1_text != blank -%}
+        <div class="ziak-hero__dropdown-wrapper">
+          <a href="{{ section.settings.nav_link_1_url }}" class="ziak-hero__nav-link{% if section.settings.nav_link_1_dropdown %} ziak-hero__nav-link--dropdown{% endif %}" id="ziak-nav-link-1">
+            {{ section.settings.nav_link_1_text }}
+          </a>
+          {%- if section.settings.nav_link_1_dropdown -%}
+            {%- render 'ziak-mega-menu' -%}
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+
+      {%- comment -%} WOMEN dropdown removed — men's-only catalog {%- endcomment -%}
+
+      {%- if section.settings.nav_link_3_text != blank -%}
+        <a href="{{ section.settings.nav_link_3_url }}" class="ziak-hero__nav-link" id="ziak-nav-link-3">
+          {{ section.settings.nav_link_3_text }}
+        </a>
+      {%- endif -%}
+      <a href="/pages/blog" class="ziak-hero__nav-link" id="ziak-nav-link-blog">Blog</a>
+    </div>
+
+    <!-- Center Logo -->
+    <div class="ziak-hero__nav-center">
+      <a href="{{ routes.root_url }}" class="ziak-hero__logo-placeholder" id="ziak-logo">
+        {%- if settings.logo_svg_url != blank -%}
+          <img src="{{ settings.logo_svg_url }}" alt="{{ shop.name | escape }}" class="ziak-hero__logo-img" width="120">
+        {%- elsif settings.logo != blank -%}
+          {%- assign logo_alt = settings.logo.alt | default: shop.name | escape -%}
+          {{ settings.logo | image_url: width: 300 | image_tag: alt: logo_alt, class: 'ziak-hero__logo-img', width: 120 }}
+        {%- else -%}
+          <!-- Logo placeholder -->
+        {%- endif -%}
+      </a>
+    </div>
+
+    <!-- Right Nav Links + Icons -->
+    <div class="ziak-hero__nav-right">
+      {%- if section.settings.nav_right_link_1_text != blank -%}
+        <a href="{{ section.settings.nav_right_link_1_url }}" class="ziak-hero__nav-link" id="ziak-nav-right-1">
+          {{ section.settings.nav_right_link_1_text }}
+        </a>
+      {%- endif -%}
+      {%- if section.settings.nav_right_link_2_text != blank -%}
+        <a href="{{ section.settings.nav_right_link_2_url }}" class="ziak-hero__nav-link" id="ziak-nav-right-2">
+          {{ section.settings.nav_right_link_2_text }}
+        </a>
+      {%- endif -%}
+      {%- if section.settings.nav_right_link_3_text != blank -%}
+        <a href="{{ section.settings.nav_right_link_3_url }}" class="ziak-hero__nav-link" id="ziak-nav-right-3">
+          {{ section.settings.nav_right_link_3_text }}
+        </a>
+      {%- endif -%}
+
+      <!-- Wishlist Icon -->
+      <a href="/pages/wishlist" class="ziak-hero__nav-icon ziak-wish-link" id="ziak-wishlist-icon" aria-label="Wishlist">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        <span class="ziak-wish-count" data-ziak-wishlist-count style="display:none;">0</span>
+      </a>
+
+      <!-- Account Icon -->
+      {%- if section.settings.show_account_icon -%}
+        <a href="{{ routes.account_url }}" class="ziak-hero__nav-icon" id="ziak-account-icon" aria-label="Account">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M18 20a6 6 0 0 0-12 0"/>
+            <circle cx="12" cy="10" r="4"/>
+          </svg>
+        </a>
+      {%- endif -%}
+
+      <!-- Search Icon -->
+      {%- if section.settings.show_search_icon -%}
+        <a href="{{ routes.search_url }}" class="ziak-hero__nav-icon" id="ziak-search-icon" aria-label="Search">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <circle cx="11" cy="11" r="8"/>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+        </a>
+      {%- endif -%}
+
+      <!-- Cart Icon -->
+      {%- if section.settings.show_cart_icon -%}
+        <a href="{{ routes.cart_url }}" class="ziak-hero__nav-icon" id="ziak-cart-icon" aria-label="Cart">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <circle cx="8" cy="21" r="1"/>
+            <circle cx="19" cy="21" r="1"/>
+            <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/>
+          </svg>
+        </a>
+      {%- endif -%}
+
+      <!-- Mobile Menu Button -->
+      <button class="ziak-hero__mobile-menu-btn" id="ziak-mobile-menu-btn" aria-label="Menu">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <line x1="3" y1="12" x2="21" y2="12"/>
+          <line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero Media -->
+  <div class="ziak-hero__media">
+    {%- if section.settings.hero_image != blank -%}
+      {{
+        section.settings.hero_image
+        | image_url: width: 3840
+        | image_tag:
+          sizes: '100vw',
+          widths: '375, 550, 750, 1100, 1500, 1780, 2000, 3000, 3840',
+          fetchpriority: 'high',
+          loading: 'eager'
+      }}
+    {%- else -%}
+      {{ 'hero-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
+    {%- endif -%}
+  </div>
+
+  <!-- Hero Content -->
+  <div class="ziak-hero__content">
+    {%- if section.settings.heading != blank -%}
+      <h1 class="ziak-hero__heading" id="ziak-hero-heading">
+        {{ section.settings.heading }}
+      </h1>
+    {%- endif -%}
+
+    {%- if section.settings.subheading != blank -%}
+      <p class="ziak-hero__subheading" id="ziak-hero-subheading">
+        {{ section.settings.subheading }}
+      </p>
+    {%- endif -%}
+
+    <div class="ziak-hero__buttons">
+      {%- if section.settings.button_1_text != blank -%}
+        <a
+          href="{{ section.settings.button_1_link }}"
+          class="ziak-hero__btn ziak-hero__btn--primary"
+          id="ziak-hero-btn-men"
+        >
+          {{ section.settings.button_1_text }}
+        </a>
+      {%- endif -%}
+      {%- if section.settings.button_2_text != blank -%}
+        <a
+          href="{{ section.settings.button_2_link }}"
+          class="ziak-hero__btn ziak-hero__btn--secondary"
+          id="ziak-hero-btn-women"
+        >
+          {{ section.settings.button_2_text }}
+        </a>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "ZIAK Hero",
+  "tag": "section",
+  "class": "ziak-hero-section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Announcement Bar"
+    },
+    {
+      "type": "text",
+      "id": "announcement_text",
+      "default": "FREE SHIPPING AND RETURNS IN THE U.S.",
+      "label": "Announcement text"
+    },
+    {
+      "type": "text",
+      "id": "announcement_link_text",
+      "default": "DETAILS",
+      "label": "Announcement link text"
+    },
+    {
+      "type": "url",
+      "id": "announcement_link",
+      "label": "Announcement link"
+    },
+    {
+      "type": "header",
+      "content": "Navigation — Left Links"
+    },
+    {
+      "type": "text",
+      "id": "nav_link_1_text",
+      "default": "MEN",
+      "label": "Link 1 text"
+    },
+    {
+      "type": "url",
+      "id": "nav_link_1_url",
+      "label": "Link 1 URL"
+    },
+    {
+      "type": "checkbox",
+      "id": "nav_link_1_dropdown",
+      "default": true,
+      "label": "Show dropdown arrow for Link 1"
+    },
+    {
+      "type": "text",
+      "id": "nav_link_2_text",
+      "default": "WOMEN",
+      "label": "Link 2 text"
+    },
+    {
+      "type": "url",
+      "id": "nav_link_2_url",
+      "label": "Link 2 URL"
+    },
+    {
+      "type": "checkbox",
+      "id": "nav_link_2_dropdown",
+      "default": true,
+      "label": "Show dropdown arrow for Link 2"
+    },
+    {
+      "type": "text",
+      "id": "nav_link_3_text",
+      "default": "ABOUT",
+      "label": "Link 3 text"
+    },
+    {
+      "type": "url",
+      "id": "nav_link_3_url",
+      "label": "Link 3 URL"
+    },
+    {
+      "type": "header",
+      "content": "Navigation — Right Links"
+    },
+    {
+      "type": "text",
+      "id": "nav_right_link_1_text",
+      "default": "STORES",
+      "label": "Right link 1 text"
+    },
+    {
+      "type": "url",
+      "id": "nav_right_link_1_url",
+      "label": "Right link 1 URL"
+    },
+    {
+      "type": "text",
+      "id": "nav_right_link_2_text",
+      "default": "RESALE",
+      "label": "Right link 2 text"
+    },
+    {
+      "type": "url",
+      "id": "nav_right_link_2_url",
+      "label": "Right link 2 URL"
+    },
+    {
+      "type": "text",
+      "id": "nav_right_link_3_text",
+      "default": "HELP",
+      "label": "Right link 3 text"
+    },
+    {
+      "type": "url",
+      "id": "nav_right_link_3_url",
+      "label": "Right link 3 URL"
+    },
+    {
+      "type": "header",
+      "content": "Navigation — Icons"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_account_icon",
+      "default": true,
+      "label": "Show account icon"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_search_icon",
+      "default": true,
+      "label": "Show search icon"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_cart_icon",
+      "default": true,
+      "label": "Show cart icon"
+    },
+    {
+      "type": "header",
+      "content": "Hero Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Background image"
+    },
+    {
+      "type": "header",
+      "content": "Hero Content"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "default": "Highest Quality. Honest Prices.",
+      "label": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "default": "Handcrafted With Integrity",
+      "label": "Subheading"
+    },
+    {
+      "type": "text",
+      "id": "button_1_text",
+      "default": "SHOP MEN",
+      "label": "Button 1 text"
+    },
+    {
+      "type": "url",
+      "id": "button_1_link",
+      "label": "Button 1 link"
+    },
+    {
+      "type": "text",
+      "id": "button_2_text",
+      "default": "SHOP WOMEN",
+      "label": "Button 2 text"
+    },
+    {
+      "type": "url",
+      "id": "button_2_link",
+      "label": "Button 2 link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "ZIAK Hero"
+    }
+  ]
+}
+{% endschema %}

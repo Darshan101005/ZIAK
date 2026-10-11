@@ -1,0 +1,113 @@
+/* ==========================================================================
+   ZIAK Customer Reviews — Standalone Section
+   ========================================================================== */
+
+.ziak-reviews {
+  background-color: #f5f5f3;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+/* Decorative header */
+.ziak-reviews__header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.6rem;
+  margin-bottom: 3rem;
+}
+
+.ziak-reviews__line {
+  display: block;
+  flex: 1;
+  max-width: 120px;
+  height: 1px;
+  background-color: #c0c0c0;
+}
+
+.ziak-reviews__title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #444444;
+  white-space: nowrap;
+}
+
+/* Grid */
+.ziak-reviews__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.4rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Card */
+.ziak-reviews__card {
+  display: flex;
+  flex-direction: column;
+}
+
+.ziak-reviews__quote {
+  font-size: 4.5rem;
+  line-height: 0.75;
+  color: #1a1a1a;
+  font-family: Georgia, serif;
+  font-weight: 900;
+  margin-bottom: 1.2rem;
+  display: block;
+}
+
+.ziak-reviews__text {
+  font-size: 1.2rem;
+  color: #333333;
+  font-style: italic;
+  line-height: 1.65;
+  margin: 0 0 1.2rem 0;
+  flex-grow: 1;
+}
+
+.ziak-reviews__stars {
+  display: flex;
+  gap: 2px;
+  margin-bottom: 0.7rem;
+}
+
+.ziak-reviews__star {
+  font-size: 1.35rem;
+  color: #d0d0d0;
+}
+
+.ziak-reviews__star--on {
+  color: #1a1a1a;
+}
+
+.ziak-reviews__name {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 0;
+}
+
+/* Responsive */
+@media screen and (max-width: 1024px) {
+  .ziak-reviews__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 749px) {
+  .ziak-reviews__grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .ziak-reviews__line {
+    max-width: 60px;
+  }
+
+  .ziak-reviews__title {
+    font-size: 0.95rem;
+  }
+}

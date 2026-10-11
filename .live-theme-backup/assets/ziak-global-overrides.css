@@ -1,0 +1,94 @@
+/* ==========================================================================
+   ZIAK Global Overrides
+   Applied sitewide for announcement bar + body background + section titles
+   ========================================================================== */
+
+/* ── Shared Section Title Style ── */
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@600;700&display=swap');
+
+.ziak-topcats__title,
+.ziak-carousel__title,
+.ziak-picks__title {
+  font-family: 'Oswald', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-size: 3.6rem !important;     /* ~36px */
+  font-weight: 700 !important;
+  color: #1A1A1A !important;
+  text-align: left !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.02em !important;
+  line-height: 1.2;
+  margin-bottom: 2.4rem;
+}
+
+@media screen and (max-width: 749px) {
+  .ziak-topcats__title,
+  .ziak-carousel__title,
+  .ziak-picks__title {
+    font-size: 2.4rem !important;   /* ~24px */
+    margin-bottom: 1.8rem;
+    text-align: left !important;
+  }
+}
+
+/* ── Site background: white everywhere, off-white only on About ── */
+body {
+  background-color: #FFFFFF !important;
+}
+
+/* Kill Dawn's gradient background on body too */
+.gradient {
+  background: #FFFFFF !important;
+}
+
+/* About page keeps the warm off-white */
+body.template-page-about,
+body.template-page-about .gradient {
+  background-color: #FDFBF7 !important;
+  background: #FDFBF7 !important;
+}
+
+/* ── Announcement / Free-Shipping bar: deep charcoal bg + soft off-white text ── */
+.utility-bar {
+  background-color: #1A1A1A !important;
+  background-image: none !important;
+  color: #FDFBF7 !important;
+}
+
+.utility-bar .announcement-bar__message,
+.utility-bar .announcement-bar p,
+.utility-bar .announcement-bar span,
+.utility-bar .announcement-bar a,
+.utility-bar a,
+.utility-bar p {
+  color: #FDFBF7 !important;
+}
+
+/* Separator line on the utility bar */
+.utility-bar--bottom-border {
+  border-bottom-color: rgba(253, 251, 247, 0.15) !important;
+}
+
+/* ==========================================================================
+   ZIAK Mobile Guardrails (phones/tablet only — never affects desktop)
+   Part of the mobile responsiveness pass. Everything here is confined to
+   max-width media queries, so the desktop output stays byte-for-byte the same.
+   ========================================================================== */
+
+@media screen and (max-width: 749px) {
+  /* Stop any single section from causing horizontal page scroll.
+     Uses overflow-x: clip (not hidden) so sticky headers/toolbars keep working;
+     `hidden` is left first as a fallback for browsers without clip support. */
+  html,
+  body {
+    overflow-x: hidden;
+    overflow-x: clip;
+    max-width: 100%;
+  }
+
+  /* Media should never spill past its container on phones. */
+  [class*="ziak-"] img,
+  [class*="ziak-"] video,
+  [class*="ziak-"] iframe {
+    max-width: 100%;
+  }
+}

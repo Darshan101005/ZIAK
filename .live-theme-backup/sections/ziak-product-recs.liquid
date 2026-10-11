@@ -1,0 +1,137 @@
+{{ 'section-ziak-product-recs.css' | asset_url | stylesheet_tag }}
+{{ 'ziak-card.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'ziak-card.js' | asset_url }}" defer="defer"></script>
+
+<section
+  class="ziak-precs"
+  id="ziak-product-recs-{{ section.id }}"
+  style="padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px;"
+>
+  {%- assign rec_collection = section.settings.recommendations_collection -%}
+  <div class="ziak-precs__wrap">
+    <div class="ziak-precs__head">
+      <h2 class="ziak-precs__title">{{ section.settings.heading | default: 'YOU MAY ALSO LIKE' }}</h2>
+      {%- if rec_collection != blank -%}
+        <a href="{{ rec_collection.url }}" class="ziak-precs__viewall">
+          View All
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      {%- endif -%}
+    </div>
+
+    <div class="ziak-precs__grid">
+      {%- if rec_collection != blank and rec_collection.products.size > 0 -%}
+        {%- comment -%} First pass: recommend everything except the product being viewed {%- endcomment -%}
+        {%- assign shown_count = 0 -%}
+        {%- for rec_product in rec_collection.products limit: 4 -%}
+          {%- unless rec_product.id == product.id -%}
+            {%- render 'ziak-card', product: rec_product, index: rec_product.id -%}
+            {%- assign shown_count = shown_count | plus: 1 -%}
+          {%- endunless -%}
+        {%- endfor -%}
+        {%- comment -%} Fallback: if the collection only holds the current product, show it anyway (same as cart) {%- endcomment -%}
+        {%- if shown_count == 0 -%}
+          {%- for rec_product in rec_collection.products limit: 4 -%}
+            {%- render 'ziak-card', product: rec_product, index: rec_product.id -%}
+          {%- endfor -%}
+        {%- endif -%}
+      {%- endif -%}
+
+      <!-- Promo banner -->
+      <div class="ziak-precs__promo">
+        {%- if section.settings.promo_image != blank -%}
+          {{ section.settings.promo_image | image_url: width: 800 | image_tag: class: 'ziak-precs__promo-img', alt: 'Promo', loading: 'lazy' }}
+        {%- else -%}
+          <div class="ziak-precs__promo-img" style="background:#2A2018;"></div>
+        {%- endif -%}
+        <div class="ziak-precs__promo-content">
+          <p class="ziak-precs__promo-heading">{{ section.settings.promo_heading | default: 'Timeless style.<br>Every step.' }}</p>
+          <a href="{{ section.settings.promo_link | default: '/collections/all' }}" class="ziak-precs__promo-cta">{{ section.settings.promo_cta_text | default: 'EXPLORE COLLECTION' }}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "ZIAK Product Recs",
+  "tag": "section",
+  "class": "ziak-product-recs-section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "default": "YOU MAY ALSO LIKE",
+      "label": "Heading"
+    },
+    {
+      "type": "header",
+      "content": "Recommendations"
+    },
+    {
+      "type": "collection",
+      "id": "recommendations_collection",
+      "label": "\"You may also like\" collection"
+    },
+    {
+      "type": "header",
+      "content": "Promo Banner"
+    },
+    {
+      "type": "image_picker",
+      "id": "promo_image",
+      "label": "Promo banner image"
+    },
+    {
+      "type": "text",
+      "id": "promo_heading",
+      "default": "Timeless style.<br>Every step.",
+      "label": "Promo heading (HTML allowed)"
+    },
+    {
+      "type": "text",
+      "id": "promo_cta_text",
+      "default": "EXPLORE COLLECTION",
+      "label": "Promo CTA text"
+    },
+    {
+      "type": "url",
+      "id": "promo_link",
+      "label": "Promo CTA link"
+    },
+    {
+      "type": "header",
+      "content": "Appearance"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 48
+    }
+  ],
+  "presets": [
+    {
+      "name": "ZIAK Product Recs"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,330 @@
+/* ==========================================================================
+   ZIAK About — Our Story Section (v2)
+   40% left text | vertical divider | 60% right timeline
+   Background: #F9F6F0
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@400;600;700&display=swap');
+
+/* ── Section ── */
+.ziak-story {
+  background-color: #F9F6F0;
+  padding: 80px 0;
+}
+
+/* ── Inner flex container ── */
+.ziak-story__inner {
+  max-width: 1260px;
+  margin: 0 auto;
+  padding: 0 48px;
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+/* ════════════════════════════════
+   LEFT COLUMN — 40%
+   ════════════════════════════════ */
+.ziak-story__left {
+  flex: 0 0 40%;
+  padding-right: 52px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* Eyebrow / Kicker */
+.ziak-story__kicker {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.2rem;          /* 12px */
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #A05A45;
+  margin: 0 0 2rem 0;
+  line-height: 1;
+}
+
+/* Main Heading */
+.ziak-story__title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(3.8rem, 4vw, 4.6rem);  /* 42–46px */
+  font-weight: 700;
+  line-height: 1.08;
+  color: #1A1A1A;
+  margin: 0 0 3.2rem 0;
+  letter-spacing: -0.01em;
+}
+
+/* Body paragraphs */
+.ziak-story__body {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-bottom: 3.6rem;
+}
+
+.ziak-story__body p {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.5rem;          /* 15px */
+  font-weight: 400;
+  line-height: 1.6;
+  color: #4A4A4A;
+  margin: 0;
+}
+
+/* CTA Button */
+.ziak-story__btn {
+  display: inline-block;
+  font-family: 'Inter', sans-serif;
+  font-size: 1.2rem;          /* 12px */
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #A05A45;
+  border: 1px solid #A05A45;
+  background: transparent;
+  padding: 12px 24px;
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.ziak-story__btn:hover {
+  background: #A05A45;
+  color: #ffffff;
+}
+
+/* ── Vertical Divider ── */
+.ziak-story__divider {
+  width: 1px;
+  background: #D1D1D1;
+  align-self: stretch;
+  flex-shrink: 0;
+  margin: 0 48px;
+}
+
+/* ════════════════════════════════
+   RIGHT COLUMN — 60%
+   ════════════════════════════════ */
+.ziak-story__right {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+/* ── Timeline wrapper ── */
+.ziak-story__timeline {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0;
+}
+
+/* ── Horizontal connecting line via ::before ──
+   Calculation: icon(48px) + gap(18px) + half-dot(6px) = 72px               */
+.ziak-story__timeline::before {
+  content: '';
+  position: absolute;
+  top: 72px;
+  left: 6.25%;          /* center of first node (1/4 of 25% = 6.25%) */
+  right: 6.25%;
+  height: 1px;
+  background-color: #CCCCCC;
+  z-index: 0;
+}
+
+/* Hide the HTML line element — ::before handles it */
+.ziak-story__tl-line {
+  display: none;
+}
+
+/* ── Individual Node ── */
+.ziak-story__node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  flex: 1;
+}
+
+/* Icon — above the line */
+.ziak-story__node-icon {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 18px;
+}
+
+.ziak-story__node-icon svg {
+  width: 32px;
+  height: 32px;
+  stroke: #2a2a2a;
+  stroke-width: 1.35;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Dot — sits exactly on the line */
+/* ── DOT: absolutely-positioned ::after pseudo-element on the node ──
+   This bypasses flexbox crushing and guarantees the dot is always visible.
+   top = icon-height(48px) + icon-margin-bottom(18px) = 66px (top of dot)
+   The ::before line sits at top:72px (centre of the 12px dot = 66+6).      */
+.ziak-story__node-dot {
+  display: none;   /* hide the HTML fallback — ::after handles the dot now */
+}
+
+.ziak-story__node::after {
+  content: '';
+  position: absolute;
+  top: 66px;                 /* start of dot = icon(48) + gap(18) */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 12px;
+  height: 12px;
+  background-color: #1A1A1A;
+  border-radius: 50%;
+  z-index: 3;                /* sits above the ::before connecting line */
+}
+
+/* Text body — below the line */
+.ziak-story__node-body {
+  margin-top: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: center;
+}
+
+/* Year */
+.ziak-story__node-year {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.6rem;          /* 16px */
+  font-weight: 700;
+  color: #A05A45;
+  margin: 0;
+}
+
+/* Title */
+.ziak-story__node-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.4rem;          /* 14px */
+  font-weight: 700;
+  color: #1A1A1A;
+  margin: 0;
+  line-height: 1.25;
+}
+
+/* Description */
+.ziak-story__node-desc {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.3rem;          /* 13px */
+  font-weight: 400;
+  line-height: 1.5;
+  color: #666666;
+  max-width: 130px;
+  margin: 0 auto;
+}
+
+/* ── Responsive ── */
+@media screen and (max-width: 960px) {
+  .ziak-story__inner {
+    flex-direction: column;
+    gap: 0;
+    padding: 0 32px;
+  }
+
+  .ziak-story__left {
+    flex: 1;
+    width: 100%;
+    padding-right: 0;
+    margin-bottom: 40px;
+  }
+
+  .ziak-story__divider {
+    width: 100%;
+    height: 1px;
+    align-self: auto;
+    margin: 0 0 40px 0;
+  }
+
+  .ziak-story__right {
+    width: 100%;
+  }
+
+  /* Timeline becomes vertical on mobile so every marker stays connected
+     (the horizontal scroll broke the connecting line past the fold). */
+  .ziak-story__timeline {
+    flex-direction: column;
+    align-items: stretch;
+    overflow: visible;
+    padding: 0;
+    width: 100%;
+  }
+
+  /* Remove the horizontal connecting line */
+  .ziak-story__timeline::before {
+    display: none;
+  }
+
+  .ziak-story__node {
+    flex: none;
+    min-width: 0;
+    width: 100%;
+    flex-direction: row;
+    align-items: flex-start;
+    text-align: left;
+    gap: 22px;
+    padding-bottom: 36px;
+  }
+
+  .ziak-story__node:last-child {
+    padding-bottom: 0;
+  }
+
+  /* Vertical connector: runs from each icon centre down to the next node's icon */
+  .ziak-story__node:not(:last-child)::before {
+    content: '';
+    position: absolute;
+    top: 24px;
+    left: 24px;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 100%;
+    background-color: #CCCCCC;
+    z-index: 0;
+  }
+
+  /* Icon is the marker sitting on the line */
+  .ziak-story__node-icon {
+    margin-bottom: 0;
+    flex-shrink: 0;
+    background: #F9F6F0;
+    border-radius: 50%;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* Hide the desktop dot on mobile — the icon is the marker now */
+  .ziak-story__node::after {
+    display: none;
+  }
+
+  .ziak-story__node-body {
+    margin-top: 0;
+    padding-top: 4px;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .ziak-story__node-desc {
+    max-width: none;
+    margin: 0;
+  }
+}

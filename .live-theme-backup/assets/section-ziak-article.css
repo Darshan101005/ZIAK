@@ -1,0 +1,181 @@
+/* ==========================================================================
+   ZIAK — Article (text-only editorial page)
+   Centered header · narrow reading column · serif headings · Inter body
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap');
+
+.ziak-article {
+  --ink: #1A1A1A;
+  --muted: #6B6B6B;
+  --accent: #C77B3B;
+  --soft: #F7F6F3;
+  --line: #E7E3DC;
+  background: #FFFFFF;
+  color: var(--ink);
+  padding: clamp(4rem, 7vw, 8rem) 2rem clamp(5rem, 8vw, 9rem);
+  -webkit-font-smoothing: antialiased;
+}
+
+.ziak-article * { box-sizing: border-box; }
+
+/* ── Header ── */
+.ziak-article__head {
+  max-width: 760px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.ziak-article__eyebrow {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 2rem;
+}
+
+.ziak-article__title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(3.6rem, 5.5vw, 6.4rem);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+  margin: 0 0 2.2rem;
+}
+
+.ziak-article__meta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.ziak-article__dot { color: var(--line); }
+
+.ziak-article__rule {
+  display: block;
+  width: 64px;
+  height: 2px;
+  background: var(--accent);
+  margin: 3.2rem auto 0;
+}
+
+/* ── Body ── */
+.ziak-article__body {
+  max-width: 720px;
+  margin: clamp(3.2rem, 5vw, 5rem) auto 0;
+}
+
+.ziak-article__lead p {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(2rem, 2.4vw, 2.4rem);
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--ink);
+  margin: 0 0 3rem;
+}
+
+.ziak-article__subhead {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(2.4rem, 3vw, 3.2rem);
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 4rem 0 1.6rem;
+}
+
+.ziak-article__text p {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.7rem;
+  font-weight: 400;
+  line-height: 1.85;
+  color: #33322F;
+  margin: 0 0 2.2rem;
+}
+
+.ziak-article__text a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.ziak-article__text ul,
+.ziak-article__text ol {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.7rem;
+  line-height: 1.8;
+  color: #33322F;
+  margin: 0 0 2.2rem;
+  padding-left: 2.2rem;
+}
+
+.ziak-article__text li { margin-bottom: 0.8rem; }
+
+/* Pull quote */
+.ziak-article__quote {
+  margin: 3.6rem 0;
+  padding: 0 0 0 2.6rem;
+  border-left: 3px solid var(--accent);
+}
+
+.ziak-article__quote p {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(2.2rem, 2.8vw, 2.8rem);
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.45;
+  color: var(--ink);
+  margin: 0 0 1rem;
+}
+
+.ziak-article__quote cite {
+  display: block;
+  font-family: 'Inter', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  font-style: normal;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* Footer back-link */
+.ziak-article__foot {
+  margin-top: clamp(4rem, 6vw, 6rem);
+  padding-top: 3rem;
+  border-top: 1px solid var(--line);
+}
+
+.ziak-article__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--ink);
+  transition: gap 0.24s ease, color 0.24s ease;
+}
+
+.ziak-article__back svg { width: 16px; height: 16px; transition: transform 0.24s ease; }
+
+.ziak-article__back:hover { color: var(--accent); }
+.ziak-article__back:hover svg { transform: translateX(-4px); }
+
+/* ── Responsive ── */
+@media (max-width: 749px) {
+  .ziak-article__text p,
+  .ziak-article__text ul,
+  .ziak-article__text ol { font-size: 1.6rem; }
+  .ziak-article__lead p { font-size: 1.9rem; }
+}

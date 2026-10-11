@@ -1,0 +1,43 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "ziak_article": {
+      "type": "ziak-article",
+      "blocks": {
+        "h1": { "type": "heading", "settings": { "text": "Why Leather Deserves Care" } },
+        "p1": { "type": "text", "settings": { "text": "<p>Good leather is a natural material — it breathes, ages, and responds to how you treat it. A little routine care keeps your shoes supple and comfortable, protects them from cracking, and helps a single pair last for years instead of seasons.</p>" } },
+        "h2": { "type": "heading", "settings": { "text": "The Everyday Routine" } },
+        "p2": { "type": "text", "settings": { "text": "<p>After each wear, give your shoes a moment. A few small habits make the biggest difference over time:</p><ul><li>Wipe off dust and dirt with a soft, dry cloth before it settles in.</li><li>Let them rest a day between wears so the leather can dry out naturally.</li><li>Use shoe trees to hold their shape and absorb moisture.</li><li>Keep them away from direct heat, which dries and cracks leather.</li></ul>" } },
+        "h3": { "type": "heading", "settings": { "text": "Cleaning &amp; Conditioning" } },
+        "p3": { "type": "text", "settings": { "text": "<p>Every few weeks, clean the leather with a slightly damp cloth and let it dry fully. Then apply a small amount of leather conditioner or cream in the matching shade, working it in with gentle circles. Conditioning replaces the natural oils leather loses over time and keeps it soft.</p>" } },
+        "q1": { "type": "quote", "settings": { "text": "Treat your shoes well and they'll carry you further than you expect.", "cite": "ZIAK Care Guide" } },
+        "h4": { "type": "heading", "settings": { "text": "Polishing for Shine" } },
+        "p4": { "type": "text", "settings": { "text": "<p>For a deeper shine, finish with a quality wax polish. Apply thin layers, let each dry, then buff with a horsehair brush or soft cloth until it glows. Build the shine slowly — patience beats pressure.</p>" } },
+        "h5": { "type": "heading", "settings": { "text": "Caught in the Rain?" } },
+        "p5": { "type": "text", "settings": { "text": "<p>If your shoes get wet, never dry them by a heater. Wipe off excess water, stuff them loosely with paper or insert shoe trees, and let them dry slowly at room temperature. Once dry, condition them again to restore softness. A little prevention — a water-repellent spray — goes a long way too.</p>" } },
+        "h6": { "type": "heading", "settings": { "text": "Store Them Right" } },
+        "p6": { "type": "text", "settings": { "text": "<p>Keep your pairs in a cool, dry place, ideally in a dust bag or box, away from direct sunlight. Rotate between pairs so no single one wears out too fast. Cared for this way, quality leather only gets better with age.</p>" } }
+      },
+      "block_order": ["h1", "p1", "h2", "p2", "h3", "p3", "q1", "h4", "p4", "h5", "p5", "h6", "p6"],
+      "settings": {
+        "announcement_text": "FREE SHIPPING ON ALL ORDERS OVER ₹999 — ALL OVER INDIA",
+        "eyebrow": "SHOE CARE",
+        "heading": "How to Care for Your Leather Shoes",
+        "date": "AUG 20, 2026",
+        "read_time": "5 MIN READ",
+        "intro": "<p>A great pair of leather shoes is an investment. Here's how to keep them looking their best — clean, conditioned, and ready for years of wear.</p>",
+        "back_label": "BACK TO THE JOURNAL",
+        "back_url": "/pages/blog"
+      }
+    }
+  },
+  "order": ["ziak_article"]
+}

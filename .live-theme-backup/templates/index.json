@@ -1,0 +1,235 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+
+{
+  "sections": {
+    "ziak_hero": {
+      "type": "ziak-hero",
+      "settings": {
+        "announcement_text": "FREE SHIPPING ON ALL ORDERS OVER ₹999 — ALL OVER INDIA",
+        "announcement_link_text": "DETAILS",
+        "nav_link_1_text": "MEN",
+        "nav_link_1_dropdown": true,
+        "nav_link_2_text": "WOMEN",
+        "nav_link_2_dropdown": true,
+        "nav_link_3_text": "ABOUT",
+        "nav_link_3_url": "/pages/about",
+        "nav_right_link_1_text": "",
+        "nav_right_link_2_text": "",
+        "nav_right_link_3_text": "HELP",
+        "nav_right_link_3_url": "https://ziakshop.com/pages/contact",
+        "show_account_icon": true,
+        "show_search_icon": true,
+        "show_cart_icon": true,
+        "heading": "STEPS, NOT STATEMENTS",
+        "subheading": "Footwear for men who let their style speak for itself.",
+        "button_1_text": "SHOP THE COLLECTION",
+        "button_1_link": "/collections/all",
+        "button_2_text": "OUR STORY",
+        "button_2_link": "/pages/about"
+      }
+    },
+    "ziak_life_occasions": {
+      "type": "ziak-life-occasions",
+      "settings": {
+        "eyebrow": "ONE PAIR. EVERY MOMENT.",
+        "heading": "From your everyday to life’s special days.",
+        "description": "Whether it’s work, travel, casual outings or celebrations — ZIAK shoes are designed to fit effortlessly into every part of your lifestyle.",
+        "button_label": "EXPLORE THE COLLECTION",
+        "button_link": "/collections/all"
+      },
+      "blocks": {
+        "moment_1": { "type": "moment", "settings": { "icon": "house", "title": "At Home", "text": "All-day comfort for your everyday routines.", "benefit_icon": "leaf", "benefit_title": "All-Season Wear", "benefit_text": "Designed to keep you comfortable in every season." } },
+        "moment_2": { "type": "moment", "settings": { "icon": "briefcase-business", "title": "Office", "text": "A clean, refined look that keeps you comfortable and confident.", "benefit_icon": "shield-check", "benefit_title": "Versatile Design", "benefit_text": "Matches effortlessly with both casual and formal outfits." } },
+        "moment_3": { "type": "moment", "settings": { "icon": "graduation-cap", "title": "College", "text": "Stylish and versatile for classes, projects and campus life.", "benefit_icon": "gem", "benefit_title": "Every Occasion", "benefit_text": "One pair for work, travel, outings and celebrations." } },
+        "moment_4": { "type": "moment", "settings": { "icon": "plane", "title": "Travel", "text": "Lightweight and reliable for long journeys.", "benefit_icon": "infinity", "benefit_title": "Long-Lasting Comfort", "benefit_text": "Built with premium materials for all-day support." } },
+        "moment_5": { "type": "moment", "settings": { "icon": "users-round", "title": "Outings", "text": "Perfect for casual meetups, shopping and weekend plans." } },
+        "moment_6": { "type": "moment", "settings": { "icon": "wine", "title": "Parties", "text": "A look that fits celebrations without trying too hard." } },
+        "moment_7": { "type": "moment", "settings": { "icon": "calendar-days", "title": "Everyday", "text": "One pair that always fits — no matter what’s on your day." } }
+      },
+      "block_order": ["moment_1", "moment_2", "moment_3", "moment_4", "moment_5", "moment_6", "moment_7"]
+    },
+    "ziak_top_categories": {
+      "type": "ziak-top-categories",
+      "settings": {
+        "section_title": "Shop By Category",
+        "featured_label": "All Shoes",
+        "featured_sub": "Explore the full collection",
+        "featured_btn_text": "Shop now",
+        "featured_link": "/collections/all",
+        "cat_1_label": "Bestsellers",
+        "cat_1_btn": "Shop now",
+        "cat_1_link": "/collections/all?sort_by=best-selling",
+        "cat_2_label": "Formal Shoes",
+        "cat_2_btn": "Shop now",
+        "cat_2_link": "/collections/formal-shoes",
+        "cat_3_label": "Brogues",
+        "cat_3_btn": "Shop now",
+        "cat_3_link": "/collections/brogues",
+        "cat_4_label": "Derby Shoes",
+        "cat_4_btn": "Shop now",
+        "cat_4_link": "/collections/derby-shoes",
+        "cat_5_label": "Chelsea Boots",
+        "cat_5_btn": "Shop now",
+        "cat_5_link": "/collections/chelsea-boots",
+        "cat_6_label": "Loafers",
+        "cat_6_btn": "Shop now",
+        "cat_6_link": "/collections/loafers",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "ziak_product_carousel": {
+      "type": "ziak-product-carousel",
+      "settings": {
+        "section_title": "New Arrivals",
+        "padding_top": 36,
+        "padding_bottom": 36
+      },
+      "blocks": {
+        "card_1": { "type": "product_card", "settings": { "product_title": "Athleisure Shoes for Men", "discount_text": "83% OFF", "badge_color": "#e53935", "sale_price": "1,326.00", "original_price": "7,799.00", "extra_colors_text": "+2 colors" } },
+        "card_2": { "type": "product_card", "settings": { "product_title": "ETPU Athleisure Sports Shoes for Men", "discount_text": "70% OFF", "badge_color": "#e53935", "sale_price": "2,489.00", "original_price": "8,299.00", "extra_colors_text": "+2 colors" } },
+        "card_3": { "type": "product_card", "settings": { "product_title": "Athleisure Shoes for Men | Cultured Round-Toe Shape", "discount_text": "83% OFF", "badge_color": "#e53935", "sale_price": "1,394.00", "original_price": "8,199.00", "extra_colors_text": "+1 color" } },
+        "card_4": { "type": "product_card", "settings": { "product_title": "Athleisure Shoes for Men", "discount_text": "84% OFF", "badge_color": "#e53935", "sale_price": "1,411.00", "original_price": "8,299.00", "extra_colors_text": "+2 colors" } },
+        "card_5": { "type": "product_card", "settings": { "product_title": "ETPU Athleisure Shoes for Men", "discount_text": "83% OFF", "badge_color": "#e53935", "sale_price": "1,344.00", "original_price": "8,399.00", "extra_colors_text": "+1 color" } },
+        "card_6": { "type": "product_card", "settings": { "product_title": "Sports Running Shoes for Men", "discount_text": "80% OFF", "badge_color": "#e53935", "sale_price": "1,599.00", "original_price": "7,999.00", "extra_colors_text": "+3 colors" } },
+        "card_7": { "type": "product_card", "settings": { "product_title": "Casual Walking Shoes for Men", "discount_text": "75% OFF", "badge_color": "#e53935", "sale_price": "1,899.00", "original_price": "7,599.00", "extra_colors_text": "+1 color" } },
+        "card_8": { "type": "product_card", "settings": { "product_title": "Premium Lace-Up Sneakers", "discount_text": "82% OFF", "badge_color": "#e53935", "sale_price": "1,499.00", "original_price": "8,299.00", "extra_colors_text": "+2 colors" } },
+        "card_9": { "type": "product_card", "settings": { "product_title": "Lightweight Training Shoes", "discount_text": "78% OFF", "badge_color": "#e53935", "sale_price": "1,759.00", "original_price": "7,999.00", "extra_colors_text": "+1 color" } },
+        "card_10": { "type": "product_card", "settings": { "product_title": "Mesh Running Shoes for Men", "discount_text": "85% OFF", "badge_color": "#e53935", "sale_price": "1,199.00", "original_price": "7,999.00", "extra_colors_text": "+2 colors" } }
+      },
+      "block_order": ["card_1", "card_2", "card_3", "card_4", "card_5", "card_6", "card_7", "card_8", "card_9", "card_10"]
+    },
+    "featured_collection": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "Featured products",
+        "heading_size": "h2",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "collection": "all",
+        "products_to_show": 8,
+        "columns_desktop": 4,
+        "color_scheme": "scheme-1",
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "solid",
+        "enable_desktop_slider": false,
+        "swipe_on_mobile": false,
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "quick_add": "none",
+        "columns_mobile": "2",
+        "padding_top": 44,
+        "padding_bottom": 36
+      }
+    },
+    "ziak_heritage": {
+      "type": "ziak-heritage",
+      "settings": {
+        "eyebrow": "OUR HERITAGE",
+        "heading": "Rooted in Craft. Driven by Purpose.",
+        "description": "ZIAK was born from a belief that quality and integrity never go out of style. Every pair, every stitch, every detail reflects our dedication to thoughtful design and lasting impact.",
+        "stat_1_number": "10+ YEARS",
+        "stat_1_label": "OF CRAFTSMANSHIP",
+        "stat_2_number": "50K+",
+        "stat_2_label": "HAPPY CUSTOMERS",
+        "stat_3_number": "25+",
+        "stat_3_label": "COUNTRIES SERVED",
+        "stat_4_number": "PREMIUM",
+        "stat_4_label": "MATERIALS",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "ziak_top_picks": {
+      "type": "ziak-top-picks",
+      "settings": {
+        "section_title": "Trending This Week",
+        "show_more_text": "Show more",
+        "padding_top": 48,
+        "padding_bottom": 48
+      },
+      "blocks": {
+        "pick_1":  { "type": "product_card", "settings": { "product_name": "Syncro Flex 2199",          "regular_price": "₹169.99" } },
+        "pick_2":  { "type": "product_card", "settings": { "product_name": "Trail Blazer Supreme 8095",  "regular_price": "₹129.99" } },
+        "pick_3":  { "type": "product_card", "settings": { "product_name": "Momentum Flex 7568",         "regular_price": "₹179.00" } },
+        "pick_4":  { "type": "product_card", "settings": { "product_name": "Lifestyle Plus 5729",        "regular_price": "₹139.00", "badge_text": "Limited edition", "badge_style": "blue" } },
+        "pick_5":  { "type": "product_card", "settings": { "product_name": "Aerolite Racer 3629",        "regular_price": "₹99.00" } },
+        "pick_6":  { "type": "product_card", "settings": { "product_name": "Powerstride 5478",           "regular_price": "₹150.00" } },
+        "pick_7":  { "type": "product_card", "settings": { "product_name": "Aero Trainer 1011",          "original_price": "₹129.00", "sale_price": "₹110.00", "badge_text": "Sale", "badge_style": "dark" } },
+        "pick_8":  { "type": "product_card", "settings": { "product_name": "Aerolite Racer 563",         "original_price": "₹179.00", "sale_price": "₹184.99", "badge_text": "Sale", "badge_style": "dark" } },
+        "pick_9":  { "type": "product_card", "settings": { "product_name": "Express Glide 1817",         "regular_price": "₹124.99" } },
+        "pick_10": { "type": "product_card", "settings": { "product_name": "Skyline Fusion 4087",        "regular_price": "₹179.99" } }
+      },
+      "block_order": ["pick_1","pick_2","pick_3","pick_4","pick_5","pick_6","pick_7","pick_8","pick_9","pick_10"]
+    },
+    "ziak_reviews": {
+      "type": "ziak-reviews",
+      "settings": {
+        "section_title": "WHAT OUR CUSTOMERS SAY",
+        "padding_top": 56,
+        "padding_bottom": 56
+      },
+      "blocks": {
+        "rev_1": { "type": "review", "settings": { "review_text": "The quality is exceptional. You can feel the craftsmanship in every detail.", "star_count": 5, "reviewer_name": "Daniel R." } },
+        "rev_2": { "type": "review", "settings": { "review_text": "Stylish, comfortable, and built to last. ZIAK is my go-to for everything.", "star_count": 5, "reviewer_name": "Olivia M." } },
+        "rev_3": { "type": "review", "settings": { "review_text": "Timeless designs and outstanding service. Highly recommend!", "star_count": 5, "reviewer_name": "James T." } }
+      },
+      "block_order": ["rev_1", "rev_2", "rev_3"]
+    },
+    "ziak_reviews_carousel": {
+      "type": "ziak-reviews-carousel",
+      "settings": {
+        "eyebrow": "REVIEWS",
+        "heading": "Loved By ZIAK Customers",
+        "bg_color": "#F7F6F3",
+        "padding_top": 64,
+        "padding_bottom": 64
+      },
+      "blocks": {
+        "rc1": { "type": "review", "settings": { "stars": 5, "text": "The Derby pair is stunning — premium leather and a perfect fit. I get compliments every time.", "name": "Rahul S.", "location": "Mumbai, India", "flag": "🇮🇳", "avatar_color": "#C77B3B" } },
+        "rc2": { "type": "review", "settings": { "stars": 5, "text": "My Chelsea boots are beautifully crafted. Comfortable straight out of the box.", "name": "Arjun M.", "location": "Delhi, India", "flag": "🇮🇳", "avatar_color": "#1A1A1A" } },
+        "rc3": { "type": "review", "settings": { "stars": 4, "text": "Classic brogues done right. Sharp detailing and they age gracefully.", "name": "Vikram P.", "location": "Bengaluru, India", "flag": "🇮🇳", "avatar_color": "#6E1B33" } },
+        "rc4": { "type": "review", "settings": { "stars": 5, "text": "The loafers are my everyday go-to now. Elegant and easy to wear.", "name": "Karan D.", "location": "Pune, India", "flag": "🇮🇳", "avatar_color": "#C77B3B" } },
+        "rc5": { "type": "review", "settings": { "stars": 5, "text": "Formal shoes that actually last. Worth every rupee.", "name": "Aditya N.", "location": "Chennai, India", "flag": "🇮🇳", "avatar_color": "#1A1A1A" } }
+      },
+      "block_order": ["rc1", "rc2", "rc3", "rc4", "rc5"]
+    },
+    "ziak_why": {
+      "type": "ziak-why",
+      "settings": {
+        "bg_color": "#E8E5DF",
+        "heading": "Why 'Ziak'?",
+        "description": "ZIAK is built on a simple idea: quality without the show. We believe premium footwear shouldn't require an inflated price tag or an oversized logo to make an impression, which is why we offer well-designed shoes crafted with care at an honest price. By focusing on timeless designs that remain relevant beyond a single season and paying close attention to the small details that make a big difference, we create styles that endure. Because looking sharp should never mean compromising on how your shoes feel, we prioritize everyday comfort, ensuring that our footwear delivers honest value and feels worth every single step.",
+        "button_label": "SHOP NOW",
+        "button_link": "/collections/all",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    }
+  },
+  "order": [
+    "ziak_hero",
+    "ziak_life_occasions",
+    "ziak_top_categories",
+    "ziak_product_carousel",
+    "ziak_heritage",
+    "ziak_top_picks",
+    "ziak_reviews",
+    "ziak_reviews_carousel",
+    "ziak_why",
+    "featured_collection"
+  ]
+}

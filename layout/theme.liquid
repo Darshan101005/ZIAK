@@ -314,6 +314,13 @@
       body::-webkit-scrollbar { width: 0; height: 0; display: none; }
       body { scrollbar-width: none; -ms-overflow-style: none; }
     </style>
+    <style>
+      /* Blog and physical-store pages are temporarily hidden site-wide. */
+      a[href="/pages/blog"],
+      a[href="/pages/our-store"] {
+        display: none !important;
+      }
+    </style>
   </head>
 
   <body class="gradient template-{{ template | replace: '.', '-' }}{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">

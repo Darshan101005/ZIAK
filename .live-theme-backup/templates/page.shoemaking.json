@@ -1,0 +1,47 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "ziak_feature": {
+      "type": "ziak-feature-story",
+      "blocks": {
+        "t1": { "type": "text", "settings": { "text": "<p>A ZIAK shoe doesn't begin on a factory line — it begins with a decision to do things properly. Every pair passes through many pairs of hands before it reaches yours, and each set of hands leaves something behind: precision, patience, and a little pride.</p>" } },
+        "h1": { "type": "heading", "settings": { "text": "It Starts with the Leather" } },
+        "duo1": { "type": "duo", "settings": { "layout": "image_left", "subheading": "Choosing the hide", "text": "<p>Before a single cut is made, the leather is chosen by hand. We look for full-grain hides with an even surface and a natural pull-up — leather that will soften and deepen in colour as you wear it, rather than crack or fade.</p>", "ph_label": "Add leather / material photo" } },
+        "h2": { "type": "heading", "settings": { "text": "Cutting &amp; Clicking" } },
+        "t2": { "type": "text", "settings": { "text": "<p>The pattern is laid out and every panel is cut — a stage traditionally called \"clicking\" for the sound the blade makes. It's here that a maker's eye matters most: aligning the grain, avoiding blemishes, and making sure the two shoes of a pair will look like true twins.</p>" } },
+        "vid": { "type": "video", "settings": { "ph_label": "Add shoemaking video", "caption": "Inside the workshop — from cut to finished last." } },
+        "h3": { "type": "heading", "settings": { "text": "Lasting the Shoe" } },
+        "duo2": { "type": "duo", "settings": { "layout": "image_right", "subheading": "Shaping over the last", "text": "<p>The upper is stretched and moulded over a wooden or resin form called a last — the mould that gives the shoe its shape and fit. This is where a flat piece of leather becomes something with posture and character.</p>", "ph_label": "Add lasting / shaping photo" } },
+        "q1": { "type": "quote", "settings": { "text": "Machines can be fast. Only a craftsperson can be careful.", "cite": "The ZIAK Workshop" } },
+        "h4": { "type": "heading", "settings": { "text": "The Finishing Touch" } },
+        "t3": { "type": "text", "settings": { "text": "<p>Soles are attached, edges are trimmed and burnished, and the leather is polished by hand until it holds a quiet shine. The result isn't just a shoe — it's the sum of dozens of small, deliberate choices, made so you never have to think about them.</p>" } },
+        "img1": { "type": "image", "settings": { "width": "wide", "ph_label": "Add finished shoe photo", "caption": "The finished pair — ready for the road." } }
+      },
+      "block_order": ["t1", "h1", "duo1", "h2", "t2", "vid", "h3", "duo2", "q1", "h4", "t3", "img1"],
+      "settings": {
+        "announcement_text": "FREE SHIPPING ON ALL ORDERS OVER ₹999 — ALL OVER INDIA",
+        "eyebrow": "FEATURED",
+        "heading": "The Art of Shoemaking",
+        "date": "AUG 28, 2026",
+        "read_time": "6 MIN READ",
+        "intro": "<p>A closer look at the craftsmanship, the techniques, and the people behind every pair of ZIAK shoes.</p>",
+        "hero_ph_label": "Add hero image",
+        "cta_heading": "Wear the Craft",
+        "cta_text": "<p>Every pair in our collection carries the same care you've just read about. Find the one that's made for you.</p>",
+        "cta_label": "SHOP THE COLLECTION",
+        "cta_url": "/collections/all",
+        "back_label": "BACK TO THE JOURNAL",
+        "back_url": "/pages/blog"
+      }
+    }
+  },
+  "order": ["ziak_feature"]
+}
